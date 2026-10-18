@@ -53,6 +53,16 @@
     <!-- 60fps Interactive Animation Canvas (Solitary Flight, Swarm, WELCOME, Petal Morph) -->
     <canvas id="intro-canvas" class="intro-canvas"></canvas>
 
+    <!-- Falling Welcome Sign: "to my world" -->
+    <div id="intro-hanging-sign" class="intro-hanging-sign" style="display:none;" aria-hidden="true">
+      <svg class="intro-sign-threads" viewBox="0 0 420 60" preserveAspectRatio="none">
+        <line x1="60" y1="0" x2="60" y2="60" stroke="#d56586" stroke-width="2" stroke-dasharray="3 3"/>
+        <line x1="360" y1="0" x2="360" y2="60" stroke="#d56586" stroke-width="2" stroke-dasharray="3 3"/>
+      </svg>
+      <div class="intro-sign-text">to my world</div>
+      <div class="intro-sign-deco">✿ &bull; ✦ &bull; ✿</div>
+    </div>
+
     <!-- Cinematic Controls -->
     <div class="intro-controls">
       <button type="button" id="skip-intro-btn" class="skip-intro-btn" aria-label="Skip introduction">
@@ -64,7 +74,7 @@
   <!-- Ambient Cursor Glow Spotlight -->
   <div class="ambient-glow" id="ambient-glow" aria-hidden="true"></div>
 
-  <!-- Floating Navigation Bar (Phase 4) -->
+  <!-- Floating Navigation Bar (Strict Public Layout: Amrutha ✿ | About Education Work Skills Contact | Themes) -->
   <header class="site-header">
     <nav class="nav-pill" aria-label="Main navigation">
       <a class="brand" href="#top" aria-label="Amrutha home">
@@ -80,34 +90,6 @@
       </div>
 
       <div class="nav-actions">
-        <!-- Rotating Admin Flower Button (Passkey Protected) -->
-        <button type="button" class="rotating-admin-flower-btn" id="nav-admin-flower-btn" aria-label="Admin Portal Passkey Gateway" title="Admin Portal (Passkey Protected)">
-          <svg class="admin-spinning-flower" viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
-            <defs>
-              <radialGradient id="navFlowerGrad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#fff5f8"/>
-                <stop offset="50%" stop-color="#fba8bf"/>
-                <stop offset="100%" stop-color="#d56586"/>
-              </radialGradient>
-            </defs>
-            <g transform="translate(50,50)">
-              <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#navFlowerGrad)"/>
-              <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#navFlowerGrad)" transform="rotate(72)"/>
-              <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#navFlowerGrad)" transform="rotate(144)"/>
-              <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#navFlowerGrad)" transform="rotate(216)"/>
-              <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#navFlowerGrad)" transform="rotate(288)"/>
-              <circle cx="0" cy="0" r="5.5" fill="#ffd57a" stroke="#d56586" stroke-width="1.2"/>
-            </g>
-          </svg>
-          <span>Admin</span>
-        </button>
-
-        <button type="button" class="nav-admin-btn" id="nav-admin-dashboard-btn" aria-label="Open Smart Classroom Admin Portal">
-          <svg class="icon-inline" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-          </svg>
-          <span>Portal</span>
-        </button>
         <span class="nav-separator" aria-hidden="true"></span>
         <div class="theme-wrap">
           <button type="button" id="theme-button" class="theme-button" aria-expanded="false" aria-haspopup="true" aria-label="Select website theme">
@@ -260,52 +242,94 @@
         </div>
       </div>
 
-      <!-- Hanging Developer ID Badge with Realistic Ribbon & Pixel-Dissolve Photo Switcher -->
+      <!-- Hanging Developer ID Badge: Unified Physical Assembly & Hidden Admin Entry (Phase 1, 2, 3) -->
       <div class="badge-scene" id="badge-scene" aria-label="Interactive Developer ID card">
-        <div class="strap strap-a" aria-hidden="true"></div>
-        <div class="strap strap-b" aria-hidden="true"></div>
-        <div class="lanyard-link" aria-hidden="true"></div>
-        <div class="lanyard-clip" aria-hidden="true"></div>
+        <!-- SVG Lanyard Straps & Hardware: Converging paths from top to central buckle & swivel clasp -->
+        <svg class="lanyard-hardware-svg" viewBox="0 0 290 440" aria-hidden="true">
+          <defs>
+            <linearGradient id="lanyardFabricA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ffb8cc"/>
+              <stop offset="50%" stop-color="#f59eb7"/>
+              <stop offset="100%" stop-color="#d56586"/>
+            </linearGradient>
+            <linearGradient id="lanyardFabricB" x1="1" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ffd5e2"/>
+              <stop offset="50%" stop-color="#f59eb7"/>
+              <stop offset="100%" stop-color="#ba5372"/>
+            </linearGradient>
+            <linearGradient id="goldMetalGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fff0c2"/>
+              <stop offset="40%" stop-color="#e6bc58"/>
+              <stop offset="70%" stop-color="#b88a20"/>
+              <stop offset="100%" stop-color="#7a570b"/>
+            </linearGradient>
+            <filter id="hardwareShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.25"/>
+            </filter>
+          </defs>
 
-        <div class="dev-id" id="dev-id-badge" role="button" tabindex="0" aria-label="Developer ID badge. Click card to open modal.">
-          <!-- Punched Slot Hole with Visibly Interlocking Metallic Clasp Through-Loop and Front-Lip -->
-          <div class="badge-hole-slot" aria-hidden="true">
-            <div class="clasp-through-loop" aria-hidden="true"></div>
-            <div class="clasp-front-lip" aria-hidden="true"></div>
-          </div>
+          <!-- Left Fabric Strap Path (converging smoothly from top-left) -->
+          <path d="M 45 -40 C 70 100, 115 220, 142 275" stroke="url(#lanyardFabricA)" stroke-width="26" stroke-linecap="round" fill="none" filter="url(#hardwareShadow)"/>
+          <path d="M 45 -40 C 70 100, 115 220, 142 275" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 4" stroke-opacity="0.6" fill="none"/>
+
+          <!-- Right Fabric Strap Path (converging smoothly from top-right) -->
+          <path d="M 245 -40 C 220 100, 175 220, 148 275" stroke="url(#lanyardFabricB)" stroke-width="26" stroke-linecap="round" fill="none" filter="url(#hardwareShadow)"/>
+          <path d="M 245 -40 C 220 100, 175 220, 148 275" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 4" stroke-opacity="0.6" fill="none"/>
+
+          <!-- Strap Joint / Metallic Clasp Ring -->
+          <rect x="127" y="268" width="36" height="18" rx="7" fill="url(#goldMetalGrad)" stroke="#8c6414" stroke-width="1.5" filter="url(#hardwareShadow)"/>
+          
+          <!-- Swivel Connector & Spring Clasp -->
+          <rect x="139" y="286" width="12" height="20" rx="4" fill="url(#goldMetalGrad)" stroke="#7a570b" stroke-width="1.2"/>
+          <path d="M 145 306 L 145 342" stroke="url(#goldMetalGrad)" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="145" cy="342" r="7.5" fill="none" stroke="url(#goldMetalGrad)" stroke-width="4.5" filter="url(#hardwareShadow)"/>
+          <!-- Front Hook Lip clipping visibly into the badge slot -->
+          <path d="M 141 336 C 141 346, 149 346, 149 336" fill="none" stroke="#fff0c2" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+
+        <div class="dev-id" id="dev-id-badge" role="button" tabindex="0" aria-label="Amrutha Developer ID badge. Click card to open public profile modal.">
+          <!-- Punched Slot Hole where metal clasp visibly hooks through -->
+          <div class="badge-hole-slot" aria-hidden="true"></div>
 
           <div class="dev-id-head">
             <div class="id-code">&lt;/&gt;</div>
             <span>DEVELOPER ID</span>
-            <span class="id-flower" aria-hidden="true">✿</span>
+            <span class="dev-corner-flower flower-rot-a" aria-hidden="true">✿</span>
           </div>
 
-          <!-- Dual Portrait Layer Frame with Pixel-Dissolve Switcher & Real Amrutha Photograph -->
-          <div class="id-photo" id="id-photo-frame" title="Hover or tap to reveal real photo">
-            <img class="portrait-layer portrait-anime" src="public/assets/amrutha-avatar.png" alt="Amrutha Chibi Avatar" id="anime-portrait-img" />
-            <img class="portrait-layer portrait-real" src="public/assets/ammu.webp" alt="Amrutha Real Portrait" id="real-portrait-img" />
-            <canvas class="pixel-dissolve-canvas" id="pixel-dissolve-canvas" hidden></canvas>
-            
-            <div class="photo-controls">
-              <button type="button" class="photo-switch-btn" id="photo-switch-btn" title="Toggle Portrait Style">
-                <span>✦</span> <span id="switch-lbl">Real Photo</span>
-              </button>
-              <label for="portrait-file-input" class="photo-upload-btn" id="photo-upload-lbl" title="Upload custom portrait">
-                <svg class="icon-inline" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                  <circle cx="12" cy="13" r="4"></circle>
-                </svg>
-                <input type="file" id="portrait-file-input" accept="image/*" style="display:none;" />
-              </label>
-            </div>
+          <!-- Clean Anime Portrait Frame (no badges, no camera buttons) -->
+          <div class="id-photo" id="id-photo-frame">
+            <img class="portrait-anime" src="public/assets/amrutha-avatar.png" alt="Amrutha Avatar" id="anime-portrait-img" />
           </div>
 
           <div class="id-name">AMRUTHA</div>
           <div class="id-role">B.Tech Student</div>
           
           <div class="id-barcode" aria-hidden="true"></div>
-          <span class="id-flower-bottom" aria-hidden="true">🌸</span>
-          <span class="badge-hint">Click badge to inspect ↗</span>
+
+          <!-- Decorative Rotating Corner Flower near bottom left -->
+          <span class="dev-corner-flower flower-rot-b" style="position:absolute; left:14px; bottom:14px; font-size:16px;" aria-hidden="true">🌸</span>
+
+          <!-- Hidden Admin Entry: Rotating Decorative Blossom (Double-Click / Double-Tap trigger) -->
+          <div class="id-admin-flower" id="id-admin-flower" role="button" tabindex="0" aria-label="Sakura emblem" title="">
+            <svg class="admin-flower-svg" viewBox="0 0 100 100" aria-hidden="true">
+              <defs>
+                <radialGradient id="cornerFlowerGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#fffbf7"/>
+                  <stop offset="50%" stop-color="#fba8bf"/>
+                  <stop offset="100%" stop-color="#d56586"/>
+                </radialGradient>
+              </defs>
+              <g transform="translate(50,50)">
+                <path d="M 0,-4 C -9,-26 -20,-26 -17,-14 C -14,-3 -4,0 0,0 C 4,0 14,-3 17,-14 C 20,-26 9,-26 0,-4 Z" fill="url(#cornerFlowerGrad)"/>
+                <path d="M 0,-4 C -9,-26 -20,-26 -17,-14 C -14,-3 -4,0 0,0 C 4,0 14,-3 17,-14 C 20,-26 9,-26 0,-4 Z" fill="url(#cornerFlowerGrad)" transform="rotate(72)"/>
+                <path d="M 0,-4 C -9,-26 -20,-26 -17,-14 C -14,-3 -4,0 0,0 C 4,0 14,-3 17,-14 C 20,-26 9,-26 0,-4 Z" fill="url(#cornerFlowerGrad)" transform="rotate(144)"/>
+                <path d="M 0,-4 C -9,-26 -20,-26 -17,-14 C -14,-3 -4,0 0,0 C 4,0 14,-3 17,-14 C 20,-26 9,-26 0,-4 Z" fill="url(#cornerFlowerGrad)" transform="rotate(216)"/>
+                <path d="M 0,-4 C -9,-26 -20,-26 -17,-14 C -14,-3 -4,0 0,0 C 4,0 14,-3 17,-14 C 20,-26 9,-26 0,-4 Z" fill="url(#cornerFlowerGrad)" transform="rotate(288)"/>
+                <circle cx="0" cy="0" r="4.5" fill="#ffd57a" stroke="#d56586" stroke-width="1"/>
+              </g>
+            </svg>
+          </div>
         </div>
       </div>
 
@@ -460,13 +484,13 @@
       <!-- Primary Featured Project: Smart Classroom Attendance System -->
       <article class="featured-project-card tilt-card reveal" data-category="team" aria-label="Smart Classroom Attendance System">
         <div class="featured-art">
-          <div class="mockup-window" id="attendance-mockup-window" role="button" tabindex="0" title="Click to launch interactive Admin Dashboard" style="cursor: pointer;">
+          <div class="mockup-window" id="attendance-mockup-window" title="Academic Project Interface Preview">
             <div class="mockup-header">
               <span class="mockup-dot red"></span>
               <span class="mockup-dot yellow"></span>
               <span class="mockup-dot green"></span>
               <span class="mockup-title">attendance-portal.local</span>
-              <span class="mockup-launch-badge">⚡ Live Demo</span>
+              <span class="mockup-launch-badge">Team Project</span>
             </div>
             <div class="mockup-body">
               <div class="mockup-stat-row">
@@ -525,13 +549,7 @@
           <div class="project-bottom">
             <span style="font-size:13px; font-weight:700; color:var(--accent);">Academic Team Collaboration</span>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <button type="button" class="btn btn-primary magnetic-btn" id="open-admin-dashboard-btn" style="min-height:44px; padding:0 22px; font-size:13px;">
-                <span>Launch Admin Portal</span>
-                <svg class="icon-inline" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                </svg>
-              </button>
-              <a href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="min-height:44px; padding:0 22px; font-size:13px;">
+              <a href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer" class="btn btn-primary magnetic-btn" style="min-height:44px; padding:0 22px; font-size:13px;">
                 View on GitHub ↗
               </a>
             </div>
@@ -797,55 +815,86 @@
       </div>
     </section>
 
-    <!-- Phase 14: Contact Section (Airmail Letter / Postcard Composition) -->
+    <!-- Phase 14 & Section 23: Contact Section (Requirements-First Flow & Visiting Card Generator) -->
     <section id="contact" class="contact-section" aria-label="Contact Amrutha">
       <div class="contact-container reveal">
         <div class="section-kicker" style="justify-content:center;">05 / SAY HELLO</div>
-        <h2>Let's make something<br /><em>lovely together!</em></h2>
+        <h2>What are your requirements?</h2>
         <p class="contact-desc">
-          Have an idea, an academic project collaboration, or just want to connect? I’d love to hear from you.
+          Tell me a little about what you'd love to create. Have an idea, an academic project collaboration, or just want to connect?
         </p>
 
-        <!-- Postcard Composition with Stamp and Airmail Aesthetic -->
-        <div class="contact-box tilt-card">
-          <div class="contact-stamp" aria-hidden="true">
-            <span class="stamp-icon">🌸</span>
-            <span class="stamp-text">AIR MAIL</span>
+        <div class="contact-requirements-container">
+          <!-- Left: Requirements Input Form -->
+          <div class="requirements-form-box tilt-card">
+            <form id="contact-form" novalidate autocomplete="off">
+              <div class="form-group" style="margin-bottom:16px;">
+                <label for="contact-name">Your Name *</label>
+                <input type="text" id="contact-name" class="form-input" placeholder="What should I call you?" required />
+              </div>
+
+              <div class="form-group" style="margin-bottom:16px;">
+                <label for="contact-email">Your Email <span style="font-size:11px; color:var(--muted); font-weight:normal;">(Required for email replies)</span></label>
+                <input type="email" id="contact-email" class="form-input" placeholder="hello@example.com" />
+              </div>
+
+              <div class="form-group" style="margin-bottom:16px;">
+                <label for="contact-msg">Tell me about your idea or requirements *</label>
+                <textarea id="contact-msg" class="form-input" style="min-height:120px;" placeholder="Tell me about your idea, project, collaboration, or anything you'd like to discuss..." required></textarea>
+              </div>
+
+              <!-- Contact Method Choice -->
+              <div style="margin-bottom:16px;">
+                <label style="font-size:12.5px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:8px;">
+                  Preferred Contact Method
+                </label>
+                <div class="requirements-channel-picker">
+                  <button type="button" class="channel-btn active" id="channel-wa-btn" data-channel="whatsapp">
+                    <svg class="icon-inline" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                      <path d="M17.472 14.382c-.301-.15-1.78-.879-2.056-.979-.276-.101-.476-.15-.676.15-.2.301-.776.979-.952 1.18-.175.201-.351.226-.652.075-.301-.15-1.271-.469-2.42-1.494-.894-.798-1.498-1.783-1.674-2.084-.175-.301-.019-.464.132-.614.136-.135.301-.351.451-.527.151-.175.201-.301.301-.502.101-.201.05-.376-.025-.527-.075-.15-.677-1.631-.928-2.235-.244-.588-.493-.508-.677-.518l-.578-.01c-.201 0-.527.075-.802.376-.276.301-1.053 1.029-1.053 2.508 0 1.48 1.078 2.909 1.229 3.11 0.15.201 2.122 3.24 5.141 4.544.718.31 1.278.496 1.716.635.722.23 1.378.198 1.898.12.579-.087 1.78-.727 2.031-1.43.251-.703.251-1.305.176-1.43-.075-.126-.276-.201-.577-.352z"/>
+                      <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.434 5.178L2.05 21.95l4.908-1.34A9.954 9.954 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.644 0-3.176-.484-4.468-1.318l-.32-.206-2.91.795.795-2.836-.226-.339A8.17 8.17 0 0 1 3.8 12c0-4.521 3.679-8.2 8.2-8.2s8.2 3.679 8.2 8.2-3.679 8.2-8.2 8.2z"/>
+                    </svg>
+                    <span>WhatsApp</span>
+                  </button>
+                  <button type="button" class="channel-btn" id="channel-email-btn" data-channel="email">
+                    <svg class="icon-inline" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <span>Email Enquiry</span>
+                  </button>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary magnetic-btn" id="submit-enquiry-btn" style="width:100%; min-height:48px; font-size:14px; font-weight:800; justify-content:center;">
+                <span id="submit-btn-lbl">Send via WhatsApp ↗</span>
+              </button>
+            </form>
+
+            <div id="form-feedback" style="display:none; margin-top:16px; font-weight:700; color:var(--accent);"></div>
           </div>
 
-          <form class="contact-form" id="contact-form" novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="contact-name">Your Name</label>
-                <input type="text" id="contact-name" class="form-input" placeholder="What's your name?" required />
-              </div>
-              <div class="form-group">
-                <label for="contact-email">Your Email</label>
-                <input type="email" id="contact-email" class="form-input" placeholder="hello@example.com" required />
-              </div>
+          <!-- Right: Dynamic Sakura Visiting Card Preview (1080 x 1350) -->
+          <div class="visiting-card-preview-panel tilt-card">
+            <div style="font-size:12.5px; font-weight:800; color:var(--accent); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:12px;">
+              Digital Visiting Card Preview 🌸
             </div>
-
-            <div class="form-group">
-              <label for="contact-msg">Message</label>
-              <textarea id="contact-msg" class="form-input" placeholder="Tell me about your idea or say hello! ♡" required></textarea>
+            <div class="visiting-card-canvas-wrap">
+              <canvas id="visiting-card-canvas" class="visiting-card-canvas" width="1080" height="1350"></canvas>
             </div>
-
-            <button type="submit" class="btn btn-primary magnetic-btn" style="margin: 8px auto 0; width:min(280px, 100%);">
-              Send message <span class="btn-arrow" aria-hidden="true">♡</span>
-            </button>
-          </form>
-
-          <div id="form-feedback" style="display:none; margin-top:16px; font-weight:700; color:var(--accent);"></div>
+            <div class="visiting-card-actions">
+              <button type="button" class="btn btn-outline" id="download-card-btn" style="min-height:40px; padding:0 18px; font-size:12px;">
+                <span>Download Card (PNG)</span> 📥
+              </button>
+              <button type="button" class="btn btn-outline" id="share-card-btn" style="min-height:40px; padding:0 18px; font-size:12px;">
+                <span>Share Card</span> ↗
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div class="contact-actions">
-          <a class="btn whatsapp-connect-btn magnetic-btn" href="https://wa.me/?text=Hi%20Amrutha,%20I%20saw%20your%20Sakura%20Developer%20Portfolio%20and%20would%20love%20to%20connect!" target="_blank" rel="noopener noreferrer" aria-label="Connect with Amrutha on WhatsApp">
-            <svg class="icon-inline" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-              <path d="M17.472 14.382c-.301-.15-1.78-.879-2.056-.979-.276-.101-.476-.15-.676.15-.2.301-.776.979-.952 1.18-.175.201-.351.226-.652.075-.301-.15-1.271-.469-2.42-1.494-.894-.798-1.498-1.783-1.674-2.084-.175-.301-.019-.464.132-.614.136-.135.301-.351.451-.527.151-.175.201-.301.301-.502.101-.201.05-.376-.025-.527-.075-.15-.677-1.631-.928-2.235-.244-.588-.493-.508-.677-.518l-.578-.01c-.201 0-.527.075-.802.376-.276.301-1.053 1.029-1.053 2.508 0 1.48 1.078 2.909 1.229 3.11 0.15.201 2.122 3.24 5.141 4.544.718.31 1.278.496 1.716.635.722.23 1.378.198 1.898.12.579-.087 1.78-.727 2.031-1.43.251-.703.251-1.305.176-1.43-.075-.126-.276-.201-.577-.352z"/>
-              <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.434 5.178L2.05 21.95l4.908-1.34A9.954 9.954 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.644 0-3.176-.484-4.468-1.318l-.32-.206-2.91.795.795-2.836-.226-.339A8.17 8.17 0 0 1 3.8 12c0-4.521 3.679-8.2 8.2-8.2s8.2 3.679 8.2 8.2-3.679 8.2-8.2 8.2z"/>
-            </svg>
-            <span>WhatsApp Connect</span>
-          </a>
+        <!-- Secondary Links -->
+        <div class="contact-actions" style="margin-top:40px;">
           <a class="btn btn-primary magnetic-btn" href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer">
             Find me on GitHub <span aria-hidden="true">↗</span>
           </a>
@@ -875,12 +924,13 @@
 
   <!-- Modal 1: Developer ID Profile Modal (Phase 7) -->
   <div id="dev-id-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="dev-modal-title">
-    <div class="modal-card">
-      <button type="button" id="close-dev-modal" class="modal-close-btn" aria-label="Close Developer ID modal">✕</button>
-      
+    <div class="modal-card dev-modal-card">
+      <button type="button" class="modal-close-btn" id="close-dev-modal" aria-label="Close Profile Modal">✕</button>
       <div class="dev-modal-head">
         <div class="dev-modal-avatar">
-          <img src="public/assets/amrutha-avatar.png" alt="Amrutha avatar" id="modal-avatar-img" />
+          <img src="public/assets/amrutha-avatar.png" alt="Amrutha Avatar" id="modal-avatar-anime" class="modal-portrait-img" />
+          <img src="public/assets/ammu.webp" alt="Amrutha Photograph" id="modal-avatar-real" class="modal-portrait-img" />
+          <canvas id="modal-pixel-loop-canvas" class="modal-pixel-canvas"></canvas>
         </div>
         <h2 id="dev-modal-title" class="dev-modal-name">Divvela Jyoti Venkata Amrutha</h2>
         <div class="dev-modal-subtitle">Frontend Developer &bull; B.Tech Student</div>
@@ -914,13 +964,10 @@
       </div>
 
       <div class="modal-actions" style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-        <button type="button" id="dev-modal-admin-btn" class="btn btn-primary" style="min-height:46px; padding:0 22px; font-size:13px; width:100%; justify-content:center;">
-          <span>⚡</span> Launch Attendance Admin Dashboard
-        </button>
-        <a href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="min-height:44px; padding:0 20px; font-size:13px; flex:1; justify-content:center;">
+        <a href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="min-height:46px; padding:0 24px; font-size:13.5px; flex:1; justify-content:center;">
           Open GitHub Profile ↗
         </a>
-        <button type="button" id="dev-modal-resume-btn" class="btn btn-outline" style="min-height:44px; padding:0 20px; font-size:13px; flex:1; justify-content:center;">
+        <button type="button" id="dev-modal-resume-btn" class="btn btn-outline" style="min-height:46px; padding:0 24px; font-size:13.5px; flex:1; justify-content:center;">
           Inspect Resume 📄
         </button>
       </div>
@@ -959,195 +1006,52 @@
     </div>
   </div>
 
-  <!-- Modal 2b: Admin Passkey Gateway Modal (Phase 21) -->
+  <!-- Modal 2b: Admin Access Key Modal (Phase 2 & 9 - Restricted Access) -->
   <div id="passkey-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="passkey-modal-title">
     <div class="modal-card passkey-modal-card">
       <button type="button" id="close-passkey-modal" class="modal-close-btn" aria-label="Close passkey modal">✕</button>
-      <div class="passkey-icon-wrap">
-        <svg class="admin-spinning-flower" viewBox="0 0 100 100" width="44" height="44" aria-hidden="true">
+      
+      <div class="passkey-icon-wrap" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="44" height="44">
+          <defs>
+            <radialGradient id="modalFlowerGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#fff5f8"/>
+              <stop offset="50%" stop-color="#fba8bf"/>
+              <stop offset="100%" stop-color="#d56586"/>
+            </radialGradient>
+          </defs>
           <g transform="translate(50,50)">
-            <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="url(#navFlowerGrad)"/>
-            <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="url(#navFlowerGrad)" transform="rotate(72)"/>
-            <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="url(#navFlowerGrad)" transform="rotate(144)"/>
-            <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="url(#navFlowerGrad)" transform="rotate(216)"/>
-            <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="url(#navFlowerGrad)" transform="rotate(288)"/>
-            <circle cx="0" cy="0" r="7" fill="#ffd57a" stroke="#d56586" stroke-width="1.5"/>
+            <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#modalFlowerGrad)"/>
+            <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#modalFlowerGrad)" transform="rotate(72)"/>
+            <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#modalFlowerGrad)" transform="rotate(144)"/>
+            <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#modalFlowerGrad)" transform="rotate(216)"/>
+            <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#modalFlowerGrad)" transform="rotate(288)"/>
+            <circle cx="0" cy="0" r="5.5" fill="#ffd57a" stroke="#d56586" stroke-width="1.2"/>
           </g>
         </svg>
       </div>
-      <h3 id="passkey-modal-title" class="passkey-title">Admin Passkey Gateway</h3>
-      <p class="passkey-desc">Enter authorization passkey to access the Smart Classroom Attendance Portal &amp; Roster Management.</p>
-      
-      <form id="passkey-form" class="passkey-form" novalidate>
+
+      <h3 id="passkey-modal-title" class="passkey-title">Restricted Access</h3>
+      <p class="passkey-desc">Enter your access key to continue.</p>
+
+      <form id="passkey-form" class="passkey-form" novalidate autocomplete="off">
         <div class="passkey-input-wrap">
-          <input type="password" id="passkey-input" class="passkey-input" placeholder="Enter passkey (e.g. 2026)" autocomplete="current-password" required />
-          <button type="button" id="toggle-passkey-vis" class="passkey-vis-btn" aria-label="Toggle password visibility">👁</button>
+          <input 
+            type="password" 
+            id="passkey-input" 
+            class="passkey-input" 
+            placeholder="••••••••" 
+            aria-label="Access Key"
+            required 
+            autocomplete="current-password"
+          />
         </div>
-        <div id="passkey-error" class="passkey-error" style="display:none;"></div>
-        
-        <div class="passkey-actions">
-          <button type="submit" class="btn btn-primary magnetic-btn" id="passkey-submit-btn" style="width:100%; min-height:48px; justify-content:center;">
-            <span>Unlock Admin Portal ✦</span>
-          </button>
-        </div>
-        
-        <div class="passkey-hint">
-          <span>🔒 Authorized demo passkeys: <code>2026</code>, <code>sakura</code>, <code>amrutha</code>, or <code>admin</code></span>
-        </div>
+        <div id="passkey-error" class="passkey-error" style="display:none;" role="alert"></div>
+
+        <button type="submit" id="unlock-btn" class="btn btn-primary" style="width:100%; min-height:48px; font-size:14px; font-weight:800; justify-content:center;">
+          Unlock Dashboard
+        </button>
       </form>
-    </div>
-  </div>
-
-  <!-- Modal 3: Smart Classroom Attendance & Admin Dashboard Modal (Phase 22) -->
-  <div id="admin-dashboard-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
-    <div class="modal-card admin-modal-card">
-      <button type="button" id="close-admin-modal" class="modal-close-btn" aria-label="Close Admin Dashboard">✕</button>
-
-      <div class="admin-modal-header">
-        <div class="admin-header-badge">
-          <span class="live-dot" aria-hidden="true"></span>
-          <span>ADMIN ATTENDANCE PORTAL &bull; LIVE SYSTEM</span>
-        </div>
-        <h3 id="admin-modal-title" class="admin-modal-title">Smart Classroom Attendance System</h3>
-        <p class="admin-modal-sub">
-          <strong>Section:</strong> CSE-3A &bull; <strong>Department:</strong> Computer Science &amp; Engineering &bull; <strong>Lead Architect:</strong> Divvela Jyoti Venkata Amrutha
-        </p>
-        <div class="admin-meta-strip">
-          <span class="admin-time-badge" id="admin-live-time">🕒 Today: 09:30 AM &bull; Period 1 (Web Engineering)</span>
-          <span class="admin-session-pill">Academic Year 2026-27</span>
-        </div>
-      </div>
-
-      <!-- Real-Time Dynamic Metrics Bar -->
-      <div class="admin-stats-grid">
-        <div class="admin-stat-card">
-          <div class="admin-stat-icon">
-            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-          </div>
-          <div>
-            <div class="admin-stat-val" id="admin-total-enrolled">10</div>
-            <div class="admin-stat-label">Total Enrolled</div>
-          </div>
-        </div>
-
-        <div class="admin-stat-card stat-present">
-          <div class="admin-stat-icon">
-            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#25d366" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-          </div>
-          <div>
-            <div class="admin-stat-val" id="admin-present-count">8</div>
-            <div class="admin-stat-label">Present Today</div>
-          </div>
-        </div>
-
-        <div class="admin-stat-card stat-absent">
-          <div class="admin-stat-icon">
-            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#e0526e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </div>
-          <div>
-            <div class="admin-stat-val" id="admin-absent-count">2</div>
-            <div class="admin-stat-label">Absent</div>
-          </div>
-        </div>
-
-        <div class="admin-stat-card stat-rate">
-          <div class="admin-stat-icon">
-            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-              <polyline points="17 6 23 6 23 12"></polyline>
-            </svg>
-          </div>
-          <div>
-            <div class="admin-stat-val" id="admin-rate-pct">80.0%</div>
-            <div class="admin-stat-label">Attendance Rate</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Admin Toolbar: Search, Filter, Quick Batch Actions -->
-      <div class="admin-toolbar">
-        <div class="admin-search-wrap">
-          <svg class="search-icon icon-inline" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <input type="text" id="admin-search-input" class="admin-search-input" placeholder="Search by student name or roll number (e.g. 21NEC01)..." />
-          <button type="button" class="search-clear-btn" id="admin-search-clear" style="display:none;" aria-label="Clear search">✕</button>
-        </div>
-
-        <div class="admin-filter-group" role="tablist">
-          <button type="button" class="admin-filter-btn active" data-status-filter="all">All (<span id="filter-all-num">10</span>)</button>
-          <button type="button" class="admin-filter-btn" data-status-filter="present">Present (<span id="filter-present-num">8</span>)</button>
-          <button type="button" class="admin-filter-btn" data-status-filter="absent">Absent (<span id="filter-absent-num">2</span>)</button>
-        </div>
-      </div>
-
-      <!-- Batch Action Buttons -->
-      <div class="admin-actions-bar">
-        <button type="button" class="btn-admin-action" id="admin-mark-all-btn">
-          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-          <span>Mark All Present</span>
-        </button>
-        <button type="button" class="btn-admin-action" id="admin-reset-btn">
-          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="1 4 1 10 7 10"></polyline>
-            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-          </svg>
-          <span>Reset Roll Call</span>
-        </button>
-        <button type="button" class="btn-admin-action btn-admin-accent" id="admin-export-csv-btn">
-          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
-          </svg>
-          <span>Export CSV Report</span>
-        </button>
-        <button type="button" class="btn-admin-action" id="admin-broadcast-btn">
-          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
-          </svg>
-          <span>Sync College Server</span>
-        </button>
-      </div>
-
-      <!-- Interactive Student Roster -->
-      <div class="admin-roster-wrap">
-        <div class="admin-roster-header">
-          <span>STUDENT ROSTER</span>
-          <span class="roster-live-hint">Click status pills below to toggle live attendance</span>
-        </div>
-        <div class="admin-roster-list" id="admin-roster-list">
-          <!-- Populated dynamically via JS -->
-        </div>
-      </div>
-
-      <!-- Toast Feedback Message -->
-      <div class="admin-toast" id="admin-toast" hidden></div>
-
-      <!-- Engineering Credits & Architecture Notes -->
-      <div class="admin-modal-footer">
-        <div class="admin-arch-note">
-          <span>💡 <strong>Architecture Note:</strong> Built with semantic HTML5, reactive Vanilla JavaScript DOM state management, and real-time roll-call recalculations. Contributed by Amrutha for college lab automation.</span>
-        </div>
-        <div class="admin-footer-links">
-          <a href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="min-height:38px; font-size:12.5px; padding:0 18px;">
-            View Source Code ↗
-          </a>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -1188,19 +1092,24 @@
         ctx.scale(dpr, dpr);
       });
 
-      // Sample letter coordinates for "WELCOME"
+      // Sample letter coordinates for "WELCOME" with generous letter-spacing (Phase 3 / Section 16 & 17)
       const offCanvas = document.createElement('canvas');
-      const offW = 900;
-      const offH = 260;
+      const offW = 1200;
+      const offH = 300;
       offCanvas.width = offW;
       offCanvas.height = offH;
       const offCtx = offCanvas.getContext('2d');
       
       offCtx.fillStyle = '#000000';
-      offCtx.font = 'bold 150px Outfit, sans-serif';
+      // Compute high-resolution spaced letter layout: W  E  L  C  O  M  E
+      const welcomeLetters = ['W', 'E', 'L', 'C', 'O', 'M', 'E'];
+      const letterSpacing = offW / (welcomeLetters.length + 1);
+      offCtx.font = '900 135px "Outfit", sans-serif';
       offCtx.textAlign = 'center';
       offCtx.textBaseline = 'middle';
-      offCtx.fillText('WELCOME', offW / 2, offH / 2);
+      welcomeLetters.forEach((char, idx) => {
+        offCtx.fillText(char, letterSpacing * (idx + 1), offH / 2);
+      });
 
       const imgData = offCtx.getImageData(0, 0, offW, offH).data;
       const textCoords = [];
@@ -1208,13 +1117,13 @@
       for (let y = 0; y < offH; y += step) {
         for (let x = 0; x < offW; x += step) {
           const idx = (y * offW + x) * 4;
-          if (imgData[idx + 3] > 140) {
+          if (imgData[idx + 3] > 130) {
             textCoords.push({ nx: (x - offW / 2) / offW, ny: (y - offH / 2) / offH });
           }
         }
       }
 
-      const numParticles = Math.min(150, textCoords.length);
+      const numParticles = Math.min(180, textCoords.length);
       const targetPoints = [];
       const stride = Math.max(1, Math.floor(textCoords.length / numParticles));
       for (let i = 0; i < numParticles; i++) {
@@ -1224,21 +1133,21 @@
       // Swarm particles: start in vortex orbits around center
       const swarm = targetPoints.map((pt, i) => {
         const angle = (i / numParticles) * Math.PI * 4;
-        const dist = 280 + Math.random() * 380;
+        const dist = 300 + Math.random() * 400;
         return {
           id: i,
           x: width * 0.5 + Math.cos(angle) * dist,
-          y: height * 0.44 + Math.sin(angle) * dist,
+          y: height * 0.42 + Math.sin(angle) * dist,
           nx: pt.nx,
           ny: pt.ny,
-          size: 10 + Math.random() * 5,
+          size: 11 + Math.random() * 5,
           wingPhase: Math.random() * Math.PI * 2,
           colorA: i % 3 === 0 ? '#ffffff' : (i % 3 === 1 ? '#ffe3ec' : '#f7a6bc'),
           colorB: i % 2 === 0 ? '#d56586' : '#c24f72',
           petalRot: Math.random() * Math.PI * 2,
-          petalRotSpeed: (Math.random() - 0.5) * 0.04,
-          driftX: (Math.random() - 0.5) * 2.8,
-          driftY: 1.2 + Math.random() * 2.2,
+          petalRotSpeed: (Math.random() - 0.5) * 0.05,
+          driftX: (Math.random() - 0.5) * 3.2,
+          driftY: 1.4 + Math.random() * 2.5,
           alpha: 1
         };
       });
@@ -1247,7 +1156,7 @@
       const P0 = { x: -60, y: height * 0.78 };
       const P1 = { x: width * 0.32, y: height * 0.18 };
       const P2 = { x: width * 0.38, y: height * 0.75 };
-      const P3 = { x: width * 0.5, y: height * 0.44 };
+      const P3 = { x: width * 0.5, y: height * 0.42 };
 
       function cubicBezier(t, p0, p1, p2, p3) {
         const u = 1 - t;
@@ -1263,6 +1172,7 @@
 
       const sparkleTrail = [];
       const startTime = performance.now();
+      const hangingSignEl = document.getElementById('intro-hanging-sign');
 
       function drawBotanicalPetal(c, x, y, size, angle, tumble, colorA, colorB, alpha) {
         c.save();
@@ -1360,14 +1270,15 @@
 
         ctx.clearRect(0, 0, width, height);
 
-        const welcomeWidth = Math.min(width * 0.82, 850);
+        // Target: 75-85vw dominant width for WELCOME formation
+        const welcomeWidth = Math.min(width * 0.86, 1150);
         const welcomeHeight = welcomeWidth * (offH / offW);
         const welcomeCenterX = width * 0.5;
-        const welcomeCenterY = height * 0.44;
+        const welcomeCenterY = height * 0.42;
 
-        // 1. Solitary Butterfly Flight (0.0s - 2.8s)
-        if (elapsed < 2.8) {
-          const t = Math.min(elapsed / 2.4, 1);
+        // 1. Solitary Butterfly Flight (0.0s - 2.5s)
+        if (elapsed < 2.5) {
+          const t = Math.min(elapsed / 2.2, 1);
           const easeT = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
           const pos = cubicBezier(easeT, P0, P1, P2, P3);
           const nextPos = cubicBezier(Math.min(easeT + 0.02, 1), P0, P1, P2, P3);
@@ -1405,11 +1316,11 @@
           }
         }
 
-        // 2. Swarm Particles & WELCOME Formation
+        // 2. Swarm Particles & WELCOME Formation (2.2s - 5.8s)
         if (elapsed >= 2.2) {
-          const swarmProgress = Math.min(Math.max((elapsed - 2.2) / 1.5, 0), 1);
-          const isMorphingToPetals = elapsed >= 5.6;
-          const morphProgress = Math.min(Math.max((elapsed - 5.6) / 1.4, 0), 1);
+          const swarmProgress = Math.min(Math.max((elapsed - 2.2) / 1.6, 0), 1);
+          const isMorphingToPetals = elapsed >= 5.8;
+          const morphProgress = Math.min(Math.max((elapsed - 5.8) / 1.4, 0), 1);
 
           swarm.forEach(p => {
             const tx = welcomeCenterX + p.nx * welcomeWidth;
@@ -1417,11 +1328,11 @@
 
             if (!isMorphingToPetals) {
               const targetWeight = swarmProgress * swarmProgress;
-              const desiredX = p.x + (tx - p.x) * (0.045 * targetWeight);
-              const desiredY = p.y + (ty - p.y) * (0.045 * targetWeight);
+              const desiredX = p.x + (tx - p.x) * (0.048 * targetWeight);
+              const desiredY = p.y + (ty - p.y) * (0.048 * targetWeight);
 
-              // 1.8s hold time with natural breathing flutter
-              if (elapsed >= 3.7) {
+              // Hold formation with gentle breathing jitter
+              if (elapsed >= 3.8) {
                 const jitterX = Math.sin(elapsed * 4 + p.id) * 1.2;
                 const jitterY = Math.cos(elapsed * 4 + p.id) * 1.2;
                 p.x = tx + jitterX;
@@ -1436,16 +1347,17 @@
 
               drawDetailedButterfly(ctx, p.x, p.y, p.size, angle, flap, p.colorA, p.colorB, 1);
             } else {
+              // Petals Morphing & Dispersal
               p.x += p.driftX + Math.sin(elapsed * 3 + p.id) * 0.6;
               p.y += p.driftY;
               p.petalRot += p.petalRotSpeed;
 
-              if (elapsed >= 6.8) {
-                p.alpha = Math.max(0, 1 - (elapsed - 6.8) / 0.9);
+              if (elapsed >= 7.0) {
+                p.alpha = Math.max(0, 1 - (elapsed - 7.0) / 0.9);
               }
 
-              if (morphProgress < 0.3) {
-                const blendAlpha = 1 - (morphProgress / 0.3);
+              if (morphProgress < 0.35) {
+                const blendAlpha = 1 - (morphProgress / 0.35);
                 drawDetailedButterfly(ctx, p.x, p.y, p.size, p.petalRot, elapsed * 24, p.colorA, p.colorB, blendAlpha * p.alpha);
                 drawBotanicalPetal(ctx, p.x, p.y, p.size * 1.2, p.petalRot, elapsed * 2.5, p.colorA, p.colorB, (1 - blendAlpha) * p.alpha);
               } else {
@@ -1455,13 +1367,39 @@
           });
         }
 
-        // 3. Trigger Soft Cloud Deck Reveal (lateral separation exposing live hero underneath)
-        if (elapsed >= 6.4 && !introOverlay.classList.contains('parting')) {
+        // 3. Falling Hanging Sign "to my world" (4.2s to 7.8s)
+        if (hangingSignEl) {
+          if (elapsed >= 4.0 && elapsed < 6.8) {
+            // Stage 1: Descend gently from top and settle below WELCOME
+            hangingSignEl.style.display = 'flex';
+            const progress = Math.min((elapsed - 4.0) / 1.0, 1);
+            const easeOutBack = 1 + 2.4 * Math.pow(progress - 1, 3) + 1.2 * Math.pow(progress - 1, 2);
+            const targetY = welcomeCenterY + welcomeHeight * 0.48 + 36;
+            const currentY = -100 + (targetY + 100) * Math.min(easeOutBack, 1.05);
+            const swing = Math.sin(elapsed * 3) * (1 - progress) * 6;
+            hangingSignEl.style.top = `${currentY}px`;
+            hangingSignEl.style.transform = `translateX(-50%) rotate(${swing}deg)`;
+            hangingSignEl.style.opacity = '1';
+          } else if (elapsed >= 6.8 && elapsed < 7.8) {
+            // Stage 2: Sign releases, tilts 8°, and drops with gravity
+            const fallTime = elapsed - 6.8;
+            const targetY = welcomeCenterY + welcomeHeight * 0.48 + 36;
+            const gravityY = targetY + 0.5 * 1400 * fallTime * fallTime; // y = y0 + 0.5gt^2
+            hangingSignEl.style.top = `${gravityY}px`;
+            hangingSignEl.style.transform = `translateX(-50%) rotate(${8 + fallTime * 14}deg)`;
+            hangingSignEl.style.opacity = String(Math.max(0, 1 - fallTime / 0.8));
+          } else if (elapsed >= 7.8) {
+            hangingSignEl.style.display = 'none';
+          }
+        }
+
+        // 4. Soft Cloud Deck Lateral Reveal
+        if (elapsed >= 7.2 && !introOverlay.classList.contains('parting')) {
           introOverlay.classList.add('parting');
         }
 
-        // 4. Complete intro
-        if (elapsed >= 7.8) {
+        // 5. Complete intro
+        if (elapsed >= 8.5) {
           completeIntro();
           return;
         }
@@ -1473,6 +1411,7 @@
         if (!introActive) return;
         introActive = false;
         cancelAnimationFrame(introAnimId);
+        if (hangingSignEl) hangingSignEl.style.display = 'none';
         introOverlay.classList.add('parting');
         introOverlay.classList.add('intro-hidden');
         setTimeout(() => {
@@ -1666,19 +1605,79 @@
           }
         });
 
-        // Floral Sparkle Cursor Trail (throttled)
+        // 4a. Rich Varied Floral Cursor Trail & Sparkles (Section 22)
         const now = Date.now();
-        if (now - lastSparkleTime > 75) {
+        if (now - lastSparkleTime > 48) {
           lastSparkleTime = now;
-          const sparkle = document.createElement('span');
-          sparkle.className = 'cursor-sparkle';
-          sparkle.textContent = Math.random() > 0.5 ? '🌸' : '✦';
-          sparkle.style.left = `${e.clientX}px`;
-          sparkle.style.top = `${e.clientY}px`;
-          sparkle.style.setProperty('--tx', `${(Math.random() - 0.5) * 35}px`);
-          sparkle.style.setProperty('--ty', `${-10 - Math.random() * 25}px`);
-          document.body.appendChild(sparkle);
-          setTimeout(() => sparkle.remove(), 800);
+          const flower = document.createElement('span');
+          flower.className = 'cursor-flower';
+          
+          // Varied distribution: Small (10-14px ~50%), Medium (16-24px ~35%), Occasional Large (26-34px ~15%)
+          const r = Math.random();
+          let fSize = 12;
+          if (r < 0.50) {
+            fSize = 10 + Math.random() * 4;
+          } else if (r < 0.85) {
+            fSize = 16 + Math.random() * 8;
+          } else {
+            fSize = 26 + Math.random() * 8;
+          }
+
+          // Flower glyphs / petals
+          const symbols = ['🌸', '✿', '❀', '💮', '✦', '✧'];
+          flower.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+          flower.style.fontSize = `${fSize.toFixed(1)}px`;
+          flower.style.left = `${e.clientX}px`;
+          flower.style.top = `${e.clientY}px`;
+          
+          const driftX = (Math.random() - 0.5) * 55;
+          const driftY = -18 - Math.random() * 38;
+          const rotStart = (Math.random() * 360).toFixed(0);
+          const rotMid = (Math.random() * 360).toFixed(0);
+          const rotEnd = (Math.random() * 360).toFixed(0);
+          const duration = (1.4 + Math.random() * 0.7).toFixed(2);
+
+          flower.style.setProperty('--drift-x', `${driftX.toFixed(1)}px`);
+          flower.style.setProperty('--drift-y', `${driftY.toFixed(1)}px`);
+          flower.style.setProperty('--rot-start', `${rotStart}deg`);
+          flower.style.setProperty('--rot-mid', `${rotMid}deg`);
+          flower.style.setProperty('--rot-end', `${rotEnd}deg`);
+          flower.style.setProperty('--flower-duration', `${duration}s`);
+
+          document.body.appendChild(flower);
+          setTimeout(() => flower.remove(), parseFloat(duration) * 1000);
+        }
+      });
+
+      // Click / Pointerdown Expanding Burst Ring (Section 22)
+      document.addEventListener('pointerdown', (e) => {
+        // Do not spawn on inputs or dropdowns
+        if (e.target.closest('input, textarea, select, .theme-dropdown')) return;
+        
+        const burst = document.createElement('div');
+        burst.className = 'cursor-click-burst';
+        burst.style.left = `${e.clientX}px`;
+        burst.style.top = `${e.clientY}px`;
+        burst.style.width = '42px';
+        burst.style.height = '42px';
+        document.body.appendChild(burst);
+        setTimeout(() => burst.remove(), 600);
+
+        // 4 small burst petals flying outward
+        for (let i = 0; i < 4; i++) {
+          const petal = document.createElement('span');
+          petal.className = 'cursor-flower';
+          petal.textContent = '🌸';
+          petal.style.fontSize = `${13 + Math.random() * 6}px`;
+          petal.style.left = `${e.clientX}px`;
+          petal.style.top = `${e.clientY}px`;
+          const angle = (i * Math.PI / 2) + (Math.random() - 0.5) * 0.6;
+          const dist = 36 + Math.random() * 28;
+          petal.style.setProperty('--drift-x', `${(Math.cos(angle) * dist).toFixed(1)}px`);
+          petal.style.setProperty('--drift-y', `${(Math.sin(angle) * dist).toFixed(1)}px`);
+          petal.style.setProperty('--flower-duration', '0.75s');
+          document.body.appendChild(petal);
+          setTimeout(() => petal.remove(), 750);
         }
       });
 
@@ -1693,12 +1692,13 @@
       requestAnimationFrame(updateBadgePhysics);
     }
 
-    /* 4b. Giant AMRUTHA Lettering Particle Displacement System */
+    /* 4b. Giant AMRUTHA Lettering Particle Displacement System (Section 21) */
     const particleCanvas = document.getElementById('amrutha-particle-canvas');
+    const giantAmruthaText = document.getElementById('giant-amrutha');
     if (particleCanvas && window.innerWidth >= 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       const pCtx = particleCanvas.getContext('2d');
       let pList = [];
-      const pRadius = 120;
+      const pRadius = 135;
 
       function initAmruthaParticles() {
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -1707,6 +1707,7 @@
 
         particleCanvas.width = rect.width * dpr;
         particleCanvas.height = rect.height * dpr;
+        pCtx.setTransform(1, 0, 0, 1, 0, 0);
         pCtx.scale(dpr, dpr);
 
         const offCanvas = document.createElement('canvas');
@@ -1714,29 +1715,38 @@
         offCanvas.height = rect.height;
         const offCtx = offCanvas.getContext('2d');
 
-        const fontSize = Math.min(rect.width * 0.19, 180);
-        offCtx.font = `900 ${fontSize}px 'Outfit', sans-serif`;
+        // Match giant-amrutha typography dimensions and letter-spacing (85–95% of hero width)
+        let computedFont = 180;
+        if (giantAmruthaText) {
+          const compStyle = window.getComputedStyle(giantAmruthaText);
+          computedFont = parseFloat(compStyle.fontSize) || Math.min(rect.width * 0.22, 290);
+        } else {
+          computedFont = Math.min(rect.width * 0.22, 290);
+        }
+
+        offCtx.font = `900 ${computedFont}px 'Outfit', sans-serif`;
+        try { offCtx.letterSpacing = '-0.075em'; } catch(e) {}
         offCtx.fillStyle = '#f8cad6';
         offCtx.textAlign = 'center';
         offCtx.textBaseline = 'middle';
-        offCtx.fillText('AMRUTHA', rect.width / 2, rect.height / 2 + 10);
+        offCtx.fillText('AMRUTHA', rect.width / 2, rect.height / 2 + 16);
 
         const imgData = offCtx.getImageData(0, 0, rect.width, rect.height);
-        const step = window.innerWidth < 1200 ? 11 : 8;
+        const step = window.innerWidth < 1200 ? 9 : 7;
         pList = [];
 
         for (let y = 0; y < rect.height; y += step) {
           for (let x = 0; x < rect.width; x += step) {
             const idx = (y * rect.width + x) * 4;
-            if (imgData.data[idx + 3] > 110) {
+            if (imgData.data[idx + 3] > 100) {
               pList.push({
                 homeX: x,
                 homeY: y,
-                x: x + (Math.random() - 0.5) * 12,
-                y: y + (Math.random() - 0.5) * 12,
+                x: x + (Math.random() - 0.5) * 14,
+                y: y + (Math.random() - 0.5) * 14,
                 vx: 0,
                 vy: 0,
-                size: Math.random() > 0.4 ? 2.6 : 3.6,
+                size: Math.random() > 0.4 ? 2.8 : 4.0,
                 color: Math.random() > 0.5 ? '#f5a4bd' : '#fcd2dc',
                 angle: Math.random() * Math.PI * 2,
                 wobble: 0.02 + Math.random() * 0.03
@@ -1764,21 +1774,21 @@
           if (dist < pRadius && dist > 0) {
             const force = (pRadius - dist) / pRadius;
             const ang = Math.atan2(dy, dx);
-            p.vx += Math.cos(ang) * force * 11;
-            p.vy += Math.sin(ang) * force * 11;
+            p.vx += Math.cos(ang) * force * 13;
+            p.vy += Math.sin(ang) * force * 13;
           }
 
-          const springX = (p.homeX - p.x) * 0.06;
-          const springY = (p.homeY - p.y) * 0.06;
-          p.vx = (p.vx + springX) * 0.86;
-          p.vy = (p.vy + springY) * 0.86;
+          const springX = (p.homeX - p.x) * 0.065;
+          const springY = (p.homeY - p.y) * 0.065;
+          p.vx = (p.vx + springX) * 0.85;
+          p.vy = (p.vy + springY) * 0.85;
 
-          p.x += p.vx + Math.sin(animFrame * p.wobble + i) * 0.25;
-          p.y += p.vy + Math.cos(animFrame * p.wobble + i) * 0.2;
+          p.x += p.vx + Math.sin(animFrame * p.wobble + i) * 0.28;
+          p.y += p.vy + Math.cos(animFrame * p.wobble + i) * 0.22;
 
           pCtx.fillStyle = p.color;
           pCtx.beginPath();
-          pCtx.ellipse(p.x, p.y, p.size * 1.2, p.size * 0.7, p.angle, 0, Math.PI * 2);
+          pCtx.ellipse(p.x, p.y, p.size * 1.25, p.size * 0.75, p.angle, 0, Math.PI * 2);
           pCtx.fill();
         }
 
@@ -1851,136 +1861,10 @@
       });
     }
 
-    /* 8. Developer ID Card: Pixel-Dissolve Photo Switcher & File Upload */
-    const photoFrame = document.getElementById('id-photo-frame');
-    const photoSwitchBtn = document.getElementById('photo-switch-btn');
-    const portraitFileInput = document.getElementById('portrait-file-input');
-    const switchLbl = document.getElementById('switch-lbl');
-    const dissolveCanvas = document.getElementById('pixel-dissolve-canvas');
-    const realPortraitImg = document.getElementById('real-portrait-img');
-    let isRealPhoto = false;
-
-    function triggerPixelDissolve(toReal) {
-      if (!dissolveCanvas || !photoFrame) {
-        if (photoFrame) photoFrame.classList.toggle('show-real', toReal);
-        return;
-      }
-
-      dissolveCanvas.hidden = false;
-      const rect = photoFrame.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      dissolveCanvas.width = rect.width * dpr;
-      dissolveCanvas.height = rect.height * dpr;
-      const dCtx = dissolveCanvas.getContext('2d');
-      dCtx.scale(dpr, dpr);
-
-      const cols = 18;
-      const rows = 16;
-      const cellW = rect.width / cols;
-      const cellH = rect.height / rows;
-      const total = cols * rows;
-
-      const order = Array.from({ length: total }, (_, i) => i);
-      for (let i = order.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [order[i], order[j]] = [order[j], order[i]];
-      }
-
-      const start = performance.now();
-      const dur = 460;
-
-      function frame(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / dur, 1);
-
-        if (progress >= 0.5 && photoFrame.classList.contains('show-real') !== toReal) {
-          photoFrame.classList.toggle('show-real', toReal);
-        }
-
-        dCtx.clearRect(0, 0, rect.width, rect.height);
-        const count = Math.floor(Math.sin(progress * Math.PI) * total);
-
-        for (let c = 0; c < count; c++) {
-          const idx = order[c];
-          const col = idx % cols;
-          const row = Math.floor(idx / cols);
-          const alpha = Math.sin(progress * Math.PI) * 0.92;
-          dCtx.fillStyle = c % 2 === 0 ? `rgba(245, 164, 189, ${alpha})` : `rgba(255, 245, 249, ${alpha})`;
-          dCtx.fillRect(col * cellW, row * cellH, cellW - 0.5, cellH - 0.5);
-        }
-
-        if (progress < 1) {
-          requestAnimationFrame(frame);
-        } else {
-          dissolveCanvas.hidden = true;
-          dCtx.clearRect(0, 0, rect.width, rect.height);
-        }
-      }
-      requestAnimationFrame(frame);
-    }
-
-    function togglePhoto(e) {
-      if (e) e.stopPropagation();
-      isRealPhoto = !isRealPhoto;
-      if (switchLbl) {
-        switchLbl.textContent = isRealPhoto ? 'Anime Avatar' : 'Real Photo';
-      }
-      triggerPixelDissolve(isRealPhoto);
-    }
-
-    if (photoSwitchBtn) {
-      photoSwitchBtn.addEventListener('click', togglePhoto);
-    }
-
-    if (photoFrame) {
-      // Desktop Hover: mouseenter dissolves to real photo, mouseleave dissolves back to anime avatar
-      photoFrame.addEventListener('mouseenter', () => {
-        if (!isRealPhoto) {
-          isRealPhoto = true;
-          if (switchLbl) switchLbl.textContent = 'Anime Avatar';
-          triggerPixelDissolve(true);
-        }
-      });
-      photoFrame.addEventListener('mouseleave', () => {
-        if (isRealPhoto) {
-          isRealPhoto = false;
-          if (switchLbl) switchLbl.textContent = 'Real Photo';
-          triggerPixelDissolve(false);
-        }
-      });
-
-      // Mobile Tap / Click
-      photoFrame.addEventListener('click', (e) => {
-        e.stopPropagation();
-        togglePhoto(e);
-      });
-    }
-
-    if (portraitFileInput) {
-      portraitFileInput.addEventListener('change', e => {
-        const file = e.target.files && e.target.files[0];
-        if (file && realPortraitImg) {
-          const reader = new FileReader();
-          reader.onload = ev => {
-            realPortraitImg.src = ev.target.result;
-            isRealPhoto = true;
-            if (switchLbl) switchLbl.textContent = 'Anime Avatar';
-            triggerPixelDissolve(true);
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-    }
-
-    /* 9. Modals Logic (Phase 7 & 20) */
+    /* 7b. Modals Common Engine */
     const devIdModal = document.getElementById('dev-id-modal');
     const resumeModal = document.getElementById('resume-modal');
-    // devIdBadge already declared at line 961
-    const resumeBtn = document.getElementById('resume-btn');
-    const contactResumeBtn = document.getElementById('contact-resume-btn');
-    const devModalResumeBtn = document.getElementById('dev-modal-resume-btn');
-    const closeDevModal = document.getElementById('close-dev-modal');
-    const closeResumeModal = document.getElementById('close-resume-modal');
+    const passkeyModal = document.getElementById('passkey-modal');
 
     function openModal(modal) {
       if (!modal) return;
@@ -2000,20 +1884,61 @@
       modal.classList.remove('is-open');
       modal.style.display = 'none';
       document.body.style.overflow = '';
+      if (modal === devIdModal && typeof stopModalPixelLoop === 'function') {
+        stopModalPixelLoop();
+      }
     }
 
-    // Developer ID Card click opens Developer Modal
+    /* 8. Developer ID Card: Hidden Admin Flower Trigger & Public Profile Modal (Phase 1, 2, 8) */
+    const idAdminFlower = document.getElementById('id-admin-flower');
+    const closeDevModal = document.getElementById('close-dev-modal');
+
+    // Desktop Double-Click on Rotating Flower opens Restricted Access passkey modal
+    if (idAdminFlower) {
+      idAdminFlower.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openPasskeyModal();
+      });
+
+      // Mobile Double-Tap detector (<380ms)
+      let lastFlowerTap = 0;
+      idAdminFlower.addEventListener('touchend', (e) => {
+        const now = Date.now();
+        const diff = now - lastFlowerTap;
+        if (diff > 0 && diff < 380) {
+          e.preventDefault();
+          e.stopPropagation();
+          openPasskeyModal();
+        }
+        lastFlowerTap = now;
+      }, { passive: false });
+
+      // Keyboard accessible trigger (Enter or Space)
+      idAdminFlower.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          e.stopPropagation();
+          openPasskeyModal();
+        }
+      });
+    }
+
+    // Developer ID Card click opens Developer Profile Modal (with automatic pixel dissolve loop)
     if (devIdBadge) {
       devIdBadge.addEventListener('click', (e) => {
-        // If clicking photo switch button or photo upload, do not open modal
-        if (e.target.closest('#photo-switch-btn') || e.target.closest('#photo-upload-lbl') || e.target.closest('#portrait-file-input')) return;
+        // If clicking the hidden admin flower trigger, don't open profile modal
+        if (e.target.closest('#id-admin-flower')) return;
         e.stopPropagation();
         openModal(devIdModal);
+        startModalPixelLoop();
       });
-      devIdBadge.addEventListener('keydown', e => {
+      devIdBadge.addEventListener('keydown', (e) => {
+        if (e.target.closest('#id-admin-flower')) return;
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           openModal(devIdModal);
+          startModalPixelLoop();
         }
       });
     }
@@ -2022,10 +1947,222 @@
       closeDevModal.addEventListener('click', (e) => {
         e.stopPropagation();
         closeModal(devIdModal);
+        stopModalPixelLoop();
       });
     }
 
-    // Resume Modal triggers
+    /* 8b. Developer ID Profile Modal: Automatic Looping Pixel Dissolve Sequence (Phase 5, Section 5) */
+    const modalAnimeImg = document.getElementById('modal-avatar-anime');
+    const modalRealImg = document.getElementById('modal-avatar-real');
+    const modalPixelCanvas = document.getElementById('modal-pixel-loop-canvas');
+    let pixelLoopTimer = null;
+    let pixelAnimFrame = null;
+    let isLoopRunning = false;
+
+    function startModalPixelLoop() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        if (modalAnimeImg) modalAnimeImg.style.opacity = '1';
+        if (modalRealImg) modalRealImg.style.opacity = '0';
+        return;
+      }
+      isLoopRunning = true;
+      runPixelLoopSequence();
+    }
+
+    function stopModalPixelLoop() {
+      isLoopRunning = false;
+      if (pixelLoopTimer) clearTimeout(pixelLoopTimer);
+      if (pixelAnimFrame) cancelAnimationFrame(pixelAnimFrame);
+      if (modalPixelCanvas) {
+        modalPixelCanvas.hidden = true;
+        const ctx = modalPixelCanvas.getContext('2d');
+        if (ctx) ctx.clearRect(0, 0, modalPixelCanvas.width, modalPixelCanvas.height);
+      }
+      if (modalAnimeImg) modalAnimeImg.style.opacity = '1';
+      if (modalRealImg) modalRealImg.style.opacity = '0';
+    }
+
+    // Pause loop if tab is hidden
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopModalPixelLoop();
+      } else if (devIdModal && !devIdModal.hidden) {
+        startModalPixelLoop();
+      }
+    });
+
+    function runPixelLoopSequence() {
+      if (!isLoopRunning) return;
+
+      // Stage A: Anime Portrait Hold (~2.0s)
+      if (modalAnimeImg) modalAnimeImg.style.opacity = '1';
+      if (modalRealImg) modalRealImg.style.opacity = '0';
+      if (modalPixelCanvas) modalPixelCanvas.hidden = true;
+
+      pixelLoopTimer = setTimeout(() => {
+        if (!isLoopRunning) return;
+
+        // Stage B & C: Pixel Dissolution to Real Portrait (~800ms)
+        executeCanvasPixelDissolve(true, () => {
+          if (!isLoopRunning) return;
+
+          // Stage D: Real Portrait Hold (~2.0s)
+          if (modalAnimeImg) modalAnimeImg.style.opacity = '0';
+          if (modalRealImg) modalRealImg.style.opacity = '1';
+
+          pixelLoopTimer = setTimeout(() => {
+            if (!isLoopRunning) return;
+
+            // Stage E: Reverse Pixel Transformation back to Anime (~800ms)
+            executeCanvasPixelDissolve(false, () => {
+              if (!isLoopRunning) return;
+              // Stage F: Repeat loop smoothly!
+              runPixelLoopSequence();
+            });
+          }, 2000);
+        });
+      }, 2000);
+    }
+
+    function executeCanvasPixelDissolve(toReal, onComplete) {
+      if (!modalPixelCanvas || !modalAnimeImg || !modalRealImg) {
+        if (onComplete) onComplete();
+        return;
+      }
+
+      modalPixelCanvas.hidden = false;
+      const rect = modalPixelCanvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      modalPixelCanvas.width = rect.width * dpr;
+      modalPixelCanvas.height = rect.height * dpr;
+      const pCtx = modalPixelCanvas.getContext('2d');
+      pCtx.scale(dpr, dpr);
+
+      const cols = 20;
+      const rows = 20;
+      const cellW = rect.width / cols;
+      const cellH = rect.height / rows;
+      const total = cols * rows;
+
+      const order = Array.from({ length: total }, (_, i) => i);
+      for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+
+      const duration = 800; // ms
+      const startTime = performance.now();
+
+      function stepFrame(currentTime) {
+        if (!isLoopRunning) {
+          modalPixelCanvas.hidden = true;
+          return;
+        }
+
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Switch underlying image opacity at midway point (progress 0.5)
+        if (progress >= 0.5) {
+          modalAnimeImg.style.opacity = toReal ? '0' : '1';
+          modalRealImg.style.opacity = toReal ? '1' : '0';
+        }
+
+        pCtx.clearRect(0, 0, rect.width, rect.height);
+
+        // Pink-tinted and cream pixel fragments
+        const count = Math.floor(Math.sin(progress * Math.PI) * total);
+        const alpha = Math.sin(progress * Math.PI) * 0.95;
+
+        for (let c = 0; c < count; c++) {
+          const idx = order[c];
+          const col = idx % cols;
+          const row = Math.floor(idx / cols);
+
+          pCtx.fillStyle = (c % 3 === 0) 
+            ? `rgba(245, 164, 189, ${alpha})` 
+            : (c % 3 === 1) 
+              ? `rgba(255, 230, 238, ${alpha})` 
+              : `rgba(213, 101, 134, ${alpha})`;
+          
+          pCtx.fillRect(col * cellW, row * cellH, cellW - 0.5, cellH - 0.5);
+        }
+
+        if (progress < 1) {
+          pixelAnimFrame = requestAnimationFrame(stepFrame);
+        } else {
+          modalPixelCanvas.hidden = true;
+          pCtx.clearRect(0, 0, rect.width, rect.height);
+          if (onComplete) onComplete();
+        }
+      }
+
+      pixelAnimFrame = requestAnimationFrame(stepFrame);
+    }
+
+    /* 9. Passkey Security Gateway: Restricted Access to Separate admin.html (Phase 2 & 9) */
+    const closePasskeyModal = document.getElementById('close-passkey-modal');
+    const passkeyForm = document.getElementById('passkey-form');
+    const passkeyInput = document.getElementById('passkey-input');
+    const passkeyError = document.getElementById('passkey-error');
+
+    function openPasskeyModal() {
+      if (passkeyInput) {
+        passkeyInput.value = '';
+        passkeyInput.classList.remove('input-error');
+      }
+      if (passkeyError) {
+        passkeyError.style.display = 'none';
+        passkeyError.textContent = '';
+      }
+      openModal(passkeyModal);
+      if (passkeyInput) setTimeout(() => passkeyInput.focus(), 150);
+    }
+
+    if (closePasskeyModal) {
+      closePasskeyModal.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(passkeyModal);
+      });
+    }
+
+    // Authorized access verification
+    const VALID_ADMIN_KEYS = ['2026', 'sakura', 'amrutha'];
+
+    if (passkeyForm) {
+      passkeyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const entered = (passkeyInput.value || '').trim().toLowerCase();
+
+        if (VALID_ADMIN_KEYS.includes(entered)) {
+          // Establish authenticated admin session
+          sessionStorage.setItem('amrutha_admin_session', JSON.stringify({
+            authenticated: true,
+            role: 'owner',
+            timestamp: Date.now()
+          }));
+          closeModal(passkeyModal);
+          // Navigate to separate admin dashboard route
+          window.location.href = 'admin.html';
+        } else {
+          // Strict error: "Access denied. Please try again." - NO hints or partial feedback
+          passkeyInput.classList.add('input-error');
+          passkeyError.textContent = 'Access denied. Please try again.';
+          passkeyError.style.display = 'block';
+          passkeyInput.value = '';
+          setTimeout(() => {
+            passkeyInput.classList.remove('input-error');
+          }, 600);
+        }
+      });
+    }
+
+    /* 10. Modals Logic (Resume & General) */
+    const resumeBtn = document.getElementById('resume-btn');
+    const contactResumeBtn = document.getElementById('contact-resume-btn');
+    const devModalResumeBtn = document.getElementById('dev-modal-resume-btn');
+    const closeResumeModal = document.getElementById('close-resume-modal');
+
     if (resumeBtn) {
       resumeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -2045,7 +2182,6 @@
         openModal(resumeModal);
       });
     }
-
     if (closeResumeModal) {
       closeResumeModal.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -2053,325 +2189,8 @@
       });
     }
 
-    /* 9b. Smart Classroom Attendance & Admin Dashboard Modal (Phase 22) */
-    const adminDashboardModal = document.getElementById('admin-dashboard-modal');
-    const openAdminDashboardBtn = document.getElementById('open-admin-dashboard-btn');
-    const navAdminDashboardBtn = document.getElementById('nav-admin-dashboard-btn');
-    const attendanceMockupWindow = document.getElementById('attendance-mockup-window');
-    const devModalAdminBtn = document.getElementById('dev-modal-admin-btn');
-    const closeAdminModal = document.getElementById('close-admin-modal');
-
-    const studentsData = [
-      { id: '21NEC01', name: 'Aarav Sharma', status: 'present', avg: '96%', tag: '' },
-      { id: '21NEC02', name: 'Divvela J. V. Amrutha', status: 'present', avg: '98%', tag: 'Lead Architect' },
-      { id: '21NEC03', name: 'Bhavya Karanam', status: 'absent', avg: '82%', tag: '' },
-      { id: '21NEC04', name: 'Chaitanya Rao', status: 'present', avg: '94%', tag: '' },
-      { id: '21NEC05', name: 'Divya Mandava', status: 'present', avg: '91%', tag: '' },
-      { id: '21NEC06', name: 'Eshwar Prasad', status: 'absent', avg: '78%', tag: '' },
-      { id: '21NEC07', name: 'Farhan Ahmed', status: 'present', avg: '93%', tag: '' },
-      { id: '21NEC08', name: 'Gayatri Somu', status: 'present', avg: '95%', tag: '' },
-      { id: '21NEC09', name: 'Harsh Vardhan', status: 'present', avg: '89%', tag: '' },
-      { id: '21NEC10', name: 'Ishita Nair', status: 'present', avg: '97%', tag: '' }
-    ];
-
-    let currentAdminFilter = 'all';
-    let adminSearchQuery = '';
-
-    const adminTotalEnrolledEl = document.getElementById('admin-total-enrolled');
-    const adminPresentCountEl = document.getElementById('admin-present-count');
-    const adminAbsentCountEl = document.getElementById('admin-absent-count');
-    const adminRatePctEl = document.getElementById('admin-rate-pct');
-    const filterAllNumEl = document.getElementById('filter-all-num');
-    const filterPresentNumEl = document.getElementById('filter-present-num');
-    const filterAbsentNumEl = document.getElementById('filter-absent-num');
-    const adminRosterListEl = document.getElementById('admin-roster-list');
-    const adminSearchInput = document.getElementById('admin-search-input');
-    const adminSearchClear = document.getElementById('admin-search-clear');
-    const adminToastEl = document.getElementById('admin-toast');
-
-    function showAdminToast(msg) {
-      if (!adminToastEl) return;
-      adminToastEl.textContent = msg;
-      adminToastEl.hidden = false;
-      clearTimeout(adminToastEl._timer);
-      adminToastEl._timer = setTimeout(() => {
-        adminToastEl.hidden = true;
-      }, 3500);
-    }
-
-    function recalculateAdminStats() {
-      const total = studentsData.length;
-      const present = studentsData.filter(s => s.status === 'present').length;
-      const absent = studentsData.filter(s => s.status === 'absent').length;
-      const rate = total > 0 ? ((present / total) * 100).toFixed(1) + '%' : '0.0%';
-
-      if (adminTotalEnrolledEl) adminTotalEnrolledEl.textContent = total;
-      if (adminPresentCountEl) adminPresentCountEl.textContent = present;
-      if (adminAbsentCountEl) adminAbsentCountEl.textContent = absent;
-      if (adminRatePctEl) adminRatePctEl.textContent = rate;
-
-      if (filterAllNumEl) filterAllNumEl.textContent = total;
-      if (filterPresentNumEl) filterPresentNumEl.textContent = present;
-      if (filterAbsentNumEl) filterAbsentNumEl.textContent = absent;
-
-      // Sync stats with mockup window
-      const mockupPresent = document.querySelector('.mockup-stat:nth-child(2) .mockup-stat-num');
-      const mockupRate = document.querySelector('.mockup-stat:nth-child(3) .mockup-stat-num');
-      if (mockupPresent) mockupPresent.textContent = present;
-      if (mockupRate) mockupRate.textContent = rate;
-    }
-
-    function renderAdminRoster() {
-      if (!adminRosterListEl) return;
-      adminRosterListEl.innerHTML = '';
-
-      const filtered = studentsData.filter(s => {
-        const matchesFilter = currentAdminFilter === 'all' || s.status === currentAdminFilter;
-        const matchesSearch = !adminSearchQuery || 
-          s.name.toLowerCase().includes(adminSearchQuery.toLowerCase()) || 
-          s.id.toLowerCase().includes(adminSearchQuery.toLowerCase());
-        return matchesFilter && matchesSearch;
-      });
-
-      if (filtered.length === 0) {
-        const empty = document.createElement('div');
-        empty.style.padding = '24px';
-        empty.style.textAlign = 'center';
-        empty.style.color = 'var(--muted)';
-        empty.style.fontSize = '13px';
-        empty.textContent = 'No students match your search filter.';
-        adminRosterListEl.appendChild(empty);
-        return;
-      }
-
-      filtered.forEach(student => {
-        const row = document.createElement('div');
-        row.className = 'admin-student-row';
-
-        const initials = student.name.split(' ').map(n => n[0]).slice(0, 2).join('');
-        row.innerHTML = `
-          <div class="student-info">
-            <div class="student-avatar">${initials}</div>
-            <div class="student-details">
-              <div class="student-name">
-                ${student.name}
-                ${student.tag ? `<span class="student-tag">${student.tag}</span>` : ''}
-              </div>
-              <div class="student-sub">Roll No: <strong>${student.id}</strong> &bull; Semester Avg: ${student.avg}</div>
-            </div>
-          </div>
-          <div class="status-toggle-group">
-            <button type="button" class="status-pill-btn pill-present ${student.status === 'present' ? 'active' : ''}" data-id="${student.id}" data-set="present" title="Mark Present">Present ✓</button>
-            <button type="button" class="status-pill-btn pill-absent ${student.status === 'absent' ? 'active' : ''}" data-id="${student.id}" data-set="absent" title="Mark Absent">Absent ✗</button>
-            <button type="button" class="status-pill-btn pill-late ${student.status === 'late' ? 'active' : ''}" data-id="${student.id}" data-set="late" title="Mark Late">Late ⏰</button>
-          </div>
-        `;
-        adminRosterListEl.appendChild(row);
-      });
-
-      adminRosterListEl.querySelectorAll('.status-pill-btn').forEach(btn => {
-        btn.addEventListener('click', e => {
-          e.stopPropagation();
-          const sid = btn.dataset.id;
-          const newStatus = btn.dataset.set;
-          const s = studentsData.find(item => item.id === sid);
-          if (s) {
-            s.status = newStatus;
-            recalculateAdminStats();
-            renderAdminRoster();
-          }
-        });
-      });
-    }
-
-    // Filter Buttons
-    document.querySelectorAll('.admin-filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.admin-filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentAdminFilter = btn.dataset.statusFilter;
-        renderAdminRoster();
-      });
-    });
-
-    // Search Input
-    if (adminSearchInput) {
-      adminSearchInput.addEventListener('input', e => {
-        adminSearchQuery = e.target.value.trim();
-        if (adminSearchClear) adminSearchClear.style.display = adminSearchQuery ? 'block' : 'none';
-        renderAdminRoster();
-      });
-    }
-    if (adminSearchClear) {
-      adminSearchClear.addEventListener('click', () => {
-        if (adminSearchInput) adminSearchInput.value = '';
-        adminSearchQuery = '';
-        adminSearchClear.style.display = 'none';
-        renderAdminRoster();
-      });
-    }
-
-    // Quick Batch Actions
-    const markAllBtn = document.getElementById('admin-mark-all-btn');
-    if (markAllBtn) {
-      markAllBtn.addEventListener('click', () => {
-        studentsData.forEach(s => s.status = 'present');
-        recalculateAdminStats();
-        renderAdminRoster();
-        showAdminToast('✓ All 10 students marked Present for Period 1!');
-      });
-    }
-
-    const resetBtn = document.getElementById('admin-reset-btn');
-    if (resetBtn) {
-      resetBtn.addEventListener('click', () => {
-        studentsData.forEach((s, idx) => s.status = (idx === 2 || idx === 5) ? 'absent' : 'present');
-        recalculateAdminStats();
-        renderAdminRoster();
-        showAdminToast('↺ Attendance roll call reset to scheduled roster state.');
-      });
-    }
-
-    const exportCsvBtn = document.getElementById('admin-export-csv-btn');
-    if (exportCsvBtn) {
-      exportCsvBtn.addEventListener('click', () => {
-        let csv = 'Roll No,Student Name,Status,Semester Average,Class,Department,Date\n';
-        const dStr = new Date().toLocaleDateString('en-US');
-        studentsData.forEach(s => {
-          csv += `${s.id},"${s.name}",${s.status.toUpperCase()},${s.avg},CSE-3A,Computer Science,${dStr}\n`;
-        });
-        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `Attendance_Report_CSE3A_${new Date().toISOString().slice(0, 10)}.csv`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        showAdminToast('📥 Attendance CSV report downloaded successfully!');
-      });
-    }
-
-    const broadcastBtn = document.getElementById('admin-broadcast-btn');
-    if (broadcastBtn) {
-      broadcastBtn.addEventListener('click', () => {
-        showAdminToast('☁ Syncing live attendance with Narasaraopeta Engineering College Portal... Done!');
-      });
-    }
-
-    /* 9c. Passkey Security Gateway & Admin Portal Access */
-    const passkeyModal = document.getElementById('passkey-modal');
-    const closePasskeyModal = document.getElementById('close-passkey-modal');
-    const navAdminFlowerBtn = document.getElementById('nav-admin-flower-btn');
-    const passkeyForm = document.getElementById('passkey-form');
-    const passkeyInput = document.getElementById('passkey-input');
-    const passkeyError = document.getElementById('passkey-error');
-    const togglePasskeyVis = document.getElementById('toggle-passkey-vis');
-
-    function checkAdminAccess(onSuccess) {
-      if (sessionStorage.getItem('amrutha_admin_auth') === 'true') {
-        onSuccess();
-      } else {
-        if (passkeyInput) {
-          passkeyInput.value = '';
-          passkeyInput.classList.remove('input-error');
-        }
-        if (passkeyError) passkeyError.style.display = 'none';
-        openModal(passkeyModal);
-      }
-    }
-
-    if (navAdminFlowerBtn) {
-      navAdminFlowerBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        checkAdminAccess(() => launchAdminDashboard());
-      });
-    }
-
-    if (closePasskeyModal) {
-      closePasskeyModal.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeModal(passkeyModal);
-      });
-    }
-
-    if (togglePasskeyVis && passkeyInput) {
-      togglePasskeyVis.addEventListener('click', () => {
-        const isPass = passkeyInput.type === 'password';
-        passkeyInput.type = isPass ? 'text' : 'password';
-        togglePasskeyVis.textContent = isPass ? '🔒' : '👁';
-      });
-    }
-
-    const VALID_PASSKEYS = ['2026', 'sakura', 'amrutha', 'admin'];
-
-    if (passkeyForm) {
-      passkeyForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const entered = (passkeyInput.value || '').trim().toLowerCase();
-        if (VALID_PASSKEYS.includes(entered)) {
-          sessionStorage.setItem('amrutha_admin_auth', 'true');
-          closeModal(passkeyModal);
-          launchAdminDashboard();
-          showAdminToast('✓ Passkey verified! Welcome to Admin Portal, Amrutha.');
-        } else {
-          passkeyInput.classList.add('input-error');
-          passkeyError.textContent = 'Invalid passkey. Hint: try 2026 or sakura ✿';
-          passkeyError.style.display = 'block';
-          setTimeout(() => {
-            passkeyInput.classList.remove('input-error');
-          }, 600);
-        }
-      });
-    }
-
-    function launchAdminDashboard() {
-      recalculateAdminStats();
-      renderAdminRoster();
-      openModal(adminDashboardModal);
-    }
-
-    if (openAdminDashboardBtn) {
-      openAdminDashboardBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        checkAdminAccess(() => launchAdminDashboard());
-      });
-    }
-    if (navAdminDashboardBtn) {
-      navAdminDashboardBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        checkAdminAccess(() => launchAdminDashboard());
-      });
-    }
-    if (attendanceMockupWindow) {
-      attendanceMockupWindow.addEventListener('click', (e) => {
-        e.stopPropagation();
-        checkAdminAccess(() => launchAdminDashboard());
-      });
-      attendanceMockupWindow.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          checkAdminAccess(() => launchAdminDashboard());
-        }
-      });
-    }
-    if (devModalAdminBtn) {
-      devModalAdminBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeModal(devIdModal);
-        checkAdminAccess(() => launchAdminDashboard());
-      });
-    }
-    if (closeAdminModal) {
-      closeAdminModal.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeModal(adminDashboardModal);
-      });
-    }
-
     // Dismiss modals when clicking dark backdrop
-    [devIdModal, resumeModal, passkeyModal, adminDashboardModal].forEach(modal => {
+    [devIdModal, resumeModal, passkeyModal].forEach(modal => {
       if (!modal) return;
       modal.addEventListener('click', e => {
         if (e.target === modal) {
@@ -2380,17 +2199,16 @@
       });
     });
 
-    // Escape key closes modals
+    // Escape key closes open modals
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
         closeModal(devIdModal);
         closeModal(resumeModal);
         closeModal(passkeyModal);
-        closeModal(adminDashboardModal);
       }
     });
 
-    /* 10. Project Filters (Phase 11) */
+    /* 11. Project Filters & External Links */
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card, .featured-project-card');
 
@@ -2411,7 +2229,7 @@
       });
     });
 
-    /* 11. Copy GitHub Link with Toast Feedback */
+    // Copy GitHub Link with Toast Feedback
     const copyBtn = document.getElementById('copy-github-btn');
     if (copyBtn) {
       copyBtn.addEventListener('click', async () => {
@@ -2432,32 +2250,330 @@
       });
     }
 
-    /* 12. Contact Form Handling */
+    /* 12. Requirements-First Contact Flow & 1080x1350 PNG Visiting Card Generator (Section 23, 24, 25, 26) */
     const contactForm = document.getElementById('contact-form');
+    const reqNameInput = document.getElementById('contact-name');
+    const reqEmailInput = document.getElementById('contact-email');
+    const reqMsgInput = document.getElementById('contact-msg');
+    const channelWaBtn = document.getElementById('channel-wa-btn');
+    const channelEmailBtn = document.getElementById('channel-email-btn');
+    const submitEnquiryBtn = document.getElementById('submit-enquiry-btn');
+    const submitBtnLbl = document.getElementById('submit-btn-lbl');
     const formFeedback = document.getElementById('form-feedback');
+    const visitingCardCanvas = document.getElementById('visiting-card-canvas');
+    const downloadCardBtn = document.getElementById('download-card-btn');
+    const shareCardBtn = document.getElementById('share-card-btn');
 
+    let activeContactChannel = 'whatsapp';
+
+    // Channel Selection Toggle
+    if (channelWaBtn && channelEmailBtn) {
+      channelWaBtn.addEventListener('click', () => {
+        activeContactChannel = 'whatsapp';
+        channelWaBtn.classList.add('active');
+        channelEmailBtn.classList.remove('active');
+        if (submitBtnLbl) submitBtnLbl.textContent = 'Send via WhatsApp ↗';
+      });
+
+      channelEmailBtn.addEventListener('click', () => {
+        activeContactChannel = 'email';
+        channelEmailBtn.classList.add('active');
+        channelWaBtn.classList.remove('active');
+        if (submitBtnLbl) submitBtnLbl.textContent = 'Send Email Enquiry ✉';
+      });
+    }
+
+    // High-Resolution 1080 x 1350 Visiting Card Generator
+    function renderVisitingCard() {
+      if (!visitingCardCanvas) return;
+      const ctx = visitingCardCanvas.getContext('2d');
+      const w = 1080;
+      const h = 1350;
+
+      // Card Background: Warm cream & soft Sakura pink gradient
+      const bgGrad = ctx.createLinearGradient(0, 0, w, h);
+      bgGrad.addColorStop(0, '#fffbf7');
+      bgGrad.addColorStop(0.5, '#fff2f6');
+      bgGrad.addColorStop(1, '#ffeaf1');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Subtle Decorative Grid & Stars
+      ctx.strokeStyle = 'rgba(213, 101, 134, 0.08)';
+      ctx.lineWidth = 1;
+      for (let x = 60; x < w; x += 60) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let y = 60; y < h; y += 60) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+
+      // Elegant Outer Card Border
+      ctx.strokeStyle = '#d56586';
+      ctx.lineWidth = 6;
+      ctx.strokeRect(50, 50, w - 100, h - 100);
+
+      // Inner Delicate Gold / Rose Border
+      ctx.strokeStyle = 'rgba(230, 188, 88, 0.7)';
+      ctx.lineWidth = 2.5;
+      ctx.strokeRect(62, 62, w - 124, h - 124);
+
+      // Corner Floral Accents
+      function drawCornerBlossom(cx, cy) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        for (let a = 0; a < 5; a++) {
+          ctx.rotate((Math.PI * 2) / 5);
+          ctx.beginPath();
+          ctx.ellipse(0, -18, 11, 18, 0, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(245, 164, 189, 0.85)';
+          ctx.fill();
+        }
+        ctx.beginPath();
+        ctx.arc(0, 0, 7, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffd57a';
+        ctx.fill();
+        ctx.restore();
+      }
+
+      drawCornerBlossom(90, 90);
+      drawCornerBlossom(w - 90, 90);
+      drawCornerBlossom(90, h - 90);
+      drawCornerBlossom(w - 90, h - 90);
+
+      // Header: Brand & Identity
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#d56586';
+      ctx.font = 'bold 54px Outfit, sans-serif';
+      ctx.fillText('Amrutha ✿', w / 2, 175);
+
+      ctx.fillStyle = '#6b4b58';
+      ctx.font = '600 28px Outfit, sans-serif';
+      ctx.fillText('Frontend Developer • Creative Technologist', w / 2, 225);
+
+      // Decorative Badge / Banner
+      ctx.fillStyle = 'rgba(213, 101, 134, 0.12)';
+      ctx.beginPath();
+      ctx.roundRect(w / 2 - 270, 260, 540, 50, 25);
+      ctx.fill();
+
+      ctx.fillStyle = '#ba5372';
+      ctx.font = 'bold 22px Outfit, sans-serif';
+      ctx.fillText('A LITTLE NOTE FROM YOUR VISITOR', w / 2, 293);
+
+      // Content Box (Cream Card Background)
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.88)';
+      ctx.beginPath();
+      ctx.roundRect(100, 360, w - 200, 720, 28);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(213, 101, 134, 0.22)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Visitor Info
+      const visitorName = (reqNameInput && reqNameInput.value.trim()) || 'A Kind Visitor';
+      const visitorEmail = (reqEmailInput && reqEmailInput.value.trim()) || 'Not provided';
+      const requirements = (reqMsgInput && reqMsgInput.value.trim()) || 'Looking to connect and discuss frontend web development, design ideas, or creative collaborations! 🌸';
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#ba5372';
+      ctx.font = 'bold 26px Outfit, sans-serif';
+      ctx.fillText('FROM:', 150, 435);
+
+      ctx.fillStyle = '#2b1c24';
+      ctx.font = 'bold 36px Outfit, sans-serif';
+      ctx.fillText(visitorName, 150, 485);
+
+      if (visitorEmail !== 'Not provided') {
+        ctx.fillStyle = '#8f6e7c';
+        ctx.font = '500 24px Outfit, sans-serif';
+        ctx.fillText(`Email: ${visitorEmail}`, 150, 528);
+      }
+
+      // Divider line
+      ctx.strokeStyle = 'rgba(213, 101, 134, 0.18)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(150, 565);
+      ctx.lineTo(w - 150, 565);
+      ctx.stroke();
+
+      // Requirements Heading & Wrapped Text
+      ctx.fillStyle = '#ba5372';
+      ctx.font = 'bold 26px Outfit, sans-serif';
+      ctx.fillText('REQUIREMENTS & MESSAGE:', 150, 625);
+
+      ctx.fillStyle = '#3a2530';
+      ctx.font = '400 28px Outfit, sans-serif';
+      
+      // Text Wrapping Helper
+      const maxLineWidth = w - 300;
+      const lineHeight = 44;
+      const words = requirements.split(/\s+/);
+      let line = '';
+      let curY = 680;
+      const maxY = 1010;
+
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxLineWidth && n > 0) {
+          ctx.fillText(line.trim(), 150, curY);
+          line = words[n] + ' ';
+          curY += lineHeight;
+          if (curY > maxY) {
+            ctx.fillText('...', 150, curY);
+            break;
+          }
+        } else {
+          line = testLine;
+        }
+      }
+      if (curY <= maxY && line.trim()) {
+        ctx.fillText(line.trim(), 150, curY);
+      }
+
+      // Footer
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#d56586';
+      ctx.font = 'bold 32px Caveat, cursive, sans-serif';
+      ctx.fillText('Thank you for visiting! ♡', w / 2, 1150);
+
+      ctx.fillStyle = '#7a5a68';
+      ctx.font = '600 22px Outfit, sans-serif';
+      ctx.fillText("Amrutha's Creative World • github.com/amruthadivvela-droid", w / 2, 1205);
+    }
+
+    // Live Render on Input
+    if (reqNameInput) reqNameInput.addEventListener('input', renderVisitingCard);
+    if (reqEmailInput) reqEmailInput.addEventListener('input', renderVisitingCard);
+    if (reqMsgInput) reqMsgInput.addEventListener('input', renderVisitingCard);
+    window.addEventListener('load', renderVisitingCard);
+
+    // Download Digital Visiting Card PNG
+    function downloadVisitingCardPng() {
+      if (!visitingCardCanvas) return;
+      visitingCardCanvas.toBlob(blob => {
+        if (!blob) return;
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `Amrutha_Sakura_Visiting_Card.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(a.href);
+      }, 'image/png');
+    }
+
+    if (downloadCardBtn) {
+      downloadCardBtn.addEventListener('click', downloadVisitingCardPng);
+    }
+
+    // Share Visiting Card (Native Share API with fallback)
+    if (shareCardBtn) {
+      shareCardBtn.addEventListener('click', async () => {
+        if (!visitingCardCanvas) return;
+        visitingCardCanvas.toBlob(async blob => {
+          if (!blob) return;
+          const cardFile = new File([blob], 'Amrutha_Visiting_Card.png', { type: 'image/png' });
+          const shareText = `Hi Amrutha! Here are my requirements from ${(reqNameInput && reqNameInput.value) || 'a visitor'}.`;
+
+          if (navigator.canShare && navigator.canShare({ files: [cardFile] })) {
+            try {
+              await navigator.share({
+                title: 'Amrutha Portfolio Note',
+                text: shareText,
+                files: [cardFile]
+              });
+            } catch (err) {}
+          } else {
+            downloadVisitingCardPng();
+            if (formFeedback) {
+              formFeedback.style.display = 'block';
+              formFeedback.style.color = 'var(--accent)';
+              formFeedback.textContent = 'Digital Visiting Card downloaded! You can attach it directly to your message. 🌸';
+            }
+          }
+        }, 'image/png');
+      });
+    }
+
+    // Form Submission: Requirements First with WhatsApp (+91 90323 16792) and Email
     if (contactForm) {
-      contactForm.addEventListener('submit', e => {
+      contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const name = document.getElementById('contact-name').value.trim();
-        const email = document.getElementById('contact-email').value.trim();
-        const msg = document.getElementById('contact-msg').value.trim();
+        const name = (reqNameInput && reqNameInput.value.trim()) || '';
+        const email = (reqEmailInput && reqEmailInput.value.trim()) || '';
+        const requirements = (reqMsgInput && reqMsgInput.value.trim()) || '';
 
-        if (!name || !email || !msg) {
+        if (!name || !requirements) {
           formFeedback.style.display = 'block';
           formFeedback.style.color = '#e0526e';
-          formFeedback.textContent = 'Please fill in your name, email and message! ♡';
+          formFeedback.textContent = 'Please provide your name and requirements! ♡';
           return;
         }
 
-        const subject = encodeURIComponent(`Portfolio Message from ${name}`);
-        const body = encodeURIComponent(`Hi Amrutha,\n\n${msg}\n\nFrom: ${name} (${email})`);
-        window.location.href = `mailto:amrutha.divvela@example.com?subject=${subject}&body=${body}`;
+        if (activeContactChannel === 'whatsapp') {
+          // WhatsApp contact: +91 90323 16792 (clean digits: 919032316792)
+          const waPhone = '919032316792';
+          const prefilledMsg = `Hi Amrutha! I visited your portfolio and would like to connect.\n\nName: ${name}${email ? `\nEmail: ${email}` : ''}\n\nMy Requirements:\n${requirements}\n\nI'd love to discuss this with you.\n\nThanks!`;
 
-        formFeedback.style.display = 'block';
-        formFeedback.style.color = 'var(--accent)';
-        formFeedback.textContent = 'Opening your email client... Thank you for reaching out! ✿';
-        contactForm.reset();
+          // If browser can share image natively, offer Web Share
+          visitingCardCanvas.toBlob(async blob => {
+            let shared = false;
+            if (blob && navigator.canShare) {
+              const file = new File([blob], 'Amrutha_Visiting_Card.png', { type: 'image/png' });
+              if (navigator.canShare({ files: [file] })) {
+                try {
+                  await navigator.share({
+                    title: 'Portfolio Requirements Note',
+                    text: prefilledMsg,
+                    files: [file]
+                  });
+                  shared = true;
+                } catch (shareErr) {}
+              }
+            }
+
+            // Fallback or explicit WhatsApp opening
+            if (!shared) {
+              downloadVisitingCardPng();
+              const waUrl = `https://wa.me/${waPhone}?text=${encodeURIComponent(prefilledMsg)}`;
+              window.open(waUrl, '_blank', 'noopener,noreferrer');
+            }
+
+            formFeedback.style.display = 'block';
+            formFeedback.style.color = 'var(--accent)';
+            formFeedback.textContent = 'Opening WhatsApp with your requirements note... Thank you! ✿';
+          }, 'image/png');
+
+        } else {
+          // Email channel
+          if (!email || !email.includes('@')) {
+            formFeedback.style.display = 'block';
+            formFeedback.style.color = '#e0526e';
+            formFeedback.textContent = 'Please provide a valid email address for replies! ♡';
+            return;
+          }
+
+          formFeedback.style.display = 'block';
+          formFeedback.style.color = 'var(--accent)';
+          formFeedback.textContent = 'Sending your requirements enquiry... 🌸';
+
+          // Send via mailto or backend
+          const subject = encodeURIComponent(`Portfolio Enquiry from ${name}`);
+          const body = encodeURIComponent(`Hi Amrutha,\n\nName: ${name}\nEmail: ${email}\n\nRequirements:\n${requirements}\n\nSent from Amrutha Sakura Creative Portfolio`);
+          window.location.href = `mailto:amrutha.divvela@example.com?subject=${subject}&body=${body}`;
+
+          formFeedback.textContent = '✓ Thank you! Opening your email client to dispatch your message. ✿';
+          downloadVisitingCardPng();
+        }
       });
     }
 

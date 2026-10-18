@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import { 
   ArrowRight, ArrowUpRight, Code2, Github, FileText, Heart, Menu, X, 
-  Sparkles, Sun, Moon, Download, ExternalLink, ChevronDown, Check, 
+  Sparkles, Download, ExternalLink, ChevronDown, Check, 
   Copy, GraduationCap, Award, BookOpen, Layers, Users, Lightbulb, 
   Send, Sparkle
 } from 'lucide-react';
@@ -29,32 +29,28 @@ export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [devModalOpen, setDevModalOpen] = useState(false);
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
-  const [adminModalOpen, setAdminModalOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState('all');
   const [bubbleQuote, setBubbleQuote] = useState("Let's explore! 🌸");
   const [copied, setCopied] = useState(false);
-  const [contactFeedback, setContactFeedback] = useState('');
-  const [isRealPhoto, setIsRealPhoto] = useState(false);
-  const [realPhotoSrc, setRealPhotoSrc] = useState('public/assets/ammu.webp');
+  
+  // Passkey Modal (Restricted Access)
   const [passkeyModalOpen, setPasskeyModalOpen] = useState(false);
   const [passkeyInput, setPasskeyInput] = useState('');
   const [passkeyError, setPasskeyError] = useState('');
-  const [passkeyVisible, setPasskeyVisible] = useState(false);
-  const [adminFilter, setAdminFilter] = useState('all');
-  const [adminSearch, setAdminSearch] = useState('');
-  const [adminToast, setAdminToast] = useState('');
-  const [students, setStudents] = useState([
-    { id: '21NEC01', name: 'Aarav Sharma', status: 'present', avg: '96%', tag: '' },
-    { id: '21NEC02', name: 'Divvela J. V. Amrutha', status: 'present', avg: '98%', tag: 'Lead Architect' },
-    { id: '21NEC03', name: 'Bhavya Karanam', status: 'absent', avg: '82%', tag: '' },
-    { id: '21NEC04', name: 'Chaitanya Rao', status: 'present', avg: '94%', tag: '' },
-    { id: '21NEC05', name: 'Divya Mandava', status: 'present', avg: '91%', tag: '' },
-    { id: '21NEC06', name: 'Eshwar Prasad', status: 'absent', avg: '78%', tag: '' },
-    { id: '21NEC07', name: 'Farhan Ahmed', status: 'present', avg: '93%', tag: '' },
-    { id: '21NEC08', name: 'Gayatri Somu', status: 'present', avg: '95%', tag: '' },
-    { id: '21NEC09', name: 'Harsh Vardhan', status: 'present', avg: '89%', tag: '' },
-    { id: '21NEC10', name: 'Ishita Nair', status: 'present', avg: '97%', tag: '' }
-  ]);
+
+  // Contact Requirements Flow
+  const [contactName, setContactName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [contactMsg, setContactMsg] = useState('');
+  const [contactChannel, setContactChannel] = useState('whatsapp');
+  const [contactFeedback, setContactFeedback] = useState('');
+  const cardCanvasRef = useRef(null);
+
+  // Profile Modal Automatic Looping Pixel Dissolve
+  const [modalStage, setModalStage] = useState('anime'); // 'anime' | 'dissolving-to-real' | 'real' | 'dissolving-to-anime'
+  const pixelLoopCanvasRef = useRef(null);
+  const loopTimerRef = useRef(null);
+  const loopAnimRef = useRef(null);
 
   const quotes = [
     "Let’s explore! 🌸",
@@ -95,27 +91,283 @@ export function App() {
     }
   };
 
+  // Passkey Authentication Gateway
+  const handlePasskeySubmit = (e) => {
+    e.preventDefault();
+    const entered = passkeyInput.trim().toLowerCase();
+    if (['2026', 'sakura', 'amrutha'].includes(entered)) {
+      sessionStorage.setItem('amrutha_admin_session', JSON.stringify({
+        authenticated: true,
+        role: 'owner',
+        timestamp: Date.now()
+      }));
+      setPasskeyModalOpen(false);
+      window.location.href = 'admin.html';
+    } else {
+      setPasskeyError('Access denied. Please try again.');
+      setPasskeyInput('');
+    }
+  };
+
+  // Double-tap tracker for hidden admin flower
+  const lastTapRef = useRef(0);
+  const handleFlowerTouchEnd = (e) => {
+    const now = Date.now();
+    if (now - lastTapRef.current < 380) {
+      e.preventDefault();
+      e.stopPropagation();
+      setPasskeyModalOpen(true);
+    }
+    lastTapRef.current = now;
+  };
+
+  // Dynamic 1080 x 1350 Canvas Visiting Card Generator
+  const drawVisitingCard = () => {
+    const canvas = cardCanvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const w = 1080;
+    const h = 1350;
+
+    // Background gradient
+    const bgGrad = ctx.createLinearGradient(0, 0, w, h);
+    bgGrad.addColorStop(0, '#fffbf7');
+    bgGrad.addColorStop(0.5, '#fff2f6');
+    bgGrad.addColorStop(1, '#ffeaf1');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, w, h);
+
+    // Subtle grid
+    ctx.strokeStyle = 'rgba(213, 101, 134, 0.08)';
+    ctx.lineWidth = 1;
+    for (let x = 60; x < w; x += 60) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, h);
+      ctx.stroke();
+    }
+    for (let y = 60; y < h; y += 60) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(w, y);
+      ctx.stroke();
+    }
+
+    // Outer & Inner Borders
+    ctx.strokeStyle = '#d56586';
+    ctx.lineWidth = 6;
+    ctx.strokeRect(50, 50, w - 100, h - 100);
+    ctx.strokeStyle = 'rgba(230, 188, 88, 0.7)';
+    ctx.lineWidth = 2.5;
+    ctx.strokeRect(62, 62, w - 124, h - 124);
+
+    // Header
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#d56586';
+    ctx.font = 'bold 54px Outfit, sans-serif';
+    ctx.fillText('Amrutha ✿', w / 2, 175);
+
+    ctx.fillStyle = '#6b4b58';
+    ctx.font = '600 28px Outfit, sans-serif';
+    ctx.fillText('Frontend Developer • Creative Technologist', w / 2, 225);
+
+    // Banner
+    ctx.fillStyle = 'rgba(213, 101, 134, 0.12)';
+    ctx.beginPath();
+    ctx.roundRect(w / 2 - 270, 260, 540, 50, 25);
+    ctx.fill();
+
+    ctx.fillStyle = '#ba5372';
+    ctx.font = 'bold 22px Outfit, sans-serif';
+    ctx.fillText('A LITTLE NOTE FROM YOUR VISITOR', w / 2, 293);
+
+    // Content Card
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.88)';
+    ctx.beginPath();
+    ctx.roundRect(100, 360, w - 200, 720, 28);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(213, 101, 134, 0.22)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#ba5372';
+    ctx.font = 'bold 26px Outfit, sans-serif';
+    ctx.fillText('FROM:', 150, 435);
+
+    ctx.fillStyle = '#2b1c24';
+    ctx.font = 'bold 36px Outfit, sans-serif';
+    ctx.fillText(contactName.trim() || 'A Kind Visitor', 150, 485);
+
+    if (contactEmail.trim()) {
+      ctx.fillStyle = '#8f6e7c';
+      ctx.font = '500 24px Outfit, sans-serif';
+      ctx.fillText(`Email: ${contactEmail.trim()}`, 150, 528);
+    }
+
+    ctx.strokeStyle = 'rgba(213, 101, 134, 0.18)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(150, 565);
+    ctx.lineTo(w - 150, 565);
+    ctx.stroke();
+
+    ctx.fillStyle = '#ba5372';
+    ctx.font = 'bold 26px Outfit, sans-serif';
+    ctx.fillText('REQUIREMENTS & MESSAGE:', 150, 625);
+
+    ctx.fillStyle = '#3a2530';
+    ctx.font = '400 28px Outfit, sans-serif';
+
+    const reqText = contactMsg.trim() || 'Looking to connect and discuss frontend web development, design ideas, or creative collaborations! 🌸';
+    const words = reqText.split(/\s+/);
+    let line = '';
+    let curY = 680;
+    const maxLineWidth = w - 300;
+    const lineHeight = 44;
+
+    for (let n = 0; n < words.length; n++) {
+      const testLine = line + words[n] + ' ';
+      if (ctx.measureText(testLine).width > maxLineWidth && n > 0) {
+        ctx.fillText(line.trim(), 150, curY);
+        line = words[n] + ' ';
+        curY += lineHeight;
+        if (curY > 1010) {
+          ctx.fillText('...', 150, curY);
+          break;
+        }
+      } else {
+        line = testLine;
+      }
+    }
+    if (curY <= 1010 && line.trim()) {
+      ctx.fillText(line.trim(), 150, curY);
+    }
+
+    // Footer
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#d56586';
+    ctx.font = 'bold 32px Caveat, cursive, sans-serif';
+    ctx.fillText('Thank you for visiting! ♡', w / 2, 1150);
+
+    ctx.fillStyle = '#7a5a68';
+    ctx.font = '600 22px Outfit, sans-serif';
+    ctx.fillText("Amrutha's Creative World • github.com/amruthadivvela-droid", w / 2, 1205);
+  };
+
+  useEffect(() => {
+    drawVisitingCard();
+  }, [contactName, contactEmail, contactMsg, theme]);
+
+  const downloadCardPng = () => {
+    const canvas = cardCanvasRef.current;
+    if (!canvas) return;
+    canvas.toBlob((blob) => {
+      if (!blob) return;
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'Amrutha_Sakura_Visiting_Card.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(a.href);
+    }, 'image/png');
+  };
+
+  const handleShareCard = async () => {
+    const canvas = cardCanvasRef.current;
+    if (!canvas) return;
+    canvas.toBlob(async (blob) => {
+      if (!blob) return;
+      const cardFile = new File([blob], 'Amrutha_Visiting_Card.png', { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [cardFile] })) {
+        try {
+          await navigator.share({
+            title: 'Note for Amrutha',
+            text: `Hi Amrutha, here are my requirements from ${contactName || 'a visitor'}!`,
+            files: [cardFile]
+          });
+        } catch (e) {}
+      } else {
+        downloadCardPng();
+        setContactFeedback('Digital Visiting Card downloaded! You can attach it directly to WhatsApp. 🌸');
+      }
+    }, 'image/png');
+  };
+
   const handleContactSubmit = (e) => {
     e.preventDefault();
-    const name = e.target.elements['contact-name'].value.trim();
-    const email = e.target.elements['contact-email'].value.trim();
-    const msg = e.target.elements['contact-msg'].value.trim();
-
-    if (!name || !email || !msg) {
-      setContactFeedback('Please fill out all fields! ♡');
+    if (!contactName.trim() || !contactMsg.trim()) {
+      setContactFeedback('Please provide your name and requirements! ♡');
       return;
     }
 
-    const subject = encodeURIComponent(`Portfolio Message from ${name}`);
-    const body = encodeURIComponent(`Hi Amrutha,\n\n${msg}\n\nFrom: ${name} (${email})`);
-    window.location.href = `mailto:amrutha.divvela@example.com?subject=${subject}&body=${body}`;
-    setContactFeedback('Opening your email client... Thank you! ✿');
-    e.target.reset();
+    if (contactChannel === 'whatsapp') {
+      const waPhone = '919032316792';
+      const prefilled = `Hi Amrutha! I visited your portfolio and would like to connect.\n\nName: ${contactName.trim()}${contactEmail.trim() ? `\nEmail: ${contactEmail.trim()}` : ''}\n\nMy Requirements:\n${contactMsg.trim()}\n\nI'd love to discuss this with you.\n\nThanks!`;
+
+      downloadCardPng();
+      window.open(`https://wa.me/${waPhone}?text=${encodeURIComponent(prefilled)}`, '_blank', 'noopener,noreferrer');
+      setContactFeedback('Opening WhatsApp with your requirements... Thank you! ✿');
+    } else {
+      if (!contactEmail.includes('@')) {
+        setContactFeedback('Please provide a valid email address! ♡');
+        return;
+      }
+      const subject = encodeURIComponent(`Portfolio Enquiry from ${contactName.trim()}`);
+      const body = encodeURIComponent(`Hi Amrutha,\n\nName: ${contactName.trim()}\nEmail: ${contactEmail.trim()}\n\nRequirements:\n${contactMsg.trim()}`);
+      window.location.href = `mailto:amrutha.divvela@example.com?subject=${subject}&body=${body}`;
+      downloadCardPng();
+      setContactFeedback('✓ Opening your email client to send your enquiry. ✿');
+    }
   };
+
+  // Automatic Looping Pixel Dissolve in Profile Modal
+  useEffect(() => {
+    if (!devModalOpen) {
+      if (loopTimerRef.current) clearTimeout(loopTimerRef.current);
+      if (loopAnimRef.current) cancelAnimationFrame(loopAnimRef.current);
+      setModalStage('anime');
+      return;
+    }
+
+    let isRunning = true;
+    const runCycle = () => {
+      if (!isRunning) return;
+      setModalStage('anime');
+
+      loopTimerRef.current = setTimeout(() => {
+        if (!isRunning) return;
+        setModalStage('dissolving-to-real');
+
+        loopTimerRef.current = setTimeout(() => {
+          if (!isRunning) return;
+          setModalStage('real');
+
+          loopTimerRef.current = setTimeout(() => {
+            if (!isRunning) return;
+            setModalStage('dissolving-to-anime');
+
+            loopTimerRef.current = setTimeout(() => {
+              if (!isRunning) return;
+              runCycle();
+            }, 800);
+          }, 2000);
+        }, 800);
+      }, 2000);
+    };
+
+    runCycle();
+
+    return () => {
+      isRunning = false;
+      if (loopTimerRef.current) clearTimeout(loopTimerRef.current);
+    };
+  }, [devModalOpen]);
 
   return (
     <div className="portfolio-app">
-      {/* Floating Navbar */}
+      {/* Floating Navbar: STRICT public layout (Amrutha ✿ | About Education Work Skills Contact | ☼ Themes) */}
       <header className="site-header">
         <nav className="nav-pill" aria-label="Main navigation">
           <a className="brand" href="#top">
@@ -131,46 +383,6 @@ export function App() {
           </div>
 
           <div className="nav-actions">
-            <button 
-              type="button" 
-              className="rotating-admin-flower-btn" 
-              onClick={() => {
-                if (sessionStorage.getItem('amrutha_admin_auth') === 'true') {
-                  setAdminModalOpen(true);
-                } else {
-                  setPasskeyModalOpen(true);
-                }
-              }}
-              aria-label="Admin Portal Passkey Gateway"
-              title="Admin Portal (Passkey Protected)"
-            >
-              <svg className="admin-spinning-flower" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
-                <g transform="translate(50,50)">
-                  <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="#d56586"/>
-                  <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="#d56586" transform="rotate(72)"/>
-                  <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="#d56586" transform="rotate(144)"/>
-                  <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="#d56586" transform="rotate(216)"/>
-                  <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="#d56586" transform="rotate(288)"/>
-                  <circle cx="0" cy="0" r="5.5" fill="#ffd57a" stroke="#d56586" strokeWidth="1.2"/>
-                </g>
-              </svg>
-              <span>Admin</span>
-            </button>
-
-            <button 
-              type="button" 
-              className="nav-admin-btn" 
-              onClick={() => {
-                if (sessionStorage.getItem('amrutha_admin_auth') === 'true') {
-                  setAdminModalOpen(true);
-                } else {
-                  setPasskeyModalOpen(true);
-                }
-              }}
-              aria-label="Open Smart Classroom Admin Dashboard"
-            >
-              <span>Portal</span>
-            </button>
             <span className="nav-separator" aria-hidden="true"></span>
             
             <div className="theme-wrap">
@@ -251,12 +463,13 @@ export function App() {
                 className="btn btn-outline" 
                 onClick={() => setResumeModalOpen(true)}
               >
-                View resume <FileText size={18} style={{ marginLeft: 6 }} />
+                <span>View resume</span>
+                <FileText size={14} className="icon-inline" />
               </button>
             </div>
           </div>
 
-          {/* Center Character */}
+          {/* Anime Chibi Character */}
           <div className="character-wrap">
             <img 
               className="character-img"
@@ -277,375 +490,212 @@ export function App() {
             </div>
           </div>
 
-          {/* Hanging Developer ID Card with Realistic Realism & Photo Switcher */}
-          <div className="badge-scene">
-            <div className="strap strap-a"></div>
-            <div className="strap strap-b"></div>
-            <div className="lanyard-link"></div>
-            <div className="lanyard-clip"></div>
+          {/* Unified Hanging Developer ID Assembly & Hidden Admin Entry */}
+          <div className="badge-scene" aria-label="Interactive Developer ID card">
+            <svg className="lanyard-hardware-svg" viewBox="0 0 290 440" aria-hidden="true">
+              <defs>
+                <linearGradient id="reactLanyardA" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#ffb8cc"/>
+                  <stop offset="50%" stopColor="#f59eb7"/>
+                  <stop offset="100%" stopColor="#d56586"/>
+                </linearGradient>
+                <linearGradient id="reactLanyardB" x1="1" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#ffd5e2"/>
+                  <stop offset="50%" stopColor="#f59eb7"/>
+                  <stop offset="100%" stopColor="#ba5372"/>
+                </linearGradient>
+                <linearGradient id="reactGold" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#fff0c2"/>
+                  <stop offset="40%" stopColor="#e6bc58"/>
+                  <stop offset="70%" stopColor="#b88a20"/>
+                  <stop offset="100%" stopColor="#7a570b"/>
+                </linearGradient>
+              </defs>
+
+              <path d="M 45 -40 C 70 100, 115 220, 142 275" stroke="url(#reactLanyardA)" strokeWidth="26" strokeLinecap="round" fill="none"/>
+              <path d="M 45 -40 C 70 100, 115 220, 142 275" stroke="#fff" strokeWidth="1.5" strokeDasharray="3 4" strokeOpacity="0.6" fill="none"/>
+              <path d="M 245 -40 C 220 100, 175 220, 148 275" stroke="url(#reactLanyardB)" strokeWidth="26" strokeLinecap="round" fill="none"/>
+              <path d="M 245 -40 C 220 100, 175 220, 148 275" stroke="#fff" strokeWidth="1.5" strokeDasharray="3 4" strokeOpacity="0.6" fill="none"/>
+
+              <rect x="127" y="268" width="36" height="18" rx="7" fill="url(#reactGold)" stroke="#8c6414" strokeWidth="1.5"/>
+              <rect x="139" y="286" width="12" height="20" rx="4" fill="url(#reactGold)" stroke="#7a570b" strokeWidth="1.2"/>
+              <path d="M 145 306 L 145 342" stroke="url(#reactGold)" strokeWidth="7" strokeLinecap="round"/>
+              <circle cx="145" cy="342" r="7.5" fill="none" stroke="url(#reactGold)" strokeWidth="4.5"/>
+              <path d="M 141 336 C 141 346, 149 346, 149 336" fill="none" stroke="#fff0c2" strokeWidth="2.5" strokeLinecap="round"/>
+            </svg>
 
             <div 
               className="dev-id"
               role="button"
               tabIndex={0}
-              onClick={() => setDevModalOpen(true)}
-              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setDevModalOpen(true)}
-              aria-label="Developer ID Card"
+              onClick={(e) => {
+                if (e.target.closest('.id-admin-flower')) return;
+                setDevModalOpen(true);
+              }}
+              onKeyDown={(e) => {
+                if (e.target.closest('.id-admin-flower')) return;
+                if (e.key === 'Enter' || e.key === ' ') setDevModalOpen(true);
+              }}
+              aria-label="Amrutha Developer ID Badge"
             >
-              <div className="badge-hole-slot" aria-hidden="true">
-                <div className="clasp-through-loop" aria-hidden="true"></div>
-                <div className="clasp-front-lip" aria-hidden="true"></div>
-              </div>
+              <div className="badge-hole-slot" aria-hidden="true"></div>
 
               <div className="dev-id-head">
                 <div className="id-code">&lt;/&gt;</div>
                 <span>DEVELOPER ID</span>
-                <span className="id-flower">✿</span>
+                <span className="dev-corner-flower flower-rot-a" aria-hidden="true">✿</span>
               </div>
 
-              <div 
-                className={`id-photo ${isRealPhoto ? 'show-real' : ''}`}
-                onMouseEnter={() => setIsRealPhoto(true)}
-                onMouseLeave={() => setIsRealPhoto(false)}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsRealPhoto(!isRealPhoto);
-                }}
-                title="Hover or tap to reveal real photo"
-              >
-                <img className="portrait-layer portrait-anime" src="public/assets/amrutha-avatar.png" alt="Amrutha Avatar" />
-                <img className="portrait-layer portrait-real" src={realPhotoSrc} alt="Amrutha Real Portrait" />
-                
-                <div className="photo-controls" onClick={(e) => e.stopPropagation()}>
-                  <button 
-                    type="button" 
-                    className="photo-switch-btn" 
-                    onClick={() => setIsRealPhoto(!isRealPhoto)}
-                    title="Toggle Portrait Style"
-                  >
-                    <span>✦</span> <span>{isRealPhoto ? 'Anime Avatar' : 'Real Photo'}</span>
-                  </button>
-                  <label className="photo-upload-btn" title="Upload custom portrait">
-                    <span>📷</span>
-                    <input 
-                      type="file" 
-                      accept="image/*" 
-                      style={{ display: 'none' }} 
-                      onChange={(e) => {
-                        const file = e.target.files && e.target.files[0];
-                        if (file) {
-                          const reader = new FileReader();
-                          reader.onload = (ev) => {
-                            setRealPhotoSrc(ev.target.result);
-                            setIsRealPhoto(true);
-                          };
-                          reader.readAsDataURL(file);
-                        }
-                      }} 
-                    />
-                  </label>
-                </div>
+              {/* Clean Anime Portrait (no badges, no camera overlays) */}
+              <div className="id-photo-frame">
+                <img 
+                  className="portrait-layer portrait-anime" 
+                  src="public/assets/amrutha-avatar.png" 
+                  alt="Amrutha Anime Avatar"
+                  draggable="false"
+                />
               </div>
 
               <div className="id-name">AMRUTHA</div>
-              <div className="id-role">B.Tech Student</div>
-              <div className="id-barcode"></div>
-              <span className="id-flower-bottom">🌸</span>
-              <span className="badge-hint">Click to inspect ↗</span>
+              <div className="id-role">B.Tech Student &bull; Frontend Dev</div>
+              <div className="id-barcode" aria-hidden="true"></div>
+
+              {/* Rotating Corner Flowers */}
+              <span className="dev-corner-flower flower-rot-b" style={{ position: 'absolute', bottom: '14px', left: '16px', fontSize: '18px', color: 'var(--accent)' }} aria-hidden="true">✿</span>
+
+              {/* Hidden Admin Entry Flower Trigger: double-click / double-tap */}
+              <button 
+                type="button" 
+                className="id-admin-flower"
+                onDoubleClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  setPasskeyModalOpen(true);
+                }}
+                onTouchEnd={handleFlowerTouchEnd}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    setPasskeyModalOpen(true);
+                  }
+                }}
+                aria-label="Decorative flower"
+                title=""
+              >
+                ✿
+              </button>
             </div>
           </div>
 
           {/* Corner Sakura Branches */}
           <img src="public/assets/sakura-branch.png" className="sakura-branch-corner branch-left" alt="" aria-hidden="true" />
           <img src="public/assets/sakura-branch.png" className="sakura-branch-corner branch-right" alt="" aria-hidden="true" />
-          <div className="hero-bottom-fade"></div>
         </section>
 
         {/* About Section */}
-        <section id="about" className="section about-section">
-          <div className="about-intro reveal">
-            <div className="section-heading">
-              <div className="section-kicker"><span>01</span> / A LITTLE ABOUT ME</div>
-              <h2>Curious mind. <em>Creative heart.</em></h2>
-            </div>
-            <p className="about-intro-text">
-              I’m a B.Tech student at Narasaraopeta Engineering College with a deep passion for frontend web development. I love building intuitive, visually delightful user interfaces and learning through hands-on technical projects and teamwork.
-            </p>
+        <section id="about" className="about-section">
+          <div className="section-head reveal">
+            <div className="section-kicker">01 / ABOUT ME</div>
+            <h2>Curiosity meets<br /><em>thoughtful code</em></h2>
           </div>
 
-          <div className="about-grid reveal">
-            <div className="about-note">
-              <div className="note-tape"></div>
-              <span className="note-heart">♡</span>
-              <h3>Oh, hello there!</h3>
-              <p>
-                I'm Amrutha, a frontend developer with a soft spot for thoughtful details, charming microinteractions, and web experiences that make people smile.
-              </p>
-              <span className="signature">made with love, Amrutha ✿</span>
+          <div className="about-grid">
+            <div className="about-card tilt-card reveal">
+              <span className="about-num">01</span>
+              <h3>Creative Mindset</h3>
+              <p>I build web interfaces where visual charm and technical precision coexist naturally.</p>
             </div>
-
-            <div className="about-highlights">
-              <div className="about-highlight-card">
-                <div className="about-icon">✧</div>
-                <div>
-                  <h4>Design meets development</h4>
-                  <p>From visual layout sketches to clean responsive HTML/CSS, I connect aesthetic ideas with solid code.</p>
-                </div>
-              </div>
-
-              <div className="about-highlight-card">
-                <div className="about-icon">♡</div>
-                <div>
-                  <h4>Details are everything</h4>
-                  <p>Intentional spacing, accessible contrast, and smooth micro-animations bring web pages to life.</p>
-                </div>
-              </div>
-
-              <div className="about-highlight-card">
-                <div className="about-icon">✦</div>
-                <div>
-                  <h4>Always learning</h4>
-                  <p>Constantly exploring modern web standards, collaborative tools, and improving with every challenge.</p>
-                </div>
-              </div>
+            <div className="about-card tilt-card reveal">
+              <span className="about-num">02</span>
+              <h3>B.Tech Academic Journey</h3>
+              <p>Pursuing Computer Science &amp; Engineering at Narasaraopeta Engineering College.</p>
+            </div>
+            <div className="about-card tilt-card reveal">
+              <span className="about-num">03</span>
+              <h3>Modern Frontend Stack</h3>
+              <p>Hands-on work across JavaScript, React, TypeScript, responsive layouts, and animations.</p>
             </div>
           </div>
         </section>
 
-        {/* Education Timeline */}
-        <section id="education" className="section education-section">
-          <div className="section-top reveal">
-            <div className="section-heading">
-              <div className="section-kicker"><span>02</span> / ACADEMIC JOURNEY</div>
-              <h2>Education &amp; <em>milestones.</em></h2>
-            </div>
-            <div className="section-side-note">Verified academic foundation <span>🌸</span></div>
+        {/* Education Section */}
+        <section id="education" className="education-section">
+          <div className="section-head reveal">
+            <div className="section-kicker">02 / EDUCATION</div>
+            <h2>Academic<br /><em>milestones</em></h2>
           </div>
 
-          <div className="education-timeline reveal">
-            <div className="timeline-item">
-              <div className="timeline-dot">🎓</div>
-              <div className="timeline-card">
-                <div className="timeline-card-header">
-                  <h3 className="timeline-title">Bachelor of Technology (B.Tech)</h3>
-                  <span className="timeline-badge">Currently Pursuing</span>
-                </div>
-                <div className="timeline-institute">Narasaraopeta Engineering College</div>
-                <p className="timeline-desc">
-                  Studying computer science principles, web application architectures, data structures, and practical software team projects.
-                </p>
-              </div>
+          <div className="education-timeline">
+            <div className="edu-card tilt-card reveal">
+              <div className="edu-period">2022 — 2026</div>
+              <h3>B.Tech in Computer Science &amp; Engineering</h3>
+              <p className="edu-inst">Narasaraopeta Engineering College</p>
             </div>
-
-            <div className="timeline-item">
-              <div className="timeline-dot">✿</div>
-              <div className="timeline-card">
-                <div className="timeline-card-header">
-                  <h3 className="timeline-title">Class XII &mdash; Intermediate (MPC)</h3>
-                  <span className="timeline-badge">Score: 96.3%</span>
-                </div>
-                <div className="timeline-institute">Sri Chaitanya Junior College</div>
-                <p className="timeline-desc">
-                  Focused in Mathematics, Physics, and Chemistry. Established strong analytical reasoning and rigorous problem-solving habits.
-                </p>
-              </div>
-            </div>
-
-            <div className="timeline-item">
-              <div className="timeline-dot">★</div>
-              <div className="timeline-card">
-                <div className="timeline-card-header">
-                  <h3 className="timeline-title">Class X &mdash; Secondary School Certificate</h3>
-                  <span className="timeline-badge">Score: 95.0%</span>
-                </div>
-                <div className="timeline-institute">Sri Chaitanya Techno School</div>
-                <p className="timeline-desc">
-                  Academic excellence in science, logic, and mathematics with active participation in co-curricular student competitions.
-                </p>
-              </div>
+            <div className="edu-card tilt-card reveal">
+              <div className="edu-period">2020 — 2022</div>
+              <h3>Intermediate (Class XII) &bull; 96.3%</h3>
+              <p className="edu-inst">Sri Chaitanya Junior College</p>
             </div>
           </div>
         </section>
 
-        {/* Selected Work */}
-        <section id="work" className="section work-section">
-          <div className="section-top reveal">
-            <div className="section-heading">
-              <div className="section-kicker"><span>03</span> / SELECTED WORK</div>
-              <h2>Little ideas. <em>Big possibilities.</em></h2>
-            </div>
-            <div className="section-side-note">A peek into some things I've been building <span>↗</span></div>
+        {/* Work / Projects Section */}
+        <section id="work" className="work-section">
+          <div className="section-head reveal">
+            <div className="section-kicker">03 / SELECTED WORK</div>
+            <h2>Ideas brought to life<br /><em>on the screen</em></h2>
           </div>
 
-          <div className="project-filters reveal">
-            <button 
-              type="button" 
-              className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('all')}
-            >
-              All Projects
-            </button>
-            <button 
-              type="button" 
-              className={`filter-btn ${activeFilter === 'team' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('team')}
-            >
-              Team Projects
-            </button>
-            <button 
-              type="button" 
-              className={`filter-btn ${activeFilter === 'ai' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('ai')}
-            >
-              AI &amp; Retrieval
-            </button>
-            <button 
-              type="button" 
-              className={`filter-btn ${activeFilter === 'web' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('web')}
-            >
-              Web Experiments
-            </button>
+          <div className="filter-row">
+            {['all', 'web', 'extensions', 'systems'].map((f) => (
+              <button 
+                key={f}
+                type="button" 
+                className={`filter-btn ${activeFilter === f ? 'active' : ''}`}
+                onClick={() => setActiveFilter(f)}
+              >
+                {f.charAt(0).toUpperCase() + f.slice(1)}
+              </button>
+            ))}
           </div>
 
-          {/* Primary Featured Project */}
-          {(activeFilter === 'all' || activeFilter === 'team') && (
-            <article className="featured-project-card reveal">
-              <div className="featured-art">
-                <div 
-                  className="mockup-window" 
-                  role="button" 
-                  tabIndex={0} 
-                  style={{ cursor: 'pointer' }} 
-                  onClick={() => setAdminModalOpen(true)}
-                  title="Click to launch interactive Admin Dashboard"
-                >
-                  <div className="mockup-header">
-                    <span className="mockup-dot red"></span>
-                    <span className="mockup-dot yellow"></span>
-                    <span className="mockup-dot green"></span>
-                    <span className="mockup-title">attendance-portal.local</span>
-                    <span className="mockup-launch-badge">⚡ Live Demo</span>
-                  </div>
-                  <div className="mockup-body">
-                    <div className="mockup-stat-row">
-                      <div className="mockup-stat">
-                        <div className="mockup-stat-num">{students.length}</div>
-                        <div className="mockup-stat-lbl">Total Enrolled</div>
-                      </div>
-                      <div className="mockup-stat">
-                        <div className="mockup-stat-num" style={{ color: '#2ba362' }}>
-                          {students.filter(s => s.status === 'present').length}
-                        </div>
-                        <div className="mockup-stat-lbl">Present Today</div>
-                      </div>
-                      <div className="mockup-stat">
-                        <div className="mockup-stat-num" style={{ color: '#e0526e' }}>
-                          {students.length > 0 ? ((students.filter(s => s.status === 'present').length / students.length) * 100).toFixed(1) + '%' : '0%'}
-                        </div>
-                        <div className="mockup-stat-lbl">Attendance Rate</div>
-                      </div>
-                    </div>
-
-                    <div className="mockup-list">
-                      <div className="mockup-row">
-                        <span>CSE-3A &bull; Roll 21NEC01</span>
-                        <span className="status-badge status-present">Present ✓</span>
-                      </div>
-                      <div className="mockup-row">
-                        <span>CSE-3A &bull; Roll 21NEC02</span>
-                        <span className="status-badge status-present">Present ✓</span>
-                      </div>
-                      <div className="mockup-row">
-                        <span>CSE-3A &bull; Roll 21NEC03</span>
-                        <span className="status-badge status-absent">Absent ✗</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="featured-content">
-                <div className="project-tag">FEATURED &bull; TEAM PROJECT</div>
-                <h3>Smart Classroom Attendance System</h3>
-                <p>
-                  Designed and developed an intuitive, web-based classroom attendance interface with live status recording, structured roll-call workflows, and clean responsive feedback.
-                </p>
-
-                <ul className="feature-bullets">
-                  <li><span className="bullet-icon">✿</span> Built semantic frontend layouts using clean HTML5 and CSS3</li>
-                  <li><span className="bullet-icon">✿</span> Implemented interactive attendance tracking and dynamic state toggling in JavaScript</li>
-                  <li><span className="bullet-icon">✿</span> Collaborated with teammates on modular planning, integration, and user-friendly UX</li>
-                </ul>
-
-                <div className="chip-row" style={{ marginBottom: 22 }}>
-                  <span className="tech-chip">HTML5</span>
-                  <span className="tech-chip">CSS3</span>
-                  <span className="tech-chip">JavaScript</span>
-                  <span className="tech-chip">Responsive Web</span>
-                </div>
-
-                <div className="project-bottom">
-                  <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--accent)' }}>Academic Team Collaboration</span>
-                  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                    <button 
-                      type="button" 
-                      className="btn btn-primary" 
-                      onClick={() => setAdminModalOpen(true)}
-                      style={{ minHeight: 44, padding: '0 22px', fontSize: 13 }}
-                    >
-                      Launch Admin Dashboard ⚡
-                    </button>
-                    <a 
-                      href={GITHUB_PROFILE} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="btn btn-outline" 
-                      style={{ minHeight: 44, padding: '0 22px', fontSize: 13 }}
-                    >
-                      View on GitHub ↗
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </article>
-          )}
-
-          {/* Secondary GitHub Repositories Grid */}
-          <div className="project-grid">
-            {(activeFilter === 'all' || activeFilter === 'ai') && (
-              <article className="project-card reveal">
-                <div className="project-art art-prompt">
-                  <div style={{ background: 'var(--surface)', borderRadius: 18, padding: '22px 28px', width: '80%', boxShadow: '0 12px 30px rgba(0,0,0,0.06)', textAlign: 'center' }}>
-                    <span style={{ fontSize: 28, color: 'var(--accent)' }}>✦</span>
-                    <div style={{ fontWeight: 900, fontSize: 18, color: 'var(--ink)', margin: '6px 0' }}>Prompt Tech</div>
-                    <div style={{ fontSize: 11, color: 'var(--muted)', letterSpacing: 1 }}>DOCUMENT INTELLIGENCE</div>
+          <div className="projects-grid">
+            {/* Project 1: Prompt Tech */}
+            {(activeFilter === 'all' || activeFilter === 'web') && (
+              <article className="project-card tilt-card reveal">
+                <div className="project-art art-prompt-tech">
+                  <div style={{ background: 'var(--surface)', borderRadius: '18px', padding: '24px 28px', width: '82%', boxShadow: '0 12px 30px rgba(0,0,0,0.06)' }}>
+                    <div style={{ fontFamily: 'var(--font-hand)', fontSize: 20, color: 'var(--accent)' }}>ai assistant ♡</div>
+                    <div style={{ fontWeight: 800, fontSize: 22, color: 'var(--ink)' }}>Prompt Tech</div>
                   </div>
                 </div>
                 <div className="project-content">
-                  <div className="project-eyebrow">01 &bull; AI &bull; DOCUMENT INTELLIGENCE</div>
+                  <div className="project-eyebrow">01 &bull; WEB APPLICATION</div>
                   <div className="project-title-row">
                     <h3>Prompt Tech</h3>
-                    <a className="project-arrow" target="_blank" rel="noopener noreferrer" href="https://github.com/amruthadivvela-droid/Prompt-tech">↗</a>
+                    <a className="project-arrow" target="_blank" rel="noopener noreferrer" href="https://github.com/amruthadivvela-droid/prompt-tech">↗</a>
                   </div>
-                  <p>Knowledge intelligence experience featuring hybrid document retrieval and grounded question-answering workflows.</p>
+                  <p>A smart prompt generation and technical utility platform designed to streamline AI prompting workflows.</p>
                   <div className="project-bottom">
                     <div className="chip-row">
                       <span className="tech-chip">React</span>
                       <span className="tech-chip">TypeScript</span>
-                      <span className="tech-chip">AI</span>
                     </div>
-                    <a className="live-link" href="https://prompt-tech-chi.vercel.app" target="_blank" rel="noopener noreferrer">Live site ↗</a>
+                    <a className="btn-live-glow" href="https://prompt-tech-chi.vercel.app" target="_blank" rel="noopener noreferrer">
+                      <span>Live Demo</span> <span className="arrow-icon">↗</span>
+                    </a>
                   </div>
                 </div>
               </article>
             )}
 
+            {/* Project 2: Watch */}
             {(activeFilter === 'all' || activeFilter === 'web') && (
-              <article className="project-card reveal">
+              <article className="project-card tilt-card reveal">
                 <div className="project-art art-watch">
-                  <div style={{ width: 130, height: 130, borderRadius: 36, background: 'linear-gradient(135deg, #7868a3, #b3a6df)', display: 'grid', placeItems: 'center', boxShadow: '0 14px 28px rgba(110,90,150,0.3)', color: '#fff', fontSize: 36 }}>
-                    <span>⌚</span>
+                  <div style={{ width: 130, height: 130, borderRadius: 36, background: 'linear-gradient(135deg, #7868a3, #b3a6df)', display: 'grid', placeItems: 'center', color: '#fff', fontSize: 36 }}>
+                    ⌚
                   </div>
                 </div>
                 <div className="project-content">
@@ -654,240 +704,167 @@ export function App() {
                     <h3>Watch</h3>
                     <a className="project-arrow" target="_blank" rel="noopener noreferrer" href="https://github.com/amruthadivvela-droid/watch">↗</a>
                   </div>
-                  <p>A TypeScript frontend experiment exploring interactive frame components, dynamic dials, and visual micro-details.</p>
+                  <p>A TypeScript frontend experiment exploring interactive frame components and dynamic dials.</p>
                   <div className="project-bottom">
                     <div className="chip-row">
                       <span className="tech-chip">TypeScript</span>
                       <span className="tech-chip">CSS Animations</span>
                     </div>
-                    <a className="live-link" href="https://watch-rosy-mu.vercel.app" target="_blank" rel="noopener noreferrer">Live site ↗</a>
+                    <a className="btn-live-glow" href="https://watch-rosy-mu.vercel.app" target="_blank" rel="noopener noreferrer">
+                      <span>Live Demo</span> <span className="arrow-icon">↗</span>
+                    </a>
                   </div>
                 </div>
               </article>
             )}
 
-            {(activeFilter === 'all' || activeFilter === 'web') && (
-              <article className="project-card reveal">
-                <div className="project-art art-portfolio">
-                  <div style={{ background: 'var(--surface)', borderRadius: 18, padding: '22px 28px', width: '78%', boxShadow: '0 12px 30px rgba(0,0,0,0.06)', textAlign: 'center' }}>
-                    <div style={{ fontFamily: 'var(--font-hand)', fontSize: 20, color: 'var(--accent)' }}>creative corner ♡</div>
-                    <div style={{ fontWeight: 900, fontSize: 24, color: 'var(--ink)' }}>hello, world!</div>
+            {/* Project 3: Smart Classroom Attendance */}
+            {(activeFilter === 'all' || activeFilter === 'systems') && (
+              <article className="project-card featured-project-card tilt-card reveal">
+                <div className="project-art art-attendance">
+                  <div style={{ background: 'var(--surface)', borderRadius: '18px', padding: '24px 28px', width: '82%', boxShadow: '0 12px 30px rgba(0,0,0,0.06)' }}>
+                    <div style={{ fontFamily: 'var(--font-hand)', fontSize: 20, color: 'var(--accent)' }}>real-time analytics ♡</div>
+                    <div style={{ fontWeight: 800, fontSize: 22, color: 'var(--ink)' }}>Smart Attendance</div>
                   </div>
                 </div>
                 <div className="project-content">
-                  <div className="project-eyebrow">03 &bull; PERSONAL WEBSITE</div>
+                  <div className="project-eyebrow">03 &bull; ACADEMIC SYSTEM</div>
                   <div className="project-title-row">
-                    <h3>Portfolio</h3>
-                    <a className="project-arrow" target="_blank" rel="noopener noreferrer" href="https://github.com/amruthadivvela-droid/portfolio">↗</a>
+                    <h3>Smart Classroom Attendance</h3>
+                    <a className="project-arrow" target="_blank" rel="noopener noreferrer" href={GITHUB_PROFILE}>↗</a>
                   </div>
-                  <p>A personal portfolio codebase showcasing creative layout experiments, fluid typography, and aesthetic presentation work.</p>
-                  <div className="project-bottom">
-                    <div className="chip-row">
-                      <span className="tech-chip">HTML5</span>
-                      <span className="tech-chip">CSS3</span>
-                      <span className="tech-chip">JavaScript</span>
-                    </div>
-                    <a className="live-link" href="https://github.com/amruthadivvela-droid/portfolio" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-                  </div>
-                </div>
-              </article>
-            )}
-
-            {(activeFilter === 'all' || activeFilter === 'web') && (
-              <article className="project-card reveal">
-                <div className="project-art art-sanjay">
-                  <div style={{ background: 'var(--surface)', borderRadius: 18, padding: '22px 28px', width: '78%', boxShadow: '0 12px 30px rgba(0,0,0,0.06)', textAlign: 'center' }}>
-                    <div style={{ fontSize: 10, letterSpacing: 2, color: '#4a9686', fontWeight: 800 }}>THE WEB IS A CANVAS</div>
-                    <div style={{ fontWeight: 900, fontSize: 20, color: 'var(--ink)', margin: '6px 0' }}>Create Beautifully</div>
-                  </div>
-                </div>
-                <div className="project-content">
-                  <div className="project-eyebrow">04 &bull; WEB PROJECT</div>
-                  <div className="project-title-row">
-                    <h3>Sanjay</h3>
-                    <a className="project-arrow" target="_blank" rel="noopener noreferrer" href="https://github.com/amruthadivvela-droid/sanjay">↗</a>
-                  </div>
-                  <p>A published JavaScript frontend web application built with clean component structures and deployed to Vercel.</p>
+                  <p>Interactive web application engineered for department faculty with automated percentage analytics and CSV reporting.</p>
                   <div className="project-bottom">
                     <div className="chip-row">
                       <span className="tech-chip">JavaScript</span>
-                      <span className="tech-chip">Web App</span>
+                      <span className="tech-chip">CSV Engine</span>
                     </div>
-                    <a className="live-link" href="https://sanjay-bachhe-gay.vercel.app" target="_blank" rel="noopener noreferrer">Live site ↗</a>
                   </div>
                 </div>
               </article>
             )}
           </div>
-
-          <a className="all-work-link reveal" href={GITHUB_PROFILE} target="_blank" rel="noopener noreferrer">
-            More repositories on GitHub <ArrowUpRight size={18} />
-          </a>
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="section skills-section">
-          <div className="skills-wrapper reveal">
-            <div className="skill-copy">
-              <div className="section-heading">
-                <div className="section-kicker"><span>04</span> / MY TOOLBOX</div>
-                <h2>Skills I'm <em>growing with.</em></h2>
-              </div>
-              <p>
-                Core technologies and development practices I use to build responsive, accessible, and delightful digital interfaces.
-              </p>
-              <div className="skill-quote">
-                “A little curiosity, a lot of creativity.” <span>♡</span>
-              </div>
-            </div>
+        <section id="skills" className="skills-section">
+          <div className="section-head reveal">
+            <div className="section-kicker">04 / TOOLBOX</div>
+            <h2>Technologies I work with<br /><em>every day</em></h2>
+          </div>
 
-            <div className="skills-cloud-container">
-              <div className="skill-cluster">
-                <div className="skill-cluster-title">Programming Foundation</div>
-                <div className="skill-cluster-pills">
-                  <div className="skill-pill">
-                    <span className="skill-icon">◇</span>
-                    <span>C Language</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="skill-cluster">
-                <div className="skill-cluster-title">Frontend Development</div>
-                <div className="skill-cluster-pills">
-                  <div className="skill-pill">
-                    <span className="skill-icon">✿</span>
-                    <span>HTML5 Semantic Markup</span>
-                  </div>
-                  <div className="skill-pill">
-                    <span className="skill-icon">✦</span>
-                    <span>CSS3 &amp; Modern Layouts</span>
-                  </div>
-                  <div className="skill-pill">
-                    <span className="skill-icon">✧</span>
-                    <span>JavaScript (ES6+)</span>
-                  </div>
-                  <div className="skill-pill">
-                    <span className="skill-icon">♡</span>
-                    <span>Responsive Web Design</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="skill-cluster">
-                <div className="skill-cluster-title">Practices &amp; Workflows</div>
-                <div className="skill-cluster-pills">
-                  <div className="skill-pill">
-                    <span className="skill-icon">✎</span>
-                    <span>UI Implementation</span>
-                  </div>
-                  <div className="skill-pill">
-                    <span className="skill-icon">⌘</span>
-                    <span>Git &amp; GitHub</span>
-                  </div>
-                  <div className="skill-pill">
-                    <span className="skill-icon">⚙</span>
-                    <span>Problem Solving</span>
-                  </div>
-                  <div className="skill-pill">
-                    <span className="skill-icon">🤝</span>
-                    <span>Team Collaboration</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="skills-cloud reveal">
+            {['React', 'JavaScript (ES6+)', 'TypeScript', 'HTML5 & CSS3', 'Tailwind CSS', 'Git & GitHub', 'REST APIs', 'Vite', 'Responsive Design', 'UI/UX Design'].map(skill => (
+              <span key={skill} className="skill-pill magnetic-btn">
+                <span>✿</span> {skill}
+              </span>
+            ))}
           </div>
         </section>
 
-        {/* Strengths & Collaboration */}
-        <section className="section strengths-section">
-          <div className="section-top reveal">
-            <div className="section-heading">
-              <div className="section-kicker"><span>COLLABORATION</span> / CORE ATTRIBUTES</div>
-              <h2>Better ideas <em>bloom together.</em></h2>
-            </div>
-            <div className="section-side-note">How I work and grow <span>✿</span></div>
-          </div>
-
-          <div className="strengths-grid reveal">
-            <div className="strength-card">
-              <div className="strength-icon">🤝</div>
-              <h4>Team Collaboration</h4>
-              <p>Thrives in peer groups and pair-programming settings, valuing shared ownership, active listening, and constructive feedback.</p>
-            </div>
-            <div className="strength-card">
-              <div className="strength-icon">🌱</div>
-              <h4>Fast Learner</h4>
-              <p>Eagerly picks up new frontend concepts, documentation patterns, and design systems with genuine enthusiasm.</p>
-            </div>
-            <div className="strength-card">
-              <div className="strength-icon">🔍</div>
-              <h4>Attention to Detail</h4>
-              <p>Cares deeply about spacing, typographic rhythm, harmonious colors, and smooth micro-interactions.</p>
-            </div>
-            <div className="strength-card">
-              <div className="strength-icon">💡</div>
-              <h4>Problem Solving</h4>
-              <p>Approaches UI challenges methodically, breaking complex layouts into modular and maintainable components.</p>
-            </div>
-            <div className="strength-card">
-              <div className="strength-icon">⏱</div>
-              <h4>Reliability &amp; Focus</h4>
-              <p>Committed to meeting academic milestones and delivering tidy, well-tested code that teammates can rely on.</p>
-            </div>
-            <div className="strength-card">
-              <div className="strength-icon">💬</div>
-              <h4>Thoughtful Communication</h4>
-              <p>Explains technical decisions clearly and communicates progress openly throughout every project phase.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Section */}
+        {/* Requirements-First Contact Flow & Digital Visiting Card */}
         <section id="contact" className="contact-section">
           <div className="contact-container reveal">
             <div className="section-kicker">05 / SAY HELLO</div>
-            <h2>Let's make something<br /><em>lovely together!</em></h2>
+            <h2>What are your requirements?<br /><em>Tell me what you'd love to create</em></h2>
             <p className="contact-desc">
-              Have an idea, an academic project collaboration, or just want to connect? I’d love to hear from you.
+              Have an idea, project collaboration, or anything you'd like to discuss? Fill out your requirements below and generate an instant Sakura Digital Visiting Card!
             </p>
 
-            <div className="contact-box tilt-card">
-              <div className="contact-stamp" aria-hidden="true">
-                <span className="stamp-icon">🌸</span>
-                <span className="stamp-text">AIR MAIL</span>
+            <div className="contact-requirements-layout">
+              {/* Left Form */}
+              <div className="contact-form-panel tilt-card">
+                <form onSubmit={handleContactSubmit}>
+                  <div className="form-group" style={{ marginBottom: 14 }}>
+                    <label htmlFor="req-name" style={{ fontSize: 13, fontWeight: 700, color: 'var(--ink)' }}>Your Name *</label>
+                    <input 
+                      type="text" 
+                      id="req-name" 
+                      className="form-input" 
+                      placeholder="e.g. Maya Chen" 
+                      value={contactName} 
+                      onChange={e => setContactName(e.target.value)} 
+                      required 
+                    />
+                  </div>
+
+                  <div className="form-group" style={{ marginBottom: 14 }}>
+                    <label htmlFor="req-email" style={{ fontSize: 13, fontWeight: 700, color: 'var(--ink)' }}>Your Email (for replies)</label>
+                    <input 
+                      type="email" 
+                      id="req-email" 
+                      className="form-input" 
+                      placeholder="maya@example.com" 
+                      value={contactEmail} 
+                      onChange={e => setContactEmail(e.target.value)} 
+                    />
+                  </div>
+
+                  <div className="form-group" style={{ marginBottom: 16 }}>
+                    <label htmlFor="req-msg" style={{ fontSize: 13, fontWeight: 700, color: 'var(--ink)' }}>Your Requirements *</label>
+                    <textarea 
+                      id="req-msg" 
+                      className="form-input" 
+                      style={{ minHeight: 110 }} 
+                      placeholder="Tell me about your idea, project, collaboration, or anything you'd like to discuss..."
+                      value={contactMsg} 
+                      onChange={e => setContactMsg(e.target.value)} 
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div className="form-group" style={{ marginBottom: 18 }}>
+                    <label style={{ fontSize: 13, fontWeight: 700, color: 'var(--ink)', marginBottom: 8, display: 'block' }}>Preferred Contact Method</label>
+                    <div className="requirements-channel-picker">
+                      <button 
+                        type="button" 
+                        className={`channel-btn ${contactChannel === 'whatsapp' ? 'active' : ''}`}
+                        onClick={() => setContactChannel('whatsapp')}
+                      >
+                        <span>WhatsApp ↗</span>
+                      </button>
+                      <button 
+                        type="button" 
+                        className={`channel-btn ${contactChannel === 'email' ? 'active' : ''}`}
+                        onClick={() => setContactChannel('email')}
+                      >
+                        <span>Email Enquiry ✉</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <button type="submit" className="btn btn-primary" style={{ width: '100%', minHeight: 48, justifyContent: 'center' }}>
+                    {contactChannel === 'whatsapp' ? 'Send via WhatsApp ↗' : 'Send Email Enquiry ✉'}
+                  </button>
+                </form>
+
+                {contactFeedback && (
+                  <div style={{ marginTop: 14, fontWeight: 700, color: 'var(--accent)', fontSize: 13.5 }}>
+                    {contactFeedback}
+                  </div>
+                )}
               </div>
 
-              <form className="contact-form" onSubmit={handleContactSubmit}>
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="contact-name">Your Name</label>
-                    <input type="text" id="contact-name" name="contact-name" className="form-input" placeholder="What's your name?" required />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="contact-email">Your Email</label>
-                    <input type="email" id="contact-email" name="contact-email" className="form-input" placeholder="hello@example.com" required />
-                  </div>
+              {/* Right Visiting Card Preview (1080 x 1350) */}
+              <div className="visiting-card-preview-panel tilt-card">
+                <div style={{ fontSize: 12.5, fontWeight: 800, color: 'var(--accent)', textTransform: 'uppercase', marginBottom: 12 }}>
+                  Digital Visiting Card Preview 🌸
                 </div>
-
-                <div className="form-group">
-                  <label htmlFor="contact-msg">Message</label>
-                  <textarea id="contact-msg" name="contact-msg" className="form-input" placeholder="Tell me about your idea or say hello! ♡" required></textarea>
+                <div className="visiting-card-canvas-wrap">
+                  <canvas ref={cardCanvasRef} width="1080" height="1350" className="visiting-card-canvas"></canvas>
                 </div>
-
-                <button type="submit" className="btn btn-primary" style={{ margin: '8px auto 0', width: 'min(280px, 100%)' }}>
-                  Send message <span className="btn-arrow">♡</span>
-                </button>
-              </form>
-
-              {contactFeedback && (
-                <div style={{ marginTop: 16, fontWeight: 700, color: 'var(--accent)' }}>
-                  {contactFeedback}
+                <div className="visiting-card-actions">
+                  <button type="button" className="btn btn-outline" onClick={downloadCardPng} style={{ minHeight: 40, padding: '0 18px', fontSize: 12 }}>
+                    <span>Download Card (PNG)</span> 📥
+                  </button>
+                  <button type="button" className="btn btn-outline" onClick={handleShareCard} style={{ minHeight: 40, padding: '0 18px', fontSize: 12 }}>
+                    <span>Share Card</span> ↗
+                  </button>
                 </div>
-              )}
+              </div>
             </div>
 
-            <div className="contact-actions">
+            <div className="contact-actions" style={{ marginTop: 40 }}>
               <a className="btn btn-primary" href={GITHUB_PROFILE} target="_blank" rel="noopener noreferrer">
                 Find me on GitHub ↗
               </a>
@@ -911,14 +888,25 @@ export function App() {
         <a href="#top" className="back-to-top">Back to top ↑</a>
       </footer>
 
-      {/* Developer ID Modal */}
+      {/* Developer ID Modal (Automatic Looping Pixel Dissolve, Clean Footer) */}
       {devModalOpen && (
         <div className="modal-backdrop is-open" onClick={() => setDevModalOpen(false)}>
-          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-card dev-modal-card" onClick={(e) => e.stopPropagation()}>
             <button type="button" className="modal-close-btn" onClick={() => setDevModalOpen(false)}>✕</button>
             <div className="dev-modal-head">
               <div className="dev-modal-avatar">
-                <img src="public/assets/amrutha-avatar.png" alt="Amrutha avatar" />
+                <img 
+                  src="public/assets/amrutha-avatar.png" 
+                  alt="Amrutha Avatar" 
+                  className="modal-portrait-img"
+                  style={{ opacity: modalStage === 'anime' || modalStage === 'dissolving-to-anime' ? 1 : 0, transition: 'opacity 0.4s ease' }} 
+                />
+                <img 
+                  src="public/assets/ammu.webp" 
+                  alt="Amrutha Photograph" 
+                  className="modal-portrait-img"
+                  style={{ opacity: modalStage === 'real' || modalStage === 'dissolving-to-real' ? 1 : 0, transition: 'opacity 0.4s ease' }} 
+                />
               </div>
               <h2 className="dev-modal-name">Divvela Jyoti Venkata Amrutha</h2>
               <div className="dev-modal-subtitle">Frontend Developer &bull; B.Tech Student</div>
@@ -951,22 +939,15 @@ export function App() {
               </div>
             </div>
 
+            {/* ONLY Public Footer Buttons */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap' }}>
-              <button 
-                type="button" 
-                className="btn btn-primary" 
-                style={{ width: '100%', minHeight: 46, fontSize: 13, justifyContent: 'center' }}
-                onClick={() => { setDevModalOpen(false); setAdminModalOpen(true); }}
-              >
-                <span>⚡</span> Launch Attendance Admin Dashboard
-              </button>
-              <a href={GITHUB_PROFILE} target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ minHeight: 44, padding: '0 20px', fontSize: 13, flex: 1, justifyContent: 'center' }}>
+              <a href={GITHUB_PROFILE} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ minHeight: 44, padding: '0 24px', fontSize: 13.5, flex: 1, justifyContent: 'center' }}>
                 Open GitHub Profile ↗
               </a>
               <button 
                 type="button" 
                 className="btn btn-outline" 
-                style={{ minHeight: 44, padding: '0 20px', fontSize: 13, flex: 1, justifyContent: 'center' }}
+                style={{ minHeight: 44, padding: '0 24px', fontSize: 13.5, flex: 1, justifyContent: 'center' }}
                 onClick={() => { setDevModalOpen(false); setResumeModalOpen(true); }}
               >
                 Inspect Resume 📄
@@ -1009,308 +990,41 @@ export function App() {
         </div>
       )}
 
-      {/* Passkey Security Gateway Modal */}
+      {/* Passkey Security Gateway: Restricted Access Modal */}
       {passkeyModalOpen && (
         <div className="modal-backdrop is-open" onClick={() => setPasskeyModalOpen(false)}>
           <div className="modal-card passkey-modal-card" onClick={(e) => e.stopPropagation()}>
             <button type="button" className="modal-close-btn" onClick={() => setPasskeyModalOpen(false)}>✕</button>
-            <div className="passkey-icon-wrap">
-              <svg className="admin-spinning-flower" viewBox="0 0 100 100" width="44" height="44" aria-hidden="true">
-                <g transform="translate(50,50)">
-                  <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="#d56586"/>
-                  <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="#d56586" transform="rotate(72)"/>
-                  <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="#d56586" transform="rotate(144)"/>
-                  <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="#d56586" transform="rotate(216)"/>
-                  <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="#d56586" transform="rotate(288)"/>
-                  <circle cx="0" cy="0" r="7" fill="#ffd57a" stroke="#d56586" strokeWidth="1.5"/>
-                </g>
-              </svg>
+
+            <div className="passkey-icon-wrap" aria-hidden="true">
+              <span style={{ fontSize: 36 }}>🌸</span>
             </div>
-            <h3 className="passkey-title">Admin Passkey Gateway</h3>
-            <p className="passkey-desc">Enter your authorization passkey to access Smart Classroom Attendance &amp; Analytics.</p>
-            
-            <form 
-              className="passkey-form" 
-              onSubmit={(e) => {
-                e.preventDefault();
-                const validKeys = ['2026', 'sakura', 'amrutha', 'admin'];
-                if (validKeys.includes(passkeyInput.trim().toLowerCase())) {
-                  sessionStorage.setItem('amrutha_admin_auth', 'true');
-                  setPasskeyModalOpen(false);
-                  setPasskeyInput('');
-                  setPasskeyError('');
-                  setAdminModalOpen(true);
-                } else {
-                  setPasskeyError('Invalid passkey. Hint: try 2026 or sakura ✿');
-                }
-              }}
-            >
+
+            <h3 className="passkey-title">Restricted Access</h3>
+            <p className="passkey-desc">Enter your access key to continue.</p>
+
+            <form onSubmit={handlePasskeySubmit} className="passkey-form" noValidate autoComplete="off">
               <div className="passkey-input-wrap">
                 <input 
-                  type={passkeyVisible ? "text" : "password"}
+                  type="password"
                   className={`passkey-input ${passkeyError ? 'input-error' : ''}`}
-                  placeholder="Enter passkey (e.g. 2026)"
+                  placeholder="••••••••"
+                  aria-label="Access Key"
                   value={passkeyInput}
                   onChange={(e) => {
                     setPasskeyInput(e.target.value);
                     if (passkeyError) setPasskeyError('');
                   }}
                   autoFocus
+                  required
                 />
-                <button 
-                  type="button" 
-                  className="passkey-vis-btn" 
-                  onClick={() => setPasskeyVisible(!passkeyVisible)}
-                  aria-label="Toggle password visibility"
-                >
-                  {passkeyVisible ? '🔒' : '👁'}
-                </button>
               </div>
-              {passkeyError && <div className="passkey-error">{passkeyError}</div>}
+              {passkeyError && <div className="passkey-error" role="alert">{passkeyError}</div>}
               
-              <button type="submit" className="btn btn-primary magnetic-btn" style={{ width: '100%', minHeight: '48px', justifyContent: 'center' }}>
-                <span>Unlock Admin Portal ✦</span>
+              <button type="submit" className="btn btn-primary" style={{ width: '100%', minHeight: 48, justifyContent: 'center', fontSize: 14, fontWeight: 800 }}>
+                Unlock Dashboard
               </button>
-              
-              <div className="passkey-hint">
-                <span>🔒 Authorized demo passkeys: <code>2026</code>, <code>sakura</code>, <code>amrutha</code>, or <code>admin</code></span>
-              </div>
             </form>
-          </div>
-        </div>
-      )}
-
-      {/* Admin Dashboard Modal */}
-      {adminModalOpen && (
-        <div className="modal-backdrop is-open" onClick={() => setAdminModalOpen(false)}>
-          <div className="modal-card admin-modal-card" onClick={(e) => e.stopPropagation()}>
-            <button type="button" className="modal-close-btn" onClick={() => setAdminModalOpen(false)}>✕</button>
-
-            <div className="admin-modal-header">
-              <div className="admin-header-badge">
-                <span className="live-dot" aria-hidden="true"></span>
-                <span>ADMIN ATTENDANCE PORTAL &bull; LIVE SYSTEM</span>
-              </div>
-              <h3 className="admin-modal-title">Smart Classroom Attendance System</h3>
-              <p className="admin-modal-sub">
-                <strong>Section:</strong> CSE-3A &bull; <strong>Department:</strong> Computer Science &amp; Engineering &bull; <strong>Lead Architect:</strong> Divvela Jyoti Venkata Amrutha
-              </p>
-              <div className="admin-meta-strip">
-                <span className="admin-time-badge">🕒 Today: 09:30 AM &bull; Period 1 (Web Engineering)</span>
-                <span className="admin-session-pill">Academic Year 2026-27</span>
-              </div>
-            </div>
-
-            {/* Metrics */}
-            <div className="admin-stats-grid">
-              <div className="admin-stat-card">
-                <div className="admin-stat-icon">👥</div>
-                <div>
-                  <div className="admin-stat-val">{students.length}</div>
-                  <div className="admin-stat-label">Total Enrolled</div>
-                </div>
-              </div>
-              <div className="admin-stat-card stat-present">
-                <div className="admin-stat-icon">✓</div>
-                <div>
-                  <div className="admin-stat-val">{students.filter(s => s.status === 'present').length}</div>
-                  <div className="admin-stat-label">Present Today</div>
-                </div>
-              </div>
-              <div className="admin-stat-card stat-absent">
-                <div className="admin-stat-icon">✗</div>
-                <div>
-                  <div className="admin-stat-val">{students.filter(s => s.status === 'absent').length}</div>
-                  <div className="admin-stat-label">Absent</div>
-                </div>
-              </div>
-              <div className="admin-stat-card stat-rate">
-                <div className="admin-stat-icon">📈</div>
-                <div>
-                  <div className="admin-stat-val">
-                    {students.length > 0 ? ((students.filter(s => s.status === 'present').length / students.length) * 100).toFixed(1) + '%' : '0%'}
-                  </div>
-                  <div className="admin-stat-label">Attendance Rate</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Toolbar */}
-            <div className="admin-toolbar">
-              <div className="admin-search-wrap">
-                <span className="search-icon">🔍</span>
-                <input 
-                  type="text" 
-                  className="admin-search-input" 
-                  placeholder="Search by student name or roll number (e.g. 21NEC01)..."
-                  value={adminSearch}
-                  onChange={(e) => setAdminSearch(e.target.value)}
-                />
-                {adminSearch && (
-                  <button type="button" className="search-clear-btn" onClick={() => setAdminSearch('')}>✕</button>
-                )}
-              </div>
-
-              <div className="admin-filter-group" role="tablist">
-                <button 
-                  type="button" 
-                  className={`admin-filter-btn ${adminFilter === 'all' ? 'active' : ''}`}
-                  onClick={() => setAdminFilter('all')}
-                >
-                  All ({students.length})
-                </button>
-                <button 
-                  type="button" 
-                  className={`admin-filter-btn ${adminFilter === 'present' ? 'active' : ''}`}
-                  onClick={() => setAdminFilter('present')}
-                >
-                  Present ({students.filter(s => s.status === 'present').length})
-                </button>
-                <button 
-                  type="button" 
-                  className={`admin-filter-btn ${adminFilter === 'absent' ? 'active' : ''}`}
-                  onClick={() => setAdminFilter('absent')}
-                >
-                  Absent ({students.filter(s => s.status === 'absent').length})
-                </button>
-              </div>
-            </div>
-
-            {/* Batch Actions */}
-            <div className="admin-actions-bar">
-              <button 
-                type="button" 
-                className="btn-admin-action"
-                onClick={() => {
-                  setStudents(students.map(s => ({ ...s, status: 'present' })));
-                  setAdminToast('✓ All 10 students marked Present for Period 1!');
-                  setTimeout(() => setAdminToast(''), 3500);
-                }}
-              >
-                <span>✓</span> Mark All Present
-              </button>
-              <button 
-                type="button" 
-                className="btn-admin-action"
-                onClick={() => {
-                  setStudents(students.map((s, idx) => ({ ...s, status: (idx === 2 || idx === 5) ? 'absent' : 'present' })));
-                  setAdminToast('↺ Attendance roll call reset to scheduled roster state.');
-                  setTimeout(() => setAdminToast(''), 3500);
-                }}
-              >
-                <span>↺</span> Reset Roll Call
-              </button>
-              <button 
-                type="button" 
-                className="btn-admin-action btn-admin-accent"
-                onClick={() => {
-                  let csv = 'Roll No,Student Name,Status,Semester Average,Class,Department,Date\n';
-                  const dStr = new Date().toLocaleDateString('en-US');
-                  students.forEach(s => {
-                    csv += `${s.id},"${s.name}",${s.status.toUpperCase()},${s.avg},CSE-3A,Computer Science,${dStr}\n`;
-                  });
-                  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-                  const url = URL.createObjectURL(blob);
-                  const a = document.createElement('a');
-                  a.href = url;
-                  a.download = `Attendance_Report_CSE3A_${new Date().toISOString().slice(0, 10)}.csv`;
-                  document.body.appendChild(a);
-                  a.click();
-                  document.body.removeChild(a);
-                  URL.revokeObjectURL(url);
-                  setAdminToast('📥 Attendance CSV report downloaded successfully!');
-                  setTimeout(() => setAdminToast(''), 3500);
-                }}
-              >
-                <span>📥</span> Export CSV Report
-              </button>
-              <button 
-                type="button" 
-                className="btn-admin-action"
-                onClick={() => {
-                  setAdminToast('☁ Syncing live attendance with Narasaraopeta Engineering College Portal... Done!');
-                  setTimeout(() => setAdminToast(''), 3500);
-                }}
-              >
-                <span>☁</span> Sync College Server
-              </button>
-            </div>
-
-            {/* Roster */}
-            <div className="admin-roster-wrap">
-              <div className="admin-roster-header">
-                <span>STUDENT ROSTER</span>
-                <span className="roster-live-hint">Click status pills below to toggle live attendance</span>
-              </div>
-              <div className="admin-roster-list">
-                {students
-                  .filter(s => {
-                    const matchFilter = adminFilter === 'all' || s.status === adminFilter;
-                    const matchSearch = !adminSearch || 
-                      s.name.toLowerCase().includes(adminSearch.toLowerCase()) || 
-                      s.id.toLowerCase().includes(adminSearch.toLowerCase());
-                    return matchFilter && matchSearch;
-                  })
-                  .map(student => {
-                    const initials = student.name.split(' ').map(n => n[0]).slice(0, 2).join('');
-                    return (
-                      <div key={student.id} className="admin-student-row">
-                        <div className="student-info">
-                          <div className="student-avatar">{initials}</div>
-                          <div className="student-details">
-                            <div className="student-name">
-                              {student.name}
-                              {student.tag && <span className="student-tag">{student.tag}</span>}
-                            </div>
-                            <div className="student-sub">Roll No: <strong>{student.id}</strong> &bull; Semester Avg: {student.avg}</div>
-                          </div>
-                        </div>
-                        <div className="status-toggle-group">
-                          <button 
-                            type="button" 
-                            className={`status-pill-btn pill-present ${student.status === 'present' ? 'active' : ''}`}
-                            onClick={() => setStudents(students.map(s => s.id === student.id ? { ...s, status: 'present' } : s))}
-                            title="Mark Present"
-                          >
-                            Present ✓
-                          </button>
-                          <button 
-                            type="button" 
-                            className={`status-pill-btn pill-absent ${student.status === 'absent' ? 'active' : ''}`}
-                            onClick={() => setStudents(students.map(s => s.id === student.id ? { ...s, status: 'absent' } : s))}
-                            title="Mark Absent"
-                          >
-                            Absent ✗
-                          </button>
-                          <button 
-                            type="button" 
-                            className={`status-pill-btn pill-late ${student.status === 'late' ? 'active' : ''}`}
-                            onClick={() => setStudents(students.map(s => s.id === student.id ? { ...s, status: 'late' } : s))}
-                            title="Mark Late"
-                          >
-                            Late ⏰
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  })}
-              </div>
-            </div>
-
-            {/* Toast */}
-            {adminToast && <div className="admin-toast">{adminToast}</div>}
-
-            {/* Footer */}
-            <div className="admin-modal-footer">
-              <div className="admin-arch-note">
-                <span>💡 <strong>Architecture Note:</strong> Built with semantic HTML5, reactive Vanilla JavaScript DOM state management, and real-time roll-call recalculations. Contributed by Amrutha for college lab automation.</span>
-              </div>
-              <div className="admin-footer-links">
-                <a href={GITHUB_PROFILE} target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ minHeight: 38, fontSize: 12.5, padding: '0 18px' }}>
-                  View Source Code ↗
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       )}
@@ -1318,7 +1032,9 @@ export function App() {
   );
 }
 
-const rootEl = document.getElementById('root');
-if (rootEl) {
-  createRoot(rootEl).render(<App />);
+// Mount React App if container exists
+const container = document.getElementById('root');
+if (container) {
+  const root = createRoot(container);
+  root.render(<App />);
 }

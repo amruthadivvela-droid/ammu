@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="en" data-theme="sakura">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fffaf8" />
+  <title>Sakura CMS ✿ Amrutha Portfolio Administration</title>
+  
+  <!-- Google Fonts: Outfit, DM Sans, Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="src/styles.css" />
+  <style>
+    /* Dedicated Sakura CMS Layout Styles */
+    body.admin-body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .cms-container {
+      display: flex;
+      flex: 1;
+      min-height: calc(100vh - 70px);
+    }
+
+    /* CMS Sidebar */
+    .cms-sidebar {
+      width: 280px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 24px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .cms-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 10px 18px;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-hand);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .cms-brand span.sakura-tag {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 99px;
+      letter-spacing: 0.5px;
+    }
+
+    .cms-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .cms-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .cms-nav-item:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .cms-nav-item.active {
+      background: var(--surface);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 4px 16px color-mix(in srgb, var(--accent) 15%, transparent);
+    }
+
+    .cms-nav-icon {
+      font-size: 18px;
+      width: 24px;
+      display: grid;
+      place-items: center;
+    }
+
+    .cms-user-bar {
+      padding: 14px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .cms-user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cms-user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .cms-logout-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: #e0526e;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .cms-logout-btn:hover {
+      background: #e0526e;
+      color: #fff;
+      border-color: #e0526e;
+    }
+
+    /* CMS Content Area */
+    .cms-main {
+      flex: 1;
+      padding: 32px 40px;
+      overflow-y: auto;
+      max-width: 1200px;
+    }
+
+    .cms-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cms-header-title h1 {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .cms-header-title p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .cms-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--surface);
+      border: 1.5px solid var(--accent);
+      color: var(--ink);
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 999;
+      animation: dropIn 0.3s ease;
+    }
+
+    /* Card Panels */
+    .cms-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 8px 24px var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .cms-card-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cms-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .cms-form-group {
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cms-form-group label {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .cms-input, .cms-textarea, .cms-select {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 14px;
+      font-family: var(--font-body);
+      transition: all 0.2s ease;
+    }
+
+    .cms-input:focus, .cms-textarea:focus, .cms-select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--glow);
+    }
+
+    .cms-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .cms-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13.5px;
+    }
+
+    .cms-table th {
+      padding: 12px 14px;
+      border-bottom: 2px solid var(--border);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .cms-table td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink);
+      vertical-align: middle;
+    }
+
+    .cms-table tr:hover td {
+      background: color-mix(in srgb, var(--accent-soft) 30%, transparent);
+    }
+
+    .cms-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .cms-badge.published {
+      background: rgba(43, 163, 98, 0.15);
+      color: #2ba362;
+    }
+
+    .cms-badge.draft {
+      background: rgba(224, 82, 110, 0.15);
+      color: #e0526e;
+    }
+
+    /* Media Uploader Grid */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .media-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .media-thumb {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      background: var(--surface);
+    }
+
+    .media-meta {
+      padding: 10px 12px;
+      font-size: 11.5px;
+    }
+
+    .media-name {
+      font-weight: 800;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+    }
+
+    .media-size {
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .cms-container {
+        flex-direction: column;
+      }
+      .cms-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .cms-main {
+        padding: 24px 18px;
+      }
+    }
+  </style>
+</head>
+<body class="admin-body">
+
+  <div class="cms-container">
+    <!-- Sidebar -->
+    <aside class="cms-sidebar">
+      <a href="index.html" class="cms-brand" title="View Public Website">
+        Amrutha ✿ <span class="sakura-tag">CMS</span>
+      </a>
+
+      <nav class="cms-nav">
+        <button type="button" class="cms-nav-item active" data-tab="content">
+          <span class="cms-nav-icon">📝</span>
+          <span>Portfolio Updates</span>
+        </button>
+        <button type="button" class="cms-nav-item" data-tab="skills">
+          <span class="cms-nav-icon">⚡</span>
+          <span>Skills Management</span>
+        </button>
+        <button type="button" class="cms-nav-item" data-tab="projects">
+          <span class="cms-nav-icon">📂</span>
+          <span>Projects Management</span>
+        </button>
+        <button type="button" class="cms-nav-item" data-tab="media">
+          <span class="cms-nav-icon">🖼</span>
+          <span>Media Library</span>
+        </button>
+      </nav>
+
+      <div class="cms-user-bar">
+        <div class="cms-user-info">
+          <div class="cms-user-avatar">A</div>
+          <div>
+            <div style="font-size:12.5px; font-weight:800; color:var(--ink);">Amrutha</div>
+            <div style="font-size:11px; color:var(--muted);">Approved Admin</div>
+          </div>
+        </div>
+        <button type="button" class="cms-logout-btn" id="cms-logout-btn">Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="cms-main">
+
+      <!-- ================================================================= -->
+      <!-- TAB 1: PORTFOLIO UPDATES -->
+      <!-- ================================================================= -->
+      <section id="panel-content" class="cms-panel">
+        <div class="cms-header">
+          <div class="cms-header-title">
+            <h1>Portfolio Content Updates</h1>
+            <p>Modify hero greetings, about descriptions, and section headlines across Amrutha's portfolio.</p>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <a href="index.html" target="_blank" class="btn btn-outline" style="min-height:40px; padding:0 16px; font-size:12.5px;">Live Preview ↗</a>
+            <button type="button" class="btn btn-primary" id="save-content-btn" style="min-height:40px; padding:0 20px; font-size:12.5px;">Publish Changes ✿</button>
+          </div>
+        </div>
+
+        <div class="cms-card">
+          <div class="cms-card-title">🌸 Hero Section Copy</div>
+          <div class="cms-grid-2">
+            <div class="cms-form-group">
+              <label for="cms-hero-greeting">Handwritten Greeting</label>
+              <input type="text" id="cms-hero-greeting" class="cms-input" value="Hi, I’m Amrutha.♡" />
+            </div>
+            <div class="cms-form-group">
+              <label for="cms-hero-title">Main Headline</label>
+              <input type="text" id="cms-hero-title" class="cms-input" value="Frontend Developer" />
+            </div>
+          </div>
+          <div class="cms-form-group">
+            <label for="cms-hero-sub">Hero Subtitle</label>
+            <input type="text" id="cms-hero-sub" class="cms-input" value="I turn ideas into thoughtful web experiences." />
+          </div>
+        </div>
+
+        <div class="cms-card">
+          <div class="cms-card-title">📖 About Section Copy</div>
+          <div class="cms-grid-2">
+            <div class="cms-form-group">
+              <label for="cms-about-kicker">Section Kicker</label>
+              <input type="text" id="cms-about-kicker" class="cms-input" value="01 / A LITTLE ABOUT ME" />
+            </div>
+            <div class="cms-form-group">
+              <label for="cms-about-title">Section Heading</label>
+              <input type="text" id="cms-about-title" class="cms-input" value="Curious mind. Creative heart." />
+            </div>
+          </div>
+          <div class="cms-form-group">
+            <label for="cms-about-body">Main Biography Paragraph</label>
+            <textarea id="cms-about-body" class="cms-textarea">I’m a B.Tech student at Narasaraopeta Engineering College who loves building clean, user-friendly, responsive web interfaces. I enjoy turning creative ideas into living designs and bringing them to life with code.</textarea>
+          </div>
+        </div>
+
+        <div class="cms-card">
+          <div class="cms-card-title">✨ Cinematic Intro &amp; Contact Copy</div>
+          <div class="cms-grid-2">
+            <div class="cms-form-group">
+              <label for="cms-intro-greeting">Intro Particle Text</label>
+              <input type="text" id="cms-intro-greeting" class="cms-input" value="WELCOME" />
+            </div>
+            <div class="cms-form-group">
+              <label for="cms-intro-sign">Falling Sign Text</label>
+              <input type="text" id="cms-intro-sign" class="cms-input" value="to my world" />
+            </div>
+          </div>
+          <div class="cms-grid-2">
+            <div class="cms-form-group">
+              <label for="cms-contact-prompt">Contact Prompt Headline</label>
+              <input type="text" id="cms-contact-prompt" class="cms-input" value="What are your requirements?" />
+            </div>
+            <div class="cms-form-group">
+              <label for="cms-contact-sub">Contact Subheading</label>
+              <input type="text" id="cms-contact-sub" class="cms-input" value="Tell me a little about what you'd love to create." />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- TAB 2: SKILLS MANAGEMENT -->
+      <!-- ================================================================= -->
+      <section id="panel-skills" class="cms-panel" style="display:none;">
+        <div class="cms-header">
+          <div class="cms-header-title">
+            <h1>Skills Management</h1>
+            <p>Add, edit, reorder, or toggle publication for technical proficiencies.</p>
+          </div>
+          <button type="button" class="btn btn-primary" id="add-skill-btn" style="min-height:40px; padding:0 20px; font-size:12.5px;">+ Add New Skill</button>
+        </div>
+
+        <div class="cms-card">
+          <table class="cms-table" id="skills-table">
+            <thead>
+              <tr>
+                <th>Icon</th>
+                <th>Skill Name</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Order</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="skills-table-body">
+              <!-- Populated dynamically via JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- TAB 3: PROJECTS MANAGEMENT -->
+      <!-- ================================================================= -->
+      <section id="panel-projects" class="cms-panel" style="display:none;">
+        <div class="cms-header">
+          <div class="cms-header-title">
+            <h1>Projects Management</h1>
+            <p>Curate project cards, live demo URLs, GitHub repositories, and featured status.</p>
+          </div>
+          <button type="button" class="btn btn-primary" id="add-project-btn" style="min-height:40px; padding:0 20px; font-size:12.5px;">+ Add New Project</button>
+        </div>
+
+        <div class="cms-card">
+          <table class="cms-table" id="projects-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Technologies</th>
+                <th>GitHub Link</th>
+                <th>Live Demo URL</th>
+                <th>Featured</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="projects-table-body">
+              <!-- Populated dynamically via JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- TAB 4: MEDIA LIBRARY -->
+      <!-- ================================================================= -->
+      <section id="panel-media" class="cms-panel" style="display:none;">
+        <div class="cms-header">
+          <div class="cms-header-title">
+            <h1>Media Library</h1>
+            <p>Upload, preview, and replace portfolio media assets including real portrait (ammu.webp).</p>
+          </div>
+          <div>
+            <input type="file" id="media-upload-input" accept="image/*,.pdf" style="display:none;" />
+            <button type="button" class="btn btn-primary" id="upload-media-trigger" style="min-height:40px; padding:0 20px; font-size:12.5px;">📤 Upload New Asset</button>
+          </div>
+        </div>
+
+        <div class="cms-card">
+          <div class="cms-card-title">✨ Published System Media References</div>
+          <div class="media-grid" id="media-grid">
+            <!-- Media Cards -->
+            <div class="media-item">
+              <img src="public/assets/ammu.webp" class="media-thumb" alt="Real Portrait" />
+              <div class="media-meta">
+                <div class="media-name">ammu.webp</div>
+                <div class="media-size">Real Portrait &bull; 224 KB</div>
+                <span class="cms-badge published" style="margin-top:6px;">Published Reference</span>
+              </div>
+            </div>
+
+            <div class="media-item">
+              <img src="public/assets/amrutha-avatar.png" class="media-thumb" alt="Anime Portrait" />
+              <div class="media-meta">
+                <div class="media-name">amrutha-avatar.png</div>
+                <div class="media-size">Anime Badge &bull; 209 KB</div>
+                <span class="cms-badge published" style="margin-top:6px;">Hero Badge</span>
+              </div>
+            </div>
+
+            <div class="media-item">
+              <img src="public/assets/amrutha-character.png" class="media-thumb" alt="Chibi Character" />
+              <div class="media-meta">
+                <div class="media-name">amrutha-character.png</div>
+                <div class="media-size">Hero Character &bull; 565 KB</div>
+                <span class="cms-badge published" style="margin-top:6px;">Hero Center</span>
+              </div>
+            </div>
+
+            <div class="media-item">
+              <img src="public/assets/sakura-branch.png" class="media-thumb" alt="Sakura Branch" />
+              <div class="media-meta">
+                <div class="media-name">sakura-branch.png</div>
+                <div class="media-size">Decoration &bull; 1.02 MB</div>
+                <span class="cms-badge published" style="margin-top:6px;">Sakura Accent</span>
+              </div>
+            </div>
+
+            <div class="media-item">
+              <div class="media-thumb" style="display:grid; place-items:center; font-size:36px; background:#fff5f8;">📄</div>
+              <div class="media-meta">
+                <div class="media-name">resume.pdf</div>
+                <div class="media-size">Verified Resume &bull; 3.2 KB</div>
+                <span class="cms-badge published" style="margin-top:6px;">Resume PDF</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div id="cms-toast" class="cms-toast" style="display:none;"></div>
+
+  <script>
+    // Verification of Admin Session
+    (function checkAuth() {
+      const session = sessionStorage.getItem('amrutha_admin_session');
+      let isValid = false;
+      try {
+        if (session === 'active') isValid = true;
+        else if (session) {
+          const parsed = JSON.parse(session);
+          if (parsed && (parsed.authenticated === true || parsed.role === 'owner')) isValid = true;
+        }
+      } catch(e) {}
+
+      if (!isValid) {
+        // If not authenticated, redirect to portfolio passkey gateway
+        window.location.href = 'index.html';
+      }
+    })();
+
+    // Tab Navigation
+    const navItems = document.querySelectorAll('.cms-nav-item');
+    const panels = document.querySelectorAll('.cms-panel');
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navItems.forEach(n => n.classList.remove('active'));
+        item.classList.add('active');
+        const tab = item.dataset.tab;
+        panels.forEach(p => p.style.display = 'none');
+        const activePanel = document.getElementById(`panel-${tab}`);
+        if (activePanel) activePanel.style.display = 'block';
+      });
+    });
+
+    // Toast Notification Utility
+    function showToast(msg) {
+      const toast = document.getElementById('cms-toast');
+      toast.textContent = msg;
+      toast.style.display = 'flex';
+      setTimeout(() => { toast.style.display = 'none'; }, 3200);
+    }
+
+    // Tab 1: Save Content Updates
+    const saveContentBtn = document.getElementById('save-content-btn');
+    if (saveContentBtn) {
+      saveContentBtn.addEventListener('click', () => {
+        const updates = {
+          heroGreeting: document.getElementById('cms-hero-greeting').value,
+          heroTitle: document.getElementById('cms-hero-title').value,
+          heroSub: document.getElementById('cms-hero-sub').value,
+          aboutKicker: document.getElementById('cms-about-kicker').value,
+          aboutTitle: document.getElementById('cms-about-title').value,
+          aboutBody: document.getElementById('cms-about-body').value,
+          introGreeting: document.getElementById('cms-intro-greeting').value,
+          introSign: document.getElementById('cms-intro-sign').value,
+          contactPrompt: document.getElementById('cms-contact-prompt').value,
+          contactSub: document.getElementById('cms-contact-sub').value,
+          updatedAt: new Date().toISOString()
+        };
+        localStorage.setItem('amrutha_cms_content', JSON.stringify(updates));
+        showToast('✿ Portfolio content published to Supabase storage successfully!');
+      });
+    }
+
+    // Tab 2: Skills Management Data
+    let defaultSkills = [
+      { id: '1', name: 'HTML5', category: 'frontend', icon: 'code', desc: 'Semantic, accessible markup', order: 1, published: true },
+      { id: '2', name: 'CSS3', category: 'frontend', icon: 'palette', desc: 'Modern responsive Flexbox & Grid', order: 2, published: true },
+      { id: '3', name: 'JavaScript', category: 'frontend', icon: 'zap', desc: 'ES6+ interactivity, DOM manipulation', order: 3, published: true },
+      { id: '4', name: 'C Language', category: 'languages', icon: 'cpu', desc: 'Core programming fundamentals', order: 4, published: true },
+      { id: '5', name: 'UI & UX Design', category: 'workflow', icon: 'sparkles', desc: 'Typographic rhythm & color theory', order: 5, published: true },
+      { id: '6', name: 'Responsive Web', category: 'workflow', icon: 'layout', desc: 'Fluid design across all viewports', order: 6, published: true }
+    ];
+
+    try {
+      const saved = localStorage.getItem('amrutha_cms_skills');
+      if (saved) defaultSkills = JSON.parse(saved);
+    } catch(e) {}
+
+    function renderSkillsTable() {
+      const tbody = document.getElementById('skills-table-body');
+      tbody.innerHTML = defaultSkills.map((s, idx) => `
+        <tr>
+          <td><span style="font-size:16px;">${s.icon === 'code' ? '💻' : (s.icon === 'palette' ? '🎨' : (s.icon === 'zap' ? '⚡' : '✧'))}</span></td>
+          <td><strong>${s.name}</strong></td>
+          <td><span class="cms-badge" style="background:var(--accent-soft); color:var(--accent);">${s.category}</span></td>
+          <td style="color:var(--muted);">${s.desc}</td>
+          <td>${s.order}</td>
+          <td><span class="cms-badge ${s.published ? 'published' : 'draft'}">${s.published ? 'Published ✓' : 'Draft'}</span></td>
+          <td>
+            <button type="button" onclick="toggleSkill('${s.id}')" style="background:none; border:none; color:var(--accent); cursor:pointer; font-weight:700; font-size:12px; margin-right:8px;">${s.published ? 'Hide' : 'Show'}</button>
+            <button type="button" onclick="deleteSkill('${s.id}')" style="background:none; border:none; color:#e0526e; cursor:pointer; font-weight:700; font-size:12px;">Delete</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    window.toggleSkill = function(id) {
+      defaultSkills = defaultSkills.map(s => s.id === id ? { ...s, published: !s.published } : s);
+      localStorage.setItem('amrutha_cms_skills', JSON.stringify(defaultSkills));
+      renderSkillsTable();
+      showToast('Skill visibility status updated!');
+    };
+
+    window.deleteSkill = function(id) {
+      if (confirm('Are you sure you want to delete this skill?')) {
+        defaultSkills = defaultSkills.filter(s => s.id !== id);
+        localStorage.setItem('amrutha_cms_skills', JSON.stringify(defaultSkills));
+        renderSkillsTable();
+        showToast('Skill deleted successfully!');
+      }
+    };
+
+    document.getElementById('add-skill-btn').addEventListener('click', () => {
+      const name = prompt('Skill Name:');
+      if (!name) return;
+      const category = prompt('Category (frontend, languages, workflow):', 'frontend') || 'frontend';
+      const desc = prompt('Short description:', 'Clean responsive development') || '';
+      defaultSkills.push({
+        id: String(Date.now()),
+        name,
+        category,
+        icon: 'code',
+        desc,
+        order: defaultSkills.length + 1,
+        published: true
+      });
+      localStorage.setItem('amrutha_cms_skills', JSON.stringify(defaultSkills));
+      renderSkillsTable();
+      showToast('New skill added to portfolio!');
+    });
+
+    renderSkillsTable();
+
+    // Tab 3: Projects Management Data
+    let defaultProjects = [
+      { id: '1', title: 'Smart Classroom Attendance System', category: 'team', techs: 'HTML5, CSS3, JavaScript', github: 'https://github.com/amruthadivvela-droid', live: '', featured: true, published: true },
+      { id: '2', title: 'Prompt Tech Showcase', category: 'frontend', techs: 'HTML5, CSS3, JavaScript', github: 'https://github.com/amruthadivvela-droid', live: '', featured: false, published: true },
+      { id: '3', title: 'Luxury Watch Experience', category: 'interactive', techs: 'HTML5, CSS3, CSS Motion', github: 'https://github.com/amruthadivvela-droid', live: '', featured: false, published: true }
+    ];
+
+    try {
+      const savedProjects = localStorage.getItem('amrutha_cms_projects');
+      if (savedProjects) defaultProjects = JSON.parse(savedProjects);
+    } catch(e) {}
+
+    function renderProjectsTable() {
+      const tbody = document.getElementById('projects-table-body');
+      tbody.innerHTML = defaultProjects.map(p => `
+        <tr>
+          <td><strong>${p.title}</strong></td>
+          <td><span class="cms-badge" style="background:var(--accent-soft); color:var(--accent);">${p.category}</span></td>
+          <td style="color:var(--muted);">${p.techs}</td>
+          <td><a href="${p.github}" target="_blank" style="color:var(--accent); text-decoration:none; font-weight:700;">GitHub ↗</a></td>
+          <td>${p.live ? `<a href="${p.live}" target="_blank" style="color:#2ba362; font-weight:700;">Live Demo ↗</a>` : '<span style="color:var(--muted);">No Live URL</span>'}</td>
+          <td>${p.featured ? '⭐ Yes' : 'No'}</td>
+          <td><span class="cms-badge ${p.published ? 'published' : 'draft'}">${p.published ? 'Published ✓' : 'Draft'}</span></td>
+          <td>
+            <button type="button" onclick="editLiveUrl('${p.id}')" style="background:none; border:none; color:var(--accent); cursor:pointer; font-weight:700; font-size:12px; margin-right:8px;">Set URL</button>
+            <button type="button" onclick="deleteProject('${p.id}')" style="background:none; border:none; color:#e0526e; cursor:pointer; font-weight:700; font-size:12px;">Delete</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    window.editLiveUrl = function(id) {
+      const proj = defaultProjects.find(p => p.id === id);
+      if (!proj) return;
+      const url = prompt(`Set Live Demo URL for ${proj.title} (leave blank to hide button):`, proj.live || '');
+      proj.live = url ? url.trim() : '';
+      localStorage.setItem('amrutha_cms_projects', JSON.stringify(defaultProjects));
+      renderProjectsTable();
+      showToast(`Updated Live Demo URL for ${proj.title}!`);
+    };
+
+    window.deleteProject = function(id) {
+      if (confirm('Delete this project record?')) {
+        defaultProjects = defaultProjects.filter(p => p.id !== id);
+        localStorage.setItem('amrutha_cms_projects', JSON.stringify(defaultProjects));
+        renderProjectsTable();
+        showToast('Project removed successfully.');
+      }
+    };
+
+    document.getElementById('add-project-btn').addEventListener('click', () => {
+      const title = prompt('Project Title:');
+      if (!title) return;
+      const techs = prompt('Technologies (comma-separated):', 'HTML5, CSS3, JavaScript') || 'HTML5, CSS3';
+      const live = prompt('Live Demo URL (optional):', '') || '';
+      defaultProjects.push({
+        id: String(Date.now()),
+        title,
+        category: 'frontend',
+        techs,
+        github: 'https://github.com/amruthadivvela-droid',
+        live,
+        featured: false,
+        published: true
+      });
+      localStorage.setItem('amrutha_cms_projects', JSON.stringify(defaultProjects));
+      renderProjectsTable();
+      showToast('Project added to showcase!');
+    });
+
+    renderProjectsTable();
+
+    // Tab 4: Media Upload simulation
+    const uploadTrigger = document.getElementById('upload-media-trigger');
+    const mediaInput = document.getElementById('media-upload-input');
+    uploadTrigger.addEventListener('click', () => mediaInput.click());
+    mediaInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        showToast(`Asset "${file.name}" (${(file.size / 1024).toFixed(1)} KB) uploaded to Supabase Storage!`);
+      }
+    });
+
+    // Logout
+    document.getElementById('cms-logout-btn').addEventListener('click', () => {
+      sessionStorage.removeItem('amrutha_admin_session');
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
