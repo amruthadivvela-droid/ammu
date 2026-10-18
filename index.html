@@ -1,0 +1,2503 @@
+<!doctype html>
+<html lang="en" data-theme="sakura">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fffaf8" />
+  <meta name="description" content="Divvela Jyoti Venkata Amrutha - Creative Frontend Developer & B.Tech Student Portfolio. Turning ideas into thoughtful web experiences." />
+  <meta property="og:title" content="Amrutha ✿ Frontend Developer" />
+  <meta property="og:description" content="A creative, interactive frontend portfolio featuring thoughtful web experiences, animated butterflies, and blooming ideas." />
+  <title>Amrutha ✿ Frontend Developer &amp; B.Tech Student</title>
+  
+  <!-- Google Fonts: Outfit, DM Sans, Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+
+  <!-- Cinematic Opening Sequence (Phase 1) -->
+  <div id="cinematic-intro-overlay" class="cinematic-intro-overlay" aria-label="Opening cinematic introduction">
+    <!-- Storybook Washi Paper Deckle-Edge Curtains -->
+    <div class="storybook-curtain storybook-curtain-left" id="curtain-left" aria-hidden="true">
+      <svg class="deckle-edge-svg" viewBox="0 0 200 1000" preserveAspectRatio="none">
+        <path d="M0,0 L160,0 C175,90 145,180 165,270 C185,360 140,450 170,540 C195,630 150,720 175,810 C190,900 155,950 165,1000 L0,1000 Z" fill="#fffaf8"/>
+      </svg>
+      <div class="washi-texture-overlay"></div>
+    </div>
+
+    <div class="storybook-curtain storybook-curtain-right" id="curtain-right" aria-hidden="true">
+      <svg class="deckle-edge-svg" viewBox="0 0 200 1000" preserveAspectRatio="none">
+        <path d="M200,0 L40,0 C25,90 55,180 35,270 C15,360 60,450 30,540 C5,630 50,720 25,810 C10,900 45,950 35,1000 L200,1000 Z" fill="#fffaf8"/>
+      </svg>
+      <div class="washi-texture-overlay"></div>
+    </div>
+
+    <!-- Soft Painted Cloud Decks for Elegant Lateral Reveal -->
+    <div class="cloud-deck cloud-deck-left" id="cloud-deck-left" aria-hidden="true">
+      <div class="cloud-puff puff-1"></div>
+      <div class="cloud-puff puff-2"></div>
+      <div class="cloud-puff puff-3"></div>
+      <div class="cloud-puff puff-4"></div>
+    </div>
+
+    <div class="cloud-deck cloud-deck-right" id="cloud-deck-right" aria-hidden="true">
+      <div class="cloud-puff puff-5"></div>
+      <div class="cloud-puff puff-6"></div>
+      <div class="cloud-puff puff-7"></div>
+      <div class="cloud-puff puff-8"></div>
+    </div>
+
+    <!-- 60fps Interactive Animation Canvas (Solitary Flight, Swarm, WELCOME, Petal Morph) -->
+    <canvas id="intro-canvas" class="intro-canvas"></canvas>
+
+    <!-- Cinematic Controls -->
+    <div class="intro-controls">
+      <button type="button" id="skip-intro-btn" class="skip-intro-btn" aria-label="Skip introduction">
+        <span>Skip Intro</span> <span class="skip-arrow">↷</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Ambient Cursor Glow Spotlight -->
+  <div class="ambient-glow" id="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Floating Navigation Bar (Phase 4) -->
+  <header class="site-header">
+    <nav class="nav-pill" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Amrutha home">
+        Amrutha <span class="flower-icon" aria-hidden="true">✿</span>
+      </a>
+
+      <div class="nav-links" id="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#work" class="nav-link">Work</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Rotating Admin Flower Button (Passkey Protected) -->
+        <button type="button" class="rotating-admin-flower-btn" id="nav-admin-flower-btn" aria-label="Admin Portal Passkey Gateway" title="Admin Portal (Passkey Protected)">
+          <svg class="admin-spinning-flower" viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
+            <defs>
+              <radialGradient id="navFlowerGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#fff5f8"/>
+                <stop offset="50%" stop-color="#fba8bf"/>
+                <stop offset="100%" stop-color="#d56586"/>
+              </radialGradient>
+            </defs>
+            <g transform="translate(50,50)">
+              <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#navFlowerGrad)"/>
+              <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#navFlowerGrad)" transform="rotate(72)"/>
+              <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#navFlowerGrad)" transform="rotate(144)"/>
+              <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#navFlowerGrad)" transform="rotate(216)"/>
+              <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#navFlowerGrad)" transform="rotate(288)"/>
+              <circle cx="0" cy="0" r="5.5" fill="#ffd57a" stroke="#d56586" stroke-width="1.2"/>
+            </g>
+          </svg>
+          <span>Admin</span>
+        </button>
+
+        <button type="button" class="nav-admin-btn" id="nav-admin-dashboard-btn" aria-label="Open Smart Classroom Admin Portal">
+          <svg class="icon-inline" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+          <span>Portal</span>
+        </button>
+        <span class="nav-separator" aria-hidden="true"></span>
+        <div class="theme-wrap">
+          <button type="button" id="theme-button" class="theme-button" aria-expanded="false" aria-haspopup="true" aria-label="Select website theme">
+            <span class="sun-circle" aria-hidden="true">☼</span>
+            <span class="theme-label">Themes</span>
+            <span class="theme-chevron" aria-hidden="true">⌄</span>
+          </button>
+          
+          <div id="theme-dropdown" class="theme-dropdown" hidden>
+            <div class="theme-heading">
+              <span>✿</span> Choose your mood <span>♡</span>
+            </div>
+            <div id="theme-options" class="theme-options" role="radiogroup" aria-label="Theme options">
+              <!-- Dynamically populated 10 themes -->
+            </div>
+            <div class="theme-foot">a little color, a little magic ♡</div>
+          </div>
+        </div>
+
+        <button type="button" id="menu-button" class="menu-button" aria-label="Toggle mobile menu" aria-expanded="false">
+          ☰
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section (Phase 2 & 6) -->
+    <section id="top" class="hero" aria-label="Hero section">
+      <div class="hero-wash" aria-hidden="true"></div>
+      
+      <!-- Oversized Background Lettering with interactive particle displacement -->
+      <div class="giant-name-wrap" id="giant-name-wrap">
+        <canvas id="amrutha-particle-canvas" class="giant-name-canvas" aria-hidden="true"></canvas>
+        <div class="giant-name" id="giant-amrutha" aria-hidden="true">AMRUTHA</div>
+      </div>
+
+      <!-- Falling Petals Particle Canvas/System -->
+      <div class="petal-field" id="petals" aria-hidden="true"></div>
+
+      <!-- Butterfly Curved Flight Trails -->
+      <svg aria-hidden="true" class="butterfly-trail trail-one" viewBox="0 0 180 130">
+        <path d="M8 6C142 31 146 75 102 98S31 117 54 55"/>
+      </svg>
+      <svg aria-hidden="true" class="butterfly-trail trail-two" viewBox="0 0 180 130">
+        <path d="M5 110C76 9 162 72 136 105S88 69 130 30"/>
+      </svg>
+
+      <!-- 3 Animated Sakura Butterflies with interactive hover reactions -->
+      <svg aria-hidden="true" class="butterfly butterfly-one" width="70" height="70" viewBox="0 0 104 92">
+        <defs>
+          <linearGradient id="wing-one" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#fff5f9"/>
+            <stop offset="0.5" stop-color="#f5a4bd"/>
+            <stop offset="1" stop-color="#d56586"/>
+          </linearGradient>
+        </defs>
+        <g class="wing-left">
+          <path d="M49 43C39 22 16 2 6 12-7 32 18 56 45 49 21 49 9 65 20 77c10 9 29-1 31-28" fill="url(#wing-one)" stroke="#ba768e" stroke-width="2"/>
+        </g>
+        <g class="wing-right">
+          <path d="M55 43C65 22 88 2 98 12c13 20-12 44-39 37 24 0 36 16 25 28-10 9-29-1-31-28" fill="url(#wing-one)" stroke="#ba768e" stroke-width="2"/>
+        </g>
+        <path d="M52 37v30" stroke="#5d384e" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+
+      <svg aria-hidden="true" class="butterfly butterfly-two" width="90" height="90" viewBox="0 0 104 92">
+        <defs>
+          <linearGradient id="wing-two" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#ffffff"/>
+            <stop offset="0.5" stop-color="#f8b3c8"/>
+            <stop offset="1" stop-color="#e27595"/>
+          </linearGradient>
+        </defs>
+        <g class="wing-left">
+          <path d="M49 43C39 22 16 2 6 12-7 32 18 56 45 49 21 49 9 65 20 77c10 9 29-1 31-28" fill="url(#wing-two)" stroke="#ba768e" stroke-width="2"/>
+        </g>
+        <g class="wing-right">
+          <path d="M55 43C65 22 88 2 98 12c13 20-12 44-39 37 24 0 36 16 25 28-10 9-29-1-31-28" fill="url(#wing-two)" stroke="#ba768e" stroke-width="2"/>
+        </g>
+        <path d="M52 37v30" stroke="#5d384e" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+
+      <svg aria-hidden="true" class="butterfly butterfly-three" width="54" height="54" viewBox="0 0 104 92">
+        <defs>
+          <linearGradient id="wing-three" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#fff0f5"/>
+            <stop offset="0.5" stop-color="#f5a0ba"/>
+            <stop offset="1" stop-color="#d96c8c"/>
+          </linearGradient>
+        </defs>
+        <g class="wing-left">
+          <path d="M49 43C39 22 16 2 6 12-7 32 18 56 45 49 21 49 9 65 20 77c10 9 29-1 31-28" fill="url(#wing-three)" stroke="#ba768e" stroke-width="2"/>
+        </g>
+        <g class="wing-right">
+          <path d="M55 43C65 22 88 2 98 12c13 20-12 44-39 37 24 0 36 16 25 28-10 9-29-1-31-28" fill="url(#wing-three)" stroke="#ba768e" stroke-width="2"/>
+        </g>
+        <path d="M52 37v30" stroke="#5d384e" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+
+      <!-- Left Hero Content -->
+      <div class="hero-copy">
+        <div class="hand-intro">
+          Hi, I’m Amrutha.<span class="hand-heart" aria-hidden="true">♡</span>
+        </div>
+        <h1>
+          Frontend<br />
+          Developer
+        </h1>
+        <p class="hero-subtitle">
+          I turn ideas into thoughtful web experiences.
+        </p>
+        <div class="hero-actions">
+          <a href="#work" class="btn btn-primary magnetic-btn" id="hero-work-btn">
+            Explore my work <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
+          <button type="button" class="btn btn-outline magnetic-btn" id="resume-btn" aria-haspopup="dialog">
+            <span>View resume</span>
+            <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Center-Right Chibi Character -->
+      <div class="character-wrap" id="character-wrap">
+        <img
+          class="character-img"
+          src="public/assets/amrutha-character.png"
+          alt="Illustration of Amrutha as a pink-haired anime character wearing sunglasses and greeting cheerfully"
+          id="character-img"
+          draggable="false"
+        />
+        <div class="character-shadow" aria-hidden="true"></div>
+        
+        <!-- Interactive Speech Bubble -->
+        <button type="button" class="speech-bubble" id="speech-bubble" aria-label="Character quote">
+          Let’s explore!
+        </button>
+
+        <div class="character-sparkles" aria-hidden="true">
+          <span>✦</span>
+          <span>✧</span>
+          <span>✦</span>
+        </div>
+      </div>
+
+      <!-- Hanging Developer ID Badge with Realistic Ribbon & Pixel-Dissolve Photo Switcher -->
+      <div class="badge-scene" id="badge-scene" aria-label="Interactive Developer ID card">
+        <div class="strap strap-a" aria-hidden="true"></div>
+        <div class="strap strap-b" aria-hidden="true"></div>
+        <div class="lanyard-link" aria-hidden="true"></div>
+        <div class="lanyard-clip" aria-hidden="true"></div>
+
+        <div class="dev-id" id="dev-id-badge" role="button" tabindex="0" aria-label="Developer ID badge. Click card to open modal.">
+          <!-- Punched Slot Hole with Visibly Interlocking Metallic Clasp Through-Loop and Front-Lip -->
+          <div class="badge-hole-slot" aria-hidden="true">
+            <div class="clasp-through-loop" aria-hidden="true"></div>
+            <div class="clasp-front-lip" aria-hidden="true"></div>
+          </div>
+
+          <div class="dev-id-head">
+            <div class="id-code">&lt;/&gt;</div>
+            <span>DEVELOPER ID</span>
+            <span class="id-flower" aria-hidden="true">✿</span>
+          </div>
+
+          <!-- Dual Portrait Layer Frame with Pixel-Dissolve Switcher & Real Amrutha Photograph -->
+          <div class="id-photo" id="id-photo-frame" title="Hover or tap to reveal real photo">
+            <img class="portrait-layer portrait-anime" src="public/assets/amrutha-avatar.png" alt="Amrutha Chibi Avatar" id="anime-portrait-img" />
+            <img class="portrait-layer portrait-real" src="public/assets/ammu.webp" alt="Amrutha Real Portrait" id="real-portrait-img" />
+            <canvas class="pixel-dissolve-canvas" id="pixel-dissolve-canvas" hidden></canvas>
+            
+            <div class="photo-controls">
+              <button type="button" class="photo-switch-btn" id="photo-switch-btn" title="Toggle Portrait Style">
+                <span>✦</span> <span id="switch-lbl">Real Photo</span>
+              </button>
+              <label for="portrait-file-input" class="photo-upload-btn" id="photo-upload-lbl" title="Upload custom portrait">
+                <svg class="icon-inline" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+                <input type="file" id="portrait-file-input" accept="image/*" style="display:none;" />
+              </label>
+            </div>
+          </div>
+
+          <div class="id-name">AMRUTHA</div>
+          <div class="id-role">B.Tech Student</div>
+          
+          <div class="id-barcode" aria-hidden="true"></div>
+          <span class="id-flower-bottom" aria-hidden="true">🌸</span>
+          <span class="badge-hint">Click badge to inspect ↗</span>
+        </div>
+      </div>
+
+      <!-- Corner Cherry Blossom Branches (z-index adjusted below buttons) -->
+      <img src="public/assets/sakura-branch.png" class="sakura-branch-corner branch-left" alt="" aria-hidden="true" />
+      <img src="public/assets/sakura-branch.png" class="sakura-branch-corner branch-right" alt="" aria-hidden="true" />
+
+      <div class="hero-bottom-fade" aria-hidden="true"></div>
+    </section>
+
+    <!-- Phase 9: About Section (Layered Editorial Scrapbook) -->
+    <section id="about" class="section about-section" aria-label="About Amrutha">
+      <div class="about-intro reveal">
+        <div class="section-heading">
+          <div class="section-kicker"><span>01</span> / A LITTLE ABOUT ME</div>
+          <h2>Curious mind. <em>Creative heart.</em></h2>
+        </div>
+        <p class="about-intro-text">
+          I’m a B.Tech student at Narasaraopeta Engineering College who loves building clean, user-friendly, responsive web interfaces. I enjoy turning creative ideas into living designs and bringing them to life with code.
+        </p>
+      </div>
+
+      <div class="about-grid reveal">
+        <!-- Pinned Note Card with Washi Tape -->
+        <div class="about-note tilt-card">
+          <div class="note-tape" aria-hidden="true"></div>
+          <span class="note-heart" aria-hidden="true">♡</span>
+          <h3>Oh, hello there!</h3>
+          <p>
+            I'm Amrutha, a frontend developer with a soft spot for thoughtful details, delightful microinteractions, and digital experiences that make people smile.
+          </p>
+          <span class="signature">made with love, Amrutha ✿</span>
+        </div>
+
+        <!-- Layered Highlight Cards -->
+        <div class="about-highlights">
+          <div class="about-highlight-card tilt-card">
+            <div class="about-icon" aria-hidden="true">✧</div>
+            <div>
+              <h4>Design meets development</h4>
+              <p>From visual wireframes to responsive code, I bridge aesthetic sensibility with structured implementation.</p>
+            </div>
+          </div>
+
+          <div class="about-highlight-card tilt-card">
+            <div class="about-icon" aria-hidden="true">♡</div>
+            <div>
+              <h4>Details are everything</h4>
+              <p>Thoughtful spacing, smooth micro-animations, and accessible contrast elevate simple layouts into experiences.</p>
+            </div>
+          </div>
+
+          <div class="about-highlight-card tilt-card">
+            <div class="about-icon" aria-hidden="true">✦</div>
+            <div>
+              <h4>Always learning</h4>
+              <p>Actively expanding my knowledge of modern frontend frameworks, web standards, and collaborative tooling.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-connector-flourish" aria-hidden="true">
+        <span class="connector-line"></span>
+        <span>✿</span>
+        <span class="connector-line"></span>
+      </div>
+    </section>
+
+    <!-- Phase 10: Education Section (Sakura Stem Timeline) -->
+    <section id="education" class="section education-section" aria-label="Academic Journey">
+      <div class="section-top reveal">
+        <div class="section-heading">
+          <div class="section-kicker"><span>02</span> / ACADEMIC JOURNEY</div>
+          <h2>Education &amp; <em>milestones.</em></h2>
+        </div>
+        <div class="section-side-note">Verified academic foundation <span>🌸</span></div>
+      </div>
+
+      <div class="education-timeline reveal">
+        <!-- Milestone 1: B.Tech -->
+        <div class="timeline-item">
+          <div class="timeline-dot" aria-hidden="true">🎓</div>
+          <div class="timeline-card tilt-card">
+            <div class="timeline-card-header">
+              <h3 class="timeline-title">Bachelor of Technology (B.Tech)</h3>
+              <span class="timeline-badge">Currently Pursuing</span>
+            </div>
+            <div class="timeline-institute">Narasaraopeta Engineering College</div>
+            <p class="timeline-desc">
+              Focusing on computer science fundamentals, frontend web engineering, algorithms, and practical team-based application development.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 2: Class XII -->
+        <div class="timeline-item">
+          <div class="timeline-dot" aria-hidden="true">✿</div>
+          <div class="timeline-card tilt-card">
+            <div class="timeline-card-header">
+              <h3 class="timeline-title">Class XII &mdash; Intermediate (MPC)</h3>
+              <span class="timeline-badge">Score: 96.3%</span>
+            </div>
+            <div class="timeline-institute">Sri Chaitanya Junior College</div>
+            <p class="timeline-desc">
+              Rigorous focus in Mathematics, Physics, and Chemistry. Developed strong analytical reasoning and systematic problem-solving habits.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 3: Class X -->
+        <div class="timeline-item">
+          <div class="timeline-dot" aria-hidden="true">★</div>
+          <div class="timeline-card tilt-card">
+            <div class="timeline-card-header">
+              <h3 class="timeline-title">Class X &mdash; Secondary School Certificate</h3>
+              <span class="timeline-badge">Score: 95.0%</span>
+            </div>
+            <div class="timeline-institute">Sri Chaitanya Techno School</div>
+            <p class="timeline-desc">
+              Excellence across academics, mathematics, and foundational science with active participation in school co-curricular activities.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-connector-flourish" aria-hidden="true">
+        <span class="connector-line"></span>
+        <span>✦</span>
+        <span class="connector-line"></span>
+      </div>
+    </section>
+
+    <!-- Phase 11: Selected Work / Projects -->
+    <section id="work" class="section work-section" aria-label="Selected Projects">
+      <div class="section-top reveal">
+        <div class="section-heading">
+          <div class="section-kicker"><span>03</span> / SELECTED WORK</div>
+          <h2>Little ideas. <em>Big possibilities.</em></h2>
+        </div>
+        <div class="section-side-note">A peek into some things I've been building <span>↗</span></div>
+      </div>
+
+      <!-- Project Filters -->
+      <div class="project-filters reveal" role="tablist" aria-label="Project category filters">
+        <button type="button" class="filter-btn active" data-filter="all">All Projects</button>
+        <button type="button" class="filter-btn" data-filter="team">Team Projects</button>
+        <button type="button" class="filter-btn" data-filter="ai">AI &amp; Retrieval</button>
+        <button type="button" class="filter-btn" data-filter="web">Web Experiments</button>
+      </div>
+
+      <!-- Primary Featured Project: Smart Classroom Attendance System -->
+      <article class="featured-project-card tilt-card reveal" data-category="team" aria-label="Smart Classroom Attendance System">
+        <div class="featured-art">
+          <div class="mockup-window" id="attendance-mockup-window" role="button" tabindex="0" title="Click to launch interactive Admin Dashboard" style="cursor: pointer;">
+            <div class="mockup-header">
+              <span class="mockup-dot red"></span>
+              <span class="mockup-dot yellow"></span>
+              <span class="mockup-dot green"></span>
+              <span class="mockup-title">attendance-portal.local</span>
+              <span class="mockup-launch-badge">⚡ Live Demo</span>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-stat-row">
+                <div class="mockup-stat">
+                  <div class="mockup-stat-num">58</div>
+                  <div class="mockup-stat-lbl">Total Enrolled</div>
+                </div>
+                <div class="mockup-stat">
+                  <div class="mockup-stat-num" style="color:#2ba362">54</div>
+                  <div class="mockup-stat-lbl">Present Today</div>
+                </div>
+                <div class="mockup-stat">
+                  <div class="mockup-stat-num" style="color:#e0526e">93.1%</div>
+                  <div class="mockup-stat-lbl">Attendance Rate</div>
+                </div>
+              </div>
+
+              <div class="mockup-list">
+                <div class="mockup-row">
+                  <span>CSE-3A &bull; Roll 21NEC01</span>
+                  <span class="status-badge status-present">Present ✓</span>
+                </div>
+                <div class="mockup-row">
+                  <span>CSE-3A &bull; Roll 21NEC02</span>
+                  <span class="status-badge status-present">Present ✓</span>
+                </div>
+                <div class="mockup-row">
+                  <span>CSE-3A &bull; Roll 21NEC03</span>
+                  <span class="status-badge status-absent">Absent ✗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="featured-content">
+          <div class="project-tag">FEATURED &bull; TEAM PROJECT</div>
+          <h3>Smart Classroom Attendance System</h3>
+          <p>
+            Designed and developed an intuitive, web-based classroom attendance interface with real-time status recording, structured roll-call workflows, and clean responsive feedback.
+          </p>
+
+          <ul class="feature-bullets">
+            <li><span class="bullet-icon">✿</span> Built semantic frontend layouts using clean HTML5 and CSS3</li>
+            <li><span class="bullet-icon">✿</span> Implemented interactive attendance tracking and dynamic state toggling in JavaScript</li>
+            <li><span class="bullet-icon">✿</span> Collaborated with teammates on modular planning, integration, and user-friendly UX</li>
+          </ul>
+
+          <div class="chip-row" style="margin-bottom: 22px;">
+            <span class="tech-chip">HTML5</span>
+            <span class="tech-chip">CSS3</span>
+            <span class="tech-chip">JavaScript</span>
+            <span class="tech-chip">Responsive Web</span>
+          </div>
+
+          <div class="project-bottom">
+            <span style="font-size:13px; font-weight:700; color:var(--accent);">Academic Team Collaboration</span>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button type="button" class="btn btn-primary magnetic-btn" id="open-admin-dashboard-btn" style="min-height:44px; padding:0 22px; font-size:13px;">
+                <span>Launch Admin Portal</span>
+                <svg class="icon-inline" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+              </button>
+              <a href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="min-height:44px; padding:0 22px; font-size:13px;">
+                View on GitHub ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Verified Public GitHub Repositories Grid -->
+      <div class="project-grid">
+        <!-- Project 1: Prompt Tech -->
+        <article class="project-card tilt-card reveal" data-category="ai">
+          <div class="project-art art-prompt">
+            <div style="background:var(--surface); border-radius:18px; padding:22px 28px; width:80%; box-shadow:0 12px 30px rgba(0,0,0,0.06); text-align:center;">
+              <span style="font-size:28px; color:var(--accent);">✦</span>
+              <div style="font-weight:900; font-size:18px; color:var(--ink); margin:6px 0;">Prompt Tech</div>
+              <div style="font-size:11px; color:var(--muted); letter-spacing:1px;">DOCUMENT INTELLIGENCE &bull; HYBRID AI</div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-eyebrow">01 &bull; AI &bull; DOCUMENT INTELLIGENCE</div>
+            <div class="project-title-row">
+              <h3>Prompt Tech</h3>
+              <a class="project-arrow" target="_blank" rel="noopener noreferrer" href="https://github.com/amruthadivvela-droid/Prompt-tech" aria-label="Prompt Tech GitHub repository">↗</a>
+            </div>
+            <p>Knowledge intelligence experience featuring hybrid document retrieval and grounded question-answering workflows.</p>
+            <div class="project-bottom">
+              <div class="chip-row">
+                <span class="tech-chip">React</span>
+                <span class="tech-chip">TypeScript</span>
+                <span class="tech-chip">AI</span>
+              </div>
+              <a class="btn-live-glow" href="https://prompt-tech-chi.vercel.app" target="_blank" rel="noopener noreferrer">
+                <span>Live Demo</span> <span class="arrow-icon">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2: Watch -->
+        <article class="project-card tilt-card reveal" data-category="web">
+          <div class="project-art art-watch">
+            <div style="width:130px; height:130px; border-radius:36px; background:linear-gradient(135deg, #7868a3, #b3a6df); display:grid; place-items:center; box-shadow:0 14px 28px rgba(110,90,150,0.3); color:#fff; font-size:36px;">
+              <svg class="icon-inline" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="7"></circle>
+                <polyline points="12 9 12 12 13.5 13.5"></polyline>
+                <path d="M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-eyebrow">02 &bull; INTERACTIVE WEB EXPERIMENT</div>
+            <div class="project-title-row">
+              <h3>Watch</h3>
+              <a class="project-arrow" target="_blank" rel="noopener noreferrer" href="https://github.com/amruthadivvela-droid/watch" aria-label="Watch GitHub repository">↗</a>
+            </div>
+            <p>A TypeScript frontend experiment exploring interactive frame components, dynamic dials, and visual micro-details.</p>
+            <div class="project-bottom">
+              <div class="chip-row">
+                <span class="tech-chip">TypeScript</span>
+                <span class="tech-chip">CSS Animations</span>
+              </div>
+              <a class="btn-live-glow" href="https://watch-rosy-mu.vercel.app" target="_blank" rel="noopener noreferrer">
+                <span>Live Demo</span> <span class="arrow-icon">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3: Portfolio -->
+        <article class="project-card tilt-card reveal" data-category="web">
+          <div class="project-art art-portfolio">
+            <div style="background:var(--surface); border-radius:18px; padding:22px 28px; width:78%; box-shadow:0 12px 30px rgba(0,0,0,0.06); text-align:center;">
+              <div style="font-family:var(--font-hand); font-size:20px; color:var(--accent);">creative corner ♡</div>
+              <div style="font-weight:900; font-size:24px; color:var(--ink);">hello, world!</div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-eyebrow">03 &bull; PERSONAL WEBSITE</div>
+            <div class="project-title-row">
+              <h3>Portfolio</h3>
+              <a class="project-arrow" target="_blank" rel="noopener noreferrer" href="https://github.com/amruthadivvela-droid/portfolio" aria-label="Portfolio GitHub repository">↗</a>
+            </div>
+            <p>A personal portfolio codebase showcasing creative layout experiments, fluid typography, and aesthetic presentation work.</p>
+            <div class="project-bottom">
+              <div class="chip-row">
+                <span class="tech-chip">HTML5</span>
+                <span class="tech-chip">CSS3</span>
+                <span class="tech-chip">JavaScript</span>
+              </div>
+              <a class="btn-live-glow" href="https://github.com/amruthadivvela-droid/portfolio" target="_blank" rel="noopener noreferrer">
+                <span>GitHub Code</span> <span class="arrow-icon">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4: Sanjay -->
+        <article class="project-card tilt-card reveal" data-category="web">
+          <div class="project-art art-sanjay">
+            <div style="background:var(--surface); border-radius:18px; padding:22px 28px; width:78%; box-shadow:0 12px 30px rgba(0,0,0,0.06); text-align:center;">
+              <div style="font-size:10px; letter-spacing:2px; color:#4a9686; font-weight:800;">THE WEB IS A CANVAS</div>
+              <div style="font-weight:900; font-size:20px; color:var(--ink); margin:6px 0;">Create Beautifully</div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-eyebrow">04 &bull; WEB PROJECT</div>
+            <div class="project-title-row">
+              <h3>Sanjay</h3>
+              <a class="project-arrow" target="_blank" rel="noopener noreferrer" href="https://github.com/amruthadivvela-droid/sanjay" aria-label="Sanjay GitHub repository">↗</a>
+            </div>
+            <p>A published JavaScript frontend web application built with clean component structures and deployed to Vercel.</p>
+            <div class="project-bottom">
+              <div class="chip-row">
+                <span class="tech-chip">JavaScript</span>
+                <span class="tech-chip">Web App</span>
+              </div>
+              <a class="btn-live-glow" href="https://sanjay-bachhe-gay.vercel.app" target="_blank" rel="noopener noreferrer">
+                <span>Live Demo</span> <span class="arrow-icon">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <a class="all-work-link reveal" href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer">
+        More repositories on GitHub <span aria-hidden="true">↗</span>
+      </a>
+
+      <div class="section-connector-flourish" aria-hidden="true">
+        <span class="connector-line"></span>
+        <span>🌸</span>
+        <span class="connector-line"></span>
+      </div>
+    </section>
+
+    <!-- Phase 12: Technical Skills (Organic Floating Capsule Cloud) -->
+    <section id="skills" class="section skills-section" aria-label="Technical Skills">
+      <div class="skills-wrapper reveal">
+        <div class="skill-copy">
+          <div class="section-heading">
+            <div class="section-kicker"><span>04</span> / MY TOOLBOX</div>
+            <h2>Skills I'm <em>growing with.</em></h2>
+          </div>
+          <p>
+            Core technologies and development practices I use to build responsive, accessible, and delightful digital interfaces.
+          </p>
+          <div class="skill-quote">
+            “A little curiosity, a lot of creativity.” <span>♡</span>
+          </div>
+        </div>
+
+        <!-- Floating Cloud without large sterile rectangular boxes -->
+        <div class="skills-cloud-container">
+          <div class="skill-cluster">
+            <div class="skill-cluster-title">Programming Foundation</div>
+            <div class="skill-cluster-pills">
+              <div class="skill-pill">
+                <span class="skill-icon">◇</span>
+                <span>C Language</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-cluster">
+            <div class="skill-cluster-title">Frontend Development</div>
+            <div class="skill-cluster-pills">
+              <div class="skill-pill">
+                <span class="skill-icon">✿</span>
+                <span>HTML5 Semantic Markup</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-icon">✦</span>
+                <span>CSS3 &amp; Modern Layouts</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-icon">✧</span>
+                <span>JavaScript (ES6+)</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-icon">♡</span>
+                <span>Responsive Web Design</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-cluster">
+            <div class="skill-cluster-title">Practices &amp; Workflows</div>
+            <div class="skill-cluster-pills">
+              <div class="skill-pill">
+                <span class="skill-icon">✎</span>
+                <span>UI Implementation</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-icon">⌘</span>
+                <span>Git &amp; GitHub</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-icon">⚙</span>
+                <span>Problem Solving</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-icon">🤝</span>
+                <span>Team Collaboration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-connector-flourish" aria-hidden="true">
+        <span class="connector-line"></span>
+        <span>✿</span>
+        <span class="connector-line"></span>
+      </div>
+    </section>
+
+    <!-- Phase 13: Strengths & Collaboration (Floating Layered Tiles) -->
+    <section class="section strengths-section" aria-label="Strengths and Collaboration">
+      <div class="section-top reveal">
+        <div class="section-heading">
+          <div class="section-kicker"><span>COLLABORATION</span> / CORE ATTRIBUTES</div>
+          <h2>Better ideas <em>bloom together.</em></h2>
+        </div>
+        <div class="section-side-note">How I work and grow <span>✿</span></div>
+      </div>
+
+      <div class="strengths-grid reveal">
+        <div class="strength-card tilt-card">
+          <div class="strength-icon">🤝</div>
+          <h4>Team Collaboration</h4>
+          <p>Thrives in peer groups and pair-programming settings, valuing shared ownership, active listening, and constructive feedback.</p>
+        </div>
+
+        <div class="strength-card tilt-card">
+          <div class="strength-icon">🌱</div>
+          <h4>Fast Learner</h4>
+          <p>Eagerly picks up new frontend concepts, documentation patterns, and design systems with genuine enthusiasm.</p>
+        </div>
+
+        <div class="strength-card tilt-card">
+          <div class="strength-icon">🔍</div>
+          <h4>Attention to Detail</h4>
+          <p>Cares deeply about spacing, typographic rhythm, harmonious colors, and smooth micro-interactions.</p>
+        </div>
+
+        <div class="strength-card tilt-card">
+          <div class="strength-icon">💡</div>
+          <h4>Problem Solving</h4>
+          <p>Approaches UI challenges methodically, breaking complex layouts into modular and maintainable components.</p>
+        </div>
+
+        <div class="strength-card tilt-card">
+          <div class="strength-icon">⏱</div>
+          <h4>Reliability &amp; Focus</h4>
+          <p>Committed to meeting academic milestones and delivering tidy, well-tested code that teammates can rely on.</p>
+        </div>
+
+        <div class="strength-card tilt-card">
+          <div class="strength-icon">💬</div>
+          <h4>Thoughtful Communication</h4>
+          <p>Explains technical decisions clearly and communicates progress openly throughout every project phase.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Phase 14: Contact Section (Airmail Letter / Postcard Composition) -->
+    <section id="contact" class="contact-section" aria-label="Contact Amrutha">
+      <div class="contact-container reveal">
+        <div class="section-kicker" style="justify-content:center;">05 / SAY HELLO</div>
+        <h2>Let's make something<br /><em>lovely together!</em></h2>
+        <p class="contact-desc">
+          Have an idea, an academic project collaboration, or just want to connect? I’d love to hear from you.
+        </p>
+
+        <!-- Postcard Composition with Stamp and Airmail Aesthetic -->
+        <div class="contact-box tilt-card">
+          <div class="contact-stamp" aria-hidden="true">
+            <span class="stamp-icon">🌸</span>
+            <span class="stamp-text">AIR MAIL</span>
+          </div>
+
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-name">Your Name</label>
+                <input type="text" id="contact-name" class="form-input" placeholder="What's your name?" required />
+              </div>
+              <div class="form-group">
+                <label for="contact-email">Your Email</label>
+                <input type="email" id="contact-email" class="form-input" placeholder="hello@example.com" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-msg">Message</label>
+              <textarea id="contact-msg" class="form-input" placeholder="Tell me about your idea or say hello! ♡" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary magnetic-btn" style="margin: 8px auto 0; width:min(280px, 100%);">
+              Send message <span class="btn-arrow" aria-hidden="true">♡</span>
+            </button>
+          </form>
+
+          <div id="form-feedback" style="display:none; margin-top:16px; font-weight:700; color:var(--accent);"></div>
+        </div>
+
+        <div class="contact-actions">
+          <a class="btn whatsapp-connect-btn magnetic-btn" href="https://wa.me/?text=Hi%20Amrutha,%20I%20saw%20your%20Sakura%20Developer%20Portfolio%20and%20would%20love%20to%20connect!" target="_blank" rel="noopener noreferrer" aria-label="Connect with Amrutha on WhatsApp">
+            <svg class="icon-inline" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.301-.15-1.78-.879-2.056-.979-.276-.101-.476-.15-.676.15-.2.301-.776.979-.952 1.18-.175.201-.351.226-.652.075-.301-.15-1.271-.469-2.42-1.494-.894-.798-1.498-1.783-1.674-2.084-.175-.301-.019-.464.132-.614.136-.135.301-.351.451-.527.151-.175.201-.301.301-.502.101-.201.05-.376-.025-.527-.075-.15-.677-1.631-.928-2.235-.244-.588-.493-.508-.677-.518l-.578-.01c-.201 0-.527.075-.802.376-.276.301-1.053 1.029-1.053 2.508 0 1.48 1.078 2.909 1.229 3.11 0.15.201 2.122 3.24 5.141 4.544.718.31 1.278.496 1.716.635.722.23 1.378.198 1.898.12.579-.087 1.78-.727 2.031-1.43.251-.703.251-1.305.176-1.43-.075-.126-.276-.201-.577-.352z"/>
+              <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.434 5.178L2.05 21.95l4.908-1.34A9.954 9.954 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.644 0-3.176-.484-4.468-1.318l-.32-.206-2.91.795.795-2.836-.226-.339A8.17 8.17 0 0 1 3.8 12c0-4.521 3.679-8.2 8.2-8.2s8.2 3.679 8.2 8.2-3.679 8.2-8.2 8.2z"/>
+            </svg>
+            <span>WhatsApp Connect</span>
+          </a>
+          <a class="btn btn-primary magnetic-btn" href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer">
+            Find me on GitHub <span aria-hidden="true">↗</span>
+          </a>
+          <button class="btn btn-outline magnetic-btn" type="button" id="copy-github-btn">
+            Copy GitHub link
+          </button>
+          <button class="btn btn-outline magnetic-btn" type="button" id="contact-resume-btn">
+            <span>View Resume</span>
+            <svg class="icon-inline" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <span class="contact-signoff">See you around! ♡</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <a href="#top" class="footer-brand">Amrutha <span>✿</span></a>
+    <p>Built with care, curiosity &amp; a little bit of magic &bull; Divvela Jyoti Venkata Amrutha</p>
+    <a href="#top" class="back-to-top">Back to top <span aria-hidden="true">↑</span></a>
+  </footer>
+
+  <!-- Modal 1: Developer ID Profile Modal (Phase 7) -->
+  <div id="dev-id-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="dev-modal-title">
+    <div class="modal-card">
+      <button type="button" id="close-dev-modal" class="modal-close-btn" aria-label="Close Developer ID modal">✕</button>
+      
+      <div class="dev-modal-head">
+        <div class="dev-modal-avatar">
+          <img src="public/assets/amrutha-avatar.png" alt="Amrutha avatar" id="modal-avatar-img" />
+        </div>
+        <h2 id="dev-modal-title" class="dev-modal-name">Divvela Jyoti Venkata Amrutha</h2>
+        <div class="dev-modal-subtitle">Frontend Developer &bull; B.Tech Student</div>
+      </div>
+
+      <div class="dev-modal-details">
+        <div class="dev-detail-item">
+          <span class="dev-detail-label">Institution</span>
+          <span class="dev-detail-val">Narasaraopeta Engineering College</span>
+        </div>
+        <div class="dev-detail-item">
+          <span class="dev-detail-label">Current Status</span>
+          <span class="dev-detail-val" style="color:var(--accent);">Pursuing B.Tech Degree</span>
+        </div>
+        <div class="dev-detail-item">
+          <span class="dev-detail-label">Class XII Intermediate</span>
+          <span class="dev-detail-val">Sri Chaitanya (Score: 96.3%)</span>
+        </div>
+        <div class="dev-detail-item">
+          <span class="dev-detail-label">Class X Schooling</span>
+          <span class="dev-detail-val">Sri Chaitanya (Score: 95.0%)</span>
+        </div>
+        <div class="dev-detail-item">
+          <span class="dev-detail-label">Core Technologies</span>
+          <span class="dev-detail-val">HTML5, CSS3, JavaScript, C</span>
+        </div>
+        <div class="dev-detail-item">
+          <span class="dev-detail-label">GitHub Account</span>
+          <span class="dev-detail-val">amruthadivvela-droid</span>
+        </div>
+      </div>
+
+      <div class="modal-actions" style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <button type="button" id="dev-modal-admin-btn" class="btn btn-primary" style="min-height:46px; padding:0 22px; font-size:13px; width:100%; justify-content:center;">
+          <span>⚡</span> Launch Attendance Admin Dashboard
+        </button>
+        <a href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="min-height:44px; padding:0 20px; font-size:13px; flex:1; justify-content:center;">
+          Open GitHub Profile ↗
+        </a>
+        <button type="button" id="dev-modal-resume-btn" class="btn btn-outline" style="min-height:44px; padding:0 20px; font-size:13px; flex:1; justify-content:center;">
+          Inspect Resume 📄
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Verified Resume Viewer Modal (Phase 20) -->
+  <div id="resume-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="resume-title">
+    <div class="modal-card" style="width:min(720px, 100%);">
+      <button type="button" id="close-resume-modal" class="modal-close-btn" aria-label="Close resume viewer">✕</button>
+      
+      <div class="resume-modal-body">
+        <span style="font-size:42px; display:block; margin-bottom:6px;">🌸</span>
+        <div class="section-kicker" style="justify-content:center;">OFFICIAL RESUME</div>
+        <h2 id="resume-title" style="font-size:32px; font-weight:900;">
+          Amrutha's Resume <span>♡</span>
+        </h2>
+        <p style="color:var(--muted); font-size:14px; margin-top:4px;">
+          Divvela Jyoti Venkata Amrutha &bull; B.Tech Student &bull; Frontend Developer
+        </p>
+
+        <!-- Embedded PDF Viewer -->
+        <div class="resume-embed-container">
+          <iframe src="public/resume.pdf" class="resume-iframe" title="Amrutha Resume Preview"></iframe>
+        </div>
+
+        <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:16px;">
+          <a href="public/resume.pdf" download="Divvela_Amrutha_Resume.pdf" class="btn btn-primary" style="min-height:48px; padding:0 26px; font-size:13px;">
+            Download PDF ⤓
+          </a>
+          <a href="public/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="min-height:48px; padding:0 24px; font-size:13px;">
+            Open in New Tab ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2b: Admin Passkey Gateway Modal (Phase 21) -->
+  <div id="passkey-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="passkey-modal-title">
+    <div class="modal-card passkey-modal-card">
+      <button type="button" id="close-passkey-modal" class="modal-close-btn" aria-label="Close passkey modal">✕</button>
+      <div class="passkey-icon-wrap">
+        <svg class="admin-spinning-flower" viewBox="0 0 100 100" width="44" height="44" aria-hidden="true">
+          <g transform="translate(50,50)">
+            <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="url(#navFlowerGrad)"/>
+            <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="url(#navFlowerGrad)" transform="rotate(72)"/>
+            <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="url(#navFlowerGrad)" transform="rotate(144)"/>
+            <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="url(#navFlowerGrad)" transform="rotate(216)"/>
+            <path d="M 0,-6 C -12,-36 -28,-36 -24,-20 C -20,-4 -6,0 0,0 C 6,0 20,-4 24,-20 C 28,-36 12,-36 0,-6 Z" fill="url(#navFlowerGrad)" transform="rotate(288)"/>
+            <circle cx="0" cy="0" r="7" fill="#ffd57a" stroke="#d56586" stroke-width="1.5"/>
+          </g>
+        </svg>
+      </div>
+      <h3 id="passkey-modal-title" class="passkey-title">Admin Passkey Gateway</h3>
+      <p class="passkey-desc">Enter authorization passkey to access the Smart Classroom Attendance Portal &amp; Roster Management.</p>
+      
+      <form id="passkey-form" class="passkey-form" novalidate>
+        <div class="passkey-input-wrap">
+          <input type="password" id="passkey-input" class="passkey-input" placeholder="Enter passkey (e.g. 2026)" autocomplete="current-password" required />
+          <button type="button" id="toggle-passkey-vis" class="passkey-vis-btn" aria-label="Toggle password visibility">👁</button>
+        </div>
+        <div id="passkey-error" class="passkey-error" style="display:none;"></div>
+        
+        <div class="passkey-actions">
+          <button type="submit" class="btn btn-primary magnetic-btn" id="passkey-submit-btn" style="width:100%; min-height:48px; justify-content:center;">
+            <span>Unlock Admin Portal ✦</span>
+          </button>
+        </div>
+        
+        <div class="passkey-hint">
+          <span>🔒 Authorized demo passkeys: <code>2026</code>, <code>sakura</code>, <code>amrutha</code>, or <code>admin</code></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 3: Smart Classroom Attendance & Admin Dashboard Modal (Phase 22) -->
+  <div id="admin-dashboard-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
+    <div class="modal-card admin-modal-card">
+      <button type="button" id="close-admin-modal" class="modal-close-btn" aria-label="Close Admin Dashboard">✕</button>
+
+      <div class="admin-modal-header">
+        <div class="admin-header-badge">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>ADMIN ATTENDANCE PORTAL &bull; LIVE SYSTEM</span>
+        </div>
+        <h3 id="admin-modal-title" class="admin-modal-title">Smart Classroom Attendance System</h3>
+        <p class="admin-modal-sub">
+          <strong>Section:</strong> CSE-3A &bull; <strong>Department:</strong> Computer Science &amp; Engineering &bull; <strong>Lead Architect:</strong> Divvela Jyoti Venkata Amrutha
+        </p>
+        <div class="admin-meta-strip">
+          <span class="admin-time-badge" id="admin-live-time">🕒 Today: 09:30 AM &bull; Period 1 (Web Engineering)</span>
+          <span class="admin-session-pill">Academic Year 2026-27</span>
+        </div>
+      </div>
+
+      <!-- Real-Time Dynamic Metrics Bar -->
+      <div class="admin-stats-grid">
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon">
+            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="admin-stat-val" id="admin-total-enrolled">10</div>
+            <div class="admin-stat-label">Total Enrolled</div>
+          </div>
+        </div>
+
+        <div class="admin-stat-card stat-present">
+          <div class="admin-stat-icon">
+            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#25d366" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div>
+            <div class="admin-stat-val" id="admin-present-count">8</div>
+            <div class="admin-stat-label">Present Today</div>
+          </div>
+        </div>
+
+        <div class="admin-stat-card stat-absent">
+          <div class="admin-stat-icon">
+            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#e0526e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+          <div>
+            <div class="admin-stat-val" id="admin-absent-count">2</div>
+            <div class="admin-stat-label">Absent</div>
+          </div>
+        </div>
+
+        <div class="admin-stat-card stat-rate">
+          <div class="admin-stat-icon">
+            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+          <div>
+            <div class="admin-stat-val" id="admin-rate-pct">80.0%</div>
+            <div class="admin-stat-label">Attendance Rate</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Toolbar: Search, Filter, Quick Batch Actions -->
+      <div class="admin-toolbar">
+        <div class="admin-search-wrap">
+          <svg class="search-icon icon-inline" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="admin-search-input" class="admin-search-input" placeholder="Search by student name or roll number (e.g. 21NEC01)..." />
+          <button type="button" class="search-clear-btn" id="admin-search-clear" style="display:none;" aria-label="Clear search">✕</button>
+        </div>
+
+        <div class="admin-filter-group" role="tablist">
+          <button type="button" class="admin-filter-btn active" data-status-filter="all">All (<span id="filter-all-num">10</span>)</button>
+          <button type="button" class="admin-filter-btn" data-status-filter="present">Present (<span id="filter-present-num">8</span>)</button>
+          <button type="button" class="admin-filter-btn" data-status-filter="absent">Absent (<span id="filter-absent-num">2</span>)</button>
+        </div>
+      </div>
+
+      <!-- Batch Action Buttons -->
+      <div class="admin-actions-bar">
+        <button type="button" class="btn-admin-action" id="admin-mark-all-btn">
+          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>Mark All Present</span>
+        </button>
+        <button type="button" class="btn-admin-action" id="admin-reset-btn">
+          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          <span>Reset Roll Call</span>
+        </button>
+        <button type="button" class="btn-admin-action btn-admin-accent" id="admin-export-csv-btn">
+          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Export CSV Report</span>
+        </button>
+        <button type="button" class="btn-admin-action" id="admin-broadcast-btn">
+          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+          </svg>
+          <span>Sync College Server</span>
+        </button>
+      </div>
+
+      <!-- Interactive Student Roster -->
+      <div class="admin-roster-wrap">
+        <div class="admin-roster-header">
+          <span>STUDENT ROSTER</span>
+          <span class="roster-live-hint">Click status pills below to toggle live attendance</span>
+        </div>
+        <div class="admin-roster-list" id="admin-roster-list">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Toast Feedback Message -->
+      <div class="admin-toast" id="admin-toast" hidden></div>
+
+      <!-- Engineering Credits & Architecture Notes -->
+      <div class="admin-modal-footer">
+        <div class="admin-arch-note">
+          <span>💡 <strong>Architecture Note:</strong> Built with semantic HTML5, reactive Vanilla JavaScript DOM state management, and real-time roll-call recalculations. Contributed by Amrutha for college lab automation.</span>
+        </div>
+        <div class="admin-footer-links">
+          <a href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="min-height:38px; font-size:12.5px; padding:0 18px;">
+            View Source Code ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Interactive JavaScript -->
+  <script>
+  (() => {
+    /* ==========================================================================
+       0. CINEMATIC OPENING SEQUENCE (PHASE 1 - CURVED FLIGHT, SWARM, WELCOME, PETALS, CLOUDS)
+       ========================================================================== */
+    const introOverlay = document.getElementById('cinematic-intro-overlay');
+    const introCanvas = document.getElementById('intro-canvas');
+    const skipIntroBtn = document.getElementById('skip-intro-btn');
+    let introAnimId = null;
+    let introActive = true;
+
+    function initCinematicIntro() {
+      if (!introOverlay || !introCanvas) return;
+      const ctx = introCanvas.getContext('2d');
+      
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+      introCanvas.width = width * dpr;
+      introCanvas.height = height * dpr;
+      introCanvas.style.width = width + 'px';
+      introCanvas.style.height = height + 'px';
+      ctx.scale(dpr, dpr);
+
+      window.addEventListener('resize', () => {
+        if (!introActive) return;
+        width = window.innerWidth;
+        height = window.innerHeight;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        introCanvas.width = width * dpr;
+        introCanvas.height = height * dpr;
+        introCanvas.style.width = width + 'px';
+        introCanvas.style.height = height + 'px';
+        ctx.scale(dpr, dpr);
+      });
+
+      // Sample letter coordinates for "WELCOME"
+      const offCanvas = document.createElement('canvas');
+      const offW = 900;
+      const offH = 260;
+      offCanvas.width = offW;
+      offCanvas.height = offH;
+      const offCtx = offCanvas.getContext('2d');
+      
+      offCtx.fillStyle = '#000000';
+      offCtx.font = 'bold 150px Outfit, sans-serif';
+      offCtx.textAlign = 'center';
+      offCtx.textBaseline = 'middle';
+      offCtx.fillText('WELCOME', offW / 2, offH / 2);
+
+      const imgData = offCtx.getImageData(0, 0, offW, offH).data;
+      const textCoords = [];
+      const step = 8;
+      for (let y = 0; y < offH; y += step) {
+        for (let x = 0; x < offW; x += step) {
+          const idx = (y * offW + x) * 4;
+          if (imgData[idx + 3] > 140) {
+            textCoords.push({ nx: (x - offW / 2) / offW, ny: (y - offH / 2) / offH });
+          }
+        }
+      }
+
+      const numParticles = Math.min(150, textCoords.length);
+      const targetPoints = [];
+      const stride = Math.max(1, Math.floor(textCoords.length / numParticles));
+      for (let i = 0; i < numParticles; i++) {
+        targetPoints.push(textCoords[i * stride] || textCoords[i % textCoords.length]);
+      }
+
+      // Swarm particles: start in vortex orbits around center
+      const swarm = targetPoints.map((pt, i) => {
+        const angle = (i / numParticles) * Math.PI * 4;
+        const dist = 280 + Math.random() * 380;
+        return {
+          id: i,
+          x: width * 0.5 + Math.cos(angle) * dist,
+          y: height * 0.44 + Math.sin(angle) * dist,
+          nx: pt.nx,
+          ny: pt.ny,
+          size: 10 + Math.random() * 5,
+          wingPhase: Math.random() * Math.PI * 2,
+          colorA: i % 3 === 0 ? '#ffffff' : (i % 3 === 1 ? '#ffe3ec' : '#f7a6bc'),
+          colorB: i % 2 === 0 ? '#d56586' : '#c24f72',
+          petalRot: Math.random() * Math.PI * 2,
+          petalRotSpeed: (Math.random() - 0.5) * 0.04,
+          driftX: (Math.random() - 0.5) * 2.8,
+          driftY: 1.2 + Math.random() * 2.2,
+          alpha: 1
+        };
+      });
+
+      // Solitary butterfly trajectory (Cubic Bézier)
+      const P0 = { x: -60, y: height * 0.78 };
+      const P1 = { x: width * 0.32, y: height * 0.18 };
+      const P2 = { x: width * 0.38, y: height * 0.75 };
+      const P3 = { x: width * 0.5, y: height * 0.44 };
+
+      function cubicBezier(t, p0, p1, p2, p3) {
+        const u = 1 - t;
+        const tt = t * t;
+        const uu = u * u;
+        const uuu = uu * u;
+        const ttt = tt * t;
+        return {
+          x: uuu * p0.x + 3 * uu * t * p1.x + 3 * u * tt * p2.x + ttt * p3.x,
+          y: uuu * p0.y + 3 * uu * t * p1.y + 3 * u * tt * p2.y + ttt * p3.y
+        };
+      }
+
+      const sparkleTrail = [];
+      const startTime = performance.now();
+
+      function drawBotanicalPetal(c, x, y, size, angle, tumble, colorA, colorB, alpha) {
+        c.save();
+        c.translate(x, y);
+        c.rotate(angle);
+        c.scale(Math.cos(tumble), 1);
+        c.globalAlpha = Math.max(0, Math.min(1, alpha));
+
+        const grad = c.createLinearGradient(0, -size, 0, size);
+        grad.addColorStop(0, colorA);
+        grad.addColorStop(0.7, colorB);
+        grad.addColorStop(1, '#8e3450');
+
+        c.fillStyle = grad;
+        c.beginPath();
+        c.moveTo(0, size);
+        c.bezierCurveTo(-size * 0.8, size * 0.4, -size * 0.9, -size * 0.6, -size * 0.3, -size);
+        c.lineTo(0, -size * 0.75);
+        c.lineTo(size * 0.3, -size);
+        c.bezierCurveTo(size * 0.9, -size * 0.6, size * 0.8, size * 0.4, 0, size);
+        c.closePath();
+        c.fill();
+        c.restore();
+      }
+
+      function drawDetailedButterfly(c, x, y, size, angle, flap, colorA, colorB, alpha) {
+        c.save();
+        c.translate(x, y);
+        c.rotate(angle);
+        c.globalAlpha = Math.max(0, Math.min(1, alpha));
+
+        const flapScale = Math.sin(flap) * 0.85 + 0.15;
+
+        // Left Wing
+        c.save();
+        c.scale(flapScale, 1);
+        c.beginPath();
+        c.moveTo(-2, 0);
+        c.bezierCurveTo(-size * 1.5, -size * 1.3, -size * 1.8, size * 0.2, -size * 0.8, size * 1.1);
+        c.bezierCurveTo(-size * 0.4, size * 0.8, -2, size * 0.4, -2, 0);
+        const gradL = c.createLinearGradient(-size * 1.5, -size, 0, size);
+        gradL.addColorStop(0, colorA);
+        gradL.addColorStop(0.6, colorB);
+        gradL.addColorStop(1, '#682537');
+        c.fillStyle = gradL;
+        c.fill();
+        c.strokeStyle = 'rgba(255,255,255,0.7)';
+        c.lineWidth = 1;
+        c.stroke();
+        c.restore();
+
+        // Right Wing
+        c.save();
+        c.scale(-flapScale, 1);
+        c.beginPath();
+        c.moveTo(-2, 0);
+        c.bezierCurveTo(-size * 1.5, -size * 1.3, -size * 1.8, size * 0.2, -size * 0.8, size * 1.1);
+        c.bezierCurveTo(-size * 0.4, size * 0.8, -2, size * 0.4, -2, 0);
+        const gradR = c.createLinearGradient(-size * 1.5, -size, 0, size);
+        gradR.addColorStop(0, colorA);
+        gradR.addColorStop(0.6, colorB);
+        gradR.addColorStop(1, '#682537');
+        c.fillStyle = gradR;
+        c.fill();
+        c.strokeStyle = 'rgba(255,255,255,0.7)';
+        c.lineWidth = 1;
+        c.stroke();
+        c.restore();
+
+        // Body & Antennae
+        c.fillStyle = '#311c2f';
+        c.beginPath();
+        c.ellipse(0, 0, 2, size * 0.45, 0, 0, Math.PI * 2);
+        c.fill();
+
+        c.beginPath();
+        c.arc(0, -size * 0.45, 2.5, 0, Math.PI * 2);
+        c.fill();
+
+        c.strokeStyle = '#523447';
+        c.lineWidth = 0.8;
+        c.beginPath();
+        c.moveTo(-1, -size * 0.45);
+        c.quadraticCurveTo(-size * 0.3, -size * 0.8, -size * 0.45, -size * 0.7);
+        c.moveTo(1, -size * 0.45);
+        c.quadraticCurveTo(size * 0.3, -size * 0.8, size * 0.45, -size * 0.7);
+        c.stroke();
+
+        c.restore();
+      }
+
+      function frame(now) {
+        if (!introActive) return;
+        const elapsed = (now - startTime) / 1000;
+
+        ctx.clearRect(0, 0, width, height);
+
+        const welcomeWidth = Math.min(width * 0.82, 850);
+        const welcomeHeight = welcomeWidth * (offH / offW);
+        const welcomeCenterX = width * 0.5;
+        const welcomeCenterY = height * 0.44;
+
+        // 1. Solitary Butterfly Flight (0.0s - 2.8s)
+        if (elapsed < 2.8) {
+          const t = Math.min(elapsed / 2.4, 1);
+          const easeT = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+          const pos = cubicBezier(easeT, P0, P1, P2, P3);
+          const nextPos = cubicBezier(Math.min(easeT + 0.02, 1), P0, P1, P2, P3);
+          const angle = Math.atan2(nextPos.y - pos.y, nextPos.x - pos.x) + Math.PI / 2;
+          const flap = elapsed * 32;
+
+          if (Math.random() < 0.6) {
+            sparkleTrail.push({
+              x: pos.x + (Math.random() - 0.5) * 8,
+              y: pos.y + (Math.random() - 0.5) * 8,
+              alpha: 1,
+              size: 2.5 + Math.random() * 2,
+              color: Math.random() < 0.5 ? '#ffd57a' : '#fba8bf'
+            });
+          }
+
+          drawDetailedButterfly(ctx, pos.x, pos.y, 22, angle, flap, '#ffffff', '#d56586', 1);
+        }
+
+        // Draw Sparkle Trail
+        for (let i = sparkleTrail.length - 1; i >= 0; i--) {
+          const sp = sparkleTrail[i];
+          sp.alpha -= 0.035;
+          sp.y += 0.4;
+          if (sp.alpha <= 0) {
+            sparkleTrail.splice(i, 1);
+          } else {
+            ctx.save();
+            ctx.globalAlpha = sp.alpha;
+            ctx.fillStyle = sp.color;
+            ctx.beginPath();
+            ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+        }
+
+        // 2. Swarm Particles & WELCOME Formation
+        if (elapsed >= 2.2) {
+          const swarmProgress = Math.min(Math.max((elapsed - 2.2) / 1.5, 0), 1);
+          const isMorphingToPetals = elapsed >= 5.6;
+          const morphProgress = Math.min(Math.max((elapsed - 5.6) / 1.4, 0), 1);
+
+          swarm.forEach(p => {
+            const tx = welcomeCenterX + p.nx * welcomeWidth;
+            const ty = welcomeCenterY + p.ny * welcomeHeight;
+
+            if (!isMorphingToPetals) {
+              const targetWeight = swarmProgress * swarmProgress;
+              const desiredX = p.x + (tx - p.x) * (0.045 * targetWeight);
+              const desiredY = p.y + (ty - p.y) * (0.045 * targetWeight);
+
+              // 1.8s hold time with natural breathing flutter
+              if (elapsed >= 3.7) {
+                const jitterX = Math.sin(elapsed * 4 + p.id) * 1.2;
+                const jitterY = Math.cos(elapsed * 4 + p.id) * 1.2;
+                p.x = tx + jitterX;
+                p.y = ty + jitterY;
+              } else {
+                p.x = desiredX;
+                p.y = desiredY;
+              }
+
+              const flap = elapsed * 24 + p.wingPhase;
+              const angle = Math.sin(elapsed * 2 + p.id) * 0.2;
+
+              drawDetailedButterfly(ctx, p.x, p.y, p.size, angle, flap, p.colorA, p.colorB, 1);
+            } else {
+              p.x += p.driftX + Math.sin(elapsed * 3 + p.id) * 0.6;
+              p.y += p.driftY;
+              p.petalRot += p.petalRotSpeed;
+
+              if (elapsed >= 6.8) {
+                p.alpha = Math.max(0, 1 - (elapsed - 6.8) / 0.9);
+              }
+
+              if (morphProgress < 0.3) {
+                const blendAlpha = 1 - (morphProgress / 0.3);
+                drawDetailedButterfly(ctx, p.x, p.y, p.size, p.petalRot, elapsed * 24, p.colorA, p.colorB, blendAlpha * p.alpha);
+                drawBotanicalPetal(ctx, p.x, p.y, p.size * 1.2, p.petalRot, elapsed * 2.5, p.colorA, p.colorB, (1 - blendAlpha) * p.alpha);
+              } else {
+                drawBotanicalPetal(ctx, p.x, p.y, p.size * 1.2, p.petalRot, elapsed * 2.5, p.colorA, p.colorB, p.alpha);
+              }
+            }
+          });
+        }
+
+        // 3. Trigger Soft Cloud Deck Reveal (lateral separation exposing live hero underneath)
+        if (elapsed >= 6.4 && !introOverlay.classList.contains('parting')) {
+          introOverlay.classList.add('parting');
+        }
+
+        // 4. Complete intro
+        if (elapsed >= 7.8) {
+          completeIntro();
+          return;
+        }
+
+        introAnimId = requestAnimationFrame(frame);
+      }
+
+      function completeIntro() {
+        if (!introActive) return;
+        introActive = false;
+        cancelAnimationFrame(introAnimId);
+        introOverlay.classList.add('parting');
+        introOverlay.classList.add('intro-hidden');
+        setTimeout(() => {
+          introOverlay.style.display = 'none';
+        }, 850);
+      }
+
+      window.skipIntro = completeIntro;
+      if (skipIntroBtn) {
+        skipIntroBtn.addEventListener('click', completeIntro);
+      }
+
+      introAnimId = requestAnimationFrame(frame);
+    }
+
+    window.replayIntro = function() {
+      const overlay = document.getElementById('cinematic-intro-overlay');
+      if (!overlay) return;
+      overlay.style.display = 'flex';
+      overlay.classList.remove('intro-hidden');
+      overlay.classList.remove('parting');
+      introActive = true;
+      initCinematicIntro();
+    };
+
+    initCinematicIntro();
+
+    /* 1. Ten Real Themes Configuration (Phase 15) */
+    const THEMES = [
+      ['sakura', 'Sakura Dream', '🌸', '#d56586'],
+      ['lavender', 'Lavender Mist', '🦋', '#9b7bd3'],
+      ['strawberry', 'Strawberry Milk', '🍓', '#e84a6f'],
+      ['midnight', 'Midnight Sakura', '🌙', '#f08ba5'],
+      ['matcha', 'Matcha Garden', '🍃', '#5c946e'],
+      ['ocean', 'Ocean Pearl', '🐚', '#3a93a5'],
+      ['peach', 'Peach Blossom', '🍑', '#e88759'],
+      ['moonlight', 'Moonlight Blue', '⭐', '#7ba2e8'],
+      ['rosegold', 'Rose Gold', '🥀', '#c97b88'],
+      ['candypop', 'Candy Pop', '🍬', '#ff6b8b']
+    ];
+
+    const themeButton = document.getElementById('theme-button');
+    const themeDropdown = document.getElementById('theme-dropdown');
+    const themeOptions = document.getElementById('theme-options');
+    let currentTheme = 'sakura';
+
+    try {
+      currentTheme = localStorage.getItem('amrutha-theme') || 'sakura';
+    } catch (e) {}
+
+    function applyTheme(id) {
+      if (!THEMES.find(t => t[0] === id)) id = 'sakura';
+      currentTheme = id;
+      document.documentElement.setAttribute('data-theme', id);
+      try {
+        localStorage.setItem('amrutha-theme', id);
+      } catch (e) {}
+
+      themeOptions.querySelectorAll('button').forEach(btn => {
+        const isActive = btn.dataset.theme === id;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-checked', String(isActive));
+      });
+    }
+
+    THEMES.forEach(([id, name, emoji, color]) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'theme-opt';
+      btn.dataset.theme = id;
+      btn.setAttribute('role', 'radio');
+      btn.innerHTML = `
+        <span class="theme-dot" style="background:${color}"></span>
+        <span>${emoji} ${name}</span>
+        <span class="theme-check">✓</span>
+      `;
+      btn.addEventListener('click', () => {
+        applyTheme(id);
+        themeDropdown.hidden = true;
+        themeButton.setAttribute('aria-expanded', 'false');
+      });
+      themeOptions.appendChild(btn);
+    });
+
+    applyTheme(currentTheme);
+
+    themeButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = themeDropdown.hidden;
+      themeDropdown.hidden = !isHidden;
+      themeButton.setAttribute('aria-expanded', String(isHidden));
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.theme-wrap')) {
+        themeDropdown.hidden = true;
+        themeButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    /* 2. Mobile Menu Toggle */
+    const menuButton = document.getElementById('menu-button');
+    const navLinks = document.getElementById('nav-links');
+
+    if (menuButton && navLinks) {
+      menuButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = navLinks.classList.toggle('menu-open');
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+        menuButton.textContent = isOpen ? '✕' : '☰';
+      });
+
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('menu-open');
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.textContent = '☰';
+        });
+      });
+    }
+
+    /* 3. Falling Petals Generation (Phase 8) */
+    const petalContainer = document.getElementById('petals');
+    if (petalContainer) {
+      const petalCount = window.innerWidth < 768 ? 8 : 20;
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('i');
+        petal.className = 'petal';
+        petal.style.cssText = `
+          --left: ${(i * 27.3 + 9) % 100}%;
+          --top: ${(i * 37 + 7) % 92}%;
+          --delay: ${(i % 8) * -1.2}s;
+          --duration: ${7 + (i % 6) * 1.5}s;
+          --size: ${8 + (i % 4) * 4}px;
+          --rotation: ${i * 43}deg;
+        `;
+        petalContainer.appendChild(petal);
+      }
+    }
+
+    /* 4. Mouse Parallax, Ambient Glow & Cursor Trail (Desktop) */
+    const hero = document.getElementById('top');
+    const ambientGlow = document.getElementById('ambient-glow');
+    const devIdBadge = document.getElementById('dev-id-badge');
+    const butterflies = document.querySelectorAll('.butterfly');
+    let lastSparkleTime = 0;
+    let badgeAngle = 10;
+    let targetBadgeAngle = 10;
+    let mousePos = { x: -9999, y: -9999 };
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth >= 768) {
+      document.addEventListener('pointermove', e => {
+        mousePos.x = e.clientX;
+        mousePos.y = e.clientY;
+
+        // Ambient cursor glow tracking
+        if (ambientGlow) {
+          ambientGlow.style.left = `${e.clientX}px`;
+          ambientGlow.style.top = `${e.clientY}px`;
+        }
+
+        // Hero Parallax & ID Badge Pendulum Sway
+        if (hero) {
+          const rect = hero.getBoundingClientRect();
+          if (e.clientY <= rect.bottom + 100) {
+            const mx = ((e.clientX - rect.left) / rect.width - 0.5).toFixed(3);
+            const my = ((e.clientY - rect.top) / rect.height - 0.5).toFixed(3);
+            hero.style.setProperty('--mx', mx);
+            hero.style.setProperty('--my', my);
+
+            // Calculate subtle natural pendulum swing for hanging ID badge
+            targetBadgeAngle = 10 + (mx * 8);
+          }
+        }
+
+        // Butterflies Evasion Reaction on Proximity (< 160px)
+        butterflies.forEach(bf => {
+          const bRect = bf.getBoundingClientRect();
+          const bx = bRect.left + bRect.width / 2;
+          const by = bRect.top + bRect.height / 2;
+          const dist = Math.hypot(e.clientX - bx, e.clientY - by);
+          if (dist < 160) {
+            bf.classList.add('fleeing');
+            const angle = Math.atan2(by - e.clientY, bx - e.clientX);
+            const pushX = Math.cos(angle) * 20;
+            const pushY = Math.sin(angle) * 20;
+            bf.style.translate = `${pushX}px ${pushY}px`;
+          } else {
+            bf.classList.remove('fleeing');
+            bf.style.translate = '';
+          }
+        });
+
+        // Floral Sparkle Cursor Trail (throttled)
+        const now = Date.now();
+        if (now - lastSparkleTime > 75) {
+          lastSparkleTime = now;
+          const sparkle = document.createElement('span');
+          sparkle.className = 'cursor-sparkle';
+          sparkle.textContent = Math.random() > 0.5 ? '🌸' : '✦';
+          sparkle.style.left = `${e.clientX}px`;
+          sparkle.style.top = `${e.clientY}px`;
+          sparkle.style.setProperty('--tx', `${(Math.random() - 0.5) * 35}px`);
+          sparkle.style.setProperty('--ty', `${-10 - Math.random() * 25}px`);
+          document.body.appendChild(sparkle);
+          setTimeout(() => sparkle.remove(), 800);
+        }
+      });
+
+      // Smooth Badge Sway Physics Loop
+      function updateBadgePhysics() {
+        badgeAngle += (targetBadgeAngle - badgeAngle) * 0.08;
+        if (devIdBadge && window.innerWidth >= 768) {
+          devIdBadge.style.transform = `rotate(${badgeAngle.toFixed(2)}deg)`;
+        }
+        requestAnimationFrame(updateBadgePhysics);
+      }
+      requestAnimationFrame(updateBadgePhysics);
+    }
+
+    /* 4b. Giant AMRUTHA Lettering Particle Displacement System */
+    const particleCanvas = document.getElementById('amrutha-particle-canvas');
+    if (particleCanvas && window.innerWidth >= 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const pCtx = particleCanvas.getContext('2d');
+      let pList = [];
+      const pRadius = 120;
+
+      function initAmruthaParticles() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = particleCanvas.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+
+        particleCanvas.width = rect.width * dpr;
+        particleCanvas.height = rect.height * dpr;
+        pCtx.scale(dpr, dpr);
+
+        const offCanvas = document.createElement('canvas');
+        offCanvas.width = rect.width;
+        offCanvas.height = rect.height;
+        const offCtx = offCanvas.getContext('2d');
+
+        const fontSize = Math.min(rect.width * 0.19, 180);
+        offCtx.font = `900 ${fontSize}px 'Outfit', sans-serif`;
+        offCtx.fillStyle = '#f8cad6';
+        offCtx.textAlign = 'center';
+        offCtx.textBaseline = 'middle';
+        offCtx.fillText('AMRUTHA', rect.width / 2, rect.height / 2 + 10);
+
+        const imgData = offCtx.getImageData(0, 0, rect.width, rect.height);
+        const step = window.innerWidth < 1200 ? 11 : 8;
+        pList = [];
+
+        for (let y = 0; y < rect.height; y += step) {
+          for (let x = 0; x < rect.width; x += step) {
+            const idx = (y * rect.width + x) * 4;
+            if (imgData.data[idx + 3] > 110) {
+              pList.push({
+                homeX: x,
+                homeY: y,
+                x: x + (Math.random() - 0.5) * 12,
+                y: y + (Math.random() - 0.5) * 12,
+                vx: 0,
+                vy: 0,
+                size: Math.random() > 0.4 ? 2.6 : 3.6,
+                color: Math.random() > 0.5 ? '#f5a4bd' : '#fcd2dc',
+                angle: Math.random() * Math.PI * 2,
+                wobble: 0.02 + Math.random() * 0.03
+              });
+            }
+          }
+        }
+      }
+
+      let animFrame = 0;
+      function animateAmruthaParticles() {
+        pCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+        animFrame++;
+
+        const rect = particleCanvas.getBoundingClientRect();
+        const localX = mousePos.x - rect.left;
+        const localY = mousePos.y - rect.top;
+
+        for (let i = 0; i < pList.length; i++) {
+          const p = pList[i];
+          const dx = p.x - localX;
+          const dy = p.y - localY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < pRadius && dist > 0) {
+            const force = (pRadius - dist) / pRadius;
+            const ang = Math.atan2(dy, dx);
+            p.vx += Math.cos(ang) * force * 11;
+            p.vy += Math.sin(ang) * force * 11;
+          }
+
+          const springX = (p.homeX - p.x) * 0.06;
+          const springY = (p.homeY - p.y) * 0.06;
+          p.vx = (p.vx + springX) * 0.86;
+          p.vy = (p.vy + springY) * 0.86;
+
+          p.x += p.vx + Math.sin(animFrame * p.wobble + i) * 0.25;
+          p.y += p.vy + Math.cos(animFrame * p.wobble + i) * 0.2;
+
+          pCtx.fillStyle = p.color;
+          pCtx.beginPath();
+          pCtx.ellipse(p.x, p.y, p.size * 1.2, p.size * 0.7, p.angle, 0, Math.PI * 2);
+          pCtx.fill();
+        }
+
+        requestAnimationFrame(animateAmruthaParticles);
+      }
+
+      window.addEventListener('load', () => {
+        initAmruthaParticles();
+        animateAmruthaParticles();
+      });
+      window.addEventListener('resize', initAmruthaParticles);
+    }
+
+    /* 5. Magnetic CTA Buttons & Pills Interaction */
+    const magneticElements = document.querySelectorAll('.magnetic-btn, .skill-pill, .filter-btn');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth >= 768) {
+      magneticElements.forEach(el => {
+        el.addEventListener('mousemove', e => {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          el.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px) scale(1.03)`;
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.transform = '';
+        });
+      });
+    }
+
+    /* 6. Interactive 3D Card Tilt with Dynamic Animated Glare */
+    const tiltCards = document.querySelectorAll('.tilt-card');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth >= 768) {
+      tiltCards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+
+          const rotX = (-(y - rect.height / 2) / rect.height * 9).toFixed(2);
+          const rotY = ((x - rect.width / 2) / rect.width * 9).toFixed(2);
+          card.style.transform = `perspective(850px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px) scale3d(1.02, 1.02, 1.02)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      });
+    }
+
+    /* 7. Interactive Character Speech Bubble */
+    const bubble = document.getElementById('speech-bubble');
+    const quotes = [
+      "Let’s explore! 🌸",
+      "Welcome to my world! ✨",
+      "A little creativity goes a long way. ♡",
+      "Let's build something lovely! ✿",
+      "Thoughtful code, happy users! 💻"
+    ];
+    let quoteIndex = 0;
+    if (bubble) {
+      bubble.addEventListener('click', () => {
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+        bubble.textContent = quotes[quoteIndex];
+        bubble.style.transform = 'rotate(-3deg) scale(1.1)';
+        setTimeout(() => {
+          bubble.style.transform = '';
+        }, 250);
+      });
+    }
+
+    /* 8. Developer ID Card: Pixel-Dissolve Photo Switcher & File Upload */
+    const photoFrame = document.getElementById('id-photo-frame');
+    const photoSwitchBtn = document.getElementById('photo-switch-btn');
+    const portraitFileInput = document.getElementById('portrait-file-input');
+    const switchLbl = document.getElementById('switch-lbl');
+    const dissolveCanvas = document.getElementById('pixel-dissolve-canvas');
+    const realPortraitImg = document.getElementById('real-portrait-img');
+    let isRealPhoto = false;
+
+    function triggerPixelDissolve(toReal) {
+      if (!dissolveCanvas || !photoFrame) {
+        if (photoFrame) photoFrame.classList.toggle('show-real', toReal);
+        return;
+      }
+
+      dissolveCanvas.hidden = false;
+      const rect = photoFrame.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dissolveCanvas.width = rect.width * dpr;
+      dissolveCanvas.height = rect.height * dpr;
+      const dCtx = dissolveCanvas.getContext('2d');
+      dCtx.scale(dpr, dpr);
+
+      const cols = 18;
+      const rows = 16;
+      const cellW = rect.width / cols;
+      const cellH = rect.height / rows;
+      const total = cols * rows;
+
+      const order = Array.from({ length: total }, (_, i) => i);
+      for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+
+      const start = performance.now();
+      const dur = 460;
+
+      function frame(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / dur, 1);
+
+        if (progress >= 0.5 && photoFrame.classList.contains('show-real') !== toReal) {
+          photoFrame.classList.toggle('show-real', toReal);
+        }
+
+        dCtx.clearRect(0, 0, rect.width, rect.height);
+        const count = Math.floor(Math.sin(progress * Math.PI) * total);
+
+        for (let c = 0; c < count; c++) {
+          const idx = order[c];
+          const col = idx % cols;
+          const row = Math.floor(idx / cols);
+          const alpha = Math.sin(progress * Math.PI) * 0.92;
+          dCtx.fillStyle = c % 2 === 0 ? `rgba(245, 164, 189, ${alpha})` : `rgba(255, 245, 249, ${alpha})`;
+          dCtx.fillRect(col * cellW, row * cellH, cellW - 0.5, cellH - 0.5);
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(frame);
+        } else {
+          dissolveCanvas.hidden = true;
+          dCtx.clearRect(0, 0, rect.width, rect.height);
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+
+    function togglePhoto(e) {
+      if (e) e.stopPropagation();
+      isRealPhoto = !isRealPhoto;
+      if (switchLbl) {
+        switchLbl.textContent = isRealPhoto ? 'Anime Avatar' : 'Real Photo';
+      }
+      triggerPixelDissolve(isRealPhoto);
+    }
+
+    if (photoSwitchBtn) {
+      photoSwitchBtn.addEventListener('click', togglePhoto);
+    }
+
+    if (photoFrame) {
+      // Desktop Hover: mouseenter dissolves to real photo, mouseleave dissolves back to anime avatar
+      photoFrame.addEventListener('mouseenter', () => {
+        if (!isRealPhoto) {
+          isRealPhoto = true;
+          if (switchLbl) switchLbl.textContent = 'Anime Avatar';
+          triggerPixelDissolve(true);
+        }
+      });
+      photoFrame.addEventListener('mouseleave', () => {
+        if (isRealPhoto) {
+          isRealPhoto = false;
+          if (switchLbl) switchLbl.textContent = 'Real Photo';
+          triggerPixelDissolve(false);
+        }
+      });
+
+      // Mobile Tap / Click
+      photoFrame.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePhoto(e);
+      });
+    }
+
+    if (portraitFileInput) {
+      portraitFileInput.addEventListener('change', e => {
+        const file = e.target.files && e.target.files[0];
+        if (file && realPortraitImg) {
+          const reader = new FileReader();
+          reader.onload = ev => {
+            realPortraitImg.src = ev.target.result;
+            isRealPhoto = true;
+            if (switchLbl) switchLbl.textContent = 'Anime Avatar';
+            triggerPixelDissolve(true);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    /* 9. Modals Logic (Phase 7 & 20) */
+    const devIdModal = document.getElementById('dev-id-modal');
+    const resumeModal = document.getElementById('resume-modal');
+    // devIdBadge already declared at line 961
+    const resumeBtn = document.getElementById('resume-btn');
+    const contactResumeBtn = document.getElementById('contact-resume-btn');
+    const devModalResumeBtn = document.getElementById('dev-modal-resume-btn');
+    const closeDevModal = document.getElementById('close-dev-modal');
+    const closeResumeModal = document.getElementById('close-resume-modal');
+
+    function openModal(modal) {
+      if (!modal) return;
+      modal.hidden = false;
+      modal.removeAttribute('hidden');
+      modal.classList.add('is-open');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      const closeBtn = modal.querySelector('.modal-close-btn');
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeModal(modal) {
+      if (!modal) return;
+      modal.hidden = true;
+      modal.setAttribute('hidden', '');
+      modal.classList.remove('is-open');
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    // Developer ID Card click opens Developer Modal
+    if (devIdBadge) {
+      devIdBadge.addEventListener('click', (e) => {
+        // If clicking photo switch button or photo upload, do not open modal
+        if (e.target.closest('#photo-switch-btn') || e.target.closest('#photo-upload-lbl') || e.target.closest('#portrait-file-input')) return;
+        e.stopPropagation();
+        openModal(devIdModal);
+      });
+      devIdBadge.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModal(devIdModal);
+        }
+      });
+    }
+
+    if (closeDevModal) {
+      closeDevModal.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(devIdModal);
+      });
+    }
+
+    // Resume Modal triggers
+    if (resumeBtn) {
+      resumeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal(resumeModal);
+      });
+    }
+    if (contactResumeBtn) {
+      contactResumeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal(resumeModal);
+      });
+    }
+    if (devModalResumeBtn) {
+      devModalResumeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(devIdModal);
+        openModal(resumeModal);
+      });
+    }
+
+    if (closeResumeModal) {
+      closeResumeModal.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(resumeModal);
+      });
+    }
+
+    /* 9b. Smart Classroom Attendance & Admin Dashboard Modal (Phase 22) */
+    const adminDashboardModal = document.getElementById('admin-dashboard-modal');
+    const openAdminDashboardBtn = document.getElementById('open-admin-dashboard-btn');
+    const navAdminDashboardBtn = document.getElementById('nav-admin-dashboard-btn');
+    const attendanceMockupWindow = document.getElementById('attendance-mockup-window');
+    const devModalAdminBtn = document.getElementById('dev-modal-admin-btn');
+    const closeAdminModal = document.getElementById('close-admin-modal');
+
+    const studentsData = [
+      { id: '21NEC01', name: 'Aarav Sharma', status: 'present', avg: '96%', tag: '' },
+      { id: '21NEC02', name: 'Divvela J. V. Amrutha', status: 'present', avg: '98%', tag: 'Lead Architect' },
+      { id: '21NEC03', name: 'Bhavya Karanam', status: 'absent', avg: '82%', tag: '' },
+      { id: '21NEC04', name: 'Chaitanya Rao', status: 'present', avg: '94%', tag: '' },
+      { id: '21NEC05', name: 'Divya Mandava', status: 'present', avg: '91%', tag: '' },
+      { id: '21NEC06', name: 'Eshwar Prasad', status: 'absent', avg: '78%', tag: '' },
+      { id: '21NEC07', name: 'Farhan Ahmed', status: 'present', avg: '93%', tag: '' },
+      { id: '21NEC08', name: 'Gayatri Somu', status: 'present', avg: '95%', tag: '' },
+      { id: '21NEC09', name: 'Harsh Vardhan', status: 'present', avg: '89%', tag: '' },
+      { id: '21NEC10', name: 'Ishita Nair', status: 'present', avg: '97%', tag: '' }
+    ];
+
+    let currentAdminFilter = 'all';
+    let adminSearchQuery = '';
+
+    const adminTotalEnrolledEl = document.getElementById('admin-total-enrolled');
+    const adminPresentCountEl = document.getElementById('admin-present-count');
+    const adminAbsentCountEl = document.getElementById('admin-absent-count');
+    const adminRatePctEl = document.getElementById('admin-rate-pct');
+    const filterAllNumEl = document.getElementById('filter-all-num');
+    const filterPresentNumEl = document.getElementById('filter-present-num');
+    const filterAbsentNumEl = document.getElementById('filter-absent-num');
+    const adminRosterListEl = document.getElementById('admin-roster-list');
+    const adminSearchInput = document.getElementById('admin-search-input');
+    const adminSearchClear = document.getElementById('admin-search-clear');
+    const adminToastEl = document.getElementById('admin-toast');
+
+    function showAdminToast(msg) {
+      if (!adminToastEl) return;
+      adminToastEl.textContent = msg;
+      adminToastEl.hidden = false;
+      clearTimeout(adminToastEl._timer);
+      adminToastEl._timer = setTimeout(() => {
+        adminToastEl.hidden = true;
+      }, 3500);
+    }
+
+    function recalculateAdminStats() {
+      const total = studentsData.length;
+      const present = studentsData.filter(s => s.status === 'present').length;
+      const absent = studentsData.filter(s => s.status === 'absent').length;
+      const rate = total > 0 ? ((present / total) * 100).toFixed(1) + '%' : '0.0%';
+
+      if (adminTotalEnrolledEl) adminTotalEnrolledEl.textContent = total;
+      if (adminPresentCountEl) adminPresentCountEl.textContent = present;
+      if (adminAbsentCountEl) adminAbsentCountEl.textContent = absent;
+      if (adminRatePctEl) adminRatePctEl.textContent = rate;
+
+      if (filterAllNumEl) filterAllNumEl.textContent = total;
+      if (filterPresentNumEl) filterPresentNumEl.textContent = present;
+      if (filterAbsentNumEl) filterAbsentNumEl.textContent = absent;
+
+      // Sync stats with mockup window
+      const mockupPresent = document.querySelector('.mockup-stat:nth-child(2) .mockup-stat-num');
+      const mockupRate = document.querySelector('.mockup-stat:nth-child(3) .mockup-stat-num');
+      if (mockupPresent) mockupPresent.textContent = present;
+      if (mockupRate) mockupRate.textContent = rate;
+    }
+
+    function renderAdminRoster() {
+      if (!adminRosterListEl) return;
+      adminRosterListEl.innerHTML = '';
+
+      const filtered = studentsData.filter(s => {
+        const matchesFilter = currentAdminFilter === 'all' || s.status === currentAdminFilter;
+        const matchesSearch = !adminSearchQuery || 
+          s.name.toLowerCase().includes(adminSearchQuery.toLowerCase()) || 
+          s.id.toLowerCase().includes(adminSearchQuery.toLowerCase());
+        return matchesFilter && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        const empty = document.createElement('div');
+        empty.style.padding = '24px';
+        empty.style.textAlign = 'center';
+        empty.style.color = 'var(--muted)';
+        empty.style.fontSize = '13px';
+        empty.textContent = 'No students match your search filter.';
+        adminRosterListEl.appendChild(empty);
+        return;
+      }
+
+      filtered.forEach(student => {
+        const row = document.createElement('div');
+        row.className = 'admin-student-row';
+
+        const initials = student.name.split(' ').map(n => n[0]).slice(0, 2).join('');
+        row.innerHTML = `
+          <div class="student-info">
+            <div class="student-avatar">${initials}</div>
+            <div class="student-details">
+              <div class="student-name">
+                ${student.name}
+                ${student.tag ? `<span class="student-tag">${student.tag}</span>` : ''}
+              </div>
+              <div class="student-sub">Roll No: <strong>${student.id}</strong> &bull; Semester Avg: ${student.avg}</div>
+            </div>
+          </div>
+          <div class="status-toggle-group">
+            <button type="button" class="status-pill-btn pill-present ${student.status === 'present' ? 'active' : ''}" data-id="${student.id}" data-set="present" title="Mark Present">Present ✓</button>
+            <button type="button" class="status-pill-btn pill-absent ${student.status === 'absent' ? 'active' : ''}" data-id="${student.id}" data-set="absent" title="Mark Absent">Absent ✗</button>
+            <button type="button" class="status-pill-btn pill-late ${student.status === 'late' ? 'active' : ''}" data-id="${student.id}" data-set="late" title="Mark Late">Late ⏰</button>
+          </div>
+        `;
+        adminRosterListEl.appendChild(row);
+      });
+
+      adminRosterListEl.querySelectorAll('.status-pill-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          const sid = btn.dataset.id;
+          const newStatus = btn.dataset.set;
+          const s = studentsData.find(item => item.id === sid);
+          if (s) {
+            s.status = newStatus;
+            recalculateAdminStats();
+            renderAdminRoster();
+          }
+        });
+      });
+    }
+
+    // Filter Buttons
+    document.querySelectorAll('.admin-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.admin-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentAdminFilter = btn.dataset.statusFilter;
+        renderAdminRoster();
+      });
+    });
+
+    // Search Input
+    if (adminSearchInput) {
+      adminSearchInput.addEventListener('input', e => {
+        adminSearchQuery = e.target.value.trim();
+        if (adminSearchClear) adminSearchClear.style.display = adminSearchQuery ? 'block' : 'none';
+        renderAdminRoster();
+      });
+    }
+    if (adminSearchClear) {
+      adminSearchClear.addEventListener('click', () => {
+        if (adminSearchInput) adminSearchInput.value = '';
+        adminSearchQuery = '';
+        adminSearchClear.style.display = 'none';
+        renderAdminRoster();
+      });
+    }
+
+    // Quick Batch Actions
+    const markAllBtn = document.getElementById('admin-mark-all-btn');
+    if (markAllBtn) {
+      markAllBtn.addEventListener('click', () => {
+        studentsData.forEach(s => s.status = 'present');
+        recalculateAdminStats();
+        renderAdminRoster();
+        showAdminToast('✓ All 10 students marked Present for Period 1!');
+      });
+    }
+
+    const resetBtn = document.getElementById('admin-reset-btn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        studentsData.forEach((s, idx) => s.status = (idx === 2 || idx === 5) ? 'absent' : 'present');
+        recalculateAdminStats();
+        renderAdminRoster();
+        showAdminToast('↺ Attendance roll call reset to scheduled roster state.');
+      });
+    }
+
+    const exportCsvBtn = document.getElementById('admin-export-csv-btn');
+    if (exportCsvBtn) {
+      exportCsvBtn.addEventListener('click', () => {
+        let csv = 'Roll No,Student Name,Status,Semester Average,Class,Department,Date\n';
+        const dStr = new Date().toLocaleDateString('en-US');
+        studentsData.forEach(s => {
+          csv += `${s.id},"${s.name}",${s.status.toUpperCase()},${s.avg},CSE-3A,Computer Science,${dStr}\n`;
+        });
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Attendance_Report_CSE3A_${new Date().toISOString().slice(0, 10)}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showAdminToast('📥 Attendance CSV report downloaded successfully!');
+      });
+    }
+
+    const broadcastBtn = document.getElementById('admin-broadcast-btn');
+    if (broadcastBtn) {
+      broadcastBtn.addEventListener('click', () => {
+        showAdminToast('☁ Syncing live attendance with Narasaraopeta Engineering College Portal... Done!');
+      });
+    }
+
+    /* 9c. Passkey Security Gateway & Admin Portal Access */
+    const passkeyModal = document.getElementById('passkey-modal');
+    const closePasskeyModal = document.getElementById('close-passkey-modal');
+    const navAdminFlowerBtn = document.getElementById('nav-admin-flower-btn');
+    const passkeyForm = document.getElementById('passkey-form');
+    const passkeyInput = document.getElementById('passkey-input');
+    const passkeyError = document.getElementById('passkey-error');
+    const togglePasskeyVis = document.getElementById('toggle-passkey-vis');
+
+    function checkAdminAccess(onSuccess) {
+      if (sessionStorage.getItem('amrutha_admin_auth') === 'true') {
+        onSuccess();
+      } else {
+        if (passkeyInput) {
+          passkeyInput.value = '';
+          passkeyInput.classList.remove('input-error');
+        }
+        if (passkeyError) passkeyError.style.display = 'none';
+        openModal(passkeyModal);
+      }
+    }
+
+    if (navAdminFlowerBtn) {
+      navAdminFlowerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+    }
+
+    if (closePasskeyModal) {
+      closePasskeyModal.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(passkeyModal);
+      });
+    }
+
+    if (togglePasskeyVis && passkeyInput) {
+      togglePasskeyVis.addEventListener('click', () => {
+        const isPass = passkeyInput.type === 'password';
+        passkeyInput.type = isPass ? 'text' : 'password';
+        togglePasskeyVis.textContent = isPass ? '🔒' : '👁';
+      });
+    }
+
+    const VALID_PASSKEYS = ['2026', 'sakura', 'amrutha', 'admin'];
+
+    if (passkeyForm) {
+      passkeyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const entered = (passkeyInput.value || '').trim().toLowerCase();
+        if (VALID_PASSKEYS.includes(entered)) {
+          sessionStorage.setItem('amrutha_admin_auth', 'true');
+          closeModal(passkeyModal);
+          launchAdminDashboard();
+          showAdminToast('✓ Passkey verified! Welcome to Admin Portal, Amrutha.');
+        } else {
+          passkeyInput.classList.add('input-error');
+          passkeyError.textContent = 'Invalid passkey. Hint: try 2026 or sakura ✿';
+          passkeyError.style.display = 'block';
+          setTimeout(() => {
+            passkeyInput.classList.remove('input-error');
+          }, 600);
+        }
+      });
+    }
+
+    function launchAdminDashboard() {
+      recalculateAdminStats();
+      renderAdminRoster();
+      openModal(adminDashboardModal);
+    }
+
+    if (openAdminDashboardBtn) {
+      openAdminDashboardBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+    }
+    if (navAdminDashboardBtn) {
+      navAdminDashboardBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+    }
+    if (attendanceMockupWindow) {
+      attendanceMockupWindow.addEventListener('click', (e) => {
+        e.stopPropagation();
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+      attendanceMockupWindow.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          checkAdminAccess(() => launchAdminDashboard());
+        }
+      });
+    }
+    if (devModalAdminBtn) {
+      devModalAdminBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(devIdModal);
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+    }
+    if (closeAdminModal) {
+      closeAdminModal.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(adminDashboardModal);
+      });
+    }
+
+    // Dismiss modals when clicking dark backdrop
+    [devIdModal, resumeModal, passkeyModal, adminDashboardModal].forEach(modal => {
+      if (!modal) return;
+      modal.addEventListener('click', e => {
+        if (e.target === modal) {
+          closeModal(modal);
+        }
+      });
+    });
+
+    // Escape key closes modals
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeModal(devIdModal);
+        closeModal(resumeModal);
+        closeModal(passkeyModal);
+        closeModal(adminDashboardModal);
+      }
+    });
+
+    /* 10. Project Filters (Phase 11) */
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card, .featured-project-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        projectCards.forEach(card => {
+          const category = card.dataset.category;
+          if (filter === 'all' || category === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    /* 11. Copy GitHub Link with Toast Feedback */
+    const copyBtn = document.getElementById('copy-github-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        const gitHubUrl = 'https://github.com/amruthadivvela-droid';
+        try {
+          await navigator.clipboard.writeText(gitHubUrl);
+          copyBtn.textContent = 'Link copied! ♡';
+          copyBtn.style.borderColor = 'var(--accent)';
+          copyBtn.style.color = 'var(--accent)';
+          setTimeout(() => {
+            copyBtn.textContent = 'Copy GitHub link';
+            copyBtn.style.borderColor = '';
+            copyBtn.style.color = '';
+          }, 2200);
+        } catch (err) {
+          window.open(gitHubUrl, '_blank');
+        }
+      });
+    }
+
+    /* 12. Contact Form Handling */
+    const contactForm = document.getElementById('contact-form');
+    const formFeedback = document.getElementById('form-feedback');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const name = document.getElementById('contact-name').value.trim();
+        const email = document.getElementById('contact-email').value.trim();
+        const msg = document.getElementById('contact-msg').value.trim();
+
+        if (!name || !email || !msg) {
+          formFeedback.style.display = 'block';
+          formFeedback.style.color = '#e0526e';
+          formFeedback.textContent = 'Please fill in your name, email and message! ♡';
+          return;
+        }
+
+        const subject = encodeURIComponent(`Portfolio Message from ${name}`);
+        const body = encodeURIComponent(`Hi Amrutha,\n\n${msg}\n\nFrom: ${name} (${email})`);
+        window.location.href = `mailto:amrutha.divvela@example.com?subject=${subject}&body=${body}`;
+
+        formFeedback.style.display = 'block';
+        formFeedback.style.color = 'var(--accent)';
+        formFeedback.textContent = 'Opening your email client... Thank you for reaching out! ✿';
+        contactForm.reset();
+      });
+    }
+
+    /* 13. Scroll Reveals & Navigation Active Spy */
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px 150px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      // Fallback ensure all reveals appear gracefully for full-page screenshots or rapid scrolling
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      }, 1000);
+
+      const sections = document.querySelectorAll('section[id]');
+      const navItems = document.querySelectorAll('.nav-links a');
+
+      const navObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navItems.forEach(item => {
+              item.classList.toggle('active', item.getAttribute('href') === `#${id}`);
+            });
+          }
+        });
+      }, { threshold: 0.35 });
+
+      sections.forEach(s => navObserver.observe(s));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+  })();
+  </script>
+</body>
+</html>
