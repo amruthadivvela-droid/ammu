@@ -86,6 +86,7 @@
         <a href="#education" class="nav-link">Education</a>
         <a href="#work" class="nav-link">Work</a>
         <a href="#skills" class="nav-link">Skills</a>
+        <a href="#faq" class="nav-link">FAQ</a>
         <a href="#contact" class="nav-link">Contact</a>
       </div>
 
@@ -199,8 +200,14 @@
           Frontend<br />
           Developer
         </h1>
+        <div class="hero-role-pill">
+          <span class="role-pill-dot" aria-hidden="true"></span>
+          <span class="role-pill-company">CTO @ CodeXa Agency</span>
+          <span class="role-pill-sep" aria-hidden="true">•</span>
+          <span>B.Tech CSE</span>
+        </div>
         <p class="hero-subtitle">
-          I turn ideas into thoughtful web experiences.
+          I turn ideas into thoughtful web experiences and scalable digital realities.
         </p>
         <div class="hero-actions">
           <a href="#work" class="btn btn-primary magnetic-btn" id="hero-work-btn">
@@ -297,13 +304,15 @@
             <span class="dev-corner-flower flower-rot-a" aria-hidden="true">✿</span>
           </div>
 
-          <!-- Clean Anime Portrait Frame (no badges, no camera buttons) -->
-          <div class="id-photo" id="id-photo-frame">
-            <img class="portrait-anime" src="public/assets/amrutha-avatar.png" alt="Amrutha Avatar" id="anime-portrait-img" />
+          <!-- Clean Anime Portrait Frame with Hover Pixel Dissolve to Real Photo -->
+          <div class="id-photo" id="id-photo-frame" title="Hover over portrait to reveal real photograph">
+            <img class="portrait-anime" src="public/assets/idcard_avatar.jpeg" alt="Amrutha Avatar" id="anime-portrait-img" />
+            <img class="portrait-real" src="public/assets/ammu.webp" alt="Amrutha Photograph" id="real-portrait-img" />
+            <canvas id="hero-pixel-canvas" class="hero-pixel-canvas" style="display:none;"></canvas>
           </div>
 
           <div class="id-name">AMRUTHA</div>
-          <div class="id-role">B.Tech Student</div>
+          <div class="id-role">CTO @ CodeXa &bull; B.Tech</div>
           
           <div class="id-barcode" aria-hidden="true"></div>
 
@@ -815,80 +824,378 @@
       </div>
     </section>
 
-    <!-- Phase 14 & Section 23: Contact Section (Requirements-First Flow & Visiting Card Generator) -->
-    <section id="contact" class="contact-section" aria-label="Contact Amrutha">
-      <div class="contact-container reveal">
-        <div class="section-kicker" style="justify-content:center;">05 / SAY HELLO</div>
-        <h2>What are your requirements?</h2>
-        <p class="contact-desc">
-          Tell me a little about what you'd love to create. Have an idea, an academic project collaboration, or just want to connect?
+    <!-- Phase 13 & Section: Butterfly Transformed FAQ -->
+    <section id="faq" class="section faq-section" aria-label="Frequently Asked Questions">
+      <!-- Hidden SVG Defs for Butterfly Shapes & Gradients -->
+      <svg style="display:none;" aria-hidden="true">
+        <defs>
+          <linearGradient id="faqWingGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fff5f9"/>
+            <stop offset="50%" stop-color="#f5a4bd"/>
+            <stop offset="100%" stop-color="#d56586"/>
+          </linearGradient>
+          <g id="faq-full-butterfly-def">
+            <g class="wing-left">
+              <path d="M48 38 C35 15, 12 5, 5 15 C-5 30, 20 52, 44 44 C22 46, 10 60, 20 70 C30 80, 48 55, 48 44 Z" fill="url(#faqWingGrad)" stroke="#ba768e" stroke-width="1.5"/>
+            </g>
+            <g class="wing-right">
+              <path d="M52 38 C65 15, 88 5, 95 15 C105 30, 80 52, 56 44 C78 46, 90 60, 80 70 C70 80, 52 55, 52 44 Z" fill="url(#faqWingGrad)" stroke="#ba768e" stroke-width="1.5"/>
+            </g>
+            <path d="M50 28 v38" stroke="#5d384e" stroke-width="3" stroke-linecap="round"/>
+          </g>
+        </defs>
+      </svg>
+
+      <div class="faq-container reveal">
+        <div class="section-kicker" style="justify-content:center;"><span>05</span> / FREQUENTLY ASKED QUESTIONS</div>
+        <h2 class="faq-title">Curious? <em>Ask the Butterflies ✿</em></h2>
+        <p class="faq-subtitle">
+          Click any fluttering butterfly below to watch it take flight and transform into answers about my engineering, leadership at CodeXa, and creative design philosophy.
         </p>
 
-        <div class="contact-requirements-container">
-          <!-- Left: Requirements Input Form -->
-          <div class="requirements-form-box tilt-card">
-            <form id="contact-form" novalidate autocomplete="off">
-              <div class="form-group" style="margin-bottom:16px;">
-                <label for="contact-name">Your Name *</label>
-                <input type="text" id="contact-name" class="form-input" placeholder="What should I call you?" required />
-              </div>
+        <!-- Constellation of 6 Butterfly Question Cards -->
+        <div class="faq-cards-grid" id="faq-cards-grid">
+          <div class="faq-card tilt-card" role="button" tabindex="0" data-faq-index="0" aria-label="FAQ Question 1: Role as CTO at CodeXa Agency">
+            <div class="faq-butterfly-trigger" aria-hidden="true">
+              <svg class="faq-mini-butterfly" viewBox="0 0 100 80">
+                <use href="#faq-full-butterfly-def" />
+              </svg>
+            </div>
+            <div class="faq-card-content">
+              <span class="faq-category">Leadership & CodeXa</span>
+              <h3 class="faq-question">What is your role as Chief Technology Officer (CTO) at CodeXa Agency?</h3>
+              <p class="faq-hint">Click butterfly to reveal answer ✿</p>
+            </div>
+          </div>
 
-              <div class="form-group" style="margin-bottom:16px;">
-                <label for="contact-email">Your Email <span style="font-size:11px; color:var(--muted); font-weight:normal;">(Required for email replies)</span></label>
-                <input type="email" id="contact-email" class="form-input" placeholder="hello@example.com" />
-              </div>
+          <div class="faq-card tilt-card" role="button" tabindex="0" data-faq-index="1" aria-label="FAQ Question 2: Technical stack and frameworks">
+            <div class="faq-butterfly-trigger" aria-hidden="true">
+              <svg class="faq-mini-butterfly" viewBox="0 0 100 80">
+                <use href="#faq-full-butterfly-def" />
+              </svg>
+            </div>
+            <div class="faq-card-content">
+              <span class="faq-category">Technical Stack</span>
+              <h3 class="faq-question">What technologies and frontend frameworks do you specialize in?</h3>
+              <p class="faq-hint">Click butterfly to reveal answer ✿</p>
+            </div>
+          </div>
 
-              <div class="form-group" style="margin-bottom:16px;">
-                <label for="contact-msg">Tell me about your idea or requirements *</label>
-                <textarea id="contact-msg" class="form-input" style="min-height:120px;" placeholder="Tell me about your idea, project, collaboration, or anything you'd like to discuss..." required></textarea>
-              </div>
+          <div class="faq-card tilt-card" role="button" tabindex="0" data-faq-index="2" aria-label="FAQ Question 3: Engineering roles and collaborations">
+            <div class="faq-butterfly-trigger" aria-hidden="true">
+              <svg class="faq-mini-butterfly" viewBox="0 0 100 80">
+                <use href="#faq-full-butterfly-def" />
+              </svg>
+            </div>
+            <div class="faq-card-content">
+              <span class="faq-category">Opportunities</span>
+              <h3 class="faq-question">Are you open to frontend engineering roles or freelance collaborations?</h3>
+              <p class="faq-hint">Click butterfly to reveal answer ✿</p>
+            </div>
+          </div>
 
-              <!-- Contact Method Choice -->
-              <div style="margin-bottom:16px;">
-                <label style="font-size:12.5px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:8px;">
-                  Preferred Contact Method
-                </label>
-                <div class="requirements-channel-picker">
-                  <button type="button" class="channel-btn active" id="channel-wa-btn" data-channel="whatsapp">
-                    <svg class="icon-inline" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-                      <path d="M17.472 14.382c-.301-.15-1.78-.879-2.056-.979-.276-.101-.476-.15-.676.15-.2.301-.776.979-.952 1.18-.175.201-.351.226-.652.075-.301-.15-1.271-.469-2.42-1.494-.894-.798-1.498-1.783-1.674-2.084-.175-.301-.019-.464.132-.614.136-.135.301-.351.451-.527.151-.175.201-.301.301-.502.101-.201.05-.376-.025-.527-.075-.15-.677-1.631-.928-2.235-.244-.588-.493-.508-.677-.518l-.578-.01c-.201 0-.527.075-.802.376-.276.301-1.053 1.029-1.053 2.508 0 1.48 1.078 2.909 1.229 3.11 0.15.201 2.122 3.24 5.141 4.544.718.31 1.278.496 1.716.635.722.23 1.378.198 1.898.12.579-.087 1.78-.727 2.031-1.43.251-.703.251-1.305.176-1.43-.075-.126-.276-.201-.577-.352z"/>
-                      <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.434 5.178L2.05 21.95l4.908-1.34A9.954 9.954 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.644 0-3.176-.484-4.468-1.318l-.32-.206-2.91.795.795-2.836-.226-.339A8.17 8.17 0 0 1 3.8 12c0-4.521 3.679-8.2 8.2-8.2s8.2 3.679 8.2 8.2-3.679 8.2-8.2 8.2z"/>
-                    </svg>
-                    <span>WhatsApp</span>
-                  </button>
-                  <button type="button" class="channel-btn" id="channel-email-btn" data-channel="email">
-                    <svg class="icon-inline" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                      <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                    <span>Email Enquiry</span>
-                  </button>
+          <div class="faq-card tilt-card" role="button" tabindex="0" data-faq-index="3" aria-label="FAQ Question 4: Motion and performance">
+            <div class="faq-butterfly-trigger" aria-hidden="true">
+              <svg class="faq-mini-butterfly" viewBox="0 0 100 80">
+                <use href="#faq-full-butterfly-def" />
+              </svg>
+            </div>
+            <div class="faq-card-content">
+              <span class="faq-category">Motion &amp; UI/UX</span>
+              <h3 class="faq-question">How do you achieve fluid motion without sacrificing web performance?</h3>
+              <p class="faq-hint">Click butterfly to reveal answer ✿</p>
+            </div>
+          </div>
+
+          <div class="faq-card tilt-card" role="button" tabindex="0" data-faq-index="4" aria-label="FAQ Question 5: Academic background">
+            <div class="faq-butterfly-trigger" aria-hidden="true">
+              <svg class="faq-mini-butterfly" viewBox="0 0 100 80">
+                <use href="#faq-full-butterfly-def" />
+              </svg>
+            </div>
+            <div class="faq-card-content">
+              <span class="faq-category">Academic Background</span>
+              <h3 class="faq-question">What is your current academic background and learning trajectory?</h3>
+              <p class="faq-hint">Click butterfly to reveal answer ✿</p>
+            </div>
+          </div>
+
+          <div class="faq-card tilt-card" role="button" tabindex="0" data-faq-index="5" aria-label="FAQ Question 6: Quick communication">
+            <div class="faq-butterfly-trigger" aria-hidden="true">
+              <svg class="faq-mini-butterfly" viewBox="0 0 100 80">
+                <use href="#faq-full-butterfly-def" />
+              </svg>
+            </div>
+            <div class="faq-card-content">
+              <span class="faq-category">Communication</span>
+              <h3 class="faq-question">How can clients or teams connect with you most effectively?</h3>
+              <p class="faq-hint">Click butterfly to reveal answer ✿</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Butterfly-Shaped Transformed Answer Overlay & Modal -->
+      <div id="faq-butterfly-modal" class="modal-backdrop faq-butterfly-modal" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="faq-active-title">
+        <div class="faq-modal-backdrop" id="faq-modal-backdrop"></div>
+        
+        <!-- Animated Flying Butterfly Transition Clone -->
+        <div id="faq-flying-butterfly" class="faq-flying-butterfly" aria-hidden="true" style="display:none;">
+          <svg viewBox="0 0 100 80" class="flying-svg" style="width:100%; height:100%;">
+            <use href="#faq-full-butterfly-def" />
+          </svg>
+        </div>
+
+        <!-- The Large, Recognizable Butterfly-Shaped Answer Panel -->
+        <div class="butterfly-wings-panel" id="butterfly-wings-panel">
+          <!-- Ambient wing glow & vector backdrop wing silhouette -->
+          <svg class="butterfly-wings-svg-bg" viewBox="0 0 800 620" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="butterflyWingFill" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#fffdfa" stop-opacity="0.98"/>
+                <stop offset="50%" stop-color="#fff2f7" stop-opacity="0.96"/>
+                <stop offset="100%" stop-color="#ffe6f0" stop-opacity="0.95"/>
+              </linearGradient>
+              <linearGradient id="butterflyWingBorder" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#d56586"/>
+                <stop offset="50%" stop-color="#ffb8cf"/>
+                <stop offset="100%" stop-color="#d56586"/>
+              </linearGradient>
+            </defs>
+            <path class="wing-path" d="M 400 120 
+              C 430 40, 560 10, 680 40 
+              C 790 70, 810 180, 750 280 
+              C 710 350, 610 360, 570 380 
+              C 650 420, 710 500, 640 570 
+              C 570 630, 480 570, 420 510 
+              C 408 495, 400 480, 400 470 
+              C 400 480, 392 495, 380 510 
+              C 320 570, 230 630, 160 570 
+              C 90 500, 150 420, 230 380 
+              C 190 360, 90 350, 50 280 
+              C -10 180, 10 70, 120 40 
+              C 240 10, 370 40, 400 120 Z" 
+              fill="url(#butterflyWingFill)" 
+              stroke="url(#butterflyWingBorder)" 
+              stroke-width="3" 
+              filter="drop-shadow(0 15px 35px rgba(213, 101, 134, 0.25))" />
+            <path class="wing-veins" d="M 400 240 Q 560 180 710 160 M 400 260 Q 600 260 720 280 M 400 320 Q 560 400 630 480 M 400 240 Q 240 180 90 160 M 400 260 Q 200 260 80 280 M 400 320 Q 240 400 170 480" 
+              stroke="var(--accent)" stroke-opacity="0.22" stroke-width="1.8" fill="none" stroke-dasharray="4 4"/>
+          </svg>
+
+          <!-- Orbiting Smaller Butterfly Close Interactive Button -->
+          <div class="orbiting-butterfly-wrap" id="orbiting-butterfly-close" role="button" tabindex="0" aria-label="Close answer panel" title="Click orbiting butterfly to close">
+            <div class="orbit-path-track" aria-hidden="true"></div>
+            <div class="orbiting-butterfly">
+              <svg viewBox="0 0 50 40" class="orbit-svg">
+                <path d="M25 18 C20 8, 8 2, 4 8 C-2 16, 12 28, 22 24 C12 26, 6 32, 11 37 C16 42, 25 28, 25 22 Z" fill="#f5a4bd"/>
+                <path d="M25 18 C30 8, 42 2, 46 8 C52 16, 38 28, 28 24 C38 26, 44 32, 39 37 C34 42, 25 28, 25 22 Z" fill="#e27595"/>
+                <circle cx="25" cy="20" r="2" fill="#5d384e"/>
+              </svg>
+              <span class="orbit-close-tag">Close ✕</span>
+            </div>
+          </div>
+
+          <!-- Top Accessible Close Button -->
+          <button type="button" class="faq-wings-close-btn" id="faq-wings-close-btn" aria-label="Close FAQ dialog">
+            <span>✕</span>
+          </button>
+
+          <!-- Inside readable content (centered inside butterfly wings) -->
+          <div class="faq-wings-content">
+            <div class="faq-active-badge" id="faq-active-category">Leadership &amp; CodeXa</div>
+            <h3 class="faq-active-question" id="faq-active-title">Question goes here</h3>
+            <div class="faq-active-divider">
+              <span class="flower-symbol">🌸</span>
+            </div>
+            <div class="faq-active-answer" id="faq-active-body">
+              Detailed answer goes here...
+            </div>
+            <div class="faq-wings-footer">
+              <span class="faq-wings-note">Press <kbd>Esc</kbd> or click the orbiting butterfly to close</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Phase 14 & Section 23: Contact Section (Social Composition Left, Envelope Form Right) -->
+    <section id="contact" class="contact-section" aria-label="Contact Amrutha">
+      <div class="contact-container reveal">
+        <div class="section-kicker" style="justify-content:center;">06 / SAY HELLO</div>
+        <h2>Let's build something <em>extraordinary</em></h2>
+        <p class="contact-desc">
+          Have an exciting project, technical leadership enquiry, or want to collaborate with CodeXa Agency? Send a message through the royal washi envelope or connect directly.
+        </p>
+
+        <div class="contact-main-grid">
+          <!-- LEFT COLUMN: Beautiful Social Contact Composition -->
+          <div class="social-contact-composition tilt-card">
+            <!-- Amrutha Profile / Identity Header -->
+            <div class="composition-header">
+              <div class="composition-avatar-frame">
+                <img src="public/assets/idcard_avatar.jpeg" alt="Amrutha Avatar" class="composition-avatar-img" />
+                <span class="composition-online-status" title="Active &amp; Open for Work"></span>
+              </div>
+              <div class="composition-meta">
+                <h3 class="composition-name">Divvela Jyoti Venkata Amrutha</h3>
+                <div class="composition-title">
+                  <span class="comp-badge-cto">CTO</span>
+                  <span class="comp-title-text">CodeXa Agency &bull; Frontend Engineer</span>
+                </div>
+                <div class="composition-location">
+                  <span>📍 Andhra Pradesh, India</span>
+                  <span class="composition-dot">•</span>
+                  <span>🌸 IST (UTC+05:30)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Status Quote / Note -->
+            <div class="composition-quote">
+              <p>&ldquo;Turning ambitious ideas into polished, high-performance web realities. Whether you need executive technical leadership or boutique creative development, let&rsquo;s talk.&rdquo;</p>
+            </div>
+
+            <!-- Direct Contact & Social Channels List -->
+            <div class="composition-channels">
+              <!-- Channel: WhatsApp -->
+              <a href="https://wa.me/919347961763?text=Hi%20Amrutha,%20I'd%20love%20to%20discuss%20a%20project%20collaboration!" target="_blank" rel="noopener noreferrer" class="comp-channel-item channel-wa" aria-label="Chat on WhatsApp">
+                <div class="channel-icon-box wa-box">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M17.472 14.382c-.301-.15-1.78-.879-2.056-.979-.276-.101-.476-.15-.676.15-.2.301-.776.979-.952 1.18-.175.201-.351.226-.652.075-.301-.15-1.271-.469-2.42-1.494-.894-.798-1.498-1.783-1.674-2.084-.175-.301-.019-.464.132-.614.136-.135.301-.351.451-.527.151-.175.201-.301.301-.502.101-.201.05-.376-.025-.527-.075-.15-.677-1.631-.928-2.235-.244-.588-.493-.508-.677-.518l-.578-.01c-.201 0-.527.075-.802.376-.276.301-1.053 1.029-1.053 2.508 0 1.48 1.078 2.909 1.229 3.11 0.15.201 2.122 3.24 5.141 4.544.718.31 1.278.496 1.716.635.722.23 1.378.198 1.898.12.579-.087 1.78-.727 2.031-1.43.251-.703.251-1.305.176-1.43-.075-.126-.276-.201-.577-.352z"/>
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.434 5.178L2.05 21.95l4.908-1.34A9.954 9.954 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.644 0-3.176-.484-4.468-1.318l-.32-.206-2.91.795.795-2.836-.226-.339A8.17 8.17 0 0 1 3.8 12c0-4.521 3.679-8.2 8.2-8.2s8.2 3.679 8.2 8.2-3.679 8.2-8.2 8.2z"/>
+                  </svg>
+                </div>
+                <div class="channel-info">
+                  <span class="channel-lbl">WhatsApp Direct</span>
+                  <span class="channel-val">+91 93479 61763</span>
+                </div>
+                <span class="channel-action-arrow">↗</span>
+              </a>
+
+              <!-- Channel: Email -->
+              <a href="mailto:amruthadivvela@gmail.com" class="comp-channel-item channel-email" aria-label="Send direct email">
+                <div class="channel-icon-box email-box">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                  </svg>
+                </div>
+                <div class="channel-info">
+                  <span class="channel-lbl">Email Address</span>
+                  <span class="channel-val">amruthadivvela@gmail.com</span>
+                </div>
+                <span class="channel-action-arrow">↗</span>
+              </a>
+
+              <!-- Channel: GitHub -->
+              <a href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer" class="comp-channel-item channel-gh" aria-label="Visit GitHub Profile">
+                <div class="channel-icon-box gh-box">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                </div>
+                <div class="channel-info">
+                  <span class="channel-lbl">GitHub Repositories</span>
+                  <span class="channel-val">@amruthadivvela-droid</span>
+                </div>
+                <span class="channel-action-arrow">↗</span>
+              </a>
+
+              <!-- Channel: LinkedIn / CodeXa -->
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="comp-channel-item channel-in" aria-label="Connect on LinkedIn">
+                <div class="channel-icon-box in-box">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                </div>
+                <div class="channel-info">
+                  <span class="channel-lbl">Professional Network</span>
+                  <span class="channel-val">Divvela Amrutha (CodeXa)</span>
+                </div>
+                <span class="channel-action-arrow">↗</span>
+              </a>
+            </div>
+
+            <!-- Quick copy actions footer -->
+            <div class="composition-footer-actions">
+              <button type="button" class="btn btn-outline btn-sm" id="copy-email-btn" title="Copy email address to clipboard">
+                <span>Copy Email</span> 📋
+              </button>
+              <button type="button" class="btn btn-outline btn-sm" id="copy-phone-btn" title="Copy phone number to clipboard">
+                <span>Copy WhatsApp</span> 💬
+              </button>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: Large, Elegant Envelope-Shaped Enquiry Form -->
+          <div class="envelope-form-wrapper tilt-card">
+            <div class="washi-envelope">
+              <!-- Envelope Flap (Triangle with Sakura Wax Seal) -->
+              <div class="envelope-flap" aria-hidden="true">
+                <svg class="envelope-flap-svg" viewBox="0 0 500 120" preserveAspectRatio="none">
+                  <path d="M0,0 L250,110 L500,0 Z" fill="var(--card-bg)" stroke="var(--border)" stroke-width="2"/>
+                </svg>
+                <div class="wax-seal" title="CodeXa Sakura Wax Seal">
+                  <span class="wax-seal-flower">🌸</span>
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-primary magnetic-btn" id="submit-enquiry-btn" style="width:100%; min-height:48px; font-size:14px; font-weight:800; justify-content:center;">
-                <span id="submit-btn-lbl">Send via WhatsApp ↗</span>
-              </button>
-            </form>
+              <!-- Envelope Paper Surface (Letter) -->
+              <div class="envelope-letter-body">
+                <div class="envelope-letter-head">
+                  <div class="letter-postage">
+                    <span class="postage-stamp">AIR MAIL ✈</span>
+                    <span class="postage-flower">✿ CodeXa</span>
+                  </div>
+                  <h3 class="letter-title">Enquiry &amp; Project Proposal</h3>
+                  <p class="letter-subtitle">Fill in the letter details below to generate your personalized visiting card and send your message directly.</p>
+                </div>
 
-            <div id="form-feedback" style="display:none; margin-top:16px; font-weight:700; color:var(--accent);"></div>
-          </div>
+                <form id="contact-form" novalidate autocomplete="off">
+                  <div class="form-row">
+                    <div class="form-group flex-1">
+                      <label for="contact-name">Your Full Name <span class="req-star">*</span></label>
+                      <input type="text" id="contact-name" class="form-input washi-input" placeholder="e.g. Maya Chen" required />
+                    </div>
+                    <div class="form-group flex-1">
+                      <label for="contact-email">Your Email Address <span class="req-star">*</span></label>
+                      <input type="email" id="contact-email" class="form-input washi-input" placeholder="e.g. maya@company.com" required />
+                    </div>
+                  </div>
 
-          <!-- Right: Dynamic Sakura Visiting Card Preview (1080 x 1350) -->
-          <div class="visiting-card-preview-panel tilt-card">
-            <div style="font-size:12.5px; font-weight:800; color:var(--accent); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:12px;">
-              Digital Visiting Card Preview 🌸
-            </div>
-            <div class="visiting-card-canvas-wrap">
-              <canvas id="visiting-card-canvas" class="visiting-card-canvas" width="1080" height="1350"></canvas>
-            </div>
-            <div class="visiting-card-actions">
-              <button type="button" class="btn btn-outline" id="download-card-btn" style="min-height:40px; padding:0 18px; font-size:12px;">
-                <span>Download Card (PNG)</span> 📥
-              </button>
-              <button type="button" class="btn btn-outline" id="share-card-btn" style="min-height:40px; padding:0 18px; font-size:12px;">
-                <span>Share Card</span> ↗
-              </button>
+                  <div class="form-group" style="margin-top:14px;">
+                    <label for="contact-msg">Project Scope, Idea or Message <span class="req-star">*</span></label>
+                    <textarea id="contact-msg" class="form-input washi-input washi-textarea" rows="4" placeholder="Describe your vision, requirements, timeline, or what you'd like to build together with Amrutha..." required></textarea>
+                  </div>
+
+                  <div class="form-group" style="margin-top:14px;">
+                    <label class="channel-choice-label">Preferred Dispatch Method</label>
+                    <div class="requirements-channel-picker">
+                      <button type="button" class="channel-btn active" id="channel-wa-btn" data-channel="whatsapp">
+                        <span>💬 WhatsApp Dispatch</span>
+                      </button>
+                      <button type="button" class="channel-btn" id="channel-email-btn" data-channel="email">
+                        <span>✉ Email Dispatch (Resend)</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Prominent Contact Me Button -->
+                  <div class="envelope-submit-wrap">
+                    <button type="submit" class="btn btn-primary btn-envelope-submit magnetic-btn" id="submit-enquiry-btn">
+                      <span class="btn-envelope-icon">✉</span>
+                      <span id="submit-btn-lbl">Contact Me</span>
+                      <span class="btn-arrow" aria-hidden="true">→</span>
+                    </button>
+                    <div class="envelope-privacy-note">
+                      <span>🌸 Generates your customized Sakura visiting card upon sending</span>
+                    </div>
+                  </div>
+                </form>
+
+                <div id="form-feedback" class="form-feedback" style="display:none;" role="status"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -913,6 +1220,48 @@
         <span class="contact-signoff">See you around! ♡</span>
       </div>
     </section>
+
+    <!-- Phase 15: Grand Cinematic Finale Section -->
+    <section id="finale" class="finale-section" aria-label="Grand Finale">
+      <div class="finale-ambient-glow" aria-hidden="true"></div>
+      
+      <!-- Canvas for butterfly flocking & cherry-blossom particle typography & dissolve -->
+      <canvas id="finale-canvas" class="finale-canvas" aria-hidden="true"></canvas>
+
+      <div class="finale-stage" id="finale-stage">
+        <div class="finale-message-container" id="finale-message-container">
+          <div class="finale-line">
+            <span class="finale-word word-thanks">Thanks</span>
+            <span class="finale-word word-for">for</span>
+            <span class="finale-word word-visiting">visiting</span>
+            <span class="finale-word word-my">my</span>
+            <span class="finale-target-slot" id="finale-target-slot">
+              <!-- Original word: portfolio -->
+              <span class="finale-word word-portfolio" id="finale-portfolio">
+                portfolio
+                <svg class="handwritten-strikethrough-svg" viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true">
+                  <path id="strikethrough-path" class="strikethrough-path" d="M 4 24 Q 45 10 95 22 T 194 18 Q 120 28 60 20" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <!-- Replacement word revealed above: world -->
+              <span class="finale-word word-world" id="finale-world" aria-hidden="true">
+                world <span class="finale-heart">♡</span>
+              </span>
+            </span>
+          </div>
+          <div class="finale-subtext" id="finale-subtext">
+            <span>May your curiosity bloom like cherry blossoms in spring ✿</span>
+          </div>
+        </div>
+
+        <!-- Floating interactive replay / pause control -->
+        <div class="finale-controls">
+          <button type="button" class="finale-control-btn" id="finale-toggle-btn" aria-label="Pause or replay cinematic loop">
+            <span id="finale-control-icon">↻ Replay Motion</span>
+          </button>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Site Footer -->
@@ -922,21 +1271,55 @@
     <a href="#top" class="back-to-top">Back to top <span aria-hidden="true">↑</span></a>
   </footer>
 
+  <!-- Dedicated Visiting Card Reveal Modal (Strictly Hidden until Contact Me Valid Input) -->
+  <div id="visiting-card-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="visiting-card-modal-title">
+    <div class="modal-card visiting-card-modal-card">
+      <button type="button" class="modal-close-btn" id="close-visiting-card-modal" aria-label="Close Visiting Card">✕</button>
+      <div class="visiting-card-modal-head">
+        <div class="section-kicker" style="justify-content:center;">VISITING CARD CREATED 🌸</div>
+        <h2 id="visiting-card-modal-title" style="font-family:var(--font-display); font-size:24px; margin:4px 0 8px;">Your Personalized Sakura Visiting Card</h2>
+        <p style="font-size:13.5px; color:var(--muted); margin:0 auto; max-width:440px;">
+          Official CodeXa Chief Technology Officer visiting card, customized with your project enquiry details.
+        </p>
+      </div>
+
+      <div class="visiting-card-canvas-wrap" style="margin:20px auto; max-width:380px;">
+        <canvas id="visiting-card-canvas" class="visiting-card-canvas" width="1080" height="1350"></canvas>
+      </div>
+
+      <div class="visiting-card-modal-actions" style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <button type="button" class="btn btn-primary" id="download-card-btn" style="min-height:46px; padding:0 22px;">
+          <span>Download High-Res (PNG)</span> 📥
+        </button>
+        <button type="button" class="btn btn-outline" id="share-card-btn" style="min-height:46px; padding:0 22px;">
+          <span>Share Visiting Card</span> ↗
+        </button>
+        <button type="button" class="btn btn-outline" id="proceed-dispatch-btn" style="min-height:46px; padding:0 22px;">
+          <span id="proceed-btn-lbl">Continue to WhatsApp 💬</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal 1: Developer ID Profile Modal (Phase 7) -->
   <div id="dev-id-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="dev-modal-title">
     <div class="modal-card dev-modal-card">
       <button type="button" class="modal-close-btn" id="close-dev-modal" aria-label="Close Profile Modal">✕</button>
       <div class="dev-modal-head">
         <div class="dev-modal-avatar">
-          <img src="public/assets/amrutha-avatar.png" alt="Amrutha Avatar" id="modal-avatar-anime" class="modal-portrait-img" />
+          <img src="public/assets/idcard_avatar.jpeg" alt="Amrutha Avatar" id="modal-avatar-anime" class="modal-portrait-img" />
           <img src="public/assets/ammu.webp" alt="Amrutha Photograph" id="modal-avatar-real" class="modal-portrait-img" />
           <canvas id="modal-pixel-loop-canvas" class="modal-pixel-canvas"></canvas>
         </div>
         <h2 id="dev-modal-title" class="dev-modal-name">Divvela Jyoti Venkata Amrutha</h2>
-        <div class="dev-modal-subtitle">Frontend Developer &bull; B.Tech Student</div>
+        <div class="dev-modal-subtitle">Chief Technology Officer (CTO) @ CodeXa Agency &bull; Frontend Developer &bull; B.Tech Student</div>
       </div>
 
       <div class="dev-modal-details">
+        <div class="dev-detail-item">
+          <span class="dev-detail-label">Executive Leadership</span>
+          <span class="dev-detail-val" style="color:var(--accent); font-weight:800;">Chief Technology Officer (CTO) @ CodeXa Agency</span>
+        </div>
         <div class="dev-detail-item">
           <span class="dev-detail-label">Institution</span>
           <span class="dev-detail-val">Narasaraopeta Engineering College</span>
@@ -2100,6 +2483,110 @@
       pixelAnimFrame = requestAnimationFrame(stepFrame);
     }
 
+    /* 8c. Developer ID Hero Portrait Hover Pixel Dissolve */
+    const heroPhotoFrame = document.getElementById('id-photo-frame');
+    const heroAnimeImg = document.getElementById('anime-portrait-img');
+    const heroRealImg = document.getElementById('real-portrait-img');
+    const heroPixelCanvas = document.getElementById('hero-pixel-canvas');
+    let heroPixelAnimFrame = null;
+    let heroCurrentState = 'anime'; // 'anime' | 'real'
+
+    function executeHeroPixelDissolve(toReal) {
+      if (!heroPixelCanvas || !heroAnimeImg || !heroRealImg) {
+        if (heroAnimeImg) heroAnimeImg.style.opacity = toReal ? '0' : '1';
+        if (heroRealImg) heroRealImg.style.opacity = toReal ? '1' : '0';
+        return;
+      }
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        heroAnimeImg.style.opacity = toReal ? '0' : '1';
+        heroRealImg.style.opacity = toReal ? '1' : '0';
+        heroCurrentState = toReal ? 'real' : 'anime';
+        return;
+      }
+
+      if (heroPixelAnimFrame) cancelAnimationFrame(heroPixelAnimFrame);
+      heroPixelCanvas.style.display = 'block';
+
+      const rect = heroPhotoFrame ? heroPhotoFrame.getBoundingClientRect() : heroPixelCanvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      heroPixelCanvas.width = (rect.width || 186) * dpr;
+      heroPixelCanvas.height = (rect.height || 160) * dpr;
+      const ctx = heroPixelCanvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+
+      const w = rect.width || 186;
+      const h = rect.height || 160;
+      const cols = 18;
+      const rows = 18;
+      const cellW = w / cols;
+      const cellH = h / rows;
+      const total = cols * rows;
+
+      const order = Array.from({ length: total }, (_, i) => i);
+      for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+
+      const duration = 520; // ms
+      const startTime = performance.now();
+
+      function stepHeroFrame(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        if (progress >= 0.5) {
+          heroAnimeImg.style.opacity = toReal ? '0' : '1';
+          heroRealImg.style.opacity = toReal ? '1' : '0';
+          heroCurrentState = toReal ? 'real' : 'anime';
+          if (heroPhotoFrame) {
+            heroPhotoFrame.classList.toggle('show-real', toReal);
+          }
+        }
+
+        ctx.clearRect(0, 0, w, h);
+        const count = Math.floor(Math.sin(progress * Math.PI) * total);
+        const alpha = Math.sin(progress * Math.PI) * 0.95;
+
+        for (let c = 0; c < count; c++) {
+          const idx = order[c];
+          const col = idx % cols;
+          const row = Math.floor(idx / cols);
+
+          ctx.fillStyle = (c % 3 === 0)
+            ? `rgba(245, 164, 189, ${alpha})`
+            : (c % 3 === 1)
+              ? `rgba(255, 230, 238, ${alpha})`
+              : `rgba(213, 101, 134, ${alpha})`;
+          ctx.fillRect(col * cellW, row * cellH, cellW - 0.5, cellH - 0.5);
+        }
+
+        if (progress < 1) {
+          heroPixelAnimFrame = requestAnimationFrame(stepHeroFrame);
+        } else {
+          heroPixelCanvas.style.display = 'none';
+          ctx.clearRect(0, 0, w, h);
+        }
+      }
+
+      heroPixelAnimFrame = requestAnimationFrame(stepHeroFrame);
+    }
+
+    if (heroPhotoFrame) {
+      heroPhotoFrame.addEventListener('mouseenter', () => {
+        if (heroCurrentState !== 'real') executeHeroPixelDissolve(true);
+      });
+      heroPhotoFrame.addEventListener('mouseleave', () => {
+        if (heroCurrentState !== 'anime') executeHeroPixelDissolve(false);
+      });
+      heroPhotoFrame.addEventListener('click', (e) => {
+        if (window.innerWidth < 768) {
+          e.stopPropagation();
+          executeHeroPixelDissolve(heroCurrentState !== 'real');
+        }
+      });
+    }
+
     /* 9. Passkey Security Gateway: Restricted Access to Separate admin.html (Phase 2 & 9) */
     const closePasskeyModal = document.getElementById('close-passkey-modal');
     const passkeyForm = document.getElementById('passkey-form');
@@ -2250,7 +2737,173 @@
       });
     }
 
-    /* 12. Requirements-First Contact Flow & 1080x1350 PNG Visiting Card Generator (Section 23, 24, 25, 26) */
+    /* ==========================================================================
+       12. BUTTERFLY TRANSFORMED FAQ INTERACTION
+       ========================================================================== */
+    const faqData = [
+      {
+        category: "Leadership & CodeXa",
+        question: "What is your role as Chief Technology Officer (CTO) at CodeXa Agency?",
+        answer: "As CTO at CodeXa Agency, I spearhead technical strategy, frontend architectural direction, and software quality across all client projects. I establish modern development standards, guide component architectures, and bridge the gap between creative visual design and scalable production engineering."
+      },
+      {
+        category: "Technical Stack",
+        question: "What technologies and frontend frameworks do you specialize in?",
+        answer: "I specialize in modern web standards: semantic HTML5, modern CSS3 (custom properties, fluid layouts, keyframe mechanics), JavaScript (ES6+), React, and Vite. I emphasize lightweight bundles, zero unnecessary dependencies, fluid 60fps animations, and cloud integrations with Supabase and Resend."
+      },
+      {
+        category: "Opportunities",
+        question: "Are you open to frontend engineering roles or freelance collaborations?",
+        answer: "Yes! I am actively open to frontend engineering roles, creative web projects, and technical leadership contracts. Whether you are building a product from scratch or elevating an existing experience, feel free to submit an enquiry via the royal envelope below."
+      },
+      {
+        category: "Motion & UI/UX",
+        question: "How do you achieve fluid motion without sacrificing web performance?",
+        answer: "I prioritize GPU-composited CSS transforms and opacity, utilize requestAnimationFrame for particle loops, optimize canvas redraw intervals, debounce pointer interactions, and strictly honor accessibility through prefers-reduced-motion media queries."
+      },
+      {
+        category: "Academic Background",
+        question: "What is your current academic background and learning trajectory?",
+        answer: "I am pursuing my B.Tech degree at Narasaraopeta Engineering College, building upon academic excellence (96.3% in Intermediate, 95% in Class X at Sri Chaitanya). I constantly blend foundational computer science theory with creative, real-world development."
+      },
+      {
+        category: "Communication",
+        question: "How can clients or teams connect with you most effectively?",
+        answer: "You can submit a message through the royal washi envelope form on this page to instantly generate your personal visiting card and message me on WhatsApp (+91 93479 61763), or send an email directly to amruthadivvela@gmail.com."
+      }
+    ];
+
+    const faqCards = document.querySelectorAll('.faq-card');
+    const faqModal = document.getElementById('faq-butterfly-modal');
+    const faqFlyingButterfly = document.getElementById('faq-flying-butterfly');
+    const butterflyWingsPanel = document.getElementById('butterfly-wings-panel');
+    const faqActiveCategory = document.getElementById('faq-active-category');
+    const faqActiveTitle = document.getElementById('faq-active-title');
+    const faqActiveBody = document.getElementById('faq-active-body');
+    const faqWingsCloseBtn = document.getElementById('faq-wings-close-btn');
+    const orbitingButterflyClose = document.getElementById('orbiting-butterfly-close');
+    const faqModalBackdrop = document.getElementById('faq-modal-backdrop');
+
+    function openFaqButterfly(index, triggerElement) {
+      const data = faqData[index];
+      if (!data || !faqModal) return;
+
+      if (faqActiveCategory) faqActiveCategory.textContent = data.category;
+      if (faqActiveTitle) faqActiveTitle.textContent = data.question;
+      if (faqActiveBody) faqActiveBody.textContent = data.answer;
+
+      // Position flying butterfly at trigger and animate to center
+      if (triggerElement && faqFlyingButterfly && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const rect = triggerElement.getBoundingClientRect();
+        faqFlyingButterfly.style.display = 'block';
+        faqFlyingButterfly.style.left = `${rect.left + rect.width / 2 - 30}px`;
+        faqFlyingButterfly.style.top = `${rect.top + rect.height / 2 - 25}px`;
+        faqFlyingButterfly.style.transform = 'scale(0.8) rotate(0deg)';
+        faqFlyingButterfly.style.opacity = '1';
+
+        setTimeout(() => {
+          faqFlyingButterfly.style.left = `${window.innerWidth / 2 - 30}px`;
+          faqFlyingButterfly.style.top = `${window.innerHeight / 2 - 25}px`;
+          faqFlyingButterfly.style.transform = 'scale(2.2) rotate(15deg)';
+        }, 20);
+
+        setTimeout(() => {
+          faqFlyingButterfly.style.opacity = '0';
+          setTimeout(() => { faqFlyingButterfly.style.display = 'none'; }, 300);
+          openModal(faqModal);
+        }, 420);
+      } else {
+        openModal(faqModal);
+      }
+    }
+
+    function closeFaqButterfly() {
+      if (faqModal) closeModal(faqModal);
+    }
+
+    faqCards.forEach((card, idx) => {
+      card.addEventListener('click', (e) => {
+        const trigger = card.querySelector('.faq-butterfly-trigger') || card;
+        openFaqButterfly(idx, trigger);
+      });
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const trigger = card.querySelector('.faq-butterfly-trigger') || card;
+          openFaqButterfly(idx, trigger);
+        }
+      });
+    });
+
+    if (faqWingsCloseBtn) faqWingsCloseBtn.addEventListener('click', closeFaqButterfly);
+    if (orbitingButterflyClose) {
+      orbitingButterflyClose.addEventListener('click', closeFaqButterfly);
+      orbitingButterflyClose.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          closeFaqButterfly();
+        }
+      });
+    }
+    if (faqModalBackdrop) faqModalBackdrop.addEventListener('click', closeFaqButterfly);
+    if (faqModal) {
+      faqModal.addEventListener('click', (e) => {
+        if (e.target === faqModal || e.target === faqModalBackdrop) {
+          closeFaqButterfly();
+        }
+      });
+    }
+
+    // Keyboard Escape handler for all modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (faqModal && !faqModal.hidden) closeFaqButterfly();
+        const visitingCardModal = document.getElementById('visiting-card-modal');
+        if (visitingCardModal && !visitingCardModal.hidden) closeModal(visitingCardModal);
+        const devModal = document.getElementById('dev-id-modal');
+        if (devModal && !devModal.hidden) closeModal(devModal);
+        const resumeM = document.getElementById('resume-modal');
+        if (resumeM && !resumeM.hidden) closeModal(resumeM);
+      }
+    });
+
+    /* ==========================================================================
+       13. SOCIAL CONTACT COMPOSITION & QUICK COPY BUTTONS
+       ========================================================================== */
+    const copyEmailBtn = document.getElementById('copy-email-btn');
+    const copyPhoneBtn = document.getElementById('copy-phone-btn');
+
+    if (copyEmailBtn) {
+      copyEmailBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('amruthadivvela@gmail.com');
+          copyEmailBtn.innerHTML = '<span>Copied! ♡</span> ✓';
+          setTimeout(() => {
+            copyEmailBtn.innerHTML = '<span>Copy Email</span> 📋';
+          }, 2000);
+        } catch (e) {
+          window.location.href = 'mailto:amruthadivvela@gmail.com';
+        }
+      });
+    }
+
+    if (copyPhoneBtn) {
+      copyPhoneBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('+91 93479 61763');
+          copyPhoneBtn.innerHTML = '<span>Copied! ♡</span> ✓';
+          setTimeout(() => {
+            copyPhoneBtn.innerHTML = '<span>Copy WhatsApp</span> 💬';
+          }, 2000);
+        } catch (e) {
+          window.open('https://wa.me/919347961763', '_blank');
+        }
+      });
+    }
+
+    /* ==========================================================================
+       14. ENVELOPE ENQUIRY FORM & DEDICATED VISITING CARD REVEAL MODAL
+       ========================================================================== */
     const contactForm = document.getElementById('contact-form');
     const reqNameInput = document.getElementById('contact-name');
     const reqEmailInput = document.getElementById('contact-email');
@@ -2260,30 +2913,41 @@
     const submitEnquiryBtn = document.getElementById('submit-enquiry-btn');
     const submitBtnLbl = document.getElementById('submit-btn-lbl');
     const formFeedback = document.getElementById('form-feedback');
+    const visitingCardModal = document.getElementById('visiting-card-modal');
+    const closeVisitingCardModal = document.getElementById('close-visiting-card-modal');
     const visitingCardCanvas = document.getElementById('visiting-card-canvas');
     const downloadCardBtn = document.getElementById('download-card-btn');
     const shareCardBtn = document.getElementById('share-card-btn');
+    const proceedDispatchBtn = document.getElementById('proceed-dispatch-btn');
+    const proceedBtnLbl = document.getElementById('proceed-btn-lbl');
 
     let activeContactChannel = 'whatsapp';
 
-    // Channel Selection Toggle
     if (channelWaBtn && channelEmailBtn) {
       channelWaBtn.addEventListener('click', () => {
         activeContactChannel = 'whatsapp';
         channelWaBtn.classList.add('active');
         channelEmailBtn.classList.remove('active');
-        if (submitBtnLbl) submitBtnLbl.textContent = 'Send via WhatsApp ↗';
+        if (submitBtnLbl) submitBtnLbl.textContent = 'Contact Me via WhatsApp';
+        if (proceedBtnLbl) proceedBtnLbl.textContent = 'Continue to WhatsApp 💬';
       });
 
       channelEmailBtn.addEventListener('click', () => {
         activeContactChannel = 'email';
         channelEmailBtn.classList.add('active');
         channelWaBtn.classList.remove('active');
-        if (submitBtnLbl) submitBtnLbl.textContent = 'Send Email Enquiry ✉';
+        if (submitBtnLbl) submitBtnLbl.textContent = 'Contact Me via Email';
+        if (proceedBtnLbl) proceedBtnLbl.textContent = 'Continue to Email ✉';
       });
     }
 
-    // High-Resolution 1080 x 1350 Visiting Card Generator
+    if (closeVisitingCardModal) {
+      closeVisitingCardModal.addEventListener('click', () => {
+        closeModal(visitingCardModal);
+      });
+    }
+
+    // High-Resolution 1080 x 1350 Official CodeXa Visiting Card Generator
     function renderVisitingCard() {
       if (!visitingCardCanvas) return;
       const ctx = visitingCardCanvas.getContext('2d');
@@ -2298,7 +2962,7 @@
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, w, h);
 
-      // Subtle Decorative Grid & Stars
+      // Subtle Decorative Grid
       ctx.strokeStyle = 'rgba(213, 101, 134, 0.08)';
       ctx.lineWidth = 1;
       for (let x = 60; x < w; x += 60) {
@@ -2314,12 +2978,11 @@
         ctx.stroke();
       }
 
-      // Elegant Outer Card Border
+      // Outer & Inner Borders
       ctx.strokeStyle = '#d56586';
       ctx.lineWidth = 6;
       ctx.strokeRect(50, 50, w - 100, h - 100);
 
-      // Inner Delicate Gold / Rose Border
       ctx.strokeStyle = 'rgba(230, 188, 88, 0.7)';
       ctx.lineWidth = 2.5;
       ctx.strokeRect(62, 62, w - 124, h - 124);
@@ -2355,69 +3018,70 @@
 
       ctx.fillStyle = '#6b4b58';
       ctx.font = '600 28px Outfit, sans-serif';
-      ctx.fillText('Frontend Developer • Creative Technologist', w / 2, 225);
+      ctx.fillText('Chief Technology Officer @ CodeXa Agency', w / 2, 222);
 
-      // Decorative Badge / Banner
+      ctx.fillStyle = '#8f6e7c';
+      ctx.font = '500 22px Outfit, sans-serif';
+      ctx.fillText('Frontend Engineer • Creative Web Architect', w / 2, 258);
+
+      // Decorative Badge
       ctx.fillStyle = 'rgba(213, 101, 134, 0.12)';
       ctx.beginPath();
-      ctx.roundRect(w / 2 - 270, 260, 540, 50, 25);
+      ctx.roundRect(w / 2 - 270, 290, 540, 46, 23);
       ctx.fill();
 
       ctx.fillStyle = '#ba5372';
-      ctx.font = 'bold 22px Outfit, sans-serif';
-      ctx.fillText('A LITTLE NOTE FROM YOUR VISITOR', w / 2, 293);
+      ctx.font = 'bold 20px Outfit, sans-serif';
+      ctx.fillText('OFFICIAL DIGITAL VISITING CARD & ENQUIRY', w / 2, 320);
 
       // Content Box (Cream Card Background)
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.88)';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
       ctx.beginPath();
-      ctx.roundRect(100, 360, w - 200, 720, 28);
+      ctx.roundRect(100, 370, w - 200, 710, 28);
       ctx.fill();
       ctx.strokeStyle = 'rgba(213, 101, 134, 0.22)';
       ctx.lineWidth = 2;
       ctx.stroke();
 
       // Visitor Info
-      const visitorName = (reqNameInput && reqNameInput.value.trim()) || 'A Kind Visitor';
-      const visitorEmail = (reqEmailInput && reqEmailInput.value.trim()) || 'Not provided';
-      const requirements = (reqMsgInput && reqMsgInput.value.trim()) || 'Looking to connect and discuss frontend web development, design ideas, or creative collaborations! 🌸';
+      const visitorName = (reqNameInput && reqNameInput.value.trim()) || 'Kind Visitor';
+      const visitorEmail = (reqEmailInput && reqEmailInput.value.trim()) || 'amruthadivvela@gmail.com';
+      const requirements = (reqMsgInput && reqMsgInput.value.trim()) || 'Exploring opportunities for creative web engineering, frontend architecture, and technical collaborations. 🌸';
 
       ctx.textAlign = 'left';
       ctx.fillStyle = '#ba5372';
-      ctx.font = 'bold 26px Outfit, sans-serif';
-      ctx.fillText('FROM:', 150, 435);
+      ctx.font = 'bold 24px Outfit, sans-serif';
+      ctx.fillText('COLLABORATION ENQUIRY FROM:', 150, 440);
 
       ctx.fillStyle = '#2b1c24';
       ctx.font = 'bold 36px Outfit, sans-serif';
-      ctx.fillText(visitorName, 150, 485);
+      ctx.fillText(visitorName, 150, 490);
 
-      if (visitorEmail !== 'Not provided') {
-        ctx.fillStyle = '#8f6e7c';
-        ctx.font = '500 24px Outfit, sans-serif';
-        ctx.fillText(`Email: ${visitorEmail}`, 150, 528);
-      }
+      ctx.fillStyle = '#8f6e7c';
+      ctx.font = '500 24px Outfit, sans-serif';
+      ctx.fillText(`Contact: ${visitorEmail}`, 150, 532);
 
       // Divider line
       ctx.strokeStyle = 'rgba(213, 101, 134, 0.18)';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.moveTo(150, 565);
-      ctx.lineTo(w - 150, 565);
+      ctx.moveTo(150, 570);
+      ctx.lineTo(w - 150, 570);
       ctx.stroke();
 
       // Requirements Heading & Wrapped Text
       ctx.fillStyle = '#ba5372';
-      ctx.font = 'bold 26px Outfit, sans-serif';
-      ctx.fillText('REQUIREMENTS & MESSAGE:', 150, 625);
+      ctx.font = 'bold 24px Outfit, sans-serif';
+      ctx.fillText('PROJECT PROPOSAL & MESSAGE:', 150, 625);
 
       ctx.fillStyle = '#3a2530';
-      ctx.font = '400 28px Outfit, sans-serif';
+      ctx.font = '400 27px Outfit, sans-serif';
       
-      // Text Wrapping Helper
       const maxLineWidth = w - 300;
-      const lineHeight = 44;
+      const lineHeight = 42;
       const words = requirements.split(/\s+/);
       let line = '';
-      let curY = 680;
+      let curY = 675;
       const maxY = 1010;
 
       for (let n = 0; n < words.length; n++) {
@@ -2443,20 +3107,13 @@
       ctx.textAlign = 'center';
       ctx.fillStyle = '#d56586';
       ctx.font = 'bold 32px Caveat, cursive, sans-serif';
-      ctx.fillText('Thank you for visiting! ♡', w / 2, 1150);
+      ctx.fillText('Thank you for connecting! ♡', w / 2, 1150);
 
       ctx.fillStyle = '#7a5a68';
       ctx.font = '600 22px Outfit, sans-serif';
-      ctx.fillText("Amrutha's Creative World • github.com/amruthadivvela-droid", w / 2, 1205);
+      ctx.fillText("Divvela Amrutha • WhatsApp: +91 93479 61763 • CodeXa Agency", w / 2, 1205);
     }
 
-    // Live Render on Input
-    if (reqNameInput) reqNameInput.addEventListener('input', renderVisitingCard);
-    if (reqEmailInput) reqEmailInput.addEventListener('input', renderVisitingCard);
-    if (reqMsgInput) reqMsgInput.addEventListener('input', renderVisitingCard);
-    window.addEventListener('load', renderVisitingCard);
-
-    // Download Digital Visiting Card PNG
     function downloadVisitingCardPng() {
       if (!visitingCardCanvas) return;
       visitingCardCanvas.toBlob(blob => {
@@ -2475,107 +3132,241 @@
       downloadCardBtn.addEventListener('click', downloadVisitingCardPng);
     }
 
-    // Share Visiting Card (Native Share API with fallback)
     if (shareCardBtn) {
       shareCardBtn.addEventListener('click', async () => {
         if (!visitingCardCanvas) return;
         visitingCardCanvas.toBlob(async blob => {
           if (!blob) return;
           const cardFile = new File([blob], 'Amrutha_Visiting_Card.png', { type: 'image/png' });
-          const shareText = `Hi Amrutha! Here are my requirements from ${(reqNameInput && reqNameInput.value) || 'a visitor'}.`;
+          const shareText = `Official CodeXa Visiting Card for ${(reqNameInput && reqNameInput.value) || 'a visitor'} - Amrutha Portfolio`;
 
           if (navigator.canShare && navigator.canShare({ files: [cardFile] })) {
             try {
               await navigator.share({
-                title: 'Amrutha Portfolio Note',
+                title: 'Amrutha Visiting Card',
                 text: shareText,
                 files: [cardFile]
               });
             } catch (err) {}
           } else {
             downloadVisitingCardPng();
-            if (formFeedback) {
-              formFeedback.style.display = 'block';
-              formFeedback.style.color = 'var(--accent)';
-              formFeedback.textContent = 'Digital Visiting Card downloaded! You can attach it directly to your message. 🌸';
-            }
           }
         }, 'image/png');
       });
     }
 
-    // Form Submission: Requirements First with WhatsApp (+91 90323 16792) and Email
+    // Form Submission: Validates Input and ONLY REVEALS VISITING CARD PREVIEW MODAL UPON VALID INPUT
     if (contactForm) {
-      contactForm.addEventListener('submit', async (e) => {
+      contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const name = (reqNameInput && reqNameInput.value.trim()) || '';
         const email = (reqEmailInput && reqEmailInput.value.trim()) || '';
-        const requirements = (reqMsgInput && reqMsgInput.value.trim()) || '';
+        const message = (reqMsgInput && reqMsgInput.value.trim()) || '';
 
-        if (!name || !requirements) {
-          formFeedback.style.display = 'block';
-          formFeedback.style.color = '#e0526e';
-          formFeedback.textContent = 'Please provide your name and requirements! ♡';
+        if (!name || !message) {
+          if (formFeedback) {
+            formFeedback.style.display = 'block';
+            formFeedback.style.color = '#e0526e';
+            formFeedback.textContent = 'Please fill out your name and project message to proceed! ♡';
+          }
           return;
         }
 
-        if (activeContactChannel === 'whatsapp') {
-          // WhatsApp contact: +91 90323 16792 (clean digits: 919032316792)
-          const waPhone = '919032316792';
-          const prefilledMsg = `Hi Amrutha! I visited your portfolio and would like to connect.\n\nName: ${name}${email ? `\nEmail: ${email}` : ''}\n\nMy Requirements:\n${requirements}\n\nI'd love to discuss this with you.\n\nThanks!`;
-
-          // If browser can share image natively, offer Web Share
-          visitingCardCanvas.toBlob(async blob => {
-            let shared = false;
-            if (blob && navigator.canShare) {
-              const file = new File([blob], 'Amrutha_Visiting_Card.png', { type: 'image/png' });
-              if (navigator.canShare({ files: [file] })) {
-                try {
-                  await navigator.share({
-                    title: 'Portfolio Requirements Note',
-                    text: prefilledMsg,
-                    files: [file]
-                  });
-                  shared = true;
-                } catch (shareErr) {}
-              }
-            }
-
-            // Fallback or explicit WhatsApp opening
-            if (!shared) {
-              downloadVisitingCardPng();
-              const waUrl = `https://wa.me/${waPhone}?text=${encodeURIComponent(prefilledMsg)}`;
-              window.open(waUrl, '_blank', 'noopener,noreferrer');
-            }
-
-            formFeedback.style.display = 'block';
-            formFeedback.style.color = 'var(--accent)';
-            formFeedback.textContent = 'Opening WhatsApp with your requirements note... Thank you! ✿';
-          }, 'image/png');
-
-        } else {
-          // Email channel
-          if (!email || !email.includes('@')) {
+        if (activeContactChannel === 'email' && (!email || !email.includes('@'))) {
+          if (formFeedback) {
             formFeedback.style.display = 'block';
             formFeedback.style.color = '#e0526e';
-            formFeedback.textContent = 'Please provide a valid email address for replies! ♡';
-            return;
+            formFeedback.textContent = 'Please provide a valid email address so I can reply! ♡';
           }
+          return;
+        }
 
-          formFeedback.style.display = 'block';
-          formFeedback.style.color = 'var(--accent)';
-          formFeedback.textContent = 'Sending your requirements enquiry... 🌸';
+        if (formFeedback) {
+          formFeedback.style.display = 'none';
+        }
 
-          // Send via mailto or backend
-          const subject = encodeURIComponent(`Portfolio Enquiry from ${name}`);
-          const body = encodeURIComponent(`Hi Amrutha,\n\nName: ${name}\nEmail: ${email}\n\nRequirements:\n${requirements}\n\nSent from Amrutha Sakura Creative Portfolio`);
-          window.location.href = `mailto:amrutha.divvela@example.com?subject=${subject}&body=${body}`;
+        // Render card and open modal
+        renderVisitingCard();
+        openModal(visitingCardModal);
 
-          formFeedback.textContent = '✓ Thank you! Opening your email client to dispatch your message. ✿';
-          downloadVisitingCardPng();
+        // Configure proceed button
+        if (proceedDispatchBtn) {
+          proceedDispatchBtn.onclick = () => {
+            if (activeContactChannel === 'whatsapp') {
+              const waPhone = '919347961763';
+              const prefilledMsg = `Hi Amrutha! I came across your portfolio and would love to collaborate.\n\nName: ${name}\nEmail: ${email}\n\nProject Scope & Message:\n${message}\n\nLooking forward to discussing! 🌸`;
+              const waUrl = `https://wa.me/${waPhone}?text=${encodeURIComponent(prefilledMsg)}`;
+              window.open(waUrl, '_blank', 'noopener,noreferrer');
+            } else {
+              const subject = encodeURIComponent(`CodeXa Collaboration Enquiry from ${name}`);
+              const body = encodeURIComponent(`Hi Amrutha,\n\nName: ${name}\nEmail: ${email}\n\nProject Message:\n${message}\n\nSent via Sakura Portfolio`);
+              window.location.href = `mailto:amruthadivvela@gmail.com?subject=${subject}&body=${body}`;
+            }
+          };
         }
       });
     }
+
+    /* ==========================================================================
+       15. GRAND CINEMATIC FINALE SECTION (PETAL & BUTTERFLY TYPOGRAPHY LOOP)
+       ========================================================================== */
+    const finaleCanvas = document.getElementById('finale-canvas');
+    const finaleStrikethrough = document.getElementById('strikethrough-path');
+    const finalePortfolio = document.getElementById('finale-portfolio');
+    const finaleWorld = document.getElementById('finale-world');
+    const finaleMessageContainer = document.getElementById('finale-message-container');
+    const finaleToggleBtn = document.getElementById('finale-toggle-btn');
+    const finaleControlIcon = document.getElementById('finale-control-icon');
+
+    let isFinaleLoopActive = true;
+    let finaleAnimFrame = null;
+    let finaleCycleTimeout = null;
+
+    function initCinematicFinale() {
+      if (!finaleCanvas) return;
+      const ctx = finaleCanvas.getContext('2d');
+      let w = (finaleCanvas.width = finaleCanvas.offsetWidth || window.innerWidth);
+      let h = (finaleCanvas.height = finaleCanvas.offsetHeight || 520);
+
+      window.addEventListener('resize', () => {
+        if (!finaleCanvas) return;
+        w = finaleCanvas.width = finaleCanvas.offsetWidth || window.innerWidth;
+        h = finaleCanvas.height = finaleCanvas.offsetHeight || 520;
+      });
+
+      // Particle system for butterflies and cherry blossom petals
+      const particleCount = 140;
+      const particles = [];
+      const colors = ['#f5a4bd', '#ffd5e2', '#d56586', '#ffffff', '#ff9ebb'];
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 1.8,
+          vy: Math.random() * 1.5 + 0.6,
+          size: Math.random() * 8 + 6,
+          rot: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 0.04,
+          isButterfly: i % 4 === 0,
+          wingPhase: Math.random() * Math.PI * 2,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: Math.random() * 0.7 + 0.3
+        });
+      }
+
+      function drawFinaleParticles() {
+        if (!isFinaleLoopActive) return;
+        ctx.clearRect(0, 0, w, h);
+
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.rotSpeed;
+          p.wingPhase += 0.15;
+
+          if (p.x < -40) p.x = w + 40;
+          if (p.x > w + 40) p.x = -40;
+          if (p.y > h + 40) {
+            p.y = -40;
+            p.x = Math.random() * w;
+          }
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.globalAlpha = p.alpha;
+
+          if (p.isButterfly) {
+            // Draw miniature animated fluttering butterfly
+            const wingScale = Math.sin(p.wingPhase);
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.ellipse(-p.size * 0.5 * wingScale, -p.size * 0.3, p.size * 0.5, p.size * 0.3, 0, 0, Math.PI * 2);
+            ctx.ellipse(p.size * 0.5 * wingScale, -p.size * 0.3, p.size * 0.5, p.size * 0.3, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#5d384e';
+            ctx.fillRect(-1, -p.size * 0.4, 2, p.size * 0.8);
+          } else {
+            // Draw delicate cherry blossom petal
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.ellipse(0, 0, p.size * 0.5, p.size, p.rot, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          ctx.restore();
+        });
+
+        finaleAnimFrame = requestAnimationFrame(drawFinaleParticles);
+      }
+
+      function runCinematicCycle() {
+        if (!isFinaleLoopActive) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          if (finaleStrikethrough) finaleStrikethrough.classList.add('active');
+          if (finaleWorld) finaleWorld.classList.add('active');
+          if (finalePortfolio) finalePortfolio.style.opacity = '0.35';
+          return;
+        }
+
+        // Phase 1: Reconstruct original phrase: "Thanks for visiting my portfolio"
+        if (finaleMessageContainer) finaleMessageContainer.style.opacity = '1';
+        if (finaleStrikethrough) finaleStrikethrough.classList.remove('active');
+        if (finaleWorld) finaleWorld.classList.remove('active');
+        if (finalePortfolio) finalePortfolio.style.opacity = '1';
+
+        // Phase 2: Handwritten Strike-through after 2.8s
+        finaleCycleTimeout = setTimeout(() => {
+          if (!isFinaleLoopActive) return;
+          if (finaleStrikethrough) finaleStrikethrough.classList.add('active');
+
+          // Phase 3: Reveal "world ♡" after 0.9s
+          finaleCycleTimeout = setTimeout(() => {
+            if (!isFinaleLoopActive) return;
+            if (finaleWorld) finaleWorld.classList.add('active');
+            if (finalePortfolio) finalePortfolio.style.opacity = '0.35';
+
+            // Phase 4: Settle & hold for 3.2s
+            finaleCycleTimeout = setTimeout(() => {
+              if (!isFinaleLoopActive) return;
+
+              // Phase 5: Dissolve phrase into butterflies and petals
+              if (finaleMessageContainer) finaleMessageContainer.style.opacity = '0';
+
+              // Phase 6: Repeat cycle seamlessly
+              finaleCycleTimeout = setTimeout(() => {
+                if (!isFinaleLoopActive) return;
+                runCinematicCycle();
+              }, 1200);
+            }, 3200);
+          }, 900);
+        }, 2800);
+      }
+
+      drawFinaleParticles();
+      runCinematicCycle();
+
+      if (finaleToggleBtn) {
+        finaleToggleBtn.addEventListener('click', () => {
+          isFinaleLoopActive = !isFinaleLoopActive;
+          if (isFinaleLoopActive) {
+            finaleControlIcon.textContent = '⏸ Pause Motion';
+            drawFinaleParticles();
+            runCinematicCycle();
+          } else {
+            finaleControlIcon.textContent = '↻ Resume Motion';
+            if (finaleCycleTimeout) clearTimeout(finaleCycleTimeout);
+            if (finaleAnimFrame) cancelAnimationFrame(finaleAnimFrame);
+            if (finaleMessageContainer) finaleMessageContainer.style.opacity = '1';
+            if (finaleStrikethrough) finaleStrikethrough.classList.add('active');
+            if (finaleWorld) finaleWorld.classList.add('active');
+          }
+        });
+      }
+    }
+
+    initCinematicFinale();
 
     /* 13. Scroll Reveals & Navigation Active Spy */
     if ('IntersectionObserver' in window) {
