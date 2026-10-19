@@ -1,5 +1,30 @@
 import { defineConfig, loadEnv } from "vite";
+import { resolve } from "node:path";
 import contactHandler from "./api/contact.js";
+import adminLoginHandler from "./api/admin/login.js";
+import adminSessionHandler from "./api/admin/session.js";
+import adminLogoutHandler from "./api/admin/logout.js";
+import adminContentHandler from "./api/admin/content.js";
+import adminSkillsHandler from "./api/admin/skills.js";
+import adminProjectsHandler from "./api/admin/projects.js";
+import publicProfileHandler from "./api/public/profile.js";
+import publicSkillsHandler from "./api/public/skills.js";
+import publicProjectsHandler from "./api/public/projects.js";
+import publicFaqsHandler from "./api/public/faqs.js";
+
+const apiRoutes = {
+  "/api/contact": contactHandler,
+  "/api/admin/login": adminLoginHandler,
+  "/api/admin/session": adminSessionHandler,
+  "/api/admin/logout": adminLogoutHandler,
+  "/api/admin/content": adminContentHandler,
+  "/api/admin/skills": adminSkillsHandler,
+  "/api/admin/projects": adminProjectsHandler,
+  "/api/public/profile": publicProfileHandler,
+  "/api/public/skills": publicSkillsHandler,
+  "/api/public/projects": publicProjectsHandler,
+  "/api/public/faqs": publicFaqsHandler
+};
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
@@ -10,52 +35,91 @@ export default defineConfig(({ mode }) => {
       port: 5173,
       host: true
     },
-  plugins: [
-    {
-      name: "api-contact-middleware",
-      configureServer(server) {
-        server.middlewares.use(async (req, res, next) => {
-          if (req.url?.startsWith("/api/contact")) {
-            // Buffer POST body
-            if (req.method === "POST") {
-              let bodyStr = "";
-              req.on("data", chunk => {
-                bodyStr += chunk;
-              });
-              req.on("end", async () => {
-                try {
-                  req.body = bodyStr ? JSON.parse(bodyStr) : {};
-                } catch {
-                  req.body = bodyStr;
-                }
+    build: {
+      outDir: "dist",
+      rollupOptions: {
+        input: {
+          main: resolve(process.cwd(), "index.html"),
+          admin: resolve(process.cwd(), "admin.html"),
+          standalone: resolve(process.cwd(), "standalone.html")
+        }
+      }
+    },
+    plugins: [
+      {
+        name: "api-dev-middleware",
+        configureServer(server) {
+          server.middlewares.use(async (req, res, next) => {
+            const urlPath = req.url ? req.url.split("?")[0] : "";
+            const handler = apiRoutes[urlPath];
 
-                // Add standard Express-like helpers if needed
+            if (handler) {
+              // Add helper methods if not present
+              if (!res.status) {
                 res.status = function (code) {
                   this.statusCode = code;
                   return this;
                 };
+              }
+              if (!res.json) {
                 res.json = function (data) {
                   this.setHeader("Content-Type", "application/json");
                   this.end(JSON.stringify(data));
                   return this;
                 };
+              }
 
-                await contactHandler(req, res);
-              });
-              return;
-            } else if (req.method === "OPTIONS") {
-              res.setHeader("Access-Control-Allow-Origin", "*");
-              res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-              res.setHeader("Access-Control-Allow-Headers", "Content-Type, Idempotency-Key");
-              res.statusCode = 200;
-              res.end();
+              // Parse query
+              const queryString = req.url && req.url.includes("?") ? req.url.split("?")[1] : "";
+              const searchParams = new URLSearchParams(queryString);
+              req.query = Object.fromEntries(searchParams.entries());
+
+              // Handle OPTIONS
+              if (req.method === "OPTIONS") {
+                res.setHeader("Access-Control-Allow-Origin", "*");
+                res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+                res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Idempotency-Key");
+                res.statusCode = 200;
+                res.end();
+                return;
+              }
+
+              // Handle POST/PUT/DELETE bodies
+              if (req.method === "POST" || req.method === "PUT" || req.method === "DELETE") {
+                let bodyStr = "";
+                req.on("data", chunk => {
+                  bodyStr += chunk;
+                });
+                req.on("end", async () => {
+                  try {
+                    req.body = bodyStr ? JSON.parse(bodyStr) : {};
+                  } catch {
+                    req.body = bodyStr;
+                  }
+                  try {
+                    await handler(req, res);
+                  } catch (err) {
+                    console.error(`[API Handler Error] ${urlPath}`, err);
+                    res.status(500).json({ error: err.message });
+                  }
+                });
+                return;
+              }
+
+              // Handle GET
+              try {
+                await handler(req, res);
+              } catch (err) {
+                console.error(`[API Handler Error] ${urlPath}`, err);
+                res.status(500).json({ error: err.message });
+              }
               return;
             }
-          }
-          next();
-        });
+
+            next();
+          });
+        }
       }
-    }
-  ]
-};
+    ]
+  };
 });

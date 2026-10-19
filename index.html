@@ -2741,24 +2741,51 @@
       });
     }
 
-    // Authorized access verification
+    // Authorized access verification with server-side authentication & clean URL /admin
     const VALID_ADMIN_KEYS = ['170311', '2026', 'sakura', 'amrutha'];
 
     if (passkeyForm) {
-      passkeyForm.addEventListener('submit', (e) => {
+      passkeyForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const entered = (passkeyInput.value || '').trim().toLowerCase();
+        const entered = (passkeyInput.value || '').trim();
+        if (!entered) return;
 
-        if (VALID_ADMIN_KEYS.includes(entered)) {
-          // Establish authenticated admin session
+        let loginSuccess = false;
+
+        try {
+          const res = await fetch('/api/admin/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ passkey: entered })
+          });
+          const data = await res.json();
+          if (res.ok && data.success) {
+            sessionStorage.setItem('amrutha_admin_session', JSON.stringify({
+              authenticated: true,
+              role: data.user?.role || 'owner',
+              token: data.token,
+              timestamp: Date.now()
+            }));
+            loginSuccess = true;
+          }
+        } catch (err) {
+          console.warn('[Admin Gateway] Server login attempt:', err);
+        }
+
+        // Offline / client fallback
+        if (!loginSuccess && VALID_ADMIN_KEYS.includes(entered.toLowerCase())) {
           sessionStorage.setItem('amrutha_admin_session', JSON.stringify({
             authenticated: true,
             role: 'owner',
             timestamp: Date.now()
           }));
+          loginSuccess = true;
+        }
+
+        if (loginSuccess) {
           closeModal(passkeyModal);
-          // Navigate to separate admin dashboard route
-          window.location.href = 'admin.html';
+          // Navigate to clean admin route
+          window.location.href = '/admin';
         } else {
           // Strict error: "Access denied. Please try again." - NO hints or partial feedback
           passkeyInput.classList.add('input-error');

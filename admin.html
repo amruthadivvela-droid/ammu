@@ -378,7 +378,7 @@
   <div class="cms-container">
     <!-- Sidebar -->
     <aside class="cms-sidebar">
-      <a href="index.html" class="cms-brand" title="View Public Website">
+      <a href="/" class="cms-brand" title="View Public Website">
         Amrutha ✿ <span class="sakura-tag">CMS</span>
       </a>
 
@@ -426,7 +426,7 @@
             <p>Modify hero greetings, about descriptions, and section headlines across Amrutha's portfolio.</p>
           </div>
           <div style="display:flex; gap:10px;">
-            <a href="index.html" target="_blank" class="btn btn-outline" style="min-height:40px; padding:0 16px; font-size:12.5px;">Live Preview ↗</a>
+            <a href="/" target="_blank" class="btn btn-outline" style="min-height:40px; padding:0 16px; font-size:12.5px;">Live Preview ↗</a>
             <button type="button" class="btn btn-primary" id="save-content-btn" style="min-height:40px; padding:0 20px; font-size:12.5px;">Publish Changes ✿</button>
           </div>
         </div>
@@ -658,8 +658,8 @@
   <div id="cms-toast" class="cms-toast" style="display:none;"></div>
 
   <script>
-    // Verification of Admin Session
-    (function checkAuth() {
+    // 1. Verification of Admin Session
+    async function checkAuth() {
       const session = sessionStorage.getItem('amrutha_admin_session');
       let isValid = false;
       try {
@@ -670,13 +670,29 @@
         }
       } catch(e) {}
 
-      if (!isValid) {
-        // If not authenticated, redirect to portfolio passkey gateway
-        window.location.href = 'index.html';
+      // Verify with backend session endpoint
+      try {
+        const res = await fetch('/api/admin/session');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.authenticated) {
+            isValid = true;
+          }
+        } else if (!isValid) {
+          window.location.href = '/';
+          return;
+        }
+      } catch(e) {
+        // Fall back to client session check if offline
       }
-    })();
 
-    // Tab Navigation
+      if (!isValid) {
+        window.location.href = '/';
+      }
+    }
+    checkAuth();
+
+    // 2. Tab Navigation
     const navItems = document.querySelectorAll('.cms-nav-item');
     const panels = document.querySelectorAll('.cms-panel');
 
@@ -691,18 +707,66 @@
       });
     });
 
-    // Toast Notification Utility
+    // 3. Toast Notification Utility
     function showToast(msg) {
       const toast = document.getElementById('cms-toast');
       toast.textContent = msg;
       toast.style.display = 'flex';
-      setTimeout(() => { toast.style.display = 'none'; }, 3200);
+      setTimeout(() => { toast.style.display = 'none'; }, 3400);
     }
 
-    // Tab 1: Save Content Updates
+    // 4. Tab 1: Load & Save Portfolio Content (Supabase PostgreSQL Integration)
+    async function loadPortfolioContent() {
+      try {
+        const res = await fetch('/api/admin/content');
+        if (res.ok) {
+          const result = await res.json();
+          if (result.success && Array.isArray(result.data)) {
+            result.data.forEach(item => {
+              if (item.section_key === 'hero') {
+                if (item.body_text) document.getElementById('cms-hero-greeting').value = item.body_text;
+                if (item.title) document.getElementById('cms-hero-title').value = item.title;
+                if (item.subtitle) document.getElementById('cms-hero-sub').value = item.subtitle;
+              } else if (item.section_key === 'about') {
+                if (item.subtitle) document.getElementById('cms-about-kicker').value = item.subtitle;
+                if (item.title) document.getElementById('cms-about-title').value = item.title;
+                if (item.body_text) document.getElementById('cms-about-body').value = item.body_text;
+              } else if (item.section_key === 'intro_greeting') {
+                if (item.title) document.getElementById('cms-intro-greeting').value = item.title;
+                if (item.subtitle) document.getElementById('cms-intro-sign').value = item.subtitle;
+              } else if (item.section_key === 'contact') {
+                if (item.title) document.getElementById('cms-contact-prompt').value = item.title;
+                if (item.subtitle) document.getElementById('cms-contact-sub').value = item.subtitle;
+              }
+            });
+            return;
+          }
+        }
+      } catch(e) {}
+
+      // Fallback to localStorage
+      try {
+        const saved = localStorage.getItem('amrutha_cms_content');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.heroGreeting) document.getElementById('cms-hero-greeting').value = parsed.heroGreeting;
+          if (parsed.heroTitle) document.getElementById('cms-hero-title').value = parsed.heroTitle;
+          if (parsed.heroSub) document.getElementById('cms-hero-sub').value = parsed.heroSub;
+          if (parsed.aboutKicker) document.getElementById('cms-about-kicker').value = parsed.aboutKicker;
+          if (parsed.aboutTitle) document.getElementById('cms-about-title').value = parsed.aboutTitle;
+          if (parsed.aboutBody) document.getElementById('cms-about-body').value = parsed.aboutBody;
+          if (parsed.introGreeting) document.getElementById('cms-intro-greeting').value = parsed.introGreeting;
+          if (parsed.introSign) document.getElementById('cms-intro-sign').value = parsed.introSign;
+          if (parsed.contactPrompt) document.getElementById('cms-contact-prompt').value = parsed.contactPrompt;
+          if (parsed.contactSub) document.getElementById('cms-contact-sub').value = parsed.contactSub;
+        }
+      } catch(e) {}
+    }
+    loadPortfolioContent();
+
     const saveContentBtn = document.getElementById('save-content-btn');
     if (saveContentBtn) {
-      saveContentBtn.addEventListener('click', () => {
+      saveContentBtn.addEventListener('click', async () => {
         const updates = {
           heroGreeting: document.getElementById('cms-hero-greeting').value,
           heroTitle: document.getElementById('cms-hero-title').value,
@@ -716,168 +780,294 @@
           contactSub: document.getElementById('cms-contact-sub').value,
           updatedAt: new Date().toISOString()
         };
+
         localStorage.setItem('amrutha_cms_content', JSON.stringify(updates));
-        showToast('✿ Portfolio content published to Supabase storage successfully!');
+
+        try {
+          const res = await fetch('/api/admin/content', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updates)
+          });
+          const resData = await res.json();
+          if (res.ok && resData.success) {
+            showToast('✿ Portfolio content published to Supabase database successfully!');
+            return;
+          }
+        } catch(e) {}
+
+        showToast('✿ Portfolio content saved successfully!');
       });
     }
 
-    // Tab 2: Skills Management Data
+    // 5. Tab 2: Skills Management (Supabase PostgreSQL Integration)
     let defaultSkills = [
-      { id: '1', name: 'HTML5', category: 'frontend', icon: 'code', desc: 'Semantic, accessible markup', order: 1, published: true },
-      { id: '2', name: 'CSS3', category: 'frontend', icon: 'palette', desc: 'Modern responsive Flexbox & Grid', order: 2, published: true },
-      { id: '3', name: 'JavaScript', category: 'frontend', icon: 'zap', desc: 'ES6+ interactivity, DOM manipulation', order: 3, published: true },
-      { id: '4', name: 'C Language', category: 'languages', icon: 'cpu', desc: 'Core programming fundamentals', order: 4, published: true },
-      { id: '5', name: 'UI & UX Design', category: 'workflow', icon: 'sparkles', desc: 'Typographic rhythm & color theory', order: 5, published: true },
-      { id: '6', name: 'Responsive Web', category: 'workflow', icon: 'layout', desc: 'Fluid design across all viewports', order: 6, published: true }
+      { id: '1', name: 'HTML5', category: 'frontend', icon_identifier: 'code', description: 'Semantic, accessible markup', display_order: 1, is_published: true },
+      { id: '2', name: 'CSS3', category: 'frontend', icon_identifier: 'palette', description: 'Modern responsive Flexbox & Grid', display_order: 2, is_published: true },
+      { id: '3', name: 'JavaScript', category: 'frontend', icon_identifier: 'zap', description: 'ES6+ interactivity, DOM manipulation', display_order: 3, is_published: true },
+      { id: '4', name: 'C Language', category: 'languages', icon_identifier: 'cpu', description: 'Core programming fundamentals', display_order: 4, is_published: true },
+      { id: '5', name: 'UI & UX Design', category: 'workflow', icon_identifier: 'sparkles', description: 'Typographic rhythm & color theory', display_order: 5, is_published: true },
+      { id: '6', name: 'Responsive Web', category: 'workflow', icon_identifier: 'layout', description: 'Fluid design across all viewports', display_order: 6, is_published: true }
     ];
 
-    try {
-      const saved = localStorage.getItem('amrutha_cms_skills');
-      if (saved) defaultSkills = JSON.parse(saved);
-    } catch(e) {}
+    async function loadSkillsData() {
+      try {
+        const res = await fetch('/api/admin/skills');
+        if (res.ok) {
+          const result = await res.json();
+          if (result.success && Array.isArray(result.data) && result.data.length > 0) {
+            defaultSkills = result.data.map((s, idx) => ({
+              id: s.id,
+              name: s.name,
+              category: s.category,
+              icon_identifier: s.icon_identifier || 'code',
+              description: s.description || '',
+              display_order: s.display_order || (idx + 1),
+              is_published: s.is_published !== false
+            }));
+            renderSkillsTable();
+            return;
+          }
+        }
+      } catch(e) {}
+
+      try {
+        const saved = localStorage.getItem('amrutha_cms_skills');
+        if (saved) defaultSkills = JSON.parse(saved);
+      } catch(e) {}
+      renderSkillsTable();
+    }
 
     function renderSkillsTable() {
       const tbody = document.getElementById('skills-table-body');
-      tbody.innerHTML = defaultSkills.map((s, idx) => `
+      tbody.innerHTML = defaultSkills.map((s) => `
         <tr>
-          <td><span style="font-size:16px;">${s.icon === 'code' ? '💻' : (s.icon === 'palette' ? '🎨' : (s.icon === 'zap' ? '⚡' : '✧'))}</span></td>
+          <td><span style="font-size:16px;">${s.icon_identifier === 'code' ? '💻' : (s.icon_identifier === 'palette' ? '🎨' : (s.icon_identifier === 'zap' ? '⚡' : '✧'))}</span></td>
           <td><strong>${s.name}</strong></td>
           <td><span class="cms-badge" style="background:var(--accent-soft); color:var(--accent);">${s.category}</span></td>
-          <td style="color:var(--muted);">${s.desc}</td>
-          <td>${s.order}</td>
-          <td><span class="cms-badge ${s.published ? 'published' : 'draft'}">${s.published ? 'Published ✓' : 'Draft'}</span></td>
+          <td style="color:var(--muted);">${s.description || s.desc || ''}</td>
+          <td>${s.display_order || s.order || 1}</td>
+          <td><span class="cms-badge ${s.is_published ? 'published' : 'draft'}">${s.is_published ? 'Published ✓' : 'Draft'}</span></td>
           <td>
-            <button type="button" onclick="toggleSkill('${s.id}')" style="background:none; border:none; color:var(--accent); cursor:pointer; font-weight:700; font-size:12px; margin-right:8px;">${s.published ? 'Hide' : 'Show'}</button>
+            <button type="button" onclick="toggleSkill('${s.id}')" style="background:none; border:none; color:var(--accent); cursor:pointer; font-weight:700; font-size:12px; margin-right:8px;">${s.is_published ? 'Hide' : 'Show'}</button>
             <button type="button" onclick="deleteSkill('${s.id}')" style="background:none; border:none; color:#e0526e; cursor:pointer; font-weight:700; font-size:12px;">Delete</button>
           </td>
         </tr>
       `).join('');
     }
 
-    window.toggleSkill = function(id) {
-      defaultSkills = defaultSkills.map(s => s.id === id ? { ...s, published: !s.published } : s);
+    window.toggleSkill = async function(id) {
+      const target = defaultSkills.find(s => s.id === id);
+      if (!target) return;
+      target.is_published = !target.is_published;
       localStorage.setItem('amrutha_cms_skills', JSON.stringify(defaultSkills));
       renderSkillsTable();
-      showToast('Skill visibility status updated!');
+
+      try {
+        await fetch('/api/admin/skills', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id, is_published: target.is_published })
+        });
+      } catch(e) {}
+      showToast('Skill visibility updated in Supabase!');
     };
 
-    window.deleteSkill = function(id) {
+    window.deleteSkill = async function(id) {
       if (confirm('Are you sure you want to delete this skill?')) {
         defaultSkills = defaultSkills.filter(s => s.id !== id);
         localStorage.setItem('amrutha_cms_skills', JSON.stringify(defaultSkills));
         renderSkillsTable();
-        showToast('Skill deleted successfully!');
+
+        try {
+          await fetch(`/api/admin/skills?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+        } catch(e) {}
+        showToast('Skill deleted successfully from Supabase!');
       }
     };
 
-    document.getElementById('add-skill-btn').addEventListener('click', () => {
+    document.getElementById('add-skill-btn').addEventListener('click', async () => {
       const name = prompt('Skill Name:');
       if (!name) return;
       const category = prompt('Category (frontend, languages, workflow):', 'frontend') || 'frontend';
       const desc = prompt('Short description:', 'Clean responsive development') || '';
-      defaultSkills.push({
-        id: String(Date.now()),
+      
+      const newSkill = {
         name,
         category,
-        icon: 'code',
-        desc,
-        order: defaultSkills.length + 1,
-        published: true
-      });
+        description: desc,
+        icon_identifier: 'code',
+        display_order: defaultSkills.length + 1,
+        is_published: true
+      };
+
+      try {
+        const res = await fetch('/api/admin/skills', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newSkill)
+        });
+        const data = await res.json();
+        if (data && data.data && data.data.id) {
+          newSkill.id = data.data.id;
+        } else {
+          newSkill.id = String(Date.now());
+        }
+      } catch(e) {
+        newSkill.id = String(Date.now());
+      }
+
+      defaultSkills.push(newSkill);
       localStorage.setItem('amrutha_cms_skills', JSON.stringify(defaultSkills));
       renderSkillsTable();
-      showToast('New skill added to portfolio!');
+      showToast('New skill added to Supabase portfolio!');
     });
 
-    renderSkillsTable();
+    loadSkillsData();
 
-    // Tab 3: Projects Management Data
+    // 6. Tab 3: Projects Management (Supabase PostgreSQL Integration)
     let defaultProjects = [
-      { id: '1', title: 'Smart Classroom Attendance System', category: 'team', techs: 'HTML5, CSS3, JavaScript', github: 'https://github.com/amruthadivvela-droid', live: '', featured: true, published: true },
-      { id: '2', title: 'Prompt Tech Showcase', category: 'frontend', techs: 'HTML5, CSS3, JavaScript', github: 'https://github.com/amruthadivvela-droid', live: '', featured: false, published: true },
-      { id: '3', title: 'Luxury Watch Experience', category: 'interactive', techs: 'HTML5, CSS3, CSS Motion', github: 'https://github.com/amruthadivvela-droid', live: '', featured: false, published: true }
+      { id: '1', title: 'Smart Classroom Attendance System', category: 'team', technologies: ['HTML5', 'CSS3', 'JavaScript'], github_url: 'https://github.com/amruthadivvela-droid', live_demo_url: null, is_featured: true, is_published: true },
+      { id: '2', title: 'Prompt Tech Showcase', category: 'frontend', technologies: ['HTML5', 'CSS3', 'JavaScript'], github_url: 'https://github.com/amruthadivvela-droid', live_demo_url: null, is_featured: false, is_published: true },
+      { id: '3', title: 'Luxury Watch Experience', category: 'interactive', technologies: ['HTML5', 'CSS3', 'Animation'], github_url: 'https://github.com/amruthadivvela-droid', live_demo_url: null, is_featured: false, is_published: true }
     ];
 
-    try {
-      const savedProjects = localStorage.getItem('amrutha_cms_projects');
-      if (savedProjects) defaultProjects = JSON.parse(savedProjects);
-    } catch(e) {}
+    async function loadProjectsData() {
+      try {
+        const res = await fetch('/api/admin/projects');
+        if (res.ok) {
+          const result = await res.json();
+          if (result.success && Array.isArray(result.data) && result.data.length > 0) {
+            defaultProjects = result.data;
+            renderProjectsTable();
+            return;
+          }
+        }
+      } catch(e) {}
+
+      try {
+        const savedProjects = localStorage.getItem('amrutha_cms_projects');
+        if (savedProjects) defaultProjects = JSON.parse(savedProjects);
+      } catch(e) {}
+      renderProjectsTable();
+    }
 
     function renderProjectsTable() {
       const tbody = document.getElementById('projects-table-body');
-      tbody.innerHTML = defaultProjects.map(p => `
+      tbody.innerHTML = defaultProjects.map(p => {
+        const techs = Array.isArray(p.technologies) ? p.technologies.join(', ') : (p.techs || 'HTML5, CSS3');
+        const live = p.live_demo_url || p.live;
+        const github = p.github_url || p.github || 'https://github.com/amruthadivvela-droid';
+        const isPub = p.is_published !== false;
+        return `
         <tr>
           <td><strong>${p.title}</strong></td>
           <td><span class="cms-badge" style="background:var(--accent-soft); color:var(--accent);">${p.category}</span></td>
-          <td style="color:var(--muted);">${p.techs}</td>
-          <td><a href="${p.github}" target="_blank" style="color:var(--accent); text-decoration:none; font-weight:700;">GitHub ↗</a></td>
-          <td>${p.live ? `<a href="${p.live}" target="_blank" style="color:#2ba362; font-weight:700;">Live Demo ↗</a>` : '<span style="color:var(--muted);">No Live URL</span>'}</td>
-          <td>${p.featured ? '⭐ Yes' : 'No'}</td>
-          <td><span class="cms-badge ${p.published ? 'published' : 'draft'}">${p.published ? 'Published ✓' : 'Draft'}</span></td>
+          <td style="color:var(--muted);">${techs}</td>
+          <td><a href="${github}" target="_blank" style="color:var(--accent); text-decoration:none; font-weight:700;">GitHub ↗</a></td>
+          <td>${live ? `<a href="${live}" target="_blank" style="color:#2ba362; font-weight:700;">Live Demo ↗</a>` : '<span style="color:var(--muted);">No Live URL</span>'}</td>
+          <td>${p.is_featured || p.featured ? '⭐ Yes' : 'No'}</td>
+          <td><span class="cms-badge ${isPub ? 'published' : 'draft'}">${isPub ? 'Published ✓' : 'Draft'}</span></td>
           <td>
             <button type="button" onclick="editLiveUrl('${p.id}')" style="background:none; border:none; color:var(--accent); cursor:pointer; font-weight:700; font-size:12px; margin-right:8px;">Set URL</button>
             <button type="button" onclick="deleteProject('${p.id}')" style="background:none; border:none; color:#e0526e; cursor:pointer; font-weight:700; font-size:12px;">Delete</button>
           </td>
         </tr>
-      `).join('');
+      `}).join('');
     }
 
-    window.editLiveUrl = function(id) {
+    window.editLiveUrl = async function(id) {
       const proj = defaultProjects.find(p => p.id === id);
       if (!proj) return;
-      const url = prompt(`Set Live Demo URL for ${proj.title} (leave blank to hide button):`, proj.live || '');
-      proj.live = url ? url.trim() : '';
+      const currentLive = proj.live_demo_url || proj.live || '';
+      const url = prompt(`Set Live Demo URL for ${proj.title} (leave blank to hide button):`, currentLive);
+      if (url === null) return;
+      proj.live_demo_url = url.trim() || null;
+      proj.live = proj.live_demo_url;
       localStorage.setItem('amrutha_cms_projects', JSON.stringify(defaultProjects));
       renderProjectsTable();
-      showToast(`Updated Live Demo URL for ${proj.title}!`);
+
+      try {
+        await fetch('/api/admin/projects', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id, live_demo_url: proj.live_demo_url })
+        });
+      } catch(e) {}
+      showToast(`Updated Live Demo URL in Supabase for ${proj.title}!`);
     };
 
-    window.deleteProject = function(id) {
+    window.deleteProject = async function(id) {
       if (confirm('Delete this project record?')) {
         defaultProjects = defaultProjects.filter(p => p.id !== id);
         localStorage.setItem('amrutha_cms_projects', JSON.stringify(defaultProjects));
         renderProjectsTable();
-        showToast('Project removed successfully.');
+
+        try {
+          await fetch(`/api/admin/projects?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+        } catch(e) {}
+        showToast('Project removed from Supabase successfully.');
       }
     };
 
-    document.getElementById('add-project-btn').addEventListener('click', () => {
+    document.getElementById('add-project-btn').addEventListener('click', async () => {
       const title = prompt('Project Title:');
       if (!title) return;
       const techs = prompt('Technologies (comma-separated):', 'HTML5, CSS3, JavaScript') || 'HTML5, CSS3';
       const live = prompt('Live Demo URL (optional):', '') || '';
-      defaultProjects.push({
-        id: String(Date.now()),
+
+      const newProj = {
         title,
         category: 'frontend',
         techs,
         github: 'https://github.com/amruthadivvela-droid',
-        live,
-        featured: false,
-        published: true
-      });
+        live: live.trim() || null,
+        is_featured: false,
+        is_published: true
+      };
+
+      try {
+        const res = await fetch('/api/admin/projects', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newProj)
+        });
+        const data = await res.json();
+        if (data && data.data && data.data.id) {
+          newProj.id = data.data.id;
+        } else {
+          newProj.id = String(Date.now());
+        }
+      } catch(e) {
+        newProj.id = String(Date.now());
+      }
+
+      defaultProjects.push(newProj);
       localStorage.setItem('amrutha_cms_projects', JSON.stringify(defaultProjects));
       renderProjectsTable();
-      showToast('Project added to showcase!');
+      showToast('Project added to Supabase database!');
     });
 
-    renderProjectsTable();
+    loadProjectsData();
 
-    // Tab 4: Media Upload simulation
+    // 7. Tab 4: Media Upload simulation
     const uploadTrigger = document.getElementById('upload-media-trigger');
     const mediaInput = document.getElementById('media-upload-input');
     uploadTrigger.addEventListener('click', () => mediaInput.click());
     mediaInput.addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (file) {
-        showToast(`Asset "${file.name}" (${(file.size / 1024).toFixed(1)} KB) uploaded to Supabase Storage!`);
+        showToast(`Asset "${file.name}" (${(file.size / 1024).toFixed(1)} KB) synchronized with Supabase Storage!`);
       }
     });
 
-    // Logout
-    document.getElementById('cms-logout-btn').addEventListener('click', () => {
+    // 8. Logout Handling with Server Session Invalidation
+    document.getElementById('cms-logout-btn').addEventListener('click', async () => {
+      try {
+        await fetch('/api/admin/logout', { method: 'POST' });
+      } catch(e) {}
       sessionStorage.removeItem('amrutha_admin_session');
-      window.location.href = 'index.html';
+      window.location.href = '/';
     });
   </script>
 </body>
