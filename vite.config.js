@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from "vite";
 import { resolve } from "node:path";
 import contactHandler from "./api/contact.js";
+import visitingCardHandler from "./api/visiting-card.js";
 import adminLoginHandler from "./api/admin/login.js";
 import adminSessionHandler from "./api/admin/session.js";
 import adminLogoutHandler from "./api/admin/logout.js";
@@ -14,6 +15,7 @@ import publicFaqsHandler from "./api/public/faqs.js";
 
 const apiRoutes = {
   "/api/contact": contactHandler,
+  "/api/visiting-card": visitingCardHandler,
   "/api/admin/login": adminLoginHandler,
   "/api/admin/session": adminSessionHandler,
   "/api/admin/logout": adminLogoutHandler,
@@ -41,7 +43,8 @@ export default defineConfig(({ mode }) => {
         input: {
           main: resolve(process.cwd(), "index.html"),
           admin: resolve(process.cwd(), "admin.html"),
-          standalone: resolve(process.cwd(), "standalone.html")
+          standalone: resolve(process.cwd(), "standalone.html"),
+          visitingCard: resolve(process.cwd(), "visiting-card.html")
         }
       }
     },

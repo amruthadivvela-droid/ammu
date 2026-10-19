@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en" data-theme="sakura">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fffaf8" />
+  <title>Amrutha ✿ | Personalized Sakura Visiting Card</title>
+  
+  <!-- Google Fonts: Outfit, DM Sans, Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="src/styles.css" />
+  <style>
+    body.visiting-card-page {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .card-showcase-container {
+      width: 100%;
+      max-width: 520px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 28px;
+      padding: 36px 28px;
+      box-shadow: 0 16px 48px rgba(213, 101, 134, 0.12);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-brand {
+      font-family: var(--font-hand);
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .card-subtitle {
+      font-size: 13.5px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .visiting-card-img-wrap {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto 24px;
+      position: relative;
+    }
+
+    .visiting-card-img {
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 12px 36px rgba(213, 101, 134, 0.22);
+      border: 2px solid var(--border);
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .visiting-card-img:hover {
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    .card-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .card-actions-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 480px) {
+      .card-showcase-container {
+        padding: 24px 18px;
+      }
+      .card-brand {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body class="visiting-card-page">
+
+  <div class="card-showcase-container">
+    <a href="/" class="card-brand">Amrutha ✿</a>
+    <div class="card-subtitle">Official CodeXa Digital Visiting Card (PNG)</div>
+
+    <div class="visiting-card-img-wrap">
+      <!-- High-resolution PNG Image rendered dynamically -->
+      <img id="visiting-card-img" class="visiting-card-img" alt="Official Sakura Visiting Card" />
+      <canvas id="visiting-card-canvas" width="1080" height="1350" style="display:none;"></canvas>
+    </div>
+
+    <div class="card-actions">
+      <div class="card-actions-row">
+        <button type="button" class="btn btn-primary" id="download-card-btn" style="flex:1; min-height:48px; min-width:180px;">
+          <span>Download Image (PNG)</span> 📥
+        </button>
+        <button type="button" class="btn btn-outline" id="share-card-btn" style="flex:1; min-height:48px; min-width:140px;">
+          <span>Share PNG</span> 🖼
+        </button>
+      </div>
+
+      <a id="whatsapp-btn" href="https://wa.me/919032316792" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="min-height:48px; width:100%; font-weight:700; color:#128c7e; border-color:#a8e3cb; background:#f0fbf6;">
+        <span>Chat with Amrutha on WhatsApp</span> 💬
+      </a>
+
+      <a href="/" class="btn btn-outline" style="min-height:42px; width:100%; font-size:13px; color:var(--muted);">
+        <span>← Return to Amrutha's World</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('visiting-card-canvas');
+    const cardImg = document.getElementById('visiting-card-img');
+    const downloadBtn = document.getElementById('download-card-btn');
+    const shareBtn = document.getElementById('share-card-btn');
+    const whatsappBtn = document.getElementById('whatsapp-btn');
+
+    // Parse URL parameters
+    const params = new URLSearchParams(window.location.search);
+    let visitorName = params.get('name') || 'Kind Visitor';
+    let visitorEmail = params.get('email') || 'amruthadivvela@gmail.com';
+    let requirements = params.get('req') || params.get('requirements') || params.get('message') || 'Exploring opportunities for creative web engineering, frontend architecture, and technical collaborations. 🌸';
+    const enquiryId = params.get('id');
+
+    // If enquiry ID provided, try fetching exact data from backend
+    if (enquiryId) {
+      fetch(`/api/visiting-card?id=${encodeURIComponent(enquiryId)}`)
+        .then(res => res.json())
+        .then(res => {
+          if (res && res.enquiry) {
+            if (res.enquiry.name) visitorName = res.enquiry.name;
+            if (res.enquiry.email) visitorEmail = res.enquiry.email;
+            if (res.enquiry.message) requirements = res.enquiry.message;
+            renderCard();
+          }
+        })
+        .catch(() => {});
+    }
+
+    function renderCard() {
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const w = 1080;
+      const h = 1350;
+
+      // Card Background: Warm cream & soft Sakura pink gradient
+      const bgGrad = ctx.createLinearGradient(0, 0, w, h);
+      bgGrad.addColorStop(0, '#fffbf7');
+      bgGrad.addColorStop(0.5, '#fff2f6');
+      bgGrad.addColorStop(1, '#ffeaf1');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Subtle Decorative Grid
+      ctx.strokeStyle = 'rgba(213, 101, 134, 0.08)';
+      ctx.lineWidth = 1;
+      for (let x = 60; x < w; x += 60) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let y = 60; y < h; y += 60) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+
+      // Outer & Inner Borders
+      ctx.strokeStyle = '#d56586';
+      ctx.lineWidth = 6;
+      ctx.strokeRect(50, 50, w - 100, h - 100);
+
+      ctx.strokeStyle = 'rgba(230, 188, 88, 0.7)';
+      ctx.lineWidth = 2.5;
+      ctx.strokeRect(62, 62, w - 124, h - 124);
+
+      // Corner Floral Accents
+      function drawCornerBlossom(cx, cy) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        for (let a = 0; a < 5; a++) {
+          ctx.rotate((Math.PI * 2) / 5);
+          ctx.beginPath();
+          ctx.ellipse(0, -18, 11, 18, 0, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(245, 164, 189, 0.85)';
+          ctx.fill();
+        }
+        ctx.beginPath();
+        ctx.arc(0, 0, 7, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffd57a';
+        ctx.fill();
+        ctx.restore();
+      }
+
+      drawCornerBlossom(90, 90);
+      drawCornerBlossom(w - 90, 90);
+      drawCornerBlossom(90, h - 90);
+      drawCornerBlossom(w - 90, h - 90);
+
+      // Header: Brand & Identity
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#d56586';
+      ctx.font = 'bold 54px Outfit, sans-serif';
+      ctx.fillText('Amrutha ✿', w / 2, 175);
+
+      ctx.fillStyle = '#6b4b58';
+      ctx.font = '700 28px Outfit, sans-serif';
+      ctx.fillText('Chief Technology Officer at CodeXa Agency', w / 2, 222);
+
+      ctx.fillStyle = '#8f6e7c';
+      ctx.font = '500 22px Outfit, sans-serif';
+      ctx.fillText('Frontend Engineer • Creative Web Architect', w / 2, 258);
+
+      // Decorative Badge
+      ctx.fillStyle = 'rgba(213, 101, 134, 0.12)';
+      ctx.beginPath();
+      ctx.roundRect(w / 2 - 270, 290, 540, 46, 23);
+      ctx.fill();
+
+      ctx.fillStyle = '#ba5372';
+      ctx.font = 'bold 20px Outfit, sans-serif';
+      ctx.fillText('OFFICIAL DIGITAL VISITING CARD & ENQUIRY', w / 2, 320);
+
+      // Content Box (Cream Card Background)
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.beginPath();
+      ctx.roundRect(100, 370, w - 200, 710, 28);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(213, 101, 134, 0.22)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Visitor Info
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#ba5372';
+      ctx.font = 'bold 24px Outfit, sans-serif';
+      ctx.fillText('COLLABORATION ENQUIRY FROM:', 150, 440);
+
+      ctx.fillStyle = '#2b1c24';
+      ctx.font = 'bold 36px Outfit, sans-serif';
+      ctx.fillText(visitorName, 150, 490);
+
+      ctx.fillStyle = '#8f6e7c';
+      ctx.font = '500 24px Outfit, sans-serif';
+      ctx.fillText(`Contact: ${visitorEmail}`, 150, 532);
+
+      // Divider line
+      ctx.strokeStyle = 'rgba(213, 101, 134, 0.18)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(150, 570);
+      ctx.lineTo(w - 150, 570);
+      ctx.stroke();
+
+      // Requirements Heading & Wrapped Text
+      ctx.fillStyle = '#ba5372';
+      ctx.font = 'bold 24px Outfit, sans-serif';
+      ctx.fillText('PROJECT PROPOSAL & MESSAGE:', 150, 625);
+
+      ctx.fillStyle = '#3a2530';
+      ctx.font = '400 27px Outfit, sans-serif';
+      
+      const maxLineWidth = w - 300;
+      const lineHeight = 42;
+      const words = requirements.split(/\s+/);
+      let line = '';
+      let curY = 675;
+      const maxY = 1010;
+
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxLineWidth && n > 0) {
+          ctx.fillText(line.trim(), 150, curY);
+          line = words[n] + ' ';
+          curY += lineHeight;
+          if (curY > maxY) {
+            ctx.fillText('...', 150, curY);
+            break;
+          }
+        } else {
+          line = testLine;
+        }
+      }
+      if (curY <= maxY && line.trim()) {
+        ctx.fillText(line.trim(), 150, curY);
+      }
+
+      // Footer
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#d56586';
+      ctx.font = 'bold 32px Caveat, cursive, sans-serif';
+      ctx.fillText('Thank you for connecting! ♡', w / 2, 1150);
+
+      ctx.fillStyle = '#7a5a68';
+      ctx.font = '600 22px Outfit, sans-serif';
+      ctx.fillText("Divvela Amrutha • WhatsApp: +91 90323 16792 • CodeXa Agency", w / 2, 1205);
+
+      // Convert canvas to real PNG image
+      const dataUrl = canvas.toDataURL('image/png');
+      cardImg.src = dataUrl;
+
+      // Update WhatsApp URL
+      const waText = `Hi Amrutha! 🌸\nHere is my official visiting card:\nMy Name: ${visitorName}\nRequirements: ${requirements}\nLooking forward to connecting!`;
+      whatsappBtn.href = `https://wa.me/919032316792?text=${encodeURIComponent(waText)}`;
+    }
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(renderCard);
+    } else {
+      setTimeout(renderCard, 200);
+    }
+
+    downloadBtn.addEventListener('click', () => {
+      if (!canvas) return;
+      canvas.toBlob(blob => {
+        if (!blob) return;
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `Amrutha_Sakura_Visiting_Card_${visitorName.replace(/[^a-zA-Z0-9]/g, '_')}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(a.href);
+      }, 'image/png');
+    });
+
+    shareBtn.addEventListener('click', async () => {
+      if (!canvas) return;
+      canvas.toBlob(async blob => {
+        if (!blob) return;
+        const cardFile = new File([blob], 'Amrutha_Visiting_Card.png', { type: 'image/png' });
+        if (navigator.canShare && navigator.canShare({ files: [cardFile] })) {
+          try {
+            await navigator.share({
+              title: 'Amrutha Visiting Card',
+              text: `Official Sakura Visiting Card for ${visitorName}`,
+              files: [cardFile]
+            });
+          } catch (err) {}
+        } else {
+          downloadBtn.click();
+        }
+      }, 'image/png');
+    });
+  </script>
+</body>
+</html>

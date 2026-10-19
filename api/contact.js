@@ -79,12 +79,10 @@ export default async function handler(req, res) {
     let cardStorageKey = null;
 
     if (!cardUrl) {
-      // In production, when uploaded to private bucket, this is a time-limited signed URL
-      // For immediate WhatsApp handoff, create a secure verification reference
       const cardRef = crypto.createHash("sha256").update(`${enquiryId}_${Date.now()}`).digest("hex").slice(0, 16);
       cardStorageKey = `cards/${enquiryId}/${cardRef}.png`;
-      const siteUrl = process.env.VITE_SITE_URL || "https://amrutha-sakura.vercel.app";
-      cardUrl = `${siteUrl}/visiting-card?ref=${cardRef}&id=${enquiryId}`;
+      const siteUrl = process.env.VITE_SITE_URL || process.env.APP_ORIGIN || "https://ammuxdev.vercel.app";
+      cardUrl = `${siteUrl}/visiting-card?id=${enquiryId}&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&req=${encodeURIComponent(message.slice(0, 240))}`;
     }
 
     const enquiry = {
@@ -94,7 +92,8 @@ export default async function handler(req, res) {
       email,
       message,
       cardStorageKey,
-      cardUrl
+      cardUrl,
+      cardDataUrl
     };
 
     // 5. Send Resend Emails (Owner Notification + Visitor Thank You)

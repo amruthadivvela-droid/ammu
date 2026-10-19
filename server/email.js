@@ -18,9 +18,9 @@ const isResendConfigured = Boolean(
 );
 
 /**
- * Send an email via Resend API
+ * Send an email via Resend API (with optional attachments)
  */
-async function sendViaResend({ to, from, replyTo, subject, html }) {
+async function sendViaResend({ to, from, replyTo, subject, html, attachments }) {
   if (!isResendConfigured) {
     const simId = `sim_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
     console.log(`[Resend Simulated Acceptance] to: ${to}, subject: "${subject}", id: ${simId}`);
@@ -28,19 +28,25 @@ async function sendViaResend({ to, from, replyTo, subject, html }) {
   }
 
   try {
+    const emailPayload = {
+      from: `${RESEND_FROM_NAME} <${from || RESEND_FROM_EMAIL}>`,
+      to: Array.isArray(to) ? to : [to],
+      reply_to: replyTo,
+      subject,
+      html
+    };
+
+    if (attachments && Array.isArray(attachments) && attachments.length > 0) {
+      emailPayload.attachments = attachments;
+    }
+
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${RESEND_API_KEY}`
       },
-      body: JSON.stringify({
-        from: `${RESEND_FROM_NAME} <${from || RESEND_FROM_EMAIL}>`,
-        to: Array.isArray(to) ? to : [to],
-        reply_to: replyTo,
-        subject,
-        html
-      })
+      body: JSON.stringify(emailPayload)
     });
 
     const result = await response.json();
@@ -59,7 +65,7 @@ async function sendViaResend({ to, from, replyTo, subject, html }) {
 /**
  * 1. Build & Send Owner Notification Email to Amrutha
  */
-export async function sendOwnerEnquiryNotification(enquiry) {
+export async function sendOwnerEnquiryNotification(enquiry, attachments = []) {
   const dateStr = new Date().toLocaleString("en-US", {
     timeZone: "Asia/Kolkata",
     dateStyle: "full",
@@ -116,11 +122,22 @@ export async function sendOwnerEnquiryNotification(enquiry) {
                 </tr>
               </table>
 
-              ${enquiry.cardUrl ? `
+              <!-- Visiting Card PNG Image Display -->
+              ${enquiry.cardDataUrl ? `
+              <div style="text-align: center; margin: 28px 0; padding: 22px; background: #fff5f8; border-radius: 18px; border: 1.5px dashed #f2c7d8;">
+                <div style="font-size: 12px; font-weight: 800; color: #ba476a; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px;">
+                  🌸 Official Sakura Digital Visiting Card (PNG)
+                </div>
+                <img src="${enquiry.cardDataUrl}" alt="Sakura Visiting Card" style="width: 100%; max-width: 340px; height: auto; border-radius: 14px; border: 1.5px solid #f3d7e2; box-shadow: 0 10px 28px rgba(213, 101, 134, 0.16); display: inline-block;" />
+                <div style="margin-top: 14px;">
+                  <a href="${enquiry.cardUrl || '#'}" target="_blank" style="display: inline-block; padding: 10px 22px; background: #d56586; color: #ffffff; text-decoration: none; border-radius: 99px; font-weight: 700; font-size: 13px; box-shadow: 0 4px 12px rgba(213, 101, 134, 0.25);">Open Full-Size Visiting Card 🌸</a>
+                </div>
+              </div>
+              ` : (enquiry.cardUrl ? `
               <div style="text-align: center; margin: 24px 0;">
                 <a href="${enquiry.cardUrl}" target="_blank" style="display: inline-block; padding: 12px 24px; background: #d56586; color: #ffffff; text-decoration: none; border-radius: 99px; font-weight: 700; font-size: 14px; box-shadow: 0 4px 12px rgba(213, 101, 134, 0.25);">View Sakura Visiting Card 🌸</a>
               </div>
-              ` : ''}
+              ` : '')}
 
               <p style="font-size: 13.5px; color: #846874; line-height: 1.5; margin-bottom: 0;">
                 Tip: You can reply directly to this email to respond back to <strong>${escapeHtml(enquiry.name)}</strong>.
@@ -149,7 +166,8 @@ export async function sendOwnerEnquiryNotification(enquiry) {
     from: RESEND_FROM_EMAIL,
     replyTo: enquiry.email,
     subject: `New Portfolio Enquiry from ${enquiry.name} | Amrutha ✿`,
-    html
+    html,
+    attachments
   });
 }
 
@@ -157,7 +175,7 @@ export async function sendOwnerEnquiryNotification(enquiry) {
  * 2. Build & Send Visitor Thank-You Letter
  * Core Visual Signature: "Thanks for visiting my [portfolio] world! ♡ 🌸"
  */
-export async function sendVisitorThankYouEmail(enquiry) {
+export async function sendVisitorThankYouEmail(enquiry, attachments = []) {
   const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -196,7 +214,7 @@ export async function sendVisitorThankYouEmail(enquiry) {
               </p>
 
               <!-- Enquiry Summary Panel -->
-              <div style="background-color: #fff9fc; border: 1.5px dashed #f2c7d8; border-radius: 16px; padding: 22px 24px; margin-bottom: 32px;">
+              <div style="background-color: #fff9fc; border: 1.5px dashed #f2c7d8; border-radius: 16px; padding: 22px 24px; margin-bottom: 28px;">
                 <div style="font-size: 12px; font-weight: 800; color: #ba476a; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px;">
                   📋 Your Message Summary
                 </div>
@@ -204,6 +222,19 @@ export async function sendVisitorThankYouEmail(enquiry) {
                   "${escapeHtml(enquiry.message)}"
                 </div>
               </div>
+
+              <!-- Visiting Card PNG Image Display -->
+              ${enquiry.cardDataUrl ? `
+              <div style="text-align: center; margin: 28px 0; padding: 22px; background: #fff5f8; border-radius: 18px; border: 1.5px dashed #f2c7d8;">
+                <div style="font-size: 12px; font-weight: 800; color: #ba476a; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px;">
+                  🌸 Your Official Sakura Digital Visiting Card (PNG)
+                </div>
+                <img src="${enquiry.cardDataUrl}" alt="Your Sakura Visiting Card" style="width: 100%; max-width: 340px; height: auto; border-radius: 14px; border: 1.5px solid #f3d7e2; box-shadow: 0 10px 28px rgba(213, 101, 134, 0.16); display: inline-block;" />
+                <div style="margin-top: 14px;">
+                  <a href="${enquiry.cardUrl || '#'}" target="_blank" style="display: inline-block; padding: 10px 22px; background: #d56586; color: #ffffff; text-decoration: none; border-radius: 99px; font-weight: 700; font-size: 13px; box-shadow: 0 4px 12px rgba(213, 101, 134, 0.25);">Open Full-Size Visiting Card 🌸</a>
+                </div>
+              </div>
+              ` : ''}
 
               <!-- Core Visual Signature: Transformation from PORTFOLIO to WORLD -->
               <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="background: linear-gradient(135deg, #fff0f5 0%, #fffaf6 100%); border-radius: 18px; border: 1.5px solid #f6cadb; margin-bottom: 32px;">
@@ -271,7 +302,8 @@ export async function sendVisitorThankYouEmail(enquiry) {
     from: RESEND_FROM_EMAIL,
     replyTo: REPLY_TO_EMAIL,
     subject: `Thanks for visiting my world! 🌸 | Amrutha`,
-    html
+    html,
+    attachments
   });
 }
 
@@ -288,9 +320,18 @@ export async function sendPortfolioEnquiryEmails(enquiry) {
     errors: []
   };
 
+  // Build PNG attachment if cardDataUrl is provided
+  const attachments = [];
+  if (enquiry.cardDataUrl && typeof enquiry.cardDataUrl === "string" && enquiry.cardDataUrl.startsWith("data:image/png;base64,")) {
+    attachments.push({
+      filename: "Amrutha_Sakura_Visiting_Card.png",
+      content: enquiry.cardDataUrl.replace(/^data:image\/png;base64,/, "")
+    });
+  }
+
   // 1. Send Owner Notification
   try {
-    const ownerRes = await sendOwnerEnquiryNotification(enquiry);
+    const ownerRes = await sendOwnerEnquiryNotification(enquiry, attachments);
     result.ownerStatus = ownerRes.status;
     result.ownerMessageId = ownerRes.messageId;
     if (!ownerRes.success) {
@@ -303,7 +344,7 @@ export async function sendPortfolioEnquiryEmails(enquiry) {
 
   // 2. Send Visitor Acknowledgement
   try {
-    const visitorRes = await sendVisitorThankYouEmail(enquiry);
+    const visitorRes = await sendVisitorThankYouEmail(enquiry, attachments);
     result.visitorStatus = visitorRes.status;
     result.visitorMessageId = visitorRes.messageId;
     if (!visitorRes.success) {
