@@ -295,30 +295,47 @@ export function App() {
     }, 'image/png');
   };
 
-  const handleContactSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleContactSubmit = async (e) => {
     e.preventDefault();
-    if (!contactName.trim() || !contactMsg.trim()) {
+    const name = contactName.trim();
+    const email = contactEmail.trim();
+    const message = contactMsg.trim();
+
+    if (!name || !message) {
       setContactFeedback('Please provide your name and requirements! ♡');
       return;
     }
 
-    if (contactChannel === 'whatsapp') {
-      const waPhone = '919032316792';
-      const prefilled = `Hi Amrutha! I visited your portfolio and would like to connect.\n\nName: ${contactName.trim()}${contactEmail.trim() ? `\nEmail: ${contactEmail.trim()}` : ''}\n\nMy Requirements:\n${contactMsg.trim()}\n\nI'd love to discuss this with you.\n\nThanks!`;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      setContactFeedback('Please provide a valid email address so I can reply! ♡');
+      return;
+    }
 
-      downloadCardPng();
-      window.open(`https://wa.me/${waPhone}?text=${encodeURIComponent(prefilled)}`, '_blank', 'noopener,noreferrer');
-      setContactFeedback('Opening WhatsApp with your requirements... Thank you! ✿');
-    } else {
-      if (!contactEmail.includes('@')) {
-        setContactFeedback('Please provide a valid email address! ♡');
-        return;
+    setContactFeedback('');
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Idempotency-Key': `sub_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
+        },
+        body: JSON.stringify({ name, email, message })
+      });
+
+      const result = await response.json();
+      if (!response.ok || !result.readyForWhatsApp) {
+        throw new Error(result.message || 'Unable to prepare your enquiry.');
       }
-      const subject = encodeURIComponent(`Portfolio Enquiry from ${contactName.trim()}`);
-      const body = encodeURIComponent(`Hi Amrutha,\n\nName: ${contactName.trim()}\nEmail: ${contactEmail.trim()}\n\nRequirements:\n${contactMsg.trim()}`);
-      window.location.href = `mailto:amrutha.divvela@example.com?subject=${subject}&body=${body}`;
-      downloadCardPng();
-      setContactFeedback('✓ Opening your email client to send your enquiry. ✿');
+
+      window.location.assign(result.whatsappUrl);
+    } catch (err) {
+      setContactFeedback(err.message || 'Unable to submit enquiry. Please try again.');
+      setIsSubmitting(false);
     }
   };
 
@@ -557,7 +574,8 @@ export function App() {
               </div>
 
               <div className="id-name">AMRUTHA</div>
-              <div className="id-role">B.Tech Student &bull; Frontend Dev</div>
+              <div className="id-role">Chief Technology Officer</div>
+              <div className="id-agency">at CodeXa Agency</div>
               <div className="id-barcode" aria-hidden="true"></div>
 
               {/* Rotating Corner Flowers */}
@@ -813,29 +831,17 @@ export function App() {
                     ></textarea>
                   </div>
 
-                  <div className="form-group" style={{ marginBottom: 18 }}>
-                    <label style={{ fontSize: 13, fontWeight: 700, color: 'var(--ink)', marginBottom: 8, display: 'block' }}>Preferred Contact Method</label>
-                    <div className="requirements-channel-picker">
-                      <button 
-                        type="button" 
-                        className={`channel-btn ${contactChannel === 'whatsapp' ? 'active' : ''}`}
-                        onClick={() => setContactChannel('whatsapp')}
-                      >
-                        <span>WhatsApp ↗</span>
-                      </button>
-                      <button 
-                        type="button" 
-                        className={`channel-btn ${contactChannel === 'email' ? 'active' : ''}`}
-                        onClick={() => setContactChannel('email')}
-                      >
-                        <span>Email Enquiry ✉</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  <button type="submit" className="btn btn-primary" style={{ width: '100%', minHeight: 48, justifyContent: 'center' }}>
-                    {contactChannel === 'whatsapp' ? 'Send via WhatsApp ↗' : 'Send Email Enquiry ✉'}
+                  <button 
+                    type="submit" 
+                    className="btn btn-primary" 
+                    disabled={isSubmitting}
+                    style={{ width: '100%', minHeight: 48, justifyContent: 'center' }}
+                  >
+                    {isSubmitting ? 'Sending enquiry... 🌸' : 'Contact Me ♡'}
                   </button>
+                  <p style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '10px', textAlign: 'center', lineHeight: 1.4 }}>
+                    Submitting sends your enquiry by email and opens WhatsApp with your message ready to share.
+                  </p>
                 </form>
 
                 {contactFeedback && (

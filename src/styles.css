@@ -1184,10 +1184,20 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .id-role {
-  color: var(--muted);
-  font-size: 12.5px;
+  color: var(--ink);
+  font-size: clamp(0.72rem, 0.9vw, 0.84rem);
   font-weight: 700;
+  line-height: 1.25;
   margin-top: 3px;
+  letter-spacing: -0.2px;
+}
+
+.id-agency {
+  color: var(--muted);
+  font-size: clamp(0.58rem, 0.75vw, 0.72rem);
+  font-weight: 500;
+  line-height: 1.25;
+  margin-top: 1px;
 }
 
 .id-barcode {
@@ -5020,13 +5030,19 @@ body.js-animate .reveal.visible {
 }
 
 .wa-box { background: #e7f8ef; color: #128c7e; }
+.ig-box { background: linear-gradient(135deg, #fdf2f8 0%, #fff1f2 50%, #fef3c7 100%); color: #e1306c; }
 .email-box { background: #fdf2f4; color: var(--accent); }
 .gh-box { background: #f0f0f5; color: #24292e; }
 .in-box { background: #eaf3fb; color: #0077b5; }
 [data-theme="midnight"] .wa-box, [data-theme="moonlight"] .wa-box { background: #133324; color: #25d366; }
+[data-theme="midnight"] .ig-box, [data-theme="moonlight"] .ig-box { background: linear-gradient(135deg, #381525 0%, #2e1022 50%, #2a1b14 100%); color: #ff6584; }
 [data-theme="midnight"] .email-box, [data-theme="moonlight"] .email-box { background: #351722; color: #f5a4bd; }
 [data-theme="midnight"] .gh-box, [data-theme="moonlight"] .gh-box { background: #262132; color: #f0f0f5; }
 [data-theme="midnight"] .in-box, [data-theme="moonlight"] .in-box { background: #15293d; color: #38bdf8; }
+.channel-ig:hover .ig-box {
+  box-shadow: 0 0 14px rgba(225, 48, 108, 0.4);
+  transform: scale(1.06);
+}
 
 .channel-info {
   flex: 1;
@@ -5319,6 +5335,21 @@ body.js-animate .reveal.visible {
   flex-wrap: wrap;
 }
 
+.finale-line-primary {
+  font-size: clamp(2.4rem, 5.5vw, 5.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.15;
+}
+
+.finale-line-transform {
+  margin-top: clamp(8px, 1.5vw, 18px);
+  font-size: clamp(2.8rem, 6.5vw, 6.4rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
 .finale-word {
   display: inline-block;
   transition: transform 0.4s ease, opacity 0.4s ease;
@@ -5329,30 +5360,41 @@ body.js-animate .reveal.visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: clamp(220px, 32vw, 360px);
+  min-height: 1.25em;
+  vertical-align: middle;
 }
 
 .word-portfolio {
   position: relative;
   display: inline-block;
-  color: var(--muted);
-  transition: opacity 0.4s ease;
+  color: var(--ink);
+  opacity: 0.85;
+  transition: opacity 0.5s ease, filter 0.5s ease;
+  user-select: none;
+}
+
+.word-portfolio.struck {
+  opacity: 0.28;
+  filter: blur(0.3px);
 }
 
 .handwritten-strikethrough-svg {
   position: absolute;
-  top: 50%;
-  left: -6px;
-  width: calc(100% + 12px);
-  height: 38px;
+  top: 52%;
+  left: -8px;
+  width: calc(100% + 16px);
+  height: 42px;
   transform: translateY(-50%);
   pointer-events: none;
   overflow: visible;
+  z-index: 2;
 }
 
 .strikethrough-path {
-  stroke-dasharray: 240;
-  stroke-dashoffset: 240;
-  transition: stroke-dashoffset 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  transition: stroke-dashoffset 0.85s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .strikethrough-path.active {
@@ -5361,23 +5403,25 @@ body.js-animate .reveal.visible {
 
 .word-world {
   position: absolute;
-  top: -12px;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 0) scale(0.6);
-  font-family: var(--font-hand);
-  font-size: clamp(44px, 7vw, 92px);
+  transform: translate(-50%, -50%) scale(0.6);
+  font-family: var(--font-hand), cursive;
+  font-size: clamp(3.2rem, 7.5vw, 7.6rem);
   font-weight: 700;
   color: var(--accent);
   opacity: 0;
   pointer-events: none;
   white-space: nowrap;
-  text-shadow: 0 4px 20px color-mix(in srgb, var(--accent) 45%, transparent);
-  transition: all 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-shadow: 0 4px 28px color-mix(in srgb, var(--accent) 55%, transparent);
+  transition: opacity 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              transform 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 5;
 }
 
 .word-world.active {
   opacity: 1;
-  transform: translate(-50%, -10px) scale(1);
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .finale-heart {
@@ -5398,30 +5442,6 @@ body.js-animate .reveal.visible {
   font-style: italic;
   margin-top: 28px;
   letter-spacing: 0.2px;
-}
-
-.finale-controls {
-  margin-top: 36px;
-}
-
-.finale-control-btn {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 700;
-  padding: 8px 20px;
-  border-radius: 999px;
-  cursor: pointer;
-  box-shadow: 0 4px 14px var(--shadow);
-  transition: all 0.25s ease;
-}
-
-.finale-control-btn:hover {
-  background: var(--accent);
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 

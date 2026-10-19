@@ -200,12 +200,6 @@
           Frontend<br />
           Developer
         </h1>
-        <div class="hero-role-pill">
-          <span class="role-pill-dot" aria-hidden="true"></span>
-          <span class="role-pill-company">CTO @ CodeXa Agency</span>
-          <span class="role-pill-sep" aria-hidden="true">•</span>
-          <span>B.Tech CSE</span>
-        </div>
         <p class="hero-subtitle">
           I turn ideas into thoughtful web experiences and scalable digital realities.
         </p>
@@ -312,7 +306,8 @@
           </div>
 
           <div class="id-name">AMRUTHA</div>
-          <div class="id-role">CTO @ CodeXa &bull; B.Tech</div>
+          <div class="id-role">Chief Technology Officer</div>
+          <div class="id-agency">at CodeXa Agency</div>
           
           <div class="id-barcode" aria-hidden="true"></div>
 
@@ -1057,9 +1052,26 @@
             </div>
 
             <!-- Direct Contact & Social Channels List -->
+            <!-- Direct Contact & Social Channels List -->
             <div class="composition-channels">
+              <!-- Channel: Instagram -->
+              <a href="https://www.instagram.com/amrutha.d344/" target="_blank" rel="noopener noreferrer" class="comp-channel-item channel-ig" aria-label="Follow Amrutha on Instagram">
+                <div class="channel-icon-box ig-box">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </div>
+                <div class="channel-info">
+                  <span class="channel-lbl">Instagram</span>
+                  <span class="channel-val">@amrutha.d344</span>
+                </div>
+                <span class="channel-action-arrow">↗</span>
+              </a>
+
               <!-- Channel: WhatsApp -->
-              <a href="https://wa.me/919347961763?text=Hi%20Amrutha,%20I'd%20love%20to%20discuss%20a%20project%20collaboration!" target="_blank" rel="noopener noreferrer" class="comp-channel-item channel-wa" aria-label="Chat on WhatsApp">
+              <a href="https://wa.me/919032316792?text=Hi%20Amrutha!%20%F0%9F%8C%B8%20I%20visited%20your%20portfolio%20and%20would%20love%20to%20connect." target="_blank" rel="noopener noreferrer" class="comp-channel-item channel-wa" aria-label="Chat on WhatsApp">
                 <div class="channel-icon-box wa-box">
                   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                     <path d="M17.472 14.382c-.301-.15-1.78-.879-2.056-.979-.276-.101-.476-.15-.676.15-.2.301-.776.979-.952 1.18-.175.201-.351.226-.652.075-.301-.15-1.271-.469-2.42-1.494-.894-.798-1.498-1.783-1.674-2.084-.175-.301-.019-.464.132-.614.136-.135.301-.351.451-.527.151-.175.201-.301.301-.502.101-.201.05-.376-.025-.527-.075-.15-.677-1.631-.928-2.235-.244-.588-.493-.508-.677-.518l-.578-.01c-.201 0-.527.075-.802.376-.276.301-1.053 1.029-1.053 2.508 0 1.48 1.078 2.909 1.229 3.11 0.15.201 2.122 3.24 5.141 4.544.718.31 1.278.496 1.716.635.722.23 1.378.198 1.898.12.579-.087 1.78-.727 2.031-1.43.251-.703.251-1.305.176-1.43-.075-.126-.276-.201-.577-.352z"/>
@@ -1068,7 +1080,7 @@
                 </div>
                 <div class="channel-info">
                   <span class="channel-lbl">WhatsApp Direct</span>
-                  <span class="channel-val">+91 93479 61763</span>
+                  <span class="channel-val">+91 90323 16792</span>
                 </div>
                 <span class="channel-action-arrow">↗</span>
               </a>
@@ -1155,41 +1167,29 @@
                 <form id="contact-form" novalidate autocomplete="off">
                   <div class="form-row">
                     <div class="form-group flex-1">
-                      <label for="contact-name">Your Full Name <span class="req-star">*</span></label>
-                      <input type="text" id="contact-name" class="form-input washi-input" placeholder="e.g. Maya Chen" required />
+                      <label for="contact-name">Your Name <span class="req-star">*</span></label>
+                      <input type="text" id="contact-name" class="form-input washi-input" placeholder="What should I call you?" required />
                     </div>
                     <div class="form-group flex-1">
-                      <label for="contact-email">Your Email Address <span class="req-star">*</span></label>
-                      <input type="email" id="contact-email" class="form-input washi-input" placeholder="e.g. maya@company.com" required />
+                      <label for="contact-email">Your Email <span class="req-star">*</span></label>
+                      <input type="email" id="contact-email" class="form-input washi-input" placeholder="hello@example.com" required />
                     </div>
                   </div>
 
                   <div class="form-group" style="margin-top:14px;">
-                    <label for="contact-msg">Project Scope, Idea or Message <span class="req-star">*</span></label>
-                    <textarea id="contact-msg" class="form-input washi-input washi-textarea" rows="4" placeholder="Describe your vision, requirements, timeline, or what you'd like to build together with Amrutha..." required></textarea>
-                  </div>
-
-                  <div class="form-group" style="margin-top:14px;">
-                    <label class="channel-choice-label">Preferred Dispatch Method</label>
-                    <div class="requirements-channel-picker">
-                      <button type="button" class="channel-btn active" id="channel-wa-btn" data-channel="whatsapp">
-                        <span>💬 WhatsApp Dispatch</span>
-                      </button>
-                      <button type="button" class="channel-btn" id="channel-email-btn" data-channel="email">
-                        <span>✉ Email Dispatch (Resend)</span>
-                      </button>
-                    </div>
+                    <label for="contact-msg">What are your requirements? <span class="req-star">*</span></label>
+                    <textarea id="contact-msg" class="form-input washi-input washi-textarea" rows="4" placeholder="Tell me about your idea, project, collaboration, or anything you'd like to discuss..." required></textarea>
                   </div>
 
                   <!-- Prominent Contact Me Button -->
                   <div class="envelope-submit-wrap">
                     <button type="submit" class="btn btn-primary btn-envelope-submit magnetic-btn" id="submit-enquiry-btn">
                       <span class="btn-envelope-icon">✉</span>
-                      <span id="submit-btn-lbl">Contact Me</span>
+                      <span id="submit-btn-lbl">Contact Me ♡</span>
                       <span class="btn-arrow" aria-hidden="true">→</span>
                     </button>
                     <div class="envelope-privacy-note">
-                      <span>🌸 Generates your customized Sakura visiting card upon sending</span>
+                      <span>Submitting sends your enquiry by email and opens WhatsApp with your message ready to share.</span>
                     </div>
                   </div>
                 </form>
@@ -1198,23 +1198,6 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- Secondary Links -->
-        <div class="contact-actions" style="margin-top:40px;">
-          <a class="btn btn-primary magnetic-btn" href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer">
-            Find me on GitHub <span aria-hidden="true">↗</span>
-          </a>
-          <button class="btn btn-outline magnetic-btn" type="button" id="copy-github-btn">
-            Copy GitHub link
-          </button>
-          <button class="btn btn-outline magnetic-btn" type="button" id="contact-resume-btn">
-            <span>View Resume</span>
-            <svg class="icon-inline" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-            </svg>
-          </button>
         </div>
 
         <span class="contact-signoff">See you around! ♡</span>
@@ -1230,20 +1213,22 @@
 
       <div class="finale-stage" id="finale-stage">
         <div class="finale-message-container" id="finale-message-container">
-          <div class="finale-line">
+          <div class="finale-line finale-line-primary">
             <span class="finale-word word-thanks">Thanks</span>
             <span class="finale-word word-for">for</span>
             <span class="finale-word word-visiting">visiting</span>
             <span class="finale-word word-my">my</span>
+          </div>
+          <div class="finale-line finale-line-transform">
             <span class="finale-target-slot" id="finale-target-slot">
               <!-- Original word: portfolio -->
               <span class="finale-word word-portfolio" id="finale-portfolio">
                 portfolio
-                <svg class="handwritten-strikethrough-svg" viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true">
-                  <path id="strikethrough-path" class="strikethrough-path" d="M 4 24 Q 45 10 95 22 T 194 18 Q 120 28 60 20" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+                <svg class="handwritten-strikethrough-svg" viewBox="0 0 240 46" preserveAspectRatio="none" aria-hidden="true">
+                  <path id="strikethrough-path" class="strikethrough-path" d="M 6 24 Q 60 10 120 23 T 234 20 Q 150 28 80 22" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="round"/>
                 </svg>
               </span>
-              <!-- Replacement word revealed above: world -->
+              <!-- Replacement word revealed: world -->
               <span class="finale-word word-world" id="finale-world" aria-hidden="true">
                 world <span class="finale-heart">♡</span>
               </span>
@@ -1252,13 +1237,6 @@
           <div class="finale-subtext" id="finale-subtext">
             <span>May your curiosity bloom like cherry blossoms in spring ✿</span>
           </div>
-        </div>
-
-        <!-- Floating interactive replay / pause control -->
-        <div class="finale-controls">
-          <button type="button" class="finale-control-btn" id="finale-toggle-btn" aria-label="Pause or replay cinematic loop">
-            <span id="finale-control-icon">↻ Replay Motion</span>
-          </button>
         </div>
       </div>
     </section>
@@ -1312,14 +1290,10 @@
           <canvas id="modal-pixel-loop-canvas" class="modal-pixel-canvas"></canvas>
         </div>
         <h2 id="dev-modal-title" class="dev-modal-name">Divvela Jyoti Venkata Amrutha</h2>
-        <div class="dev-modal-subtitle">Chief Technology Officer (CTO) @ CodeXa Agency &bull; Frontend Developer &bull; B.Tech Student</div>
+        <div class="dev-modal-subtitle">Frontend Developer &bull; B.Tech Student &bull; CodeXa Agency</div>
       </div>
 
       <div class="dev-modal-details">
-        <div class="dev-detail-item">
-          <span class="dev-detail-label">Executive Leadership</span>
-          <span class="dev-detail-val" style="color:var(--accent); font-weight:800;">Chief Technology Officer (CTO) @ CodeXa Agency</span>
-        </div>
         <div class="dev-detail-item">
           <span class="dev-detail-label">Institution</span>
           <span class="dev-detail-val">Narasaraopeta Engineering College</span>
@@ -1383,6 +1357,160 @@
           </a>
           <a href="public/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="min-height:48px; padding:0 24px; font-size:13px;">
             Open in New Tab ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- Modal 3: Smart Classroom Attendance & Admin Dashboard Modal (Phase 22) -->
+  <div id="admin-dashboard-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
+    <div class="modal-card admin-modal-card">
+      <button type="button" id="close-admin-modal" class="modal-close-btn" aria-label="Close Admin Dashboard">✕</button>
+
+      <div class="admin-modal-header">
+        <div class="admin-header-badge">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>ADMIN ATTENDANCE PORTAL &bull; LIVE SYSTEM</span>
+        </div>
+        <h3 id="admin-modal-title" class="admin-modal-title">Smart Classroom Attendance System</h3>
+        <p class="admin-modal-sub">
+          <strong>Section:</strong> CSE-3A &bull; <strong>Department:</strong> Computer Science &amp; Engineering &bull; <strong>Lead Architect:</strong> Divvela Jyoti Venkata Amrutha
+        </p>
+        <div class="admin-meta-strip">
+          <span class="admin-time-badge" id="admin-live-time">🕒 Today: 09:30 AM &bull; Period 1 (Web Engineering)</span>
+          <span class="admin-session-pill">Academic Year 2026-27</span>
+        </div>
+      </div>
+
+      <!-- Real-Time Dynamic Metrics Bar -->
+      <div class="admin-stats-grid">
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon">
+            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="admin-stat-val" id="admin-total-enrolled">10</div>
+            <div class="admin-stat-label">Total Enrolled</div>
+          </div>
+        </div>
+
+        <div class="admin-stat-card stat-present">
+          <div class="admin-stat-icon">
+            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#25d366" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div>
+            <div class="admin-stat-val" id="admin-present-count">8</div>
+            <div class="admin-stat-label">Present Today</div>
+          </div>
+        </div>
+
+        <div class="admin-stat-card stat-absent">
+          <div class="admin-stat-icon">
+            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#e0526e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+          <div>
+            <div class="admin-stat-val" id="admin-absent-count">2</div>
+            <div class="admin-stat-label">Absent</div>
+          </div>
+        </div>
+
+        <div class="admin-stat-card stat-rate">
+          <div class="admin-stat-icon">
+            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+          <div>
+            <div class="admin-stat-val" id="admin-rate-pct">80.0%</div>
+            <div class="admin-stat-label">Attendance Rate</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Toolbar: Search, Filter, Quick Batch Actions -->
+      <div class="admin-toolbar">
+        <div class="admin-search-wrap">
+          <svg class="search-icon icon-inline" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="admin-search-input" class="admin-search-input" placeholder="Search by student name or roll number (e.g. 21NEC01)..." />
+          <button type="button" class="search-clear-btn" id="admin-search-clear" style="display:none;" aria-label="Clear search">✕</button>
+        </div>
+
+        <div class="admin-filter-group" role="tablist">
+          <button type="button" class="admin-filter-btn active" data-status-filter="all">All (<span id="filter-all-num">10</span>)</button>
+          <button type="button" class="admin-filter-btn" data-status-filter="present">Present (<span id="filter-present-num">8</span>)</button>
+          <button type="button" class="admin-filter-btn" data-status-filter="absent">Absent (<span id="filter-absent-num">2</span>)</button>
+        </div>
+      </div>
+
+      <!-- Batch Action Buttons -->
+      <div class="admin-actions-bar">
+        <button type="button" class="btn-admin-action" id="admin-mark-all-btn">
+          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>Mark All Present</span>
+        </button>
+        <button type="button" class="btn-admin-action" id="admin-reset-btn">
+          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          <span>Reset Roll Call</span>
+        </button>
+        <button type="button" class="btn-admin-action btn-admin-accent" id="admin-export-csv-btn">
+          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Export CSV Report</span>
+        </button>
+        <button type="button" class="btn-admin-action" id="admin-broadcast-btn">
+          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+          </svg>
+          <span>Sync College Server</span>
+        </button>
+      </div>
+
+      <!-- Interactive Student Roster -->
+      <div class="admin-roster-wrap">
+        <div class="admin-roster-header">
+          <span>STUDENT ROSTER</span>
+          <span class="roster-live-hint">Click status pills below to toggle live attendance</span>
+        </div>
+        <div class="admin-roster-list" id="admin-roster-list">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Toast Feedback Message -->
+      <div class="admin-toast" id="admin-toast" hidden></div>
+
+      <!-- Engineering Credits & Architecture Notes -->
+      <div class="admin-modal-footer">
+        <div class="admin-arch-note">
+          <span>💡 <strong>Architecture Note:</strong> Built with semantic HTML5, reactive Vanilla JavaScript DOM state management, and real-time roll-call recalculations. Contributed by Amrutha for college lab automation.</span>
+        </div>
+        <div class="admin-footer-links">
+          <a href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="min-height:38px; font-size:12.5px; padding:0 18px;">
+            View Source Code ↗
           </a>
         </div>
       </div>
@@ -2614,7 +2742,7 @@
     }
 
     // Authorized access verification
-    const VALID_ADMIN_KEYS = ['2026', 'sakura', 'amrutha'];
+    const VALID_ADMIN_KEYS = ['170311', '2026', 'sakura', 'amrutha'];
 
     if (passkeyForm) {
       passkeyForm.addEventListener('submit', (e) => {
@@ -2643,6 +2771,304 @@
         }
       });
     }
+
+    /* 9b. Smart Classroom Attendance & Admin Dashboard Modal (Phase 22) */
+    const adminDashboardModal = document.getElementById('admin-dashboard-modal');
+    const openAdminDashboardBtn = document.getElementById('open-admin-dashboard-btn');
+    const navAdminDashboardBtn = document.getElementById('nav-admin-dashboard-btn');
+    const attendanceMockupWindow = document.getElementById('attendance-mockup-window');
+    const devModalAdminBtn = document.getElementById('dev-modal-admin-btn');
+    const closeAdminModal = document.getElementById('close-admin-modal');
+
+    const studentsData = [
+      { id: '21NEC01', name: 'Aarav Sharma', status: 'present', avg: '96%', tag: '' },
+      { id: '21NEC02', name: 'Divvela J. V. Amrutha', status: 'present', avg: '98%', tag: 'Lead Architect' },
+      { id: '21NEC03', name: 'Bhavya Karanam', status: 'absent', avg: '82%', tag: '' },
+      { id: '21NEC04', name: 'Chaitanya Rao', status: 'present', avg: '94%', tag: '' },
+      { id: '21NEC05', name: 'Divya Mandava', status: 'present', avg: '91%', tag: '' },
+      { id: '21NEC06', name: 'Eshwar Prasad', status: 'absent', avg: '78%', tag: '' },
+      { id: '21NEC07', name: 'Farhan Ahmed', status: 'present', avg: '93%', tag: '' },
+      { id: '21NEC08', name: 'Gayatri Somu', status: 'present', avg: '95%', tag: '' },
+      { id: '21NEC09', name: 'Harsh Vardhan', status: 'present', avg: '89%', tag: '' },
+      { id: '21NEC10', name: 'Ishita Nair', status: 'present', avg: '97%', tag: '' }
+    ];
+
+    let currentAdminFilter = 'all';
+    let adminSearchQuery = '';
+
+    const adminTotalEnrolledEl = document.getElementById('admin-total-enrolled');
+    const adminPresentCountEl = document.getElementById('admin-present-count');
+    const adminAbsentCountEl = document.getElementById('admin-absent-count');
+    const adminRatePctEl = document.getElementById('admin-rate-pct');
+    const filterAllNumEl = document.getElementById('filter-all-num');
+    const filterPresentNumEl = document.getElementById('filter-present-num');
+    const filterAbsentNumEl = document.getElementById('filter-absent-num');
+    const adminRosterListEl = document.getElementById('admin-roster-list');
+    const adminSearchInput = document.getElementById('admin-search-input');
+    const adminSearchClear = document.getElementById('admin-search-clear');
+    const adminToastEl = document.getElementById('admin-toast');
+
+    function showAdminToast(msg) {
+      if (!adminToastEl) return;
+      adminToastEl.textContent = msg;
+      adminToastEl.hidden = false;
+      clearTimeout(adminToastEl._timer);
+      adminToastEl._timer = setTimeout(() => {
+        adminToastEl.hidden = true;
+      }, 3500);
+    }
+
+    function recalculateAdminStats() {
+      const total = studentsData.length;
+      const present = studentsData.filter(s => s.status === 'present').length;
+      const absent = studentsData.filter(s => s.status === 'absent').length;
+      const rate = total > 0 ? ((present / total) * 100).toFixed(1) + '%' : '0.0%';
+
+      if (adminTotalEnrolledEl) adminTotalEnrolledEl.textContent = total;
+      if (adminPresentCountEl) adminPresentCountEl.textContent = present;
+      if (adminAbsentCountEl) adminAbsentCountEl.textContent = absent;
+      if (adminRatePctEl) adminRatePctEl.textContent = rate;
+
+      if (filterAllNumEl) filterAllNumEl.textContent = total;
+      if (filterPresentNumEl) filterPresentNumEl.textContent = present;
+      if (filterAbsentNumEl) filterAbsentNumEl.textContent = absent;
+
+      // Sync stats with mockup window
+      const mockupPresent = document.querySelector('.mockup-stat:nth-child(2) .mockup-stat-num');
+      const mockupRate = document.querySelector('.mockup-stat:nth-child(3) .mockup-stat-num');
+      if (mockupPresent) mockupPresent.textContent = present;
+      if (mockupRate) mockupRate.textContent = rate;
+    }
+
+    function renderAdminRoster() {
+      if (!adminRosterListEl) return;
+      adminRosterListEl.innerHTML = '';
+
+      const filtered = studentsData.filter(s => {
+        const matchesFilter = currentAdminFilter === 'all' || s.status === currentAdminFilter;
+        const matchesSearch = !adminSearchQuery || 
+          s.name.toLowerCase().includes(adminSearchQuery.toLowerCase()) || 
+          s.id.toLowerCase().includes(adminSearchQuery.toLowerCase());
+        return matchesFilter && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        const empty = document.createElement('div');
+        empty.style.padding = '24px';
+        empty.style.textAlign = 'center';
+        empty.style.color = 'var(--muted)';
+        empty.style.fontSize = '13px';
+        empty.textContent = 'No students match your search filter.';
+        adminRosterListEl.appendChild(empty);
+        return;
+      }
+
+      filtered.forEach(student => {
+        const row = document.createElement('div');
+        row.className = 'admin-student-row';
+
+        const initials = student.name.split(' ').map(n => n[0]).slice(0, 2).join('');
+        row.innerHTML = `
+          <div class="student-info">
+            <div class="student-avatar">${initials}</div>
+            <div class="student-details">
+              <div class="student-name">
+                ${student.name}
+                ${student.tag ? `<span class="student-tag">${student.tag}</span>` : ''}
+              </div>
+              <div class="student-sub">Roll No: <strong>${student.id}</strong> &bull; Semester Avg: ${student.avg}</div>
+            </div>
+          </div>
+          <div class="status-toggle-group">
+            <button type="button" class="status-pill-btn pill-present ${student.status === 'present' ? 'active' : ''}" data-id="${student.id}" data-set="present" title="Mark Present">Present ✓</button>
+            <button type="button" class="status-pill-btn pill-absent ${student.status === 'absent' ? 'active' : ''}" data-id="${student.id}" data-set="absent" title="Mark Absent">Absent ✗</button>
+            <button type="button" class="status-pill-btn pill-late ${student.status === 'late' ? 'active' : ''}" data-id="${student.id}" data-set="late" title="Mark Late">Late ⏰</button>
+          </div>
+        `;
+        adminRosterListEl.appendChild(row);
+      });
+
+      adminRosterListEl.querySelectorAll('.status-pill-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          const sid = btn.dataset.id;
+          const newStatus = btn.dataset.set;
+          const s = studentsData.find(item => item.id === sid);
+          if (s) {
+            s.status = newStatus;
+            recalculateAdminStats();
+            renderAdminRoster();
+          }
+        });
+      });
+    }
+
+    // Filter Buttons
+    document.querySelectorAll('.admin-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.admin-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentAdminFilter = btn.dataset.statusFilter;
+        renderAdminRoster();
+      });
+    });
+
+    // Search Input
+    if (adminSearchInput) {
+      adminSearchInput.addEventListener('input', e => {
+        adminSearchQuery = e.target.value.trim();
+        if (adminSearchClear) adminSearchClear.style.display = adminSearchQuery ? 'block' : 'none';
+        renderAdminRoster();
+      });
+    }
+    if (adminSearchClear) {
+      adminSearchClear.addEventListener('click', () => {
+        if (adminSearchInput) adminSearchInput.value = '';
+        adminSearchQuery = '';
+        adminSearchClear.style.display = 'none';
+        renderAdminRoster();
+      });
+    }
+
+    // Quick Batch Actions
+    const markAllBtn = document.getElementById('admin-mark-all-btn');
+    if (markAllBtn) {
+      markAllBtn.addEventListener('click', () => {
+        studentsData.forEach(s => s.status = 'present');
+        recalculateAdminStats();
+        renderAdminRoster();
+        showAdminToast('✓ All 10 students marked Present for Period 1!');
+      });
+    }
+
+    const resetBtn = document.getElementById('admin-reset-btn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        studentsData.forEach((s, idx) => s.status = (idx === 2 || idx === 5) ? 'absent' : 'present');
+        recalculateAdminStats();
+        renderAdminRoster();
+        showAdminToast('↺ Attendance roll call reset to scheduled roster state.');
+      });
+    }
+
+    const exportCsvBtn = document.getElementById('admin-export-csv-btn');
+    if (exportCsvBtn) {
+      exportCsvBtn.addEventListener('click', () => {
+        let csv = 'Roll No,Student Name,Status,Semester Average,Class,Department,Date\n';
+        const dStr = new Date().toLocaleDateString('en-US');
+        studentsData.forEach(s => {
+          csv += `${s.id},"${s.name}",${s.status.toUpperCase()},${s.avg},CSE-3A,Computer Science,${dStr}\n`;
+        });
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Attendance_Report_CSE3A_${new Date().toISOString().slice(0, 10)}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showAdminToast('📥 Attendance CSV report downloaded successfully!');
+      });
+    }
+
+    const broadcastBtn = document.getElementById('admin-broadcast-btn');
+    if (broadcastBtn) {
+      broadcastBtn.addEventListener('click', () => {
+        showAdminToast('☁ Syncing live attendance with Narasaraopeta Engineering College Portal... Done!');
+      });
+    }
+
+    /* 9c. Admin Portal Access Helper */
+    const navAdminFlowerBtn = document.getElementById('nav-admin-flower-btn');
+    const togglePasskeyVis = document.getElementById('toggle-passkey-vis');
+
+    function checkAdminAccess(onSuccess) {
+      if (sessionStorage.getItem('amrutha_admin_session')) {
+        onSuccess();
+      } else {
+        openPasskeyModal();
+      }
+    }
+
+    if (navAdminFlowerBtn) {
+      navAdminFlowerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+    }
+
+    if (togglePasskeyVis && passkeyInput) {
+      togglePasskeyVis.addEventListener('click', () => {
+        const isPass = passkeyInput.type === 'password';
+        passkeyInput.type = isPass ? 'text' : 'password';
+        togglePasskeyVis.textContent = isPass ? '🔒' : '👁';
+      });
+    }
+
+    function launchAdminDashboard() {
+      recalculateAdminStats();
+      renderAdminRoster();
+      openModal(adminDashboardModal);
+    }
+
+    if (openAdminDashboardBtn) {
+      openAdminDashboardBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+    }
+    if (navAdminDashboardBtn) {
+      navAdminDashboardBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+    }
+    if (attendanceMockupWindow) {
+      attendanceMockupWindow.addEventListener('click', (e) => {
+        e.stopPropagation();
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+      attendanceMockupWindow.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          checkAdminAccess(() => launchAdminDashboard());
+        }
+      });
+    }
+    if (devModalAdminBtn) {
+      devModalAdminBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(devIdModal);
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+    }
+    if (closeAdminModal) {
+      closeAdminModal.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(adminDashboardModal);
+      });
+    }
+
+    // Dismiss modals when clicking dark backdrop
+    [devIdModal, resumeModal, passkeyModal, adminDashboardModal].forEach(modal => {
+      if (!modal) return;
+      modal.addEventListener('click', e => {
+        if (e.target === modal) {
+          closeModal(modal);
+        }
+      });
+    });
+
+    // Escape key closes modals
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeModal(devIdModal);
+        closeModal(resumeModal);
+        closeModal(passkeyModal);
+        closeModal(adminDashboardModal);
+      }
+    });
 
     /* 10. Modals Logic (Resume & General) */
     const resumeBtn = document.getElementById('resume-btn');
@@ -2677,7 +3103,7 @@
     }
 
     // Dismiss modals when clicking dark backdrop
-    [devIdModal, resumeModal, passkeyModal].forEach(modal => {
+    [devIdModal, resumeModal, passkeyModal, adminDashboardModal].forEach(modal => {
       if (!modal) return;
       modal.addEventListener('click', e => {
         if (e.target === modal) {
@@ -2769,7 +3195,7 @@
       {
         category: "Communication",
         question: "How can clients or teams connect with you most effectively?",
-        answer: "You can submit a message through the royal washi envelope form on this page to instantly generate your personal visiting card and message me on WhatsApp (+91 93479 61763), or send an email directly to amruthadivvela@gmail.com."
+        answer: "You can submit a message through the royal washi envelope form on this page to instantly generate your personal visiting card and message me on WhatsApp (+91 90323 16792), or send an email directly to amruthadivvela@gmail.com."
       }
     ];
 
@@ -2890,26 +3316,24 @@
     if (copyPhoneBtn) {
       copyPhoneBtn.addEventListener('click', async () => {
         try {
-          await navigator.clipboard.writeText('+91 93479 61763');
+          await navigator.clipboard.writeText('+91 90323 16792');
           copyPhoneBtn.innerHTML = '<span>Copied! ♡</span> ✓';
           setTimeout(() => {
             copyPhoneBtn.innerHTML = '<span>Copy WhatsApp</span> 💬';
           }, 2000);
         } catch (e) {
-          window.open('https://wa.me/919347961763', '_blank');
+          window.open('https://wa.me/919032316792', '_blank');
         }
       });
     }
 
     /* ==========================================================================
-       14. ENVELOPE ENQUIRY FORM & DEDICATED VISITING CARD REVEAL MODAL
+       14. ENVELOPE ENQUIRY FORM & AUTOMATED DISPATCH (EMAIL & WHATSAPP)
        ========================================================================== */
     const contactForm = document.getElementById('contact-form');
     const reqNameInput = document.getElementById('contact-name');
     const reqEmailInput = document.getElementById('contact-email');
     const reqMsgInput = document.getElementById('contact-msg');
-    const channelWaBtn = document.getElementById('channel-wa-btn');
-    const channelEmailBtn = document.getElementById('channel-email-btn');
     const submitEnquiryBtn = document.getElementById('submit-enquiry-btn');
     const submitBtnLbl = document.getElementById('submit-btn-lbl');
     const formFeedback = document.getElementById('form-feedback');
@@ -2918,28 +3342,8 @@
     const visitingCardCanvas = document.getElementById('visiting-card-canvas');
     const downloadCardBtn = document.getElementById('download-card-btn');
     const shareCardBtn = document.getElementById('share-card-btn');
-    const proceedDispatchBtn = document.getElementById('proceed-dispatch-btn');
-    const proceedBtnLbl = document.getElementById('proceed-btn-lbl');
 
-    let activeContactChannel = 'whatsapp';
-
-    if (channelWaBtn && channelEmailBtn) {
-      channelWaBtn.addEventListener('click', () => {
-        activeContactChannel = 'whatsapp';
-        channelWaBtn.classList.add('active');
-        channelEmailBtn.classList.remove('active');
-        if (submitBtnLbl) submitBtnLbl.textContent = 'Contact Me via WhatsApp';
-        if (proceedBtnLbl) proceedBtnLbl.textContent = 'Continue to WhatsApp 💬';
-      });
-
-      channelEmailBtn.addEventListener('click', () => {
-        activeContactChannel = 'email';
-        channelEmailBtn.classList.add('active');
-        channelWaBtn.classList.remove('active');
-        if (submitBtnLbl) submitBtnLbl.textContent = 'Contact Me via Email';
-        if (proceedBtnLbl) proceedBtnLbl.textContent = 'Continue to Email ✉';
-      });
-    }
+    let currentSubmissionId = null;
 
     if (closeVisitingCardModal) {
       closeVisitingCardModal.addEventListener('click', () => {
@@ -3017,8 +3421,8 @@
       ctx.fillText('Amrutha ✿', w / 2, 175);
 
       ctx.fillStyle = '#6b4b58';
-      ctx.font = '600 28px Outfit, sans-serif';
-      ctx.fillText('Chief Technology Officer @ CodeXa Agency', w / 2, 222);
+      ctx.font = '700 28px Outfit, sans-serif';
+      ctx.fillText('Chief Technology Officer at CodeXa Agency', w / 2, 222);
 
       ctx.fillStyle = '#8f6e7c';
       ctx.font = '500 22px Outfit, sans-serif';
@@ -3111,7 +3515,7 @@
 
       ctx.fillStyle = '#7a5a68';
       ctx.font = '600 22px Outfit, sans-serif';
-      ctx.fillText("Divvela Amrutha • WhatsApp: +91 93479 61763 • CodeXa Agency", w / 2, 1205);
+      ctx.fillText("Divvela Amrutha • WhatsApp: +91 90323 16792 • CodeXa Agency", w / 2, 1205);
     }
 
     function downloadVisitingCardPng() {
@@ -3155,68 +3559,157 @@
       });
     }
 
-    // Form Submission: Validates Input and ONLY REVEALS VISITING CARD PREVIEW MODAL UPON VALID INPUT
-    if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = (reqNameInput && reqNameInput.value.trim()) || '';
-        const email = (reqEmailInput && reqEmailInput.value.trim()) || '';
-        const message = (reqMsgInput && reqMsgInput.value.trim()) || '';
+    // AUTOMATED CONTACT FORM SUBMISSION
+    let isSubmitting = false;
+    async function submitContactForm(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      if (isSubmitting) return;
 
-        if (!name || !message) {
-          if (formFeedback) {
-            formFeedback.style.display = 'block';
-            formFeedback.style.color = '#e0526e';
-            formFeedback.textContent = 'Please fill out your name and project message to proceed! ♡';
-          }
-          return;
-        }
+      const name = (reqNameInput && reqNameInput.value.trim()) || '';
+      const email = (reqEmailInput && reqEmailInput.value.trim()) || '';
+      const message = (reqMsgInput && reqMsgInput.value.trim()) || '';
 
-        if (activeContactChannel === 'email' && (!email || !email.includes('@'))) {
-          if (formFeedback) {
-            formFeedback.style.display = 'block';
-            formFeedback.style.color = '#e0526e';
-            formFeedback.textContent = 'Please provide a valid email address so I can reply! ♡';
-          }
-          return;
-        }
-
+      // Field Validation
+      if (!name) {
         if (formFeedback) {
-          formFeedback.style.display = 'none';
+          formFeedback.style.display = 'block';
+          formFeedback.style.color = '#e0526e';
+          formFeedback.textContent = 'Please enter your name to connect! ♡';
+        }
+        if (reqNameInput) reqNameInput.focus();
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        if (formFeedback) {
+          formFeedback.style.display = 'block';
+          formFeedback.style.color = '#e0526e';
+          formFeedback.textContent = 'Please provide a valid email address so I can reply! ♡';
+        }
+        if (reqEmailInput) reqEmailInput.focus();
+        return;
+      }
+
+      if (!message) {
+        if (formFeedback) {
+          formFeedback.style.display = 'block';
+          formFeedback.style.color = '#e0526e';
+          formFeedback.textContent = 'Please describe your requirements or ideas! ♡';
+        }
+        if (reqMsgInput) reqMsgInput.focus();
+        return;
+      }
+
+      if (formFeedback) {
+        formFeedback.style.display = 'none';
+      }
+
+      isSubmitting = true;
+
+      // Generate stable idempotency key for this submission attempt
+      if (!currentSubmissionId) {
+        currentSubmissionId = 'sub_' + Date.now() + '_' + Math.random().toString(36).slice(2, 9);
+      }
+
+      // Disable button & indicate loading state
+      if (submitEnquiryBtn) {
+        submitEnquiryBtn.disabled = true;
+        submitEnquiryBtn.style.opacity = '0.75';
+      }
+      if (submitBtnLbl) {
+        submitBtnLbl.innerHTML = 'Sending enquiry... <span style="display:inline-block; animation:spin 1s linear infinite;">🌸</span>';
+      }
+
+      // Render visiting card in background
+      renderVisitingCard();
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Idempotency-Key': currentSubmissionId
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            message
+          })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.readyForWhatsApp) {
+          throw new Error(result.message || 'Unable to prepare your enquiry. Please check your connection and retry.');
         }
 
-        // Render card and open modal
-        renderVisitingCard();
-        openModal(visitingCardModal);
+        // Reset idempotency ID on success
+        currentSubmissionId = null;
 
-        // Configure proceed button
-        if (proceedDispatchBtn) {
-          proceedDispatchBtn.onclick = () => {
-            if (activeContactChannel === 'whatsapp') {
-              const waPhone = '919347961763';
-              const prefilledMsg = `Hi Amrutha! I came across your portfolio and would love to collaborate.\n\nName: ${name}\nEmail: ${email}\n\nProject Scope & Message:\n${message}\n\nLooking forward to discussing! 🌸`;
-              const waUrl = `https://wa.me/${waPhone}?text=${encodeURIComponent(prefilledMsg)}`;
-              window.open(waUrl, '_blank', 'noopener,noreferrer');
-            } else {
-              const subject = encodeURIComponent(`CodeXa Collaboration Enquiry from ${name}`);
-              const body = encodeURIComponent(`Hi Amrutha,\n\nName: ${name}\nEmail: ${email}\n\nProject Message:\n${message}\n\nSent via Sakura Portfolio`);
-              window.location.href = `mailto:amruthadivvela@gmail.com?subject=${subject}&body=${body}`;
-            }
-          };
+        if (submitBtnLbl) {
+          submitBtnLbl.textContent = 'Redirecting to WhatsApp... 🌸';
         }
-      });
+
+        // Directly navigate to WhatsApp
+        if (typeof window.__onWhatsAppRedirect === 'function') {
+          window.__onWhatsAppRedirect(result.whatsappUrl);
+        } else {
+          window.location.assign(result.whatsappUrl);
+        }
+
+        // Fallback link in case automatic browser navigation is delayed or blocked
+        setTimeout(() => {
+          if (formFeedback) {
+            formFeedback.innerHTML = `<a href="${result.whatsappUrl}" target="_blank" rel="noopener noreferrer" style="color:var(--accent); font-weight:700; text-decoration:underline;">Click here to open WhatsApp with your message ready ↗</a>`;
+            formFeedback.style.display = 'block';
+          }
+          if (submitEnquiryBtn) {
+            submitEnquiryBtn.disabled = false;
+            submitEnquiryBtn.style.opacity = '1';
+          }
+          if (submitBtnLbl) {
+            submitBtnLbl.textContent = 'Contact Me ♡';
+          }
+          isSubmitting = false;
+        }, 2500);
+
+      } catch (error) {
+        console.error('[Contact Submission Error]', error);
+        isSubmitting = false;
+        if (formFeedback) {
+          formFeedback.style.display = 'block';
+          formFeedback.style.color = '#e0526e';
+          formFeedback.textContent = error.message || 'Unable to submit enquiry. Please try again.';
+        }
+        if (submitEnquiryBtn) {
+          submitEnquiryBtn.disabled = false;
+          submitEnquiryBtn.style.opacity = '1';
+        }
+        if (submitBtnLbl) {
+          submitBtnLbl.textContent = 'Contact Me ♡';
+        }
+      }
     }
 
+    if (contactForm) {
+      contactForm.addEventListener('submit', submitContactForm);
+    }
+    if (submitEnquiryBtn) {
+      submitEnquiryBtn.addEventListener('click', (e) => {
+        submitContactForm(e);
+      });
+    }
+    window.__submitContactForm = submitContactForm;
+
     /* ==========================================================================
-       15. GRAND CINEMATIC FINALE SECTION (PETAL & BUTTERFLY TYPOGRAPHY LOOP)
+       15. GRAND CINEMATIC FINALE SECTION (CONTINUOUS AUTOMATIC OUTRO LOOP)
        ========================================================================== */
     const finaleCanvas = document.getElementById('finale-canvas');
     const finaleStrikethrough = document.getElementById('strikethrough-path');
-    const finalePortfolio = document.getElementById('finale-portfolio');
-    const finaleWorld = document.getElementById('finale-world');
-    const finaleMessageContainer = document.getElementById('finale-message-container');
-    const finaleToggleBtn = document.getElementById('finale-toggle-btn');
-    const finaleControlIcon = document.getElementById('finale-control-icon');
+    const finalePortfolio = document.getElementById('finale-portfolio') || document.getElementById('word-portfolio');
+    const finaleWorld = document.getElementById('finale-world') || document.getElementById('word-world');
+    const finaleMessageContainer = document.getElementById('finale-message-container') || document.getElementById('finale-quote-container');
 
     let isFinaleLoopActive = true;
     let finaleAnimFrame = null;
@@ -3235,9 +3728,9 @@
       });
 
       // Particle system for butterflies and cherry blossom petals
-      const particleCount = 140;
+      const particleCount = 150;
       const particles = [];
-      const colors = ['#f5a4bd', '#ffd5e2', '#d56586', '#ffffff', '#ff9ebb'];
+      const colors = ['#f5a4bd', '#ffd5e2', '#d56586', '#ffffff', '#ff9ebb', '#ffd57a'];
 
       for (let i = 0; i < particleCount; i++) {
         particles.push({
@@ -3278,7 +3771,7 @@
           ctx.globalAlpha = p.alpha;
 
           if (p.isButterfly) {
-            // Draw miniature animated fluttering butterfly
+            // Draw miniature fluttering butterfly
             const wingScale = Math.sin(p.wingPhase);
             ctx.fillStyle = p.color;
             ctx.beginPath();
@@ -3288,7 +3781,7 @@
             ctx.fillStyle = '#5d384e';
             ctx.fillRect(-1, -p.size * 0.4, 2, p.size * 0.8);
           } else {
-            // Draw delicate cherry blossom petal
+            // Draw cherry blossom petal
             ctx.fillStyle = p.color;
             ctx.beginPath();
             ctx.ellipse(0, 0, p.size * 0.5, p.size, p.rot, 0, Math.PI * 2);
@@ -3301,69 +3794,80 @@
         finaleAnimFrame = requestAnimationFrame(drawFinaleParticles);
       }
 
-      function runCinematicCycle() {
-        if (!isFinaleLoopActive) return;
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let finaleCycleId = 0;
+
+      function runCinematicCycle(fastForward) {
+        finaleCycleId++;
+        const currentCycle = finaleCycleId;
+        if (finaleCycleTimeout) clearTimeout(finaleCycleTimeout);
+
+        if (fastForward || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          if (finaleMessageContainer) finaleMessageContainer.style.opacity = '1';
           if (finaleStrikethrough) finaleStrikethrough.classList.add('active');
+          if (finalePortfolio) finalePortfolio.classList.add('struck');
           if (finaleWorld) finaleWorld.classList.add('active');
-          if (finalePortfolio) finalePortfolio.style.opacity = '0.35';
           return;
         }
 
-        // Phase 1: Reconstruct original phrase: "Thanks for visiting my portfolio"
+        // State A: Initial formation: "Thanks for visiting my portfolio"
         if (finaleMessageContainer) finaleMessageContainer.style.opacity = '1';
         if (finaleStrikethrough) finaleStrikethrough.classList.remove('active');
         if (finaleWorld) finaleWorld.classList.remove('active');
-        if (finalePortfolio) finalePortfolio.style.opacity = '1';
+        if (finalePortfolio) {
+          finalePortfolio.classList.remove('struck');
+          finalePortfolio.style.opacity = '0.9';
+        }
 
-        // Phase 2: Handwritten Strike-through after 2.8s
+        // State B: After 2.5s, handwritten strike-through draws across "portfolio"
         finaleCycleTimeout = setTimeout(() => {
-          if (!isFinaleLoopActive) return;
+          if (currentCycle !== finaleCycleId) return;
           if (finaleStrikethrough) finaleStrikethrough.classList.add('active');
 
-          // Phase 3: Reveal "world ♡" after 0.9s
+          // State C & D: After 0.6s, "world ♡" blooms & floral celebration
           finaleCycleTimeout = setTimeout(() => {
-            if (!isFinaleLoopActive) return;
+            if (currentCycle !== finaleCycleId) return;
+            if (finalePortfolio) finalePortfolio.classList.add('struck');
             if (finaleWorld) finaleWorld.classList.add('active');
-            if (finalePortfolio) finalePortfolio.style.opacity = '0.35';
 
-            // Phase 4: Settle & hold for 3.2s
+            // State E: Hold for 6.5s so visitors can fully read "Thanks for visiting my world! ♡"
             finaleCycleTimeout = setTimeout(() => {
-              if (!isFinaleLoopActive) return;
-
-              // Phase 5: Dissolve phrase into butterflies and petals
+              if (currentCycle !== finaleCycleId) return;
+              // State F: Dissolve message into butterflies & petals
               if (finaleMessageContainer) finaleMessageContainer.style.opacity = '0';
 
-              // Phase 6: Repeat cycle seamlessly
+              // State G: Reform after 1.5s and loop seamlessly
               finaleCycleTimeout = setTimeout(() => {
-                if (!isFinaleLoopActive) return;
+                if (currentCycle !== finaleCycleId) return;
                 runCinematicCycle();
-              }, 1200);
-            }, 3200);
-          }, 900);
-        }, 2800);
+              }, 1500);
+            }, 6500);
+          }, 600);
+        }, 2500);
       }
 
       drawFinaleParticles();
       runCinematicCycle();
 
-      if (finaleToggleBtn) {
-        finaleToggleBtn.addEventListener('click', () => {
-          isFinaleLoopActive = !isFinaleLoopActive;
-          if (isFinaleLoopActive) {
-            finaleControlIcon.textContent = '⏸ Pause Motion';
-            drawFinaleParticles();
-            runCinematicCycle();
-          } else {
-            finaleControlIcon.textContent = '↻ Resume Motion';
-            if (finaleCycleTimeout) clearTimeout(finaleCycleTimeout);
-            if (finaleAnimFrame) cancelAnimationFrame(finaleAnimFrame);
-            if (finaleMessageContainer) finaleMessageContainer.style.opacity = '1';
-            if (finaleStrikethrough) finaleStrikethrough.classList.add('active');
-            if (finaleWorld) finaleWorld.classList.add('active');
-          }
-        });
+      // Pause heavy particle canvas when offscreen, resume when visible
+      const finaleSection = document.getElementById('finale');
+      if (finaleSection && 'IntersectionObserver' in window) {
+        const finaleObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              if (!isFinaleLoopActive) {
+                isFinaleLoopActive = true;
+                drawFinaleParticles();
+              }
+            } else {
+              isFinaleLoopActive = false;
+              if (finaleAnimFrame) cancelAnimationFrame(finaleAnimFrame);
+            }
+          });
+        }, { threshold: 0.05 });
+        finaleObserver.observe(finaleSection);
       }
+
+      window.__triggerFinaleCycle = runCinematicCycle;
     }
 
     initCinematicFinale();
