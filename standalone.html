@@ -1,0 +1,3914 @@
+<!doctype html>
+<html lang="en" data-theme="sakura">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fffaf8" />
+  <meta name="description" content="Divvela Jyoti Venkata Amrutha - Creative Frontend Developer & B.Tech Student Portfolio. Turning ideas into thoughtful web experiences." />
+  <meta property="og:title" content="Amrutha ✿ Frontend Developer" />
+  <meta property="og:description" content="A creative, interactive frontend portfolio featuring thoughtful web experiences, animated butterflies, and blooming ideas." />
+  <title>Amrutha ✿ Frontend Developer &amp; B.Tech Student</title>
+  
+  <!-- Google Fonts: Outfit, DM Sans, Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+
+  <!-- Cinematic Opening Sequence (Phase 1) -->
+  <div id="cinematic-intro-overlay" class="cinematic-intro-overlay" aria-label="Opening cinematic introduction">
+    <!-- Storybook Washi Paper Deckle-Edge Curtains -->
+    <div class="storybook-curtain storybook-curtain-left" id="curtain-left" aria-hidden="true">
+      <svg class="deckle-edge-svg" viewBox="0 0 200 1000" preserveAspectRatio="none">
+        <path d="M0,0 L160,0 C175,90 145,180 165,270 C185,360 140,450 170,540 C195,630 150,720 175,810 C190,900 155,950 165,1000 L0,1000 Z" fill="#fffaf8"/>
+      </svg>
+      <div class="washi-texture-overlay"></div>
+    </div>
+
+    <div class="storybook-curtain storybook-curtain-right" id="curtain-right" aria-hidden="true">
+      <svg class="deckle-edge-svg" viewBox="0 0 200 1000" preserveAspectRatio="none">
+        <path d="M200,0 L40,0 C25,90 55,180 35,270 C15,360 60,450 30,540 C5,630 50,720 25,810 C10,900 45,950 35,1000 L200,1000 Z" fill="#fffaf8"/>
+      </svg>
+      <div class="washi-texture-overlay"></div>
+    </div>
+
+    <!-- Soft Painted Cloud Decks for Elegant Lateral Reveal -->
+    <div class="cloud-deck cloud-deck-left" id="cloud-deck-left" aria-hidden="true">
+      <div class="cloud-puff puff-1"></div>
+      <div class="cloud-puff puff-2"></div>
+      <div class="cloud-puff puff-3"></div>
+      <div class="cloud-puff puff-4"></div>
+    </div>
+
+    <div class="cloud-deck cloud-deck-right" id="cloud-deck-right" aria-hidden="true">
+      <div class="cloud-puff puff-5"></div>
+      <div class="cloud-puff puff-6"></div>
+      <div class="cloud-puff puff-7"></div>
+      <div class="cloud-puff puff-8"></div>
+    </div>
+
+    <!-- 60fps Interactive Animation Canvas (Solitary Flight, Swarm, WELCOME, Petal Morph) -->
+    <canvas id="intro-canvas" class="intro-canvas"></canvas>
+
+    <!-- Falling Welcome Sign: "to my world" -->
+    <div id="intro-hanging-sign" class="intro-hanging-sign" style="display:none;" aria-hidden="true">
+      <svg class="intro-sign-threads" viewBox="0 0 420 60" preserveAspectRatio="none">
+        <line x1="60" y1="0" x2="60" y2="60" stroke="#d56586" stroke-width="2" stroke-dasharray="3 3"/>
+        <line x1="360" y1="0" x2="360" y2="60" stroke="#d56586" stroke-width="2" stroke-dasharray="3 3"/>
+      </svg>
+      <div class="intro-sign-text">to my world</div>
+      <div class="intro-sign-deco">✿ &bull; ✦ &bull; ✿</div>
+    </div>
+
+    <!-- Cinematic Controls -->
+    <div class="intro-controls">
+      <button type="button" id="skip-intro-btn" class="skip-intro-btn" aria-label="Skip introduction">
+        <span>Skip Intro</span> <span class="skip-arrow">↷</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Ambient Cursor Glow Spotlight -->
+  <div class="ambient-glow" id="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Floating Navigation Bar (Strict Public Layout: Amrutha ✿ | About Education Work Skills Contact | Themes) -->
+  <header class="site-header">
+    <nav class="nav-pill" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Amrutha home">
+        Amrutha <span class="flower-icon" aria-hidden="true">✿</span>
+      </a>
+
+      <div class="nav-links" id="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#work" class="nav-link">Work</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <span class="nav-separator" aria-hidden="true"></span>
+        <div class="theme-wrap">
+          <button type="button" id="theme-button" class="theme-button" aria-expanded="false" aria-haspopup="true" aria-label="Select website theme">
+            <span class="sun-circle" aria-hidden="true">☼</span>
+            <span class="theme-label">Themes</span>
+            <span class="theme-chevron" aria-hidden="true">⌄</span>
+          </button>
+          
+          <div id="theme-dropdown" class="theme-dropdown" hidden>
+            <div class="theme-heading">
+              <span>✿</span> Choose your mood <span>♡</span>
+            </div>
+            <div id="theme-options" class="theme-options" role="radiogroup" aria-label="Theme options">
+              <!-- Dynamically populated 10 themes -->
+            </div>
+            <div class="theme-foot">a little color, a little magic ♡</div>
+          </div>
+        </div>
+
+        <button type="button" id="menu-button" class="menu-button" aria-label="Toggle mobile menu" aria-expanded="false">
+          ☰
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section (Phase 2 & 6) -->
+    <section id="top" class="hero" aria-label="Hero section">
+      <div class="hero-wash" aria-hidden="true"></div>
+      
+      <!-- Oversized Background Lettering with interactive particle displacement -->
+      <div class="giant-name-wrap" id="giant-name-wrap">
+        <canvas id="amrutha-particle-canvas" class="giant-name-canvas" aria-hidden="true"></canvas>
+        <div class="giant-name" id="giant-amrutha" aria-hidden="true">AMRUTHA</div>
+      </div>
+
+      <!-- Falling Petals Particle Canvas/System -->
+      <div class="petal-field" id="petals" aria-hidden="true"></div>
+
+      <!-- Butterfly Curved Flight Trails -->
+      <svg aria-hidden="true" class="butterfly-trail trail-one" viewBox="0 0 180 130">
+        <path d="M8 6C142 31 146 75 102 98S31 117 54 55"/>
+      </svg>
+      <svg aria-hidden="true" class="butterfly-trail trail-two" viewBox="0 0 180 130">
+        <path d="M5 110C76 9 162 72 136 105S88 69 130 30"/>
+      </svg>
+
+      <!-- 3 Animated Sakura Butterflies with interactive hover reactions -->
+      <svg aria-hidden="true" class="butterfly butterfly-one" width="70" height="70" viewBox="0 0 104 92">
+        <defs>
+          <linearGradient id="wing-one" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#fff5f9"/>
+            <stop offset="0.5" stop-color="#f5a4bd"/>
+            <stop offset="1" stop-color="#d56586"/>
+          </linearGradient>
+        </defs>
+        <g class="wing-left">
+          <path d="M49 43C39 22 16 2 6 12-7 32 18 56 45 49 21 49 9 65 20 77c10 9 29-1 31-28" fill="url(#wing-one)" stroke="#ba768e" stroke-width="2"/>
+        </g>
+        <g class="wing-right">
+          <path d="M55 43C65 22 88 2 98 12c13 20-12 44-39 37 24 0 36 16 25 28-10 9-29-1-31-28" fill="url(#wing-one)" stroke="#ba768e" stroke-width="2"/>
+        </g>
+        <path d="M52 37v30" stroke="#5d384e" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+
+      <svg aria-hidden="true" class="butterfly butterfly-two" width="90" height="90" viewBox="0 0 104 92">
+        <defs>
+          <linearGradient id="wing-two" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#ffffff"/>
+            <stop offset="0.5" stop-color="#f8b3c8"/>
+            <stop offset="1" stop-color="#e27595"/>
+          </linearGradient>
+        </defs>
+        <g class="wing-left">
+          <path d="M49 43C39 22 16 2 6 12-7 32 18 56 45 49 21 49 9 65 20 77c10 9 29-1 31-28" fill="url(#wing-two)" stroke="#ba768e" stroke-width="2"/>
+        </g>
+        <g class="wing-right">
+          <path d="M55 43C65 22 88 2 98 12c13 20-12 44-39 37 24 0 36 16 25 28-10 9-29-1-31-28" fill="url(#wing-two)" stroke="#ba768e" stroke-width="2"/>
+        </g>
+        <path d="M52 37v30" stroke="#5d384e" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+
+      <svg aria-hidden="true" class="butterfly butterfly-three" width="54" height="54" viewBox="0 0 104 92">
+        <defs>
+          <linearGradient id="wing-three" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#fff0f5"/>
+            <stop offset="0.5" stop-color="#f5a0ba"/>
+            <stop offset="1" stop-color="#d96c8c"/>
+          </linearGradient>
+        </defs>
+        <g class="wing-left">
+          <path d="M49 43C39 22 16 2 6 12-7 32 18 56 45 49 21 49 9 65 20 77c10 9 29-1 31-28" fill="url(#wing-three)" stroke="#ba768e" stroke-width="2"/>
+        </g>
+        <g class="wing-right">
+          <path d="M55 43C65 22 88 2 98 12c13 20-12 44-39 37 24 0 36 16 25 28-10 9-29-1-31-28" fill="url(#wing-three)" stroke="#ba768e" stroke-width="2"/>
+        </g>
+        <path d="M52 37v30" stroke="#5d384e" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+
+      <!-- Left Hero Content -->
+      <div class="hero-copy">
+        <div class="hand-intro">
+          Hi, I’m Amrutha.<span class="hand-heart" aria-hidden="true">♡</span>
+        </div>
+        <h1>
+          Frontend<br />
+          Developer
+        </h1>
+        <p class="hero-subtitle">
+          I turn ideas into thoughtful web experiences and scalable digital realities.
+        </p>
+        <div class="hero-actions">
+          <a href="#work" class="btn btn-primary magnetic-btn" id="hero-work-btn">
+            Explore my work <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
+          <button type="button" class="btn btn-outline magnetic-btn" id="resume-btn" aria-haspopup="dialog">
+            <span>View resume</span>
+            <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Center-Right Chibi Character -->
+      <div class="character-wrap" id="character-wrap">
+        <img
+          class="character-img"
+          src="public/assets/amrutha-character.png"
+          alt="Illustration of Amrutha as a pink-haired anime character wearing sunglasses and greeting cheerfully"
+          id="character-img"
+          draggable="false"
+        />
+        <div class="character-shadow" aria-hidden="true"></div>
+        
+        <!-- Interactive Speech Bubble -->
+        <button type="button" class="speech-bubble" id="speech-bubble" aria-label="Character quote">
+          Let’s explore!
+        </button>
+
+        <div class="character-sparkles" aria-hidden="true">
+          <span>✦</span>
+          <span>✧</span>
+          <span>✦</span>
+        </div>
+      </div>
+
+      <!-- Hanging Developer ID Badge: Unified Physical Assembly & Hidden Admin Entry (Phase 1, 2, 3) -->
+      <div class="badge-scene" id="badge-scene" aria-label="Interactive Developer ID card">
+        <!-- SVG Lanyard Straps & Hardware: Converging paths from top to central buckle & swivel clasp -->
+        <svg class="lanyard-hardware-svg" viewBox="0 0 290 440" aria-hidden="true">
+          <defs>
+            <linearGradient id="lanyardFabricA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ffb8cc"/>
+              <stop offset="50%" stop-color="#f59eb7"/>
+              <stop offset="100%" stop-color="#d56586"/>
+            </linearGradient>
+            <linearGradient id="lanyardFabricB" x1="1" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ffd5e2"/>
+              <stop offset="50%" stop-color="#f59eb7"/>
+              <stop offset="100%" stop-color="#ba5372"/>
+            </linearGradient>
+            <linearGradient id="goldMetalGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fff0c2"/>
+              <stop offset="40%" stop-color="#e6bc58"/>
+              <stop offset="70%" stop-color="#b88a20"/>
+              <stop offset="100%" stop-color="#7a570b"/>
+            </linearGradient>
+            <filter id="hardwareShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.25"/>
+            </filter>
+          </defs>
+
+          <!-- Left Fabric Strap Path (converging smoothly from top-left) -->
+          <path d="M 45 -40 C 70 100, 115 220, 142 275" stroke="url(#lanyardFabricA)" stroke-width="26" stroke-linecap="round" fill="none" filter="url(#hardwareShadow)"/>
+          <path d="M 45 -40 C 70 100, 115 220, 142 275" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 4" stroke-opacity="0.6" fill="none"/>
+
+          <!-- Right Fabric Strap Path (converging smoothly from top-right) -->
+          <path d="M 245 -40 C 220 100, 175 220, 148 275" stroke="url(#lanyardFabricB)" stroke-width="26" stroke-linecap="round" fill="none" filter="url(#hardwareShadow)"/>
+          <path d="M 245 -40 C 220 100, 175 220, 148 275" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 4" stroke-opacity="0.6" fill="none"/>
+
+          <!-- Strap Joint / Metallic Clasp Ring -->
+          <rect x="127" y="268" width="36" height="18" rx="7" fill="url(#goldMetalGrad)" stroke="#8c6414" stroke-width="1.5" filter="url(#hardwareShadow)"/>
+          
+          <!-- Swivel Connector & Spring Clasp -->
+          <rect x="139" y="286" width="12" height="20" rx="4" fill="url(#goldMetalGrad)" stroke="#7a570b" stroke-width="1.2"/>
+          <path d="M 145 306 L 145 342" stroke="url(#goldMetalGrad)" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="145" cy="342" r="7.5" fill="none" stroke="url(#goldMetalGrad)" stroke-width="4.5" filter="url(#hardwareShadow)"/>
+          <!-- Front Hook Lip clipping visibly into the badge slot -->
+          <path d="M 141 336 C 141 346, 149 346, 149 336" fill="none" stroke="#fff0c2" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+
+        <div class="dev-id" id="dev-id-badge" role="button" tabindex="0" aria-label="Amrutha Developer ID badge. Click card to open public profile modal.">
+          <!-- Punched Slot Hole where metal clasp visibly hooks through -->
+          <div class="badge-hole-slot" aria-hidden="true"></div>
+
+          <div class="dev-id-head">
+            <div class="id-code">&lt;/&gt;</div>
+            <span>DEVELOPER ID</span>
+            <span class="dev-corner-flower flower-rot-a" aria-hidden="true">✿</span>
+          </div>
+
+          <!-- Clean Anime Portrait Frame with Hover Pixel Dissolve to Real Photo -->
+          <div class="id-photo" id="id-photo-frame" title="Hover over portrait to reveal real photograph">
+            <img class="portrait-anime" src="public/assets/idcard_avatar.jpeg" alt="Amrutha Avatar" id="anime-portrait-img" />
+            <img class="portrait-real" src="public/assets/ammu.webp" alt="Amrutha Photograph" id="real-portrait-img" />
+            <canvas id="hero-pixel-canvas" class="hero-pixel-canvas" style="display:none;"></canvas>
+          </div>
+
+          <div class="id-name">AMRUTHA</div>
+          <div class="id-role">Chief Technology Officer</div>
+          <div class="id-agency">at CodeXa Agency</div>
+          
+          <div class="id-barcode" aria-hidden="true"></div>
+
+          <!-- Decorative Rotating Corner Flower near bottom left -->
+          <span class="dev-corner-flower flower-rot-b" style="position:absolute; left:14px; bottom:14px; font-size:16px;" aria-hidden="true">🌸</span>
+
+          <!-- Hidden Admin Entry: Rotating Decorative Blossom (Double-Click / Double-Tap trigger) -->
+          <div class="id-admin-flower" id="id-admin-flower" role="button" tabindex="0" aria-label="Sakura emblem" title="">
+            <svg class="admin-flower-svg" viewBox="0 0 100 100" aria-hidden="true">
+              <defs>
+                <radialGradient id="cornerFlowerGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#fffbf7"/>
+                  <stop offset="50%" stop-color="#fba8bf"/>
+                  <stop offset="100%" stop-color="#d56586"/>
+                </radialGradient>
+              </defs>
+              <g transform="translate(50,50)">
+                <path d="M 0,-4 C -9,-26 -20,-26 -17,-14 C -14,-3 -4,0 0,0 C 4,0 14,-3 17,-14 C 20,-26 9,-26 0,-4 Z" fill="url(#cornerFlowerGrad)"/>
+                <path d="M 0,-4 C -9,-26 -20,-26 -17,-14 C -14,-3 -4,0 0,0 C 4,0 14,-3 17,-14 C 20,-26 9,-26 0,-4 Z" fill="url(#cornerFlowerGrad)" transform="rotate(72)"/>
+                <path d="M 0,-4 C -9,-26 -20,-26 -17,-14 C -14,-3 -4,0 0,0 C 4,0 14,-3 17,-14 C 20,-26 9,-26 0,-4 Z" fill="url(#cornerFlowerGrad)" transform="rotate(144)"/>
+                <path d="M 0,-4 C -9,-26 -20,-26 -17,-14 C -14,-3 -4,0 0,0 C 4,0 14,-3 17,-14 C 20,-26 9,-26 0,-4 Z" fill="url(#cornerFlowerGrad)" transform="rotate(216)"/>
+                <path d="M 0,-4 C -9,-26 -20,-26 -17,-14 C -14,-3 -4,0 0,0 C 4,0 14,-3 17,-14 C 20,-26 9,-26 0,-4 Z" fill="url(#cornerFlowerGrad)" transform="rotate(288)"/>
+                <circle cx="0" cy="0" r="4.5" fill="#ffd57a" stroke="#d56586" stroke-width="1"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Corner Cherry Blossom Branches (z-index adjusted below buttons) -->
+      <img src="public/assets/sakura-branch.png" class="sakura-branch-corner branch-left" alt="" aria-hidden="true" />
+      <img src="public/assets/sakura-branch.png" class="sakura-branch-corner branch-right" alt="" aria-hidden="true" />
+
+      <div class="hero-bottom-fade" aria-hidden="true"></div>
+    </section>
+
+    <!-- Phase 9: About Section (Layered Editorial Scrapbook) -->
+    <section id="about" class="section about-section" aria-label="About Amrutha">
+      <div class="about-intro reveal">
+        <div class="section-heading">
+          <div class="section-kicker"><span>01</span> / A LITTLE ABOUT ME</div>
+          <h2>Curious mind. <em>Creative heart.</em></h2>
+        </div>
+        <p class="about-intro-text">
+          I’m a B.Tech student at Narasaraopeta Engineering College who loves building clean, user-friendly, responsive web interfaces. I enjoy turning creative ideas into living designs and bringing them to life with code.
+        </p>
+      </div>
+
+      <div class="about-grid reveal">
+        <!-- Pinned Note Card with Washi Tape -->
+        <div class="about-note tilt-card">
+          <div class="note-tape" aria-hidden="true"></div>
+          <span class="note-heart" aria-hidden="true">♡</span>
+          <h3>Oh, hello there!</h3>
+          <p>
+            I'm Amrutha, a frontend developer with a soft spot for thoughtful details, delightful microinteractions, and digital experiences that make people smile.
+          </p>
+          <span class="signature">made with love, Amrutha ✿</span>
+        </div>
+
+        <!-- Layered Highlight Cards -->
+        <div class="about-highlights">
+          <div class="about-highlight-card tilt-card">
+            <div class="about-icon" aria-hidden="true">✧</div>
+            <div>
+              <h4>Design meets development</h4>
+              <p>From visual wireframes to responsive code, I bridge aesthetic sensibility with structured implementation.</p>
+            </div>
+          </div>
+
+          <div class="about-highlight-card tilt-card">
+            <div class="about-icon" aria-hidden="true">♡</div>
+            <div>
+              <h4>Details are everything</h4>
+              <p>Thoughtful spacing, smooth micro-animations, and accessible contrast elevate simple layouts into experiences.</p>
+            </div>
+          </div>
+
+          <div class="about-highlight-card tilt-card">
+            <div class="about-icon" aria-hidden="true">✦</div>
+            <div>
+              <h4>Always learning</h4>
+              <p>Actively expanding my knowledge of modern frontend frameworks, web standards, and collaborative tooling.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-connector-flourish" aria-hidden="true">
+        <span class="connector-line"></span>
+        <span>✿</span>
+        <span class="connector-line"></span>
+      </div>
+    </section>
+
+    <!-- Phase 10: Education Section (Sakura Stem Timeline) -->
+    <section id="education" class="section education-section" aria-label="Academic Journey">
+      <div class="section-top reveal">
+        <div class="section-heading">
+          <div class="section-kicker"><span>02</span> / ACADEMIC JOURNEY</div>
+          <h2>Education &amp; <em>milestones.</em></h2>
+        </div>
+        <div class="section-side-note">Verified academic foundation <span>🌸</span></div>
+      </div>
+
+      <div class="education-timeline reveal">
+        <!-- Milestone 1: B.Tech -->
+        <div class="timeline-item">
+          <div class="timeline-dot" aria-hidden="true">🎓</div>
+          <div class="timeline-card tilt-card">
+            <div class="timeline-card-header">
+              <h3 class="timeline-title">Bachelor of Technology (B.Tech)</h3>
+              <span class="timeline-badge">Currently Pursuing</span>
+            </div>
+            <div class="timeline-institute">Narasaraopeta Engineering College</div>
+            <p class="timeline-desc">
+              Focusing on computer science fundamentals, frontend web engineering, algorithms, and practical team-based application development.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 2: Class XII -->
+        <div class="timeline-item">
+          <div class="timeline-dot" aria-hidden="true">✿</div>
+          <div class="timeline-card tilt-card">
+            <div class="timeline-card-header">
+              <h3 class="timeline-title">Class XII &mdash; Intermediate (MPC)</h3>
+              <span class="timeline-badge">Score: 96.3%</span>
+            </div>
+            <div class="timeline-institute">Sri Chaitanya Junior College</div>
+            <p class="timeline-desc">
+              Rigorous focus in Mathematics, Physics, and Chemistry. Developed strong analytical reasoning and systematic problem-solving habits.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 3: Class X -->
+        <div class="timeline-item">
+          <div class="timeline-dot" aria-hidden="true">★</div>
+          <div class="timeline-card tilt-card">
+            <div class="timeline-card-header">
+              <h3 class="timeline-title">Class X &mdash; Secondary School Certificate</h3>
+              <span class="timeline-badge">Score: 95.0%</span>
+            </div>
+            <div class="timeline-institute">Sri Chaitanya Techno School</div>
+            <p class="timeline-desc">
+              Excellence across academics, mathematics, and foundational science with active participation in school co-curricular activities.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-connector-flourish" aria-hidden="true">
+        <span class="connector-line"></span>
+        <span>✦</span>
+        <span class="connector-line"></span>
+      </div>
+    </section>
+
+    <!-- Phase 11: Selected Work / Projects -->
+    <section id="work" class="section work-section" aria-label="Selected Projects">
+      <div class="section-top reveal">
+        <div class="section-heading">
+          <div class="section-kicker"><span>03</span> / SELECTED WORK</div>
+          <h2>Little ideas. <em>Big possibilities.</em></h2>
+        </div>
+        <div class="section-side-note">A peek into some things I've been building <span>↗</span></div>
+      </div>
+
+      <!-- Project Filters -->
+      <div class="project-filters reveal" role="tablist" aria-label="Project category filters">
+        <button type="button" class="filter-btn active" data-filter="all">All Projects</button>
+        <button type="button" class="filter-btn" data-filter="team">Team Projects</button>
+        <button type="button" class="filter-btn" data-filter="ai">AI &amp; Retrieval</button>
+        <button type="button" class="filter-btn" data-filter="web">Web Experiments</button>
+      </div>
+
+      <!-- Primary Featured Project: Smart Classroom Attendance System -->
+      <article class="featured-project-card tilt-card reveal" data-category="team" aria-label="Smart Classroom Attendance System">
+        <div class="featured-art">
+          <div class="mockup-window" id="attendance-mockup-window" title="Academic Project Interface Preview">
+            <div class="mockup-header">
+              <span class="mockup-dot red"></span>
+              <span class="mockup-dot yellow"></span>
+              <span class="mockup-dot green"></span>
+              <span class="mockup-title">attendance-portal.local</span>
+              <span class="mockup-launch-badge">Team Project</span>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-stat-row">
+                <div class="mockup-stat">
+                  <div class="mockup-stat-num">58</div>
+                  <div class="mockup-stat-lbl">Total Enrolled</div>
+                </div>
+                <div class="mockup-stat">
+                  <div class="mockup-stat-num" style="color:#2ba362">54</div>
+                  <div class="mockup-stat-lbl">Present Today</div>
+                </div>
+                <div class="mockup-stat">
+                  <div class="mockup-stat-num" style="color:#e0526e">93.1%</div>
+                  <div class="mockup-stat-lbl">Attendance Rate</div>
+                </div>
+              </div>
+
+              <div class="mockup-list">
+                <div class="mockup-row">
+                  <span>CSE-3A &bull; Roll 21NEC01</span>
+                  <span class="status-badge status-present">Present ✓</span>
+                </div>
+                <div class="mockup-row">
+                  <span>CSE-3A &bull; Roll 21NEC02</span>
+                  <span class="status-badge status-present">Present ✓</span>
+                </div>
+                <div class="mockup-row">
+                  <span>CSE-3A &bull; Roll 21NEC03</span>
+                  <span class="status-badge status-absent">Absent ✗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="featured-content">
+          <div class="project-tag">FEATURED &bull; TEAM PROJECT</div>
+          <h3>Smart Classroom Attendance System</h3>
+          <p>
+            Designed and developed an intuitive, web-based classroom attendance interface with real-time status recording, structured roll-call workflows, and clean responsive feedback.
+          </p>
+
+          <ul class="feature-bullets">
+            <li><span class="bullet-icon">✿</span> Built semantic frontend layouts using clean HTML5 and CSS3</li>
+            <li><span class="bullet-icon">✿</span> Implemented interactive attendance tracking and dynamic state toggling in JavaScript</li>
+            <li><span class="bullet-icon">✿</span> Collaborated with teammates on modular planning, integration, and user-friendly UX</li>
+          </ul>
+
+          <div class="chip-row" style="margin-bottom: 22px;">
+            <span class="tech-chip">HTML5</span>
+            <span class="tech-chip">CSS3</span>
+            <span class="tech-chip">JavaScript</span>
+            <span class="tech-chip">Responsive Web</span>
+          </div>
+
+          <div class="project-bottom">
+            <span style="font-size:13px; font-weight:700; color:var(--accent);">Academic Team Collaboration</span>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer" class="btn btn-primary magnetic-btn" style="min-height:44px; padding:0 22px; font-size:13px;">
+                View on GitHub ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Verified Public GitHub Repositories Grid -->
+      <div class="project-grid">
+        <!-- Project 1: Prompt Tech -->
+        <article class="project-card tilt-card reveal" data-category="ai">
+          <div class="project-art art-prompt">
+            <div style="background:var(--surface); border-radius:18px; padding:22px 28px; width:80%; box-shadow:0 12px 30px rgba(0,0,0,0.06); text-align:center;">
+              <span style="font-size:28px; color:var(--accent);">✦</span>
+              <div style="font-weight:900; font-size:18px; color:var(--ink); margin:6px 0;">Prompt Tech</div>
+              <div style="font-size:11px; color:var(--muted); letter-spacing:1px;">DOCUMENT INTELLIGENCE &bull; HYBRID AI</div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-eyebrow">01 &bull; AI &bull; DOCUMENT INTELLIGENCE</div>
+            <div class="project-title-row">
+              <h3>Prompt Tech</h3>
+              <a class="project-arrow" target="_blank" rel="noopener noreferrer" href="https://github.com/amruthadivvela-droid/Prompt-tech" aria-label="Prompt Tech GitHub repository">↗</a>
+            </div>
+            <p>Knowledge intelligence experience featuring hybrid document retrieval and grounded question-answering workflows.</p>
+            <div class="project-bottom">
+              <div class="chip-row">
+                <span class="tech-chip">React</span>
+                <span class="tech-chip">TypeScript</span>
+                <span class="tech-chip">AI</span>
+              </div>
+              <a class="btn-live-glow" href="https://prompt-tech-chi.vercel.app" target="_blank" rel="noopener noreferrer">
+                <span>Live Demo</span> <span class="arrow-icon">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2: Watch -->
+        <article class="project-card tilt-card reveal" data-category="web">
+          <div class="project-art art-watch">
+            <div style="width:130px; height:130px; border-radius:36px; background:linear-gradient(135deg, #7868a3, #b3a6df); display:grid; place-items:center; box-shadow:0 14px 28px rgba(110,90,150,0.3); color:#fff; font-size:36px;">
+              <svg class="icon-inline" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="7"></circle>
+                <polyline points="12 9 12 12 13.5 13.5"></polyline>
+                <path d="M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-eyebrow">02 &bull; INTERACTIVE WEB EXPERIMENT</div>
+            <div class="project-title-row">
+              <h3>Watch</h3>
+              <a class="project-arrow" target="_blank" rel="noopener noreferrer" href="https://github.com/amruthadivvela-droid/watch" aria-label="Watch GitHub repository">↗</a>
+            </div>
+            <p>A TypeScript frontend experiment exploring interactive frame components, dynamic dials, and visual micro-details.</p>
+            <div class="project-bottom">
+              <div class="chip-row">
+                <span class="tech-chip">TypeScript</span>
+                <span class="tech-chip">CSS Animations</span>
+              </div>
+              <a class="btn-live-glow" href="https://watch-rosy-mu.vercel.app" target="_blank" rel="noopener noreferrer">
+                <span>Live Demo</span> <span class="arrow-icon">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3: Portfolio -->
+        <article class="project-card tilt-card reveal" data-category="web">
+          <div class="project-art art-portfolio">
+            <div style="background:var(--surface); border-radius:18px; padding:22px 28px; width:78%; box-shadow:0 12px 30px rgba(0,0,0,0.06); text-align:center;">
+              <div style="font-family:var(--font-hand); font-size:20px; color:var(--accent);">creative corner ♡</div>
+              <div style="font-weight:900; font-size:24px; color:var(--ink);">hello, world!</div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-eyebrow">03 &bull; PERSONAL WEBSITE</div>
+            <div class="project-title-row">
+              <h3>Portfolio</h3>
+              <a class="project-arrow" target="_blank" rel="noopener noreferrer" href="https://github.com/amruthadivvela-droid/portfolio" aria-label="Portfolio GitHub repository">↗</a>
+            </div>
+            <p>A personal portfolio codebase showcasing creative layout experiments, fluid typography, and aesthetic presentation work.</p>
+            <div class="project-bottom">
+              <div class="chip-row">
+                <span class="tech-chip">HTML5</span>
+                <span class="tech-chip">CSS3</span>
+                <span class="tech-chip">JavaScript</span>
+              </div>
+              <a class="btn-live-glow" href="https://github.com/amruthadivvela-droid/portfolio" target="_blank" rel="noopener noreferrer">
+                <span>GitHub Code</span> <span class="arrow-icon">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4: Sanjay -->
+        <article class="project-card tilt-card reveal" data-category="web">
+          <div class="project-art art-sanjay">
+            <div style="background:var(--surface); border-radius:18px; padding:22px 28px; width:78%; box-shadow:0 12px 30px rgba(0,0,0,0.06); text-align:center;">
+              <div style="font-size:10px; letter-spacing:2px; color:#4a9686; font-weight:800;">THE WEB IS A CANVAS</div>
+              <div style="font-weight:900; font-size:20px; color:var(--ink); margin:6px 0;">Create Beautifully</div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-eyebrow">04 &bull; WEB PROJECT</div>
+            <div class="project-title-row">
+              <h3>Sanjay</h3>
+              <a class="project-arrow" target="_blank" rel="noopener noreferrer" href="https://github.com/amruthadivvela-droid/sanjay" aria-label="Sanjay GitHub repository">↗</a>
+            </div>
+            <p>A published JavaScript frontend web application built with clean component structures and deployed to Vercel.</p>
+            <div class="project-bottom">
+              <div class="chip-row">
+                <span class="tech-chip">JavaScript</span>
+                <span class="tech-chip">Web App</span>
+              </div>
+              <a class="btn-live-glow" href="https://sanjay-bachhe-gay.vercel.app" target="_blank" rel="noopener noreferrer">
+                <span>Live Demo</span> <span class="arrow-icon">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <a class="all-work-link reveal" href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer">
+        More repositories on GitHub <span aria-hidden="true">↗</span>
+      </a>
+
+      <div class="section-connector-flourish" aria-hidden="true">
+        <span class="connector-line"></span>
+        <span>🌸</span>
+        <span class="connector-line"></span>
+      </div>
+    </section>
+
+    <!-- Phase 12: Technical Skills (Organic Floating Capsule Cloud) -->
+    <section id="skills" class="section skills-section" aria-label="Technical Skills">
+      <div class="skills-wrapper reveal">
+        <div class="skill-copy">
+          <div class="section-heading">
+            <div class="section-kicker"><span>04</span> / MY TOOLBOX</div>
+            <h2>Skills I'm <em>growing with.</em></h2>
+          </div>
+          <p>
+            Core technologies and development practices I use to build responsive, accessible, and delightful digital interfaces.
+          </p>
+          <div class="skill-quote">
+            “A little curiosity, a lot of creativity.” <span>♡</span>
+          </div>
+        </div>
+
+        <!-- Floating Cloud without large sterile rectangular boxes -->
+        <div class="skills-cloud-container">
+          <div class="skill-cluster">
+            <div class="skill-cluster-title">Programming Foundation</div>
+            <div class="skill-cluster-pills">
+              <div class="skill-pill">
+                <span class="skill-icon">◇</span>
+                <span>C Language</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-cluster">
+            <div class="skill-cluster-title">Frontend Development</div>
+            <div class="skill-cluster-pills">
+              <div class="skill-pill">
+                <span class="skill-icon">✿</span>
+                <span>HTML5 Semantic Markup</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-icon">✦</span>
+                <span>CSS3 &amp; Modern Layouts</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-icon">✧</span>
+                <span>JavaScript (ES6+)</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-icon">♡</span>
+                <span>Responsive Web Design</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-cluster">
+            <div class="skill-cluster-title">Practices &amp; Workflows</div>
+            <div class="skill-cluster-pills">
+              <div class="skill-pill">
+                <span class="skill-icon">✎</span>
+                <span>UI Implementation</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-icon">⌘</span>
+                <span>Git &amp; GitHub</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-icon">⚙</span>
+                <span>Problem Solving</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-icon">🤝</span>
+                <span>Team Collaboration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-connector-flourish" aria-hidden="true">
+        <span class="connector-line"></span>
+        <span>✿</span>
+        <span class="connector-line"></span>
+      </div>
+    </section>
+
+    <!-- Phase 13: Strengths & Collaboration (Floating Layered Tiles) -->
+    <section class="section strengths-section" aria-label="Strengths and Collaboration">
+      <div class="section-top reveal">
+        <div class="section-heading">
+          <div class="section-kicker"><span>COLLABORATION</span> / CORE ATTRIBUTES</div>
+          <h2>Better ideas <em>bloom together.</em></h2>
+        </div>
+        <div class="section-side-note">How I work and grow <span>✿</span></div>
+      </div>
+
+      <div class="strengths-grid reveal">
+        <div class="strength-card tilt-card">
+          <div class="strength-icon">🤝</div>
+          <h4>Team Collaboration</h4>
+          <p>Thrives in peer groups and pair-programming settings, valuing shared ownership, active listening, and constructive feedback.</p>
+        </div>
+
+        <div class="strength-card tilt-card">
+          <div class="strength-icon">🌱</div>
+          <h4>Fast Learner</h4>
+          <p>Eagerly picks up new frontend concepts, documentation patterns, and design systems with genuine enthusiasm.</p>
+        </div>
+
+        <div class="strength-card tilt-card">
+          <div class="strength-icon">🔍</div>
+          <h4>Attention to Detail</h4>
+          <p>Cares deeply about spacing, typographic rhythm, harmonious colors, and smooth micro-interactions.</p>
+        </div>
+
+        <div class="strength-card tilt-card">
+          <div class="strength-icon">💡</div>
+          <h4>Problem Solving</h4>
+          <p>Approaches UI challenges methodically, breaking complex layouts into modular and maintainable components.</p>
+        </div>
+
+        <div class="strength-card tilt-card">
+          <div class="strength-icon">⏱</div>
+          <h4>Reliability &amp; Focus</h4>
+          <p>Committed to meeting academic milestones and delivering tidy, well-tested code that teammates can rely on.</p>
+        </div>
+
+        <div class="strength-card tilt-card">
+          <div class="strength-icon">💬</div>
+          <h4>Thoughtful Communication</h4>
+          <p>Explains technical decisions clearly and communicates progress openly throughout every project phase.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Phase 13 & Section: Butterfly Transformed FAQ -->
+    <section id="faq" class="section faq-section" aria-label="Frequently Asked Questions">
+      <!-- Hidden SVG Defs for Butterfly Shapes & Gradients -->
+      <svg style="display:none;" aria-hidden="true">
+        <defs>
+          <linearGradient id="faqWingGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fff5f9"/>
+            <stop offset="50%" stop-color="#f5a4bd"/>
+            <stop offset="100%" stop-color="#d56586"/>
+          </linearGradient>
+          <g id="faq-full-butterfly-def">
+            <g class="wing-left">
+              <path d="M48 38 C35 15, 12 5, 5 15 C-5 30, 20 52, 44 44 C22 46, 10 60, 20 70 C30 80, 48 55, 48 44 Z" fill="url(#faqWingGrad)" stroke="#ba768e" stroke-width="1.5"/>
+            </g>
+            <g class="wing-right">
+              <path d="M52 38 C65 15, 88 5, 95 15 C105 30, 80 52, 56 44 C78 46, 90 60, 80 70 C70 80, 52 55, 52 44 Z" fill="url(#faqWingGrad)" stroke="#ba768e" stroke-width="1.5"/>
+            </g>
+            <path d="M50 28 v38" stroke="#5d384e" stroke-width="3" stroke-linecap="round"/>
+          </g>
+        </defs>
+      </svg>
+
+      <div class="faq-container reveal">
+        <div class="section-kicker" style="justify-content:center;"><span>05</span> / FREQUENTLY ASKED QUESTIONS</div>
+        <h2 class="faq-title">Curious? <em>Ask the Butterflies ✿</em></h2>
+        <p class="faq-subtitle">
+          Click any fluttering butterfly below to watch it take flight and transform into answers about my engineering, leadership at CodeXa, and creative design philosophy.
+        </p>
+
+        <!-- Constellation of 6 Butterfly Question Cards -->
+        <div class="faq-cards-grid" id="faq-cards-grid">
+          <div class="faq-card tilt-card" role="button" tabindex="0" data-faq-index="0" aria-label="FAQ Question 1: Role as CTO at CodeXa Agency">
+            <div class="faq-butterfly-trigger" aria-hidden="true">
+              <svg class="faq-mini-butterfly" viewBox="0 0 100 80">
+                <use href="#faq-full-butterfly-def" />
+              </svg>
+            </div>
+            <div class="faq-card-content">
+              <span class="faq-category">Leadership & CodeXa</span>
+              <h3 class="faq-question">What is your role as Chief Technology Officer (CTO) at CodeXa Agency?</h3>
+              <p class="faq-hint">Click butterfly to reveal answer ✿</p>
+            </div>
+          </div>
+
+          <div class="faq-card tilt-card" role="button" tabindex="0" data-faq-index="1" aria-label="FAQ Question 2: Technical stack and frameworks">
+            <div class="faq-butterfly-trigger" aria-hidden="true">
+              <svg class="faq-mini-butterfly" viewBox="0 0 100 80">
+                <use href="#faq-full-butterfly-def" />
+              </svg>
+            </div>
+            <div class="faq-card-content">
+              <span class="faq-category">Technical Stack</span>
+              <h3 class="faq-question">What technologies and frontend frameworks do you specialize in?</h3>
+              <p class="faq-hint">Click butterfly to reveal answer ✿</p>
+            </div>
+          </div>
+
+          <div class="faq-card tilt-card" role="button" tabindex="0" data-faq-index="2" aria-label="FAQ Question 3: Engineering roles and collaborations">
+            <div class="faq-butterfly-trigger" aria-hidden="true">
+              <svg class="faq-mini-butterfly" viewBox="0 0 100 80">
+                <use href="#faq-full-butterfly-def" />
+              </svg>
+            </div>
+            <div class="faq-card-content">
+              <span class="faq-category">Opportunities</span>
+              <h3 class="faq-question">Are you open to frontend engineering roles or freelance collaborations?</h3>
+              <p class="faq-hint">Click butterfly to reveal answer ✿</p>
+            </div>
+          </div>
+
+          <div class="faq-card tilt-card" role="button" tabindex="0" data-faq-index="3" aria-label="FAQ Question 4: Motion and performance">
+            <div class="faq-butterfly-trigger" aria-hidden="true">
+              <svg class="faq-mini-butterfly" viewBox="0 0 100 80">
+                <use href="#faq-full-butterfly-def" />
+              </svg>
+            </div>
+            <div class="faq-card-content">
+              <span class="faq-category">Motion &amp; UI/UX</span>
+              <h3 class="faq-question">How do you achieve fluid motion without sacrificing web performance?</h3>
+              <p class="faq-hint">Click butterfly to reveal answer ✿</p>
+            </div>
+          </div>
+
+          <div class="faq-card tilt-card" role="button" tabindex="0" data-faq-index="4" aria-label="FAQ Question 5: Academic background">
+            <div class="faq-butterfly-trigger" aria-hidden="true">
+              <svg class="faq-mini-butterfly" viewBox="0 0 100 80">
+                <use href="#faq-full-butterfly-def" />
+              </svg>
+            </div>
+            <div class="faq-card-content">
+              <span class="faq-category">Academic Background</span>
+              <h3 class="faq-question">What is your current academic background and learning trajectory?</h3>
+              <p class="faq-hint">Click butterfly to reveal answer ✿</p>
+            </div>
+          </div>
+
+          <div class="faq-card tilt-card" role="button" tabindex="0" data-faq-index="5" aria-label="FAQ Question 6: Quick communication">
+            <div class="faq-butterfly-trigger" aria-hidden="true">
+              <svg class="faq-mini-butterfly" viewBox="0 0 100 80">
+                <use href="#faq-full-butterfly-def" />
+              </svg>
+            </div>
+            <div class="faq-card-content">
+              <span class="faq-category">Communication</span>
+              <h3 class="faq-question">How can clients or teams connect with you most effectively?</h3>
+              <p class="faq-hint">Click butterfly to reveal answer ✿</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Butterfly-Shaped Transformed Answer Overlay & Modal -->
+      <div id="faq-butterfly-modal" class="modal-backdrop faq-butterfly-modal" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="faq-active-title">
+        <div class="faq-modal-backdrop" id="faq-modal-backdrop"></div>
+        
+        <!-- Animated Flying Butterfly Transition Clone -->
+        <div id="faq-flying-butterfly" class="faq-flying-butterfly" aria-hidden="true" style="display:none;">
+          <svg viewBox="0 0 100 80" class="flying-svg" style="width:100%; height:100%;">
+            <use href="#faq-full-butterfly-def" />
+          </svg>
+        </div>
+
+        <!-- The Large, Recognizable Butterfly-Shaped Answer Panel -->
+        <div class="butterfly-wings-panel" id="butterfly-wings-panel">
+          <!-- Ambient wing glow & vector backdrop wing silhouette -->
+          <svg class="butterfly-wings-svg-bg" viewBox="0 0 800 620" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="butterflyWingFill" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#fffdfa" stop-opacity="0.98"/>
+                <stop offset="50%" stop-color="#fff2f7" stop-opacity="0.96"/>
+                <stop offset="100%" stop-color="#ffe6f0" stop-opacity="0.95"/>
+              </linearGradient>
+              <linearGradient id="butterflyWingBorder" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#d56586"/>
+                <stop offset="50%" stop-color="#ffb8cf"/>
+                <stop offset="100%" stop-color="#d56586"/>
+              </linearGradient>
+            </defs>
+            <path class="wing-path" d="M 400 120 
+              C 430 40, 560 10, 680 40 
+              C 790 70, 810 180, 750 280 
+              C 710 350, 610 360, 570 380 
+              C 650 420, 710 500, 640 570 
+              C 570 630, 480 570, 420 510 
+              C 408 495, 400 480, 400 470 
+              C 400 480, 392 495, 380 510 
+              C 320 570, 230 630, 160 570 
+              C 90 500, 150 420, 230 380 
+              C 190 360, 90 350, 50 280 
+              C -10 180, 10 70, 120 40 
+              C 240 10, 370 40, 400 120 Z" 
+              fill="url(#butterflyWingFill)" 
+              stroke="url(#butterflyWingBorder)" 
+              stroke-width="3" 
+              filter="drop-shadow(0 15px 35px rgba(213, 101, 134, 0.25))" />
+            <path class="wing-veins" d="M 400 240 Q 560 180 710 160 M 400 260 Q 600 260 720 280 M 400 320 Q 560 400 630 480 M 400 240 Q 240 180 90 160 M 400 260 Q 200 260 80 280 M 400 320 Q 240 400 170 480" 
+              stroke="var(--accent)" stroke-opacity="0.22" stroke-width="1.8" fill="none" stroke-dasharray="4 4"/>
+          </svg>
+
+          <!-- Orbiting Smaller Butterfly Close Interactive Button -->
+          <div class="orbiting-butterfly-wrap" id="orbiting-butterfly-close" role="button" tabindex="0" aria-label="Close answer panel" title="Click orbiting butterfly to close">
+            <div class="orbit-path-track" aria-hidden="true"></div>
+            <div class="orbiting-butterfly">
+              <svg viewBox="0 0 50 40" class="orbit-svg">
+                <path d="M25 18 C20 8, 8 2, 4 8 C-2 16, 12 28, 22 24 C12 26, 6 32, 11 37 C16 42, 25 28, 25 22 Z" fill="#f5a4bd"/>
+                <path d="M25 18 C30 8, 42 2, 46 8 C52 16, 38 28, 28 24 C38 26, 44 32, 39 37 C34 42, 25 28, 25 22 Z" fill="#e27595"/>
+                <circle cx="25" cy="20" r="2" fill="#5d384e"/>
+              </svg>
+              <span class="orbit-close-tag">Close ✕</span>
+            </div>
+          </div>
+
+          <!-- Top Accessible Close Button -->
+          <button type="button" class="faq-wings-close-btn" id="faq-wings-close-btn" aria-label="Close FAQ dialog">
+            <span>✕</span>
+          </button>
+
+          <!-- Inside readable content (centered inside butterfly wings) -->
+          <div class="faq-wings-content">
+            <div class="faq-active-badge" id="faq-active-category">Leadership &amp; CodeXa</div>
+            <h3 class="faq-active-question" id="faq-active-title">Question goes here</h3>
+            <div class="faq-active-divider">
+              <span class="flower-symbol">🌸</span>
+            </div>
+            <div class="faq-active-answer" id="faq-active-body">
+              Detailed answer goes here...
+            </div>
+            <div class="faq-wings-footer">
+              <span class="faq-wings-note">Press <kbd>Esc</kbd> or click the orbiting butterfly to close</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Phase 14 & Section 23: Contact Section (Social Composition Left, Envelope Form Right) -->
+    <section id="contact" class="contact-section" aria-label="Contact Amrutha">
+      <div class="contact-container reveal">
+        <div class="section-kicker" style="justify-content:center;">06 / SAY HELLO</div>
+        <h2>Let's build something <em>extraordinary</em></h2>
+        <p class="contact-desc">
+          Have an exciting project, technical leadership enquiry, or want to collaborate with CodeXa Agency? Send a message through the royal washi envelope or connect directly.
+        </p>
+
+        <div class="contact-main-grid">
+          <!-- LEFT COLUMN: Beautiful Social Contact Composition -->
+          <div class="social-contact-composition tilt-card">
+            <!-- Amrutha Profile / Identity Header -->
+            <div class="composition-header">
+              <div class="composition-avatar-frame">
+                <img src="public/assets/idcard_avatar.jpeg" alt="Amrutha Avatar" class="composition-avatar-img" />
+                <span class="composition-online-status" title="Active &amp; Open for Work"></span>
+              </div>
+              <div class="composition-meta">
+                <h3 class="composition-name">Divvela Jyoti Venkata Amrutha</h3>
+                <div class="composition-title">
+                  <span class="comp-badge-cto">CTO</span>
+                  <span class="comp-title-text">CodeXa Agency &bull; Frontend Engineer</span>
+                </div>
+                <div class="composition-location">
+                  <span>📍 Andhra Pradesh, India</span>
+                  <span class="composition-dot">•</span>
+                  <span>🌸 IST (UTC+05:30)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Status Quote / Note -->
+            <div class="composition-quote">
+              <p>&ldquo;Turning ambitious ideas into polished, high-performance web realities. Whether you need executive technical leadership or boutique creative development, let&rsquo;s talk.&rdquo;</p>
+            </div>
+
+            <!-- Direct Contact & Social Channels List -->
+            <!-- Direct Contact & Social Channels List -->
+            <div class="composition-channels">
+              <!-- Channel: Instagram -->
+              <a href="https://www.instagram.com/amrutha.d344/" target="_blank" rel="noopener noreferrer" class="comp-channel-item channel-ig" aria-label="Follow Amrutha on Instagram">
+                <div class="channel-icon-box ig-box">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </div>
+                <div class="channel-info">
+                  <span class="channel-lbl">Instagram</span>
+                  <span class="channel-val">@amrutha.d344</span>
+                </div>
+                <span class="channel-action-arrow">↗</span>
+              </a>
+
+              <!-- Channel: WhatsApp -->
+              <a href="https://wa.me/919032316792?text=Hi%20Amrutha!%20%F0%9F%8C%B8%20I%20visited%20your%20portfolio%20and%20would%20love%20to%20connect." target="_blank" rel="noopener noreferrer" class="comp-channel-item channel-wa" aria-label="Chat on WhatsApp">
+                <div class="channel-icon-box wa-box">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M17.472 14.382c-.301-.15-1.78-.879-2.056-.979-.276-.101-.476-.15-.676.15-.2.301-.776.979-.952 1.18-.175.201-.351.226-.652.075-.301-.15-1.271-.469-2.42-1.494-.894-.798-1.498-1.783-1.674-2.084-.175-.301-.019-.464.132-.614.136-.135.301-.351.451-.527.151-.175.201-.301.301-.502.101-.201.05-.376-.025-.527-.075-.15-.677-1.631-.928-2.235-.244-.588-.493-.508-.677-.518l-.578-.01c-.201 0-.527.075-.802.376-.276.301-1.053 1.029-1.053 2.508 0 1.48 1.078 2.909 1.229 3.11 0.15.201 2.122 3.24 5.141 4.544.718.31 1.278.496 1.716.635.722.23 1.378.198 1.898.12.579-.087 1.78-.727 2.031-1.43.251-.703.251-1.305.176-1.43-.075-.126-.276-.201-.577-.352z"/>
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.434 5.178L2.05 21.95l4.908-1.34A9.954 9.954 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.644 0-3.176-.484-4.468-1.318l-.32-.206-2.91.795.795-2.836-.226-.339A8.17 8.17 0 0 1 3.8 12c0-4.521 3.679-8.2 8.2-8.2s8.2 3.679 8.2 8.2-3.679 8.2-8.2 8.2z"/>
+                  </svg>
+                </div>
+                <div class="channel-info">
+                  <span class="channel-lbl">WhatsApp Direct</span>
+                  <span class="channel-val">+91 90323 16792</span>
+                </div>
+                <span class="channel-action-arrow">↗</span>
+              </a>
+
+              <!-- Channel: Email -->
+              <a href="mailto:amruthadivvela@gmail.com" class="comp-channel-item channel-email" aria-label="Send direct email">
+                <div class="channel-icon-box email-box">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                  </svg>
+                </div>
+                <div class="channel-info">
+                  <span class="channel-lbl">Email Address</span>
+                  <span class="channel-val">amruthadivvela@gmail.com</span>
+                </div>
+                <span class="channel-action-arrow">↗</span>
+              </a>
+
+              <!-- Channel: GitHub -->
+              <a href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer" class="comp-channel-item channel-gh" aria-label="Visit GitHub Profile">
+                <div class="channel-icon-box gh-box">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                </div>
+                <div class="channel-info">
+                  <span class="channel-lbl">GitHub Repositories</span>
+                  <span class="channel-val">@amruthadivvela-droid</span>
+                </div>
+                <span class="channel-action-arrow">↗</span>
+              </a>
+
+              <!-- Channel: LinkedIn / CodeXa -->
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="comp-channel-item channel-in" aria-label="Connect on LinkedIn">
+                <div class="channel-icon-box in-box">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                </div>
+                <div class="channel-info">
+                  <span class="channel-lbl">Professional Network</span>
+                  <span class="channel-val">Divvela Amrutha (CodeXa)</span>
+                </div>
+                <span class="channel-action-arrow">↗</span>
+              </a>
+            </div>
+
+            <!-- Quick copy actions footer -->
+            <div class="composition-footer-actions">
+              <button type="button" class="btn btn-outline btn-sm" id="copy-email-btn" title="Copy email address to clipboard">
+                <span>Copy Email</span> 📋
+              </button>
+              <button type="button" class="btn btn-outline btn-sm" id="copy-phone-btn" title="Copy phone number to clipboard">
+                <span>Copy WhatsApp</span> 💬
+              </button>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: Large, Elegant Envelope-Shaped Enquiry Form -->
+          <div class="envelope-form-wrapper tilt-card">
+            <div class="washi-envelope">
+              <!-- Envelope Flap (Triangle with Sakura Wax Seal) -->
+              <div class="envelope-flap" aria-hidden="true">
+                <svg class="envelope-flap-svg" viewBox="0 0 500 120" preserveAspectRatio="none">
+                  <path d="M0,0 L250,110 L500,0 Z" fill="var(--card-bg)" stroke="var(--border)" stroke-width="2"/>
+                </svg>
+                <div class="wax-seal" title="CodeXa Sakura Wax Seal">
+                  <span class="wax-seal-flower">🌸</span>
+                </div>
+              </div>
+
+              <!-- Envelope Paper Surface (Letter) -->
+              <div class="envelope-letter-body">
+                <div class="envelope-letter-head">
+                  <div class="letter-postage">
+                    <span class="postage-stamp">AIR MAIL ✈</span>
+                    <span class="postage-flower">✿ CodeXa</span>
+                  </div>
+                  <h3 class="letter-title">Enquiry &amp; Project Proposal</h3>
+                  <p class="letter-subtitle">Fill in the letter details below to generate your personalized visiting card and send your message directly.</p>
+                </div>
+
+                <form id="contact-form" novalidate autocomplete="off">
+                  <div class="form-row">
+                    <div class="form-group flex-1">
+                      <label for="contact-name">Your Name <span class="req-star">*</span></label>
+                      <input type="text" id="contact-name" class="form-input washi-input" placeholder="What should I call you?" required />
+                    </div>
+                    <div class="form-group flex-1">
+                      <label for="contact-email">Your Email <span class="req-star">*</span></label>
+                      <input type="email" id="contact-email" class="form-input washi-input" placeholder="hello@example.com" required />
+                    </div>
+                  </div>
+
+                  <div class="form-group" style="margin-top:14px;">
+                    <label for="contact-msg">What are your requirements? <span class="req-star">*</span></label>
+                    <textarea id="contact-msg" class="form-input washi-input washi-textarea" rows="4" placeholder="Tell me about your idea, project, collaboration, or anything you'd like to discuss..." required></textarea>
+                  </div>
+
+                  <!-- Prominent Contact Me Button -->
+                  <div class="envelope-submit-wrap">
+                    <button type="submit" class="btn btn-primary btn-envelope-submit magnetic-btn" id="submit-enquiry-btn">
+                      <span class="btn-envelope-icon">✉</span>
+                      <span id="submit-btn-lbl">Contact Me ♡</span>
+                      <span class="btn-arrow" aria-hidden="true">→</span>
+                    </button>
+                    <div class="envelope-privacy-note">
+                      <span>Submitting sends your enquiry by email and opens WhatsApp with your message ready to share.</span>
+                    </div>
+                  </div>
+                </form>
+
+                <div id="form-feedback" class="form-feedback" style="display:none;" role="status"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <span class="contact-signoff">See you around! ♡</span>
+      </div>
+    </section>
+
+    <!-- Phase 15: Grand Cinematic Finale Section -->
+    <section id="finale" class="finale-section" aria-label="Grand Finale">
+      <div class="finale-ambient-glow" aria-hidden="true"></div>
+      
+      <!-- Canvas for butterfly flocking & cherry-blossom particle typography & dissolve -->
+      <canvas id="finale-canvas" class="finale-canvas" aria-hidden="true"></canvas>
+
+      <div class="finale-stage" id="finale-stage">
+        <div class="finale-message-container" id="finale-message-container">
+          <div class="finale-line finale-line-primary">
+            <span class="finale-word word-thanks">Thanks</span>
+            <span class="finale-word word-for">for</span>
+            <span class="finale-word word-visiting">visiting</span>
+            <span class="finale-word word-my">my</span>
+          </div>
+          <div class="finale-line finale-line-transform">
+            <span class="finale-target-slot" id="finale-target-slot">
+              <!-- Original word: portfolio -->
+              <span class="finale-word word-portfolio" id="finale-portfolio">
+                portfolio
+                <svg class="handwritten-strikethrough-svg" viewBox="0 0 240 46" preserveAspectRatio="none" aria-hidden="true">
+                  <path id="strikethrough-path" class="strikethrough-path" d="M 6 24 Q 60 10 120 23 T 234 20 Q 150 28 80 22" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <!-- Replacement word revealed: world -->
+              <span class="finale-word word-world" id="finale-world" aria-hidden="true">
+                world <span class="finale-heart">♡</span>
+              </span>
+            </span>
+          </div>
+          <div class="finale-subtext" id="finale-subtext">
+            <span>May your curiosity bloom like cherry blossoms in spring ✿</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <a href="#top" class="footer-brand">Amrutha <span>✿</span></a>
+    <p>Built with care, curiosity &amp; a little bit of magic &bull; Divvela Jyoti Venkata Amrutha</p>
+    <a href="#top" class="back-to-top">Back to top <span aria-hidden="true">↑</span></a>
+  </footer>
+
+  <!-- Dedicated Visiting Card Reveal Modal (Strictly Hidden until Contact Me Valid Input) -->
+  <div id="visiting-card-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="visiting-card-modal-title">
+    <div class="modal-card visiting-card-modal-card">
+      <button type="button" class="modal-close-btn" id="close-visiting-card-modal" aria-label="Close Visiting Card">✕</button>
+      <div class="visiting-card-modal-head">
+        <div class="section-kicker" style="justify-content:center;">VISITING CARD CREATED 🌸</div>
+        <h2 id="visiting-card-modal-title" style="font-family:var(--font-display); font-size:24px; margin:4px 0 8px;">Your Personalized Sakura Visiting Card</h2>
+        <p style="font-size:13.5px; color:var(--muted); margin:0 auto; max-width:440px;">
+          Official CodeXa Chief Technology Officer visiting card, customized with your project enquiry details.
+        </p>
+      </div>
+
+      <div class="visiting-card-canvas-wrap" style="margin:20px auto; max-width:380px;">
+        <canvas id="visiting-card-canvas" class="visiting-card-canvas" width="1080" height="1350"></canvas>
+      </div>
+
+      <div class="visiting-card-modal-actions" style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <button type="button" class="btn btn-primary" id="download-card-btn" style="min-height:46px; padding:0 22px;">
+          <span>Download High-Res (PNG)</span> 📥
+        </button>
+        <button type="button" class="btn btn-outline" id="share-card-btn" style="min-height:46px; padding:0 22px;">
+          <span>Share Visiting Card</span> ↗
+        </button>
+        <button type="button" class="btn btn-outline" id="proceed-dispatch-btn" style="min-height:46px; padding:0 22px;">
+          <span id="proceed-btn-lbl">Continue to WhatsApp 💬</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 1: Developer ID Profile Modal (Phase 7) -->
+  <div id="dev-id-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="dev-modal-title">
+    <div class="modal-card dev-modal-card">
+      <button type="button" class="modal-close-btn" id="close-dev-modal" aria-label="Close Profile Modal">✕</button>
+      <div class="dev-modal-head">
+        <div class="dev-modal-avatar">
+          <img src="public/assets/idcard_avatar.jpeg" alt="Amrutha Avatar" id="modal-avatar-anime" class="modal-portrait-img" />
+          <img src="public/assets/ammu.webp" alt="Amrutha Photograph" id="modal-avatar-real" class="modal-portrait-img" />
+          <canvas id="modal-pixel-loop-canvas" class="modal-pixel-canvas"></canvas>
+        </div>
+        <h2 id="dev-modal-title" class="dev-modal-name">Divvela Jyoti Venkata Amrutha</h2>
+        <div class="dev-modal-subtitle">Frontend Developer &bull; B.Tech Student &bull; CodeXa Agency</div>
+      </div>
+
+      <div class="dev-modal-details">
+        <div class="dev-detail-item">
+          <span class="dev-detail-label">Institution</span>
+          <span class="dev-detail-val">Narasaraopeta Engineering College</span>
+        </div>
+        <div class="dev-detail-item">
+          <span class="dev-detail-label">Current Status</span>
+          <span class="dev-detail-val" style="color:var(--accent);">Pursuing B.Tech Degree</span>
+        </div>
+        <div class="dev-detail-item">
+          <span class="dev-detail-label">Class XII Intermediate</span>
+          <span class="dev-detail-val">Sri Chaitanya (Score: 96.3%)</span>
+        </div>
+        <div class="dev-detail-item">
+          <span class="dev-detail-label">Class X Schooling</span>
+          <span class="dev-detail-val">Sri Chaitanya (Score: 95.0%)</span>
+        </div>
+        <div class="dev-detail-item">
+          <span class="dev-detail-label">Core Technologies</span>
+          <span class="dev-detail-val">HTML5, CSS3, JavaScript, C</span>
+        </div>
+        <div class="dev-detail-item">
+          <span class="dev-detail-label">GitHub Account</span>
+          <span class="dev-detail-val">amruthadivvela-droid</span>
+        </div>
+      </div>
+
+      <div class="modal-actions" style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <a href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="min-height:46px; padding:0 24px; font-size:13.5px; flex:1; justify-content:center;">
+          Open GitHub Profile ↗
+        </a>
+        <button type="button" id="dev-modal-resume-btn" class="btn btn-outline" style="min-height:46px; padding:0 24px; font-size:13.5px; flex:1; justify-content:center;">
+          Inspect Resume 📄
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Verified Resume Viewer Modal (Phase 20) -->
+  <div id="resume-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="resume-title">
+    <div class="modal-card" style="width:min(720px, 100%);">
+      <button type="button" id="close-resume-modal" class="modal-close-btn" aria-label="Close resume viewer">✕</button>
+      
+      <div class="resume-modal-body">
+        <span style="font-size:42px; display:block; margin-bottom:6px;">🌸</span>
+        <div class="section-kicker" style="justify-content:center;">OFFICIAL RESUME</div>
+        <h2 id="resume-title" style="font-size:32px; font-weight:900;">
+          Amrutha's Resume <span>♡</span>
+        </h2>
+        <p style="color:var(--muted); font-size:14px; margin-top:4px;">
+          Divvela Jyoti Venkata Amrutha &bull; B.Tech Student &bull; Frontend Developer
+        </p>
+
+        <!-- Embedded PDF Viewer -->
+        <div class="resume-embed-container">
+          <iframe src="public/resume.pdf" class="resume-iframe" title="Amrutha Resume Preview"></iframe>
+        </div>
+
+        <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:16px;">
+          <a href="public/resume.pdf" download="Divvela_Amrutha_Resume.pdf" class="btn btn-primary" style="min-height:48px; padding:0 26px; font-size:13px;">
+            Download PDF ⤓
+          </a>
+          <a href="public/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="min-height:48px; padding:0 24px; font-size:13px;">
+            Open in New Tab ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- Modal 3: Smart Classroom Attendance & Admin Dashboard Modal (Phase 22) -->
+  <div id="admin-dashboard-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
+    <div class="modal-card admin-modal-card">
+      <button type="button" id="close-admin-modal" class="modal-close-btn" aria-label="Close Admin Dashboard">✕</button>
+
+      <div class="admin-modal-header">
+        <div class="admin-header-badge">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>ADMIN ATTENDANCE PORTAL &bull; LIVE SYSTEM</span>
+        </div>
+        <h3 id="admin-modal-title" class="admin-modal-title">Smart Classroom Attendance System</h3>
+        <p class="admin-modal-sub">
+          <strong>Section:</strong> CSE-3A &bull; <strong>Department:</strong> Computer Science &amp; Engineering &bull; <strong>Lead Architect:</strong> Divvela Jyoti Venkata Amrutha
+        </p>
+        <div class="admin-meta-strip">
+          <span class="admin-time-badge" id="admin-live-time">🕒 Today: 09:30 AM &bull; Period 1 (Web Engineering)</span>
+          <span class="admin-session-pill">Academic Year 2026-27</span>
+        </div>
+      </div>
+
+      <!-- Real-Time Dynamic Metrics Bar -->
+      <div class="admin-stats-grid">
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon">
+            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="admin-stat-val" id="admin-total-enrolled">10</div>
+            <div class="admin-stat-label">Total Enrolled</div>
+          </div>
+        </div>
+
+        <div class="admin-stat-card stat-present">
+          <div class="admin-stat-icon">
+            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#25d366" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div>
+            <div class="admin-stat-val" id="admin-present-count">8</div>
+            <div class="admin-stat-label">Present Today</div>
+          </div>
+        </div>
+
+        <div class="admin-stat-card stat-absent">
+          <div class="admin-stat-icon">
+            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#e0526e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+          <div>
+            <div class="admin-stat-val" id="admin-absent-count">2</div>
+            <div class="admin-stat-label">Absent</div>
+          </div>
+        </div>
+
+        <div class="admin-stat-card stat-rate">
+          <div class="admin-stat-icon">
+            <svg class="icon-inline" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+          <div>
+            <div class="admin-stat-val" id="admin-rate-pct">80.0%</div>
+            <div class="admin-stat-label">Attendance Rate</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Toolbar: Search, Filter, Quick Batch Actions -->
+      <div class="admin-toolbar">
+        <div class="admin-search-wrap">
+          <svg class="search-icon icon-inline" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="admin-search-input" class="admin-search-input" placeholder="Search by student name or roll number (e.g. 21NEC01)..." />
+          <button type="button" class="search-clear-btn" id="admin-search-clear" style="display:none;" aria-label="Clear search">✕</button>
+        </div>
+
+        <div class="admin-filter-group" role="tablist">
+          <button type="button" class="admin-filter-btn active" data-status-filter="all">All (<span id="filter-all-num">10</span>)</button>
+          <button type="button" class="admin-filter-btn" data-status-filter="present">Present (<span id="filter-present-num">8</span>)</button>
+          <button type="button" class="admin-filter-btn" data-status-filter="absent">Absent (<span id="filter-absent-num">2</span>)</button>
+        </div>
+      </div>
+
+      <!-- Batch Action Buttons -->
+      <div class="admin-actions-bar">
+        <button type="button" class="btn-admin-action" id="admin-mark-all-btn">
+          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>Mark All Present</span>
+        </button>
+        <button type="button" class="btn-admin-action" id="admin-reset-btn">
+          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          <span>Reset Roll Call</span>
+        </button>
+        <button type="button" class="btn-admin-action btn-admin-accent" id="admin-export-csv-btn">
+          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Export CSV Report</span>
+        </button>
+        <button type="button" class="btn-admin-action" id="admin-broadcast-btn">
+          <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+          </svg>
+          <span>Sync College Server</span>
+        </button>
+      </div>
+
+      <!-- Interactive Student Roster -->
+      <div class="admin-roster-wrap">
+        <div class="admin-roster-header">
+          <span>STUDENT ROSTER</span>
+          <span class="roster-live-hint">Click status pills below to toggle live attendance</span>
+        </div>
+        <div class="admin-roster-list" id="admin-roster-list">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Toast Feedback Message -->
+      <div class="admin-toast" id="admin-toast" hidden></div>
+
+      <!-- Engineering Credits & Architecture Notes -->
+      <div class="admin-modal-footer">
+        <div class="admin-arch-note">
+          <span>💡 <strong>Architecture Note:</strong> Built with semantic HTML5, reactive Vanilla JavaScript DOM state management, and real-time roll-call recalculations. Contributed by Amrutha for college lab automation.</span>
+        </div>
+        <div class="admin-footer-links">
+          <a href="https://github.com/amruthadivvela-droid" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="min-height:38px; font-size:12.5px; padding:0 18px;">
+            View Source Code ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2b: Admin Access Key Modal (Phase 2 & 9 - Restricted Access) -->
+  <div id="passkey-modal" class="modal-backdrop" hidden style="display:none;" role="dialog" aria-modal="true" aria-labelledby="passkey-modal-title">
+    <div class="modal-card passkey-modal-card">
+      <button type="button" id="close-passkey-modal" class="modal-close-btn" aria-label="Close passkey modal">✕</button>
+      
+      <div class="passkey-icon-wrap" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="44" height="44">
+          <defs>
+            <radialGradient id="modalFlowerGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#fff5f8"/>
+              <stop offset="50%" stop-color="#fba8bf"/>
+              <stop offset="100%" stop-color="#d56586"/>
+            </radialGradient>
+          </defs>
+          <g transform="translate(50,50)">
+            <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#modalFlowerGrad)"/>
+            <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#modalFlowerGrad)" transform="rotate(72)"/>
+            <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#modalFlowerGrad)" transform="rotate(144)"/>
+            <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#modalFlowerGrad)" transform="rotate(216)"/>
+            <path d="M 0,-5 C -10,-28 -22,-28 -19,-15 C -16,-3 -5,0 0,0 C 5,0 16,-3 19,-15 C 22,-28 10,-28 0,-5 Z" fill="url(#modalFlowerGrad)" transform="rotate(288)"/>
+            <circle cx="0" cy="0" r="5.5" fill="#ffd57a" stroke="#d56586" stroke-width="1.2"/>
+          </g>
+        </svg>
+      </div>
+
+      <h3 id="passkey-modal-title" class="passkey-title">Restricted Access</h3>
+      <p class="passkey-desc">Enter your access key to continue.</p>
+
+      <form id="passkey-form" class="passkey-form" novalidate autocomplete="off">
+        <div class="passkey-input-wrap">
+          <input 
+            type="password" 
+            id="passkey-input" 
+            class="passkey-input" 
+            placeholder="••••••••" 
+            aria-label="Access Key"
+            required 
+            autocomplete="current-password"
+          />
+        </div>
+        <div id="passkey-error" class="passkey-error" style="display:none;" role="alert"></div>
+
+        <button type="submit" id="unlock-btn" class="btn btn-primary" style="width:100%; min-height:48px; font-size:14px; font-weight:800; justify-content:center;">
+          Unlock Dashboard
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main Interactive JavaScript -->
+  <script>
+  (() => {
+    /* ==========================================================================
+       0. CINEMATIC OPENING SEQUENCE (PHASE 1 - CURVED FLIGHT, SWARM, WELCOME, PETALS, CLOUDS)
+       ========================================================================== */
+    const introOverlay = document.getElementById('cinematic-intro-overlay');
+    const introCanvas = document.getElementById('intro-canvas');
+    const skipIntroBtn = document.getElementById('skip-intro-btn');
+    let introAnimId = null;
+    let introActive = true;
+
+    function initCinematicIntro() {
+      if (!introOverlay || !introCanvas) return;
+      const ctx = introCanvas.getContext('2d');
+      
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+      introCanvas.width = width * dpr;
+      introCanvas.height = height * dpr;
+      introCanvas.style.width = width + 'px';
+      introCanvas.style.height = height + 'px';
+      ctx.scale(dpr, dpr);
+
+      window.addEventListener('resize', () => {
+        if (!introActive) return;
+        width = window.innerWidth;
+        height = window.innerHeight;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        introCanvas.width = width * dpr;
+        introCanvas.height = height * dpr;
+        introCanvas.style.width = width + 'px';
+        introCanvas.style.height = height + 'px';
+        ctx.scale(dpr, dpr);
+      });
+
+      // Sample letter coordinates for "WELCOME" with generous letter-spacing (Phase 3 / Section 16 & 17)
+      const offCanvas = document.createElement('canvas');
+      const offW = 1200;
+      const offH = 300;
+      offCanvas.width = offW;
+      offCanvas.height = offH;
+      const offCtx = offCanvas.getContext('2d');
+      
+      offCtx.fillStyle = '#000000';
+      // Compute high-resolution spaced letter layout: W  E  L  C  O  M  E
+      const welcomeLetters = ['W', 'E', 'L', 'C', 'O', 'M', 'E'];
+      const letterSpacing = offW / (welcomeLetters.length + 1);
+      offCtx.font = '900 135px "Outfit", sans-serif';
+      offCtx.textAlign = 'center';
+      offCtx.textBaseline = 'middle';
+      welcomeLetters.forEach((char, idx) => {
+        offCtx.fillText(char, letterSpacing * (idx + 1), offH / 2);
+      });
+
+      const imgData = offCtx.getImageData(0, 0, offW, offH).data;
+      const textCoords = [];
+      const step = 8;
+      for (let y = 0; y < offH; y += step) {
+        for (let x = 0; x < offW; x += step) {
+          const idx = (y * offW + x) * 4;
+          if (imgData[idx + 3] > 130) {
+            textCoords.push({ nx: (x - offW / 2) / offW, ny: (y - offH / 2) / offH });
+          }
+        }
+      }
+
+      const numParticles = Math.min(180, textCoords.length);
+      const targetPoints = [];
+      const stride = Math.max(1, Math.floor(textCoords.length / numParticles));
+      for (let i = 0; i < numParticles; i++) {
+        targetPoints.push(textCoords[i * stride] || textCoords[i % textCoords.length]);
+      }
+
+      // Swarm particles: start in vortex orbits around center
+      const swarm = targetPoints.map((pt, i) => {
+        const angle = (i / numParticles) * Math.PI * 4;
+        const dist = 300 + Math.random() * 400;
+        return {
+          id: i,
+          x: width * 0.5 + Math.cos(angle) * dist,
+          y: height * 0.42 + Math.sin(angle) * dist,
+          nx: pt.nx,
+          ny: pt.ny,
+          size: 11 + Math.random() * 5,
+          wingPhase: Math.random() * Math.PI * 2,
+          colorA: i % 3 === 0 ? '#ffffff' : (i % 3 === 1 ? '#ffe3ec' : '#f7a6bc'),
+          colorB: i % 2 === 0 ? '#d56586' : '#c24f72',
+          petalRot: Math.random() * Math.PI * 2,
+          petalRotSpeed: (Math.random() - 0.5) * 0.05,
+          driftX: (Math.random() - 0.5) * 3.2,
+          driftY: 1.4 + Math.random() * 2.5,
+          alpha: 1
+        };
+      });
+
+      // Solitary butterfly trajectory (Cubic Bézier)
+      const P0 = { x: -60, y: height * 0.78 };
+      const P1 = { x: width * 0.32, y: height * 0.18 };
+      const P2 = { x: width * 0.38, y: height * 0.75 };
+      const P3 = { x: width * 0.5, y: height * 0.42 };
+
+      function cubicBezier(t, p0, p1, p2, p3) {
+        const u = 1 - t;
+        const tt = t * t;
+        const uu = u * u;
+        const uuu = uu * u;
+        const ttt = tt * t;
+        return {
+          x: uuu * p0.x + 3 * uu * t * p1.x + 3 * u * tt * p2.x + ttt * p3.x,
+          y: uuu * p0.y + 3 * uu * t * p1.y + 3 * u * tt * p2.y + ttt * p3.y
+        };
+      }
+
+      const sparkleTrail = [];
+      const startTime = performance.now();
+      const hangingSignEl = document.getElementById('intro-hanging-sign');
+
+      function drawBotanicalPetal(c, x, y, size, angle, tumble, colorA, colorB, alpha) {
+        c.save();
+        c.translate(x, y);
+        c.rotate(angle);
+        c.scale(Math.cos(tumble), 1);
+        c.globalAlpha = Math.max(0, Math.min(1, alpha));
+
+        const grad = c.createLinearGradient(0, -size, 0, size);
+        grad.addColorStop(0, colorA);
+        grad.addColorStop(0.7, colorB);
+        grad.addColorStop(1, '#8e3450');
+
+        c.fillStyle = grad;
+        c.beginPath();
+        c.moveTo(0, size);
+        c.bezierCurveTo(-size * 0.8, size * 0.4, -size * 0.9, -size * 0.6, -size * 0.3, -size);
+        c.lineTo(0, -size * 0.75);
+        c.lineTo(size * 0.3, -size);
+        c.bezierCurveTo(size * 0.9, -size * 0.6, size * 0.8, size * 0.4, 0, size);
+        c.closePath();
+        c.fill();
+        c.restore();
+      }
+
+      function drawDetailedButterfly(c, x, y, size, angle, flap, colorA, colorB, alpha) {
+        c.save();
+        c.translate(x, y);
+        c.rotate(angle);
+        c.globalAlpha = Math.max(0, Math.min(1, alpha));
+
+        const flapScale = Math.sin(flap) * 0.85 + 0.15;
+
+        // Left Wing
+        c.save();
+        c.scale(flapScale, 1);
+        c.beginPath();
+        c.moveTo(-2, 0);
+        c.bezierCurveTo(-size * 1.5, -size * 1.3, -size * 1.8, size * 0.2, -size * 0.8, size * 1.1);
+        c.bezierCurveTo(-size * 0.4, size * 0.8, -2, size * 0.4, -2, 0);
+        const gradL = c.createLinearGradient(-size * 1.5, -size, 0, size);
+        gradL.addColorStop(0, colorA);
+        gradL.addColorStop(0.6, colorB);
+        gradL.addColorStop(1, '#682537');
+        c.fillStyle = gradL;
+        c.fill();
+        c.strokeStyle = 'rgba(255,255,255,0.7)';
+        c.lineWidth = 1;
+        c.stroke();
+        c.restore();
+
+        // Right Wing
+        c.save();
+        c.scale(-flapScale, 1);
+        c.beginPath();
+        c.moveTo(-2, 0);
+        c.bezierCurveTo(-size * 1.5, -size * 1.3, -size * 1.8, size * 0.2, -size * 0.8, size * 1.1);
+        c.bezierCurveTo(-size * 0.4, size * 0.8, -2, size * 0.4, -2, 0);
+        const gradR = c.createLinearGradient(-size * 1.5, -size, 0, size);
+        gradR.addColorStop(0, colorA);
+        gradR.addColorStop(0.6, colorB);
+        gradR.addColorStop(1, '#682537');
+        c.fillStyle = gradR;
+        c.fill();
+        c.strokeStyle = 'rgba(255,255,255,0.7)';
+        c.lineWidth = 1;
+        c.stroke();
+        c.restore();
+
+        // Body & Antennae
+        c.fillStyle = '#311c2f';
+        c.beginPath();
+        c.ellipse(0, 0, 2, size * 0.45, 0, 0, Math.PI * 2);
+        c.fill();
+
+        c.beginPath();
+        c.arc(0, -size * 0.45, 2.5, 0, Math.PI * 2);
+        c.fill();
+
+        c.strokeStyle = '#523447';
+        c.lineWidth = 0.8;
+        c.beginPath();
+        c.moveTo(-1, -size * 0.45);
+        c.quadraticCurveTo(-size * 0.3, -size * 0.8, -size * 0.45, -size * 0.7);
+        c.moveTo(1, -size * 0.45);
+        c.quadraticCurveTo(size * 0.3, -size * 0.8, size * 0.45, -size * 0.7);
+        c.stroke();
+
+        c.restore();
+      }
+
+      function frame(now) {
+        if (!introActive) return;
+        const elapsed = (now - startTime) / 1000;
+
+        ctx.clearRect(0, 0, width, height);
+
+        // Target: 75-85vw dominant width for WELCOME formation
+        const welcomeWidth = Math.min(width * 0.86, 1150);
+        const welcomeHeight = welcomeWidth * (offH / offW);
+        const welcomeCenterX = width * 0.5;
+        const welcomeCenterY = height * 0.42;
+
+        // 1. Solitary Butterfly Flight (0.0s - 2.5s)
+        if (elapsed < 2.5) {
+          const t = Math.min(elapsed / 2.2, 1);
+          const easeT = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+          const pos = cubicBezier(easeT, P0, P1, P2, P3);
+          const nextPos = cubicBezier(Math.min(easeT + 0.02, 1), P0, P1, P2, P3);
+          const angle = Math.atan2(nextPos.y - pos.y, nextPos.x - pos.x) + Math.PI / 2;
+          const flap = elapsed * 32;
+
+          if (Math.random() < 0.6) {
+            sparkleTrail.push({
+              x: pos.x + (Math.random() - 0.5) * 8,
+              y: pos.y + (Math.random() - 0.5) * 8,
+              alpha: 1,
+              size: 2.5 + Math.random() * 2,
+              color: Math.random() < 0.5 ? '#ffd57a' : '#fba8bf'
+            });
+          }
+
+          drawDetailedButterfly(ctx, pos.x, pos.y, 22, angle, flap, '#ffffff', '#d56586', 1);
+        }
+
+        // Draw Sparkle Trail
+        for (let i = sparkleTrail.length - 1; i >= 0; i--) {
+          const sp = sparkleTrail[i];
+          sp.alpha -= 0.035;
+          sp.y += 0.4;
+          if (sp.alpha <= 0) {
+            sparkleTrail.splice(i, 1);
+          } else {
+            ctx.save();
+            ctx.globalAlpha = sp.alpha;
+            ctx.fillStyle = sp.color;
+            ctx.beginPath();
+            ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+        }
+
+        // 2. Swarm Particles & WELCOME Formation (2.2s - 5.8s)
+        if (elapsed >= 2.2) {
+          const swarmProgress = Math.min(Math.max((elapsed - 2.2) / 1.6, 0), 1);
+          const isMorphingToPetals = elapsed >= 5.8;
+          const morphProgress = Math.min(Math.max((elapsed - 5.8) / 1.4, 0), 1);
+
+          swarm.forEach(p => {
+            const tx = welcomeCenterX + p.nx * welcomeWidth;
+            const ty = welcomeCenterY + p.ny * welcomeHeight;
+
+            if (!isMorphingToPetals) {
+              const targetWeight = swarmProgress * swarmProgress;
+              const desiredX = p.x + (tx - p.x) * (0.048 * targetWeight);
+              const desiredY = p.y + (ty - p.y) * (0.048 * targetWeight);
+
+              // Hold formation with gentle breathing jitter
+              if (elapsed >= 3.8) {
+                const jitterX = Math.sin(elapsed * 4 + p.id) * 1.2;
+                const jitterY = Math.cos(elapsed * 4 + p.id) * 1.2;
+                p.x = tx + jitterX;
+                p.y = ty + jitterY;
+              } else {
+                p.x = desiredX;
+                p.y = desiredY;
+              }
+
+              const flap = elapsed * 24 + p.wingPhase;
+              const angle = Math.sin(elapsed * 2 + p.id) * 0.2;
+
+              drawDetailedButterfly(ctx, p.x, p.y, p.size, angle, flap, p.colorA, p.colorB, 1);
+            } else {
+              // Petals Morphing & Dispersal
+              p.x += p.driftX + Math.sin(elapsed * 3 + p.id) * 0.6;
+              p.y += p.driftY;
+              p.petalRot += p.petalRotSpeed;
+
+              if (elapsed >= 7.0) {
+                p.alpha = Math.max(0, 1 - (elapsed - 7.0) / 0.9);
+              }
+
+              if (morphProgress < 0.35) {
+                const blendAlpha = 1 - (morphProgress / 0.35);
+                drawDetailedButterfly(ctx, p.x, p.y, p.size, p.petalRot, elapsed * 24, p.colorA, p.colorB, blendAlpha * p.alpha);
+                drawBotanicalPetal(ctx, p.x, p.y, p.size * 1.2, p.petalRot, elapsed * 2.5, p.colorA, p.colorB, (1 - blendAlpha) * p.alpha);
+              } else {
+                drawBotanicalPetal(ctx, p.x, p.y, p.size * 1.2, p.petalRot, elapsed * 2.5, p.colorA, p.colorB, p.alpha);
+              }
+            }
+          });
+        }
+
+        // 3. Falling Hanging Sign "to my world" (4.2s to 7.8s)
+        if (hangingSignEl) {
+          if (elapsed >= 4.0 && elapsed < 6.8) {
+            // Stage 1: Descend gently from top and settle below WELCOME
+            hangingSignEl.style.display = 'flex';
+            const progress = Math.min((elapsed - 4.0) / 1.0, 1);
+            const easeOutBack = 1 + 2.4 * Math.pow(progress - 1, 3) + 1.2 * Math.pow(progress - 1, 2);
+            const targetY = welcomeCenterY + welcomeHeight * 0.48 + 36;
+            const currentY = -100 + (targetY + 100) * Math.min(easeOutBack, 1.05);
+            const swing = Math.sin(elapsed * 3) * (1 - progress) * 6;
+            hangingSignEl.style.top = `${currentY}px`;
+            hangingSignEl.style.transform = `translateX(-50%) rotate(${swing}deg)`;
+            hangingSignEl.style.opacity = '1';
+          } else if (elapsed >= 6.8 && elapsed < 7.8) {
+            // Stage 2: Sign releases, tilts 8°, and drops with gravity
+            const fallTime = elapsed - 6.8;
+            const targetY = welcomeCenterY + welcomeHeight * 0.48 + 36;
+            const gravityY = targetY + 0.5 * 1400 * fallTime * fallTime; // y = y0 + 0.5gt^2
+            hangingSignEl.style.top = `${gravityY}px`;
+            hangingSignEl.style.transform = `translateX(-50%) rotate(${8 + fallTime * 14}deg)`;
+            hangingSignEl.style.opacity = String(Math.max(0, 1 - fallTime / 0.8));
+          } else if (elapsed >= 7.8) {
+            hangingSignEl.style.display = 'none';
+          }
+        }
+
+        // 4. Soft Cloud Deck Lateral Reveal
+        if (elapsed >= 7.2 && !introOverlay.classList.contains('parting')) {
+          introOverlay.classList.add('parting');
+        }
+
+        // 5. Complete intro
+        if (elapsed >= 8.5) {
+          completeIntro();
+          return;
+        }
+
+        introAnimId = requestAnimationFrame(frame);
+      }
+
+      function completeIntro() {
+        if (!introActive) return;
+        introActive = false;
+        cancelAnimationFrame(introAnimId);
+        if (hangingSignEl) hangingSignEl.style.display = 'none';
+        introOverlay.classList.add('parting');
+        introOverlay.classList.add('intro-hidden');
+        setTimeout(() => {
+          introOverlay.style.display = 'none';
+        }, 850);
+      }
+
+      window.skipIntro = completeIntro;
+      if (skipIntroBtn) {
+        skipIntroBtn.addEventListener('click', completeIntro);
+      }
+
+      introAnimId = requestAnimationFrame(frame);
+    }
+
+    window.replayIntro = function() {
+      const overlay = document.getElementById('cinematic-intro-overlay');
+      if (!overlay) return;
+      overlay.style.display = 'flex';
+      overlay.classList.remove('intro-hidden');
+      overlay.classList.remove('parting');
+      introActive = true;
+      initCinematicIntro();
+    };
+
+    initCinematicIntro();
+
+    /* 1. Ten Real Themes Configuration (Phase 15) */
+    const THEMES = [
+      ['sakura', 'Sakura Dream', '🌸', '#d56586'],
+      ['lavender', 'Lavender Mist', '🦋', '#9b7bd3'],
+      ['strawberry', 'Strawberry Milk', '🍓', '#e84a6f'],
+      ['midnight', 'Midnight Sakura', '🌙', '#f08ba5'],
+      ['matcha', 'Matcha Garden', '🍃', '#5c946e'],
+      ['ocean', 'Ocean Pearl', '🐚', '#3a93a5'],
+      ['peach', 'Peach Blossom', '🍑', '#e88759'],
+      ['moonlight', 'Moonlight Blue', '⭐', '#7ba2e8'],
+      ['rosegold', 'Rose Gold', '🥀', '#c97b88'],
+      ['candypop', 'Candy Pop', '🍬', '#ff6b8b']
+    ];
+
+    const themeButton = document.getElementById('theme-button');
+    const themeDropdown = document.getElementById('theme-dropdown');
+    const themeOptions = document.getElementById('theme-options');
+    let currentTheme = 'sakura';
+
+    try {
+      currentTheme = localStorage.getItem('amrutha-theme') || 'sakura';
+    } catch (e) {}
+
+    function applyTheme(id) {
+      if (!THEMES.find(t => t[0] === id)) id = 'sakura';
+      currentTheme = id;
+      document.documentElement.setAttribute('data-theme', id);
+      try {
+        localStorage.setItem('amrutha-theme', id);
+      } catch (e) {}
+
+      themeOptions.querySelectorAll('button').forEach(btn => {
+        const isActive = btn.dataset.theme === id;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-checked', String(isActive));
+      });
+    }
+
+    THEMES.forEach(([id, name, emoji, color]) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'theme-opt';
+      btn.dataset.theme = id;
+      btn.setAttribute('role', 'radio');
+      btn.innerHTML = `
+        <span class="theme-dot" style="background:${color}"></span>
+        <span>${emoji} ${name}</span>
+        <span class="theme-check">✓</span>
+      `;
+      btn.addEventListener('click', () => {
+        applyTheme(id);
+        themeDropdown.hidden = true;
+        themeButton.setAttribute('aria-expanded', 'false');
+      });
+      themeOptions.appendChild(btn);
+    });
+
+    applyTheme(currentTheme);
+
+    themeButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = themeDropdown.hidden;
+      themeDropdown.hidden = !isHidden;
+      themeButton.setAttribute('aria-expanded', String(isHidden));
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.theme-wrap')) {
+        themeDropdown.hidden = true;
+        themeButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    /* 2. Mobile Menu Toggle */
+    const menuButton = document.getElementById('menu-button');
+    const navLinks = document.getElementById('nav-links');
+
+    if (menuButton && navLinks) {
+      menuButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = navLinks.classList.toggle('menu-open');
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+        menuButton.textContent = isOpen ? '✕' : '☰';
+      });
+
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('menu-open');
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.textContent = '☰';
+        });
+      });
+    }
+
+    /* 3. Falling Petals Generation (Phase 8) */
+    const petalContainer = document.getElementById('petals');
+    if (petalContainer) {
+      const petalCount = window.innerWidth < 768 ? 8 : 20;
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('i');
+        petal.className = 'petal';
+        petal.style.cssText = `
+          --left: ${(i * 27.3 + 9) % 100}%;
+          --top: ${(i * 37 + 7) % 92}%;
+          --delay: ${(i % 8) * -1.2}s;
+          --duration: ${7 + (i % 6) * 1.5}s;
+          --size: ${8 + (i % 4) * 4}px;
+          --rotation: ${i * 43}deg;
+        `;
+        petalContainer.appendChild(petal);
+      }
+    }
+
+    /* 4. Mouse Parallax, Ambient Glow & Cursor Trail (Desktop) */
+    const hero = document.getElementById('top');
+    const ambientGlow = document.getElementById('ambient-glow');
+    const devIdBadge = document.getElementById('dev-id-badge');
+    const butterflies = document.querySelectorAll('.butterfly');
+    let lastSparkleTime = 0;
+    let badgeAngle = 10;
+    let targetBadgeAngle = 10;
+    let mousePos = { x: -9999, y: -9999 };
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth >= 768) {
+      document.addEventListener('pointermove', e => {
+        mousePos.x = e.clientX;
+        mousePos.y = e.clientY;
+
+        // Ambient cursor glow tracking
+        if (ambientGlow) {
+          ambientGlow.style.left = `${e.clientX}px`;
+          ambientGlow.style.top = `${e.clientY}px`;
+        }
+
+        // Hero Parallax & ID Badge Pendulum Sway
+        if (hero) {
+          const rect = hero.getBoundingClientRect();
+          if (e.clientY <= rect.bottom + 100) {
+            const mx = ((e.clientX - rect.left) / rect.width - 0.5).toFixed(3);
+            const my = ((e.clientY - rect.top) / rect.height - 0.5).toFixed(3);
+            hero.style.setProperty('--mx', mx);
+            hero.style.setProperty('--my', my);
+
+            // Calculate subtle natural pendulum swing for hanging ID badge
+            targetBadgeAngle = 10 + (mx * 8);
+          }
+        }
+
+        // Butterflies Evasion Reaction on Proximity (< 160px)
+        butterflies.forEach(bf => {
+          const bRect = bf.getBoundingClientRect();
+          const bx = bRect.left + bRect.width / 2;
+          const by = bRect.top + bRect.height / 2;
+          const dist = Math.hypot(e.clientX - bx, e.clientY - by);
+          if (dist < 160) {
+            bf.classList.add('fleeing');
+            const angle = Math.atan2(by - e.clientY, bx - e.clientX);
+            const pushX = Math.cos(angle) * 20;
+            const pushY = Math.sin(angle) * 20;
+            bf.style.translate = `${pushX}px ${pushY}px`;
+          } else {
+            bf.classList.remove('fleeing');
+            bf.style.translate = '';
+          }
+        });
+
+        // 4a. Rich Varied Floral Cursor Trail & Sparkles (Section 22)
+        const now = Date.now();
+        if (now - lastSparkleTime > 48) {
+          lastSparkleTime = now;
+          const flower = document.createElement('span');
+          flower.className = 'cursor-flower';
+          
+          // Varied distribution: Small (10-14px ~50%), Medium (16-24px ~35%), Occasional Large (26-34px ~15%)
+          const r = Math.random();
+          let fSize = 12;
+          if (r < 0.50) {
+            fSize = 10 + Math.random() * 4;
+          } else if (r < 0.85) {
+            fSize = 16 + Math.random() * 8;
+          } else {
+            fSize = 26 + Math.random() * 8;
+          }
+
+          // Flower glyphs / petals
+          const symbols = ['🌸', '✿', '❀', '💮', '✦', '✧'];
+          flower.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+          flower.style.fontSize = `${fSize.toFixed(1)}px`;
+          flower.style.left = `${e.clientX}px`;
+          flower.style.top = `${e.clientY}px`;
+          
+          const driftX = (Math.random() - 0.5) * 55;
+          const driftY = -18 - Math.random() * 38;
+          const rotStart = (Math.random() * 360).toFixed(0);
+          const rotMid = (Math.random() * 360).toFixed(0);
+          const rotEnd = (Math.random() * 360).toFixed(0);
+          const duration = (1.4 + Math.random() * 0.7).toFixed(2);
+
+          flower.style.setProperty('--drift-x', `${driftX.toFixed(1)}px`);
+          flower.style.setProperty('--drift-y', `${driftY.toFixed(1)}px`);
+          flower.style.setProperty('--rot-start', `${rotStart}deg`);
+          flower.style.setProperty('--rot-mid', `${rotMid}deg`);
+          flower.style.setProperty('--rot-end', `${rotEnd}deg`);
+          flower.style.setProperty('--flower-duration', `${duration}s`);
+
+          document.body.appendChild(flower);
+          setTimeout(() => flower.remove(), parseFloat(duration) * 1000);
+        }
+      });
+
+      // Click / Pointerdown Expanding Burst Ring (Section 22)
+      document.addEventListener('pointerdown', (e) => {
+        // Do not spawn on inputs or dropdowns
+        if (e.target.closest('input, textarea, select, .theme-dropdown')) return;
+        
+        const burst = document.createElement('div');
+        burst.className = 'cursor-click-burst';
+        burst.style.left = `${e.clientX}px`;
+        burst.style.top = `${e.clientY}px`;
+        burst.style.width = '42px';
+        burst.style.height = '42px';
+        document.body.appendChild(burst);
+        setTimeout(() => burst.remove(), 600);
+
+        // 4 small burst petals flying outward
+        for (let i = 0; i < 4; i++) {
+          const petal = document.createElement('span');
+          petal.className = 'cursor-flower';
+          petal.textContent = '🌸';
+          petal.style.fontSize = `${13 + Math.random() * 6}px`;
+          petal.style.left = `${e.clientX}px`;
+          petal.style.top = `${e.clientY}px`;
+          const angle = (i * Math.PI / 2) + (Math.random() - 0.5) * 0.6;
+          const dist = 36 + Math.random() * 28;
+          petal.style.setProperty('--drift-x', `${(Math.cos(angle) * dist).toFixed(1)}px`);
+          petal.style.setProperty('--drift-y', `${(Math.sin(angle) * dist).toFixed(1)}px`);
+          petal.style.setProperty('--flower-duration', '0.75s');
+          document.body.appendChild(petal);
+          setTimeout(() => petal.remove(), 750);
+        }
+      });
+
+      // Smooth Badge Sway Physics Loop
+      function updateBadgePhysics() {
+        badgeAngle += (targetBadgeAngle - badgeAngle) * 0.08;
+        if (devIdBadge && window.innerWidth >= 768) {
+          devIdBadge.style.transform = `rotate(${badgeAngle.toFixed(2)}deg)`;
+        }
+        requestAnimationFrame(updateBadgePhysics);
+      }
+      requestAnimationFrame(updateBadgePhysics);
+    }
+
+    /* 4b. Giant AMRUTHA Lettering Particle Displacement System (Section 21) */
+    const particleCanvas = document.getElementById('amrutha-particle-canvas');
+    const giantAmruthaText = document.getElementById('giant-amrutha');
+    if (particleCanvas && window.innerWidth >= 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const pCtx = particleCanvas.getContext('2d');
+      let pList = [];
+      const pRadius = 135;
+
+      function initAmruthaParticles() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = particleCanvas.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+
+        particleCanvas.width = rect.width * dpr;
+        particleCanvas.height = rect.height * dpr;
+        pCtx.setTransform(1, 0, 0, 1, 0, 0);
+        pCtx.scale(dpr, dpr);
+
+        const offCanvas = document.createElement('canvas');
+        offCanvas.width = rect.width;
+        offCanvas.height = rect.height;
+        const offCtx = offCanvas.getContext('2d');
+
+        // Match giant-amrutha typography dimensions and letter-spacing (85–95% of hero width)
+        let computedFont = 180;
+        if (giantAmruthaText) {
+          const compStyle = window.getComputedStyle(giantAmruthaText);
+          computedFont = parseFloat(compStyle.fontSize) || Math.min(rect.width * 0.22, 290);
+        } else {
+          computedFont = Math.min(rect.width * 0.22, 290);
+        }
+
+        offCtx.font = `900 ${computedFont}px 'Outfit', sans-serif`;
+        try { offCtx.letterSpacing = '-0.075em'; } catch(e) {}
+        offCtx.fillStyle = '#f8cad6';
+        offCtx.textAlign = 'center';
+        offCtx.textBaseline = 'middle';
+        offCtx.fillText('AMRUTHA', rect.width / 2, rect.height / 2 + 16);
+
+        const imgData = offCtx.getImageData(0, 0, rect.width, rect.height);
+        const step = window.innerWidth < 1200 ? 9 : 7;
+        pList = [];
+
+        for (let y = 0; y < rect.height; y += step) {
+          for (let x = 0; x < rect.width; x += step) {
+            const idx = (y * rect.width + x) * 4;
+            if (imgData.data[idx + 3] > 100) {
+              pList.push({
+                homeX: x,
+                homeY: y,
+                x: x + (Math.random() - 0.5) * 14,
+                y: y + (Math.random() - 0.5) * 14,
+                vx: 0,
+                vy: 0,
+                size: Math.random() > 0.4 ? 2.8 : 4.0,
+                color: Math.random() > 0.5 ? '#f5a4bd' : '#fcd2dc',
+                angle: Math.random() * Math.PI * 2,
+                wobble: 0.02 + Math.random() * 0.03
+              });
+            }
+          }
+        }
+      }
+
+      let animFrame = 0;
+      function animateAmruthaParticles() {
+        pCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+        animFrame++;
+
+        const rect = particleCanvas.getBoundingClientRect();
+        const localX = mousePos.x - rect.left;
+        const localY = mousePos.y - rect.top;
+
+        for (let i = 0; i < pList.length; i++) {
+          const p = pList[i];
+          const dx = p.x - localX;
+          const dy = p.y - localY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < pRadius && dist > 0) {
+            const force = (pRadius - dist) / pRadius;
+            const ang = Math.atan2(dy, dx);
+            p.vx += Math.cos(ang) * force * 13;
+            p.vy += Math.sin(ang) * force * 13;
+          }
+
+          const springX = (p.homeX - p.x) * 0.065;
+          const springY = (p.homeY - p.y) * 0.065;
+          p.vx = (p.vx + springX) * 0.85;
+          p.vy = (p.vy + springY) * 0.85;
+
+          p.x += p.vx + Math.sin(animFrame * p.wobble + i) * 0.28;
+          p.y += p.vy + Math.cos(animFrame * p.wobble + i) * 0.22;
+
+          pCtx.fillStyle = p.color;
+          pCtx.beginPath();
+          pCtx.ellipse(p.x, p.y, p.size * 1.25, p.size * 0.75, p.angle, 0, Math.PI * 2);
+          pCtx.fill();
+        }
+
+        requestAnimationFrame(animateAmruthaParticles);
+      }
+
+      window.addEventListener('load', () => {
+        initAmruthaParticles();
+        animateAmruthaParticles();
+      });
+      window.addEventListener('resize', initAmruthaParticles);
+    }
+
+    /* 5. Magnetic CTA Buttons & Pills Interaction */
+    const magneticElements = document.querySelectorAll('.magnetic-btn, .skill-pill, .filter-btn');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth >= 768) {
+      magneticElements.forEach(el => {
+        el.addEventListener('mousemove', e => {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          el.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px) scale(1.03)`;
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.transform = '';
+        });
+      });
+    }
+
+    /* 6. Interactive 3D Card Tilt with Dynamic Animated Glare */
+    const tiltCards = document.querySelectorAll('.tilt-card');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth >= 768) {
+      tiltCards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+
+          const rotX = (-(y - rect.height / 2) / rect.height * 9).toFixed(2);
+          const rotY = ((x - rect.width / 2) / rect.width * 9).toFixed(2);
+          card.style.transform = `perspective(850px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px) scale3d(1.02, 1.02, 1.02)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      });
+    }
+
+    /* 7. Interactive Character Speech Bubble */
+    const bubble = document.getElementById('speech-bubble');
+    const quotes = [
+      "Let’s explore! 🌸",
+      "Welcome to my world! ✨",
+      "A little creativity goes a long way. ♡",
+      "Let's build something lovely! ✿",
+      "Thoughtful code, happy users! 💻"
+    ];
+    let quoteIndex = 0;
+    if (bubble) {
+      bubble.addEventListener('click', () => {
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+        bubble.textContent = quotes[quoteIndex];
+        bubble.style.transform = 'rotate(-3deg) scale(1.1)';
+        setTimeout(() => {
+          bubble.style.transform = '';
+        }, 250);
+      });
+    }
+
+    /* 7b. Modals Common Engine */
+    const devIdModal = document.getElementById('dev-id-modal');
+    const resumeModal = document.getElementById('resume-modal');
+    const passkeyModal = document.getElementById('passkey-modal');
+
+    function openModal(modal) {
+      if (!modal) return;
+      modal.hidden = false;
+      modal.removeAttribute('hidden');
+      modal.classList.add('is-open');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      const closeBtn = modal.querySelector('.modal-close-btn');
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeModal(modal) {
+      if (!modal) return;
+      modal.hidden = true;
+      modal.setAttribute('hidden', '');
+      modal.classList.remove('is-open');
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+      if (modal === devIdModal && typeof stopModalPixelLoop === 'function') {
+        stopModalPixelLoop();
+      }
+    }
+
+    /* 8. Developer ID Card: Hidden Admin Flower Trigger & Public Profile Modal (Phase 1, 2, 8) */
+    const idAdminFlower = document.getElementById('id-admin-flower');
+    const closeDevModal = document.getElementById('close-dev-modal');
+
+    // Desktop Double-Click on Rotating Flower opens Restricted Access passkey modal
+    if (idAdminFlower) {
+      idAdminFlower.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openPasskeyModal();
+      });
+
+      // Mobile Double-Tap detector (<380ms)
+      let lastFlowerTap = 0;
+      idAdminFlower.addEventListener('touchend', (e) => {
+        const now = Date.now();
+        const diff = now - lastFlowerTap;
+        if (diff > 0 && diff < 380) {
+          e.preventDefault();
+          e.stopPropagation();
+          openPasskeyModal();
+        }
+        lastFlowerTap = now;
+      }, { passive: false });
+
+      // Keyboard accessible trigger (Enter or Space)
+      idAdminFlower.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          e.stopPropagation();
+          openPasskeyModal();
+        }
+      });
+    }
+
+    // Developer ID Card click opens Developer Profile Modal (with automatic pixel dissolve loop)
+    if (devIdBadge) {
+      devIdBadge.addEventListener('click', (e) => {
+        // If clicking the hidden admin flower trigger, don't open profile modal
+        if (e.target.closest('#id-admin-flower')) return;
+        e.stopPropagation();
+        openModal(devIdModal);
+        startModalPixelLoop();
+      });
+      devIdBadge.addEventListener('keydown', (e) => {
+        if (e.target.closest('#id-admin-flower')) return;
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModal(devIdModal);
+          startModalPixelLoop();
+        }
+      });
+    }
+
+    if (closeDevModal) {
+      closeDevModal.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(devIdModal);
+        stopModalPixelLoop();
+      });
+    }
+
+    /* 8b. Developer ID Profile Modal: Automatic Looping Pixel Dissolve Sequence (Phase 5, Section 5) */
+    const modalAnimeImg = document.getElementById('modal-avatar-anime');
+    const modalRealImg = document.getElementById('modal-avatar-real');
+    const modalPixelCanvas = document.getElementById('modal-pixel-loop-canvas');
+    let pixelLoopTimer = null;
+    let pixelAnimFrame = null;
+    let isLoopRunning = false;
+
+    function startModalPixelLoop() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        if (modalAnimeImg) modalAnimeImg.style.opacity = '1';
+        if (modalRealImg) modalRealImg.style.opacity = '0';
+        return;
+      }
+      isLoopRunning = true;
+      runPixelLoopSequence();
+    }
+
+    function stopModalPixelLoop() {
+      isLoopRunning = false;
+      if (pixelLoopTimer) clearTimeout(pixelLoopTimer);
+      if (pixelAnimFrame) cancelAnimationFrame(pixelAnimFrame);
+      if (modalPixelCanvas) {
+        modalPixelCanvas.hidden = true;
+        const ctx = modalPixelCanvas.getContext('2d');
+        if (ctx) ctx.clearRect(0, 0, modalPixelCanvas.width, modalPixelCanvas.height);
+      }
+      if (modalAnimeImg) modalAnimeImg.style.opacity = '1';
+      if (modalRealImg) modalRealImg.style.opacity = '0';
+    }
+
+    // Pause loop if tab is hidden
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopModalPixelLoop();
+      } else if (devIdModal && !devIdModal.hidden) {
+        startModalPixelLoop();
+      }
+    });
+
+    function runPixelLoopSequence() {
+      if (!isLoopRunning) return;
+
+      // Stage A: Anime Portrait Hold (~2.0s)
+      if (modalAnimeImg) modalAnimeImg.style.opacity = '1';
+      if (modalRealImg) modalRealImg.style.opacity = '0';
+      if (modalPixelCanvas) modalPixelCanvas.hidden = true;
+
+      pixelLoopTimer = setTimeout(() => {
+        if (!isLoopRunning) return;
+
+        // Stage B & C: Pixel Dissolution to Real Portrait (~800ms)
+        executeCanvasPixelDissolve(true, () => {
+          if (!isLoopRunning) return;
+
+          // Stage D: Real Portrait Hold (~2.0s)
+          if (modalAnimeImg) modalAnimeImg.style.opacity = '0';
+          if (modalRealImg) modalRealImg.style.opacity = '1';
+
+          pixelLoopTimer = setTimeout(() => {
+            if (!isLoopRunning) return;
+
+            // Stage E: Reverse Pixel Transformation back to Anime (~800ms)
+            executeCanvasPixelDissolve(false, () => {
+              if (!isLoopRunning) return;
+              // Stage F: Repeat loop smoothly!
+              runPixelLoopSequence();
+            });
+          }, 2000);
+        });
+      }, 2000);
+    }
+
+    function executeCanvasPixelDissolve(toReal, onComplete) {
+      if (!modalPixelCanvas || !modalAnimeImg || !modalRealImg) {
+        if (onComplete) onComplete();
+        return;
+      }
+
+      modalPixelCanvas.hidden = false;
+      const rect = modalPixelCanvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      modalPixelCanvas.width = rect.width * dpr;
+      modalPixelCanvas.height = rect.height * dpr;
+      const pCtx = modalPixelCanvas.getContext('2d');
+      pCtx.scale(dpr, dpr);
+
+      const cols = 20;
+      const rows = 20;
+      const cellW = rect.width / cols;
+      const cellH = rect.height / rows;
+      const total = cols * rows;
+
+      const order = Array.from({ length: total }, (_, i) => i);
+      for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+
+      const duration = 800; // ms
+      const startTime = performance.now();
+
+      function stepFrame(currentTime) {
+        if (!isLoopRunning) {
+          modalPixelCanvas.hidden = true;
+          return;
+        }
+
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Switch underlying image opacity at midway point (progress 0.5)
+        if (progress >= 0.5) {
+          modalAnimeImg.style.opacity = toReal ? '0' : '1';
+          modalRealImg.style.opacity = toReal ? '1' : '0';
+        }
+
+        pCtx.clearRect(0, 0, rect.width, rect.height);
+
+        // Pink-tinted and cream pixel fragments
+        const count = Math.floor(Math.sin(progress * Math.PI) * total);
+        const alpha = Math.sin(progress * Math.PI) * 0.95;
+
+        for (let c = 0; c < count; c++) {
+          const idx = order[c];
+          const col = idx % cols;
+          const row = Math.floor(idx / cols);
+
+          pCtx.fillStyle = (c % 3 === 0) 
+            ? `rgba(245, 164, 189, ${alpha})` 
+            : (c % 3 === 1) 
+              ? `rgba(255, 230, 238, ${alpha})` 
+              : `rgba(213, 101, 134, ${alpha})`;
+          
+          pCtx.fillRect(col * cellW, row * cellH, cellW - 0.5, cellH - 0.5);
+        }
+
+        if (progress < 1) {
+          pixelAnimFrame = requestAnimationFrame(stepFrame);
+        } else {
+          modalPixelCanvas.hidden = true;
+          pCtx.clearRect(0, 0, rect.width, rect.height);
+          if (onComplete) onComplete();
+        }
+      }
+
+      pixelAnimFrame = requestAnimationFrame(stepFrame);
+    }
+
+    /* 8c. Developer ID Hero Portrait Hover Pixel Dissolve */
+    const heroPhotoFrame = document.getElementById('id-photo-frame');
+    const heroAnimeImg = document.getElementById('anime-portrait-img');
+    const heroRealImg = document.getElementById('real-portrait-img');
+    const heroPixelCanvas = document.getElementById('hero-pixel-canvas');
+    let heroPixelAnimFrame = null;
+    let heroCurrentState = 'anime'; // 'anime' | 'real'
+
+    function executeHeroPixelDissolve(toReal) {
+      if (!heroPixelCanvas || !heroAnimeImg || !heroRealImg) {
+        if (heroAnimeImg) heroAnimeImg.style.opacity = toReal ? '0' : '1';
+        if (heroRealImg) heroRealImg.style.opacity = toReal ? '1' : '0';
+        return;
+      }
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        heroAnimeImg.style.opacity = toReal ? '0' : '1';
+        heroRealImg.style.opacity = toReal ? '1' : '0';
+        heroCurrentState = toReal ? 'real' : 'anime';
+        return;
+      }
+
+      if (heroPixelAnimFrame) cancelAnimationFrame(heroPixelAnimFrame);
+      heroPixelCanvas.style.display = 'block';
+
+      const rect = heroPhotoFrame ? heroPhotoFrame.getBoundingClientRect() : heroPixelCanvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      heroPixelCanvas.width = (rect.width || 186) * dpr;
+      heroPixelCanvas.height = (rect.height || 160) * dpr;
+      const ctx = heroPixelCanvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+
+      const w = rect.width || 186;
+      const h = rect.height || 160;
+      const cols = 18;
+      const rows = 18;
+      const cellW = w / cols;
+      const cellH = h / rows;
+      const total = cols * rows;
+
+      const order = Array.from({ length: total }, (_, i) => i);
+      for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+
+      const duration = 520; // ms
+      const startTime = performance.now();
+
+      function stepHeroFrame(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        if (progress >= 0.5) {
+          heroAnimeImg.style.opacity = toReal ? '0' : '1';
+          heroRealImg.style.opacity = toReal ? '1' : '0';
+          heroCurrentState = toReal ? 'real' : 'anime';
+          if (heroPhotoFrame) {
+            heroPhotoFrame.classList.toggle('show-real', toReal);
+          }
+        }
+
+        ctx.clearRect(0, 0, w, h);
+        const count = Math.floor(Math.sin(progress * Math.PI) * total);
+        const alpha = Math.sin(progress * Math.PI) * 0.95;
+
+        for (let c = 0; c < count; c++) {
+          const idx = order[c];
+          const col = idx % cols;
+          const row = Math.floor(idx / cols);
+
+          ctx.fillStyle = (c % 3 === 0)
+            ? `rgba(245, 164, 189, ${alpha})`
+            : (c % 3 === 1)
+              ? `rgba(255, 230, 238, ${alpha})`
+              : `rgba(213, 101, 134, ${alpha})`;
+          ctx.fillRect(col * cellW, row * cellH, cellW - 0.5, cellH - 0.5);
+        }
+
+        if (progress < 1) {
+          heroPixelAnimFrame = requestAnimationFrame(stepHeroFrame);
+        } else {
+          heroPixelCanvas.style.display = 'none';
+          ctx.clearRect(0, 0, w, h);
+        }
+      }
+
+      heroPixelAnimFrame = requestAnimationFrame(stepHeroFrame);
+    }
+
+    if (heroPhotoFrame) {
+      heroPhotoFrame.addEventListener('mouseenter', () => {
+        if (heroCurrentState !== 'real') executeHeroPixelDissolve(true);
+      });
+      heroPhotoFrame.addEventListener('mouseleave', () => {
+        if (heroCurrentState !== 'anime') executeHeroPixelDissolve(false);
+      });
+      heroPhotoFrame.addEventListener('click', (e) => {
+        if (window.innerWidth < 768) {
+          e.stopPropagation();
+          executeHeroPixelDissolve(heroCurrentState !== 'real');
+        }
+      });
+    }
+
+    /* 9. Passkey Security Gateway: Restricted Access to Separate admin.html (Phase 2 & 9) */
+    const closePasskeyModal = document.getElementById('close-passkey-modal');
+    const passkeyForm = document.getElementById('passkey-form');
+    const passkeyInput = document.getElementById('passkey-input');
+    const passkeyError = document.getElementById('passkey-error');
+
+    function openPasskeyModal() {
+      if (passkeyInput) {
+        passkeyInput.value = '';
+        passkeyInput.classList.remove('input-error');
+      }
+      if (passkeyError) {
+        passkeyError.style.display = 'none';
+        passkeyError.textContent = '';
+      }
+      openModal(passkeyModal);
+      if (passkeyInput) setTimeout(() => passkeyInput.focus(), 150);
+    }
+
+    if (closePasskeyModal) {
+      closePasskeyModal.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(passkeyModal);
+      });
+    }
+
+    // Authorized access verification
+    const VALID_ADMIN_KEYS = ['170311', '2026', 'sakura', 'amrutha'];
+
+    if (passkeyForm) {
+      passkeyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const entered = (passkeyInput.value || '').trim().toLowerCase();
+
+        if (VALID_ADMIN_KEYS.includes(entered)) {
+          // Establish authenticated admin session
+          sessionStorage.setItem('amrutha_admin_session', JSON.stringify({
+            authenticated: true,
+            role: 'owner',
+            timestamp: Date.now()
+          }));
+          closeModal(passkeyModal);
+          // Navigate to separate admin dashboard route
+          window.location.href = 'admin.html';
+        } else {
+          // Strict error: "Access denied. Please try again." - NO hints or partial feedback
+          passkeyInput.classList.add('input-error');
+          passkeyError.textContent = 'Access denied. Please try again.';
+          passkeyError.style.display = 'block';
+          passkeyInput.value = '';
+          setTimeout(() => {
+            passkeyInput.classList.remove('input-error');
+          }, 600);
+        }
+      });
+    }
+
+    /* 9b. Smart Classroom Attendance & Admin Dashboard Modal (Phase 22) */
+    const adminDashboardModal = document.getElementById('admin-dashboard-modal');
+    const openAdminDashboardBtn = document.getElementById('open-admin-dashboard-btn');
+    const navAdminDashboardBtn = document.getElementById('nav-admin-dashboard-btn');
+    const attendanceMockupWindow = document.getElementById('attendance-mockup-window');
+    const devModalAdminBtn = document.getElementById('dev-modal-admin-btn');
+    const closeAdminModal = document.getElementById('close-admin-modal');
+
+    const studentsData = [
+      { id: '21NEC01', name: 'Aarav Sharma', status: 'present', avg: '96%', tag: '' },
+      { id: '21NEC02', name: 'Divvela J. V. Amrutha', status: 'present', avg: '98%', tag: 'Lead Architect' },
+      { id: '21NEC03', name: 'Bhavya Karanam', status: 'absent', avg: '82%', tag: '' },
+      { id: '21NEC04', name: 'Chaitanya Rao', status: 'present', avg: '94%', tag: '' },
+      { id: '21NEC05', name: 'Divya Mandava', status: 'present', avg: '91%', tag: '' },
+      { id: '21NEC06', name: 'Eshwar Prasad', status: 'absent', avg: '78%', tag: '' },
+      { id: '21NEC07', name: 'Farhan Ahmed', status: 'present', avg: '93%', tag: '' },
+      { id: '21NEC08', name: 'Gayatri Somu', status: 'present', avg: '95%', tag: '' },
+      { id: '21NEC09', name: 'Harsh Vardhan', status: 'present', avg: '89%', tag: '' },
+      { id: '21NEC10', name: 'Ishita Nair', status: 'present', avg: '97%', tag: '' }
+    ];
+
+    let currentAdminFilter = 'all';
+    let adminSearchQuery = '';
+
+    const adminTotalEnrolledEl = document.getElementById('admin-total-enrolled');
+    const adminPresentCountEl = document.getElementById('admin-present-count');
+    const adminAbsentCountEl = document.getElementById('admin-absent-count');
+    const adminRatePctEl = document.getElementById('admin-rate-pct');
+    const filterAllNumEl = document.getElementById('filter-all-num');
+    const filterPresentNumEl = document.getElementById('filter-present-num');
+    const filterAbsentNumEl = document.getElementById('filter-absent-num');
+    const adminRosterListEl = document.getElementById('admin-roster-list');
+    const adminSearchInput = document.getElementById('admin-search-input');
+    const adminSearchClear = document.getElementById('admin-search-clear');
+    const adminToastEl = document.getElementById('admin-toast');
+
+    function showAdminToast(msg) {
+      if (!adminToastEl) return;
+      adminToastEl.textContent = msg;
+      adminToastEl.hidden = false;
+      clearTimeout(adminToastEl._timer);
+      adminToastEl._timer = setTimeout(() => {
+        adminToastEl.hidden = true;
+      }, 3500);
+    }
+
+    function recalculateAdminStats() {
+      const total = studentsData.length;
+      const present = studentsData.filter(s => s.status === 'present').length;
+      const absent = studentsData.filter(s => s.status === 'absent').length;
+      const rate = total > 0 ? ((present / total) * 100).toFixed(1) + '%' : '0.0%';
+
+      if (adminTotalEnrolledEl) adminTotalEnrolledEl.textContent = total;
+      if (adminPresentCountEl) adminPresentCountEl.textContent = present;
+      if (adminAbsentCountEl) adminAbsentCountEl.textContent = absent;
+      if (adminRatePctEl) adminRatePctEl.textContent = rate;
+
+      if (filterAllNumEl) filterAllNumEl.textContent = total;
+      if (filterPresentNumEl) filterPresentNumEl.textContent = present;
+      if (filterAbsentNumEl) filterAbsentNumEl.textContent = absent;
+
+      // Sync stats with mockup window
+      const mockupPresent = document.querySelector('.mockup-stat:nth-child(2) .mockup-stat-num');
+      const mockupRate = document.querySelector('.mockup-stat:nth-child(3) .mockup-stat-num');
+      if (mockupPresent) mockupPresent.textContent = present;
+      if (mockupRate) mockupRate.textContent = rate;
+    }
+
+    function renderAdminRoster() {
+      if (!adminRosterListEl) return;
+      adminRosterListEl.innerHTML = '';
+
+      const filtered = studentsData.filter(s => {
+        const matchesFilter = currentAdminFilter === 'all' || s.status === currentAdminFilter;
+        const matchesSearch = !adminSearchQuery || 
+          s.name.toLowerCase().includes(adminSearchQuery.toLowerCase()) || 
+          s.id.toLowerCase().includes(adminSearchQuery.toLowerCase());
+        return matchesFilter && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        const empty = document.createElement('div');
+        empty.style.padding = '24px';
+        empty.style.textAlign = 'center';
+        empty.style.color = 'var(--muted)';
+        empty.style.fontSize = '13px';
+        empty.textContent = 'No students match your search filter.';
+        adminRosterListEl.appendChild(empty);
+        return;
+      }
+
+      filtered.forEach(student => {
+        const row = document.createElement('div');
+        row.className = 'admin-student-row';
+
+        const initials = student.name.split(' ').map(n => n[0]).slice(0, 2).join('');
+        row.innerHTML = `
+          <div class="student-info">
+            <div class="student-avatar">${initials}</div>
+            <div class="student-details">
+              <div class="student-name">
+                ${student.name}
+                ${student.tag ? `<span class="student-tag">${student.tag}</span>` : ''}
+              </div>
+              <div class="student-sub">Roll No: <strong>${student.id}</strong> &bull; Semester Avg: ${student.avg}</div>
+            </div>
+          </div>
+          <div class="status-toggle-group">
+            <button type="button" class="status-pill-btn pill-present ${student.status === 'present' ? 'active' : ''}" data-id="${student.id}" data-set="present" title="Mark Present">Present ✓</button>
+            <button type="button" class="status-pill-btn pill-absent ${student.status === 'absent' ? 'active' : ''}" data-id="${student.id}" data-set="absent" title="Mark Absent">Absent ✗</button>
+            <button type="button" class="status-pill-btn pill-late ${student.status === 'late' ? 'active' : ''}" data-id="${student.id}" data-set="late" title="Mark Late">Late ⏰</button>
+          </div>
+        `;
+        adminRosterListEl.appendChild(row);
+      });
+
+      adminRosterListEl.querySelectorAll('.status-pill-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          const sid = btn.dataset.id;
+          const newStatus = btn.dataset.set;
+          const s = studentsData.find(item => item.id === sid);
+          if (s) {
+            s.status = newStatus;
+            recalculateAdminStats();
+            renderAdminRoster();
+          }
+        });
+      });
+    }
+
+    // Filter Buttons
+    document.querySelectorAll('.admin-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.admin-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentAdminFilter = btn.dataset.statusFilter;
+        renderAdminRoster();
+      });
+    });
+
+    // Search Input
+    if (adminSearchInput) {
+      adminSearchInput.addEventListener('input', e => {
+        adminSearchQuery = e.target.value.trim();
+        if (adminSearchClear) adminSearchClear.style.display = adminSearchQuery ? 'block' : 'none';
+        renderAdminRoster();
+      });
+    }
+    if (adminSearchClear) {
+      adminSearchClear.addEventListener('click', () => {
+        if (adminSearchInput) adminSearchInput.value = '';
+        adminSearchQuery = '';
+        adminSearchClear.style.display = 'none';
+        renderAdminRoster();
+      });
+    }
+
+    // Quick Batch Actions
+    const markAllBtn = document.getElementById('admin-mark-all-btn');
+    if (markAllBtn) {
+      markAllBtn.addEventListener('click', () => {
+        studentsData.forEach(s => s.status = 'present');
+        recalculateAdminStats();
+        renderAdminRoster();
+        showAdminToast('✓ All 10 students marked Present for Period 1!');
+      });
+    }
+
+    const resetBtn = document.getElementById('admin-reset-btn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        studentsData.forEach((s, idx) => s.status = (idx === 2 || idx === 5) ? 'absent' : 'present');
+        recalculateAdminStats();
+        renderAdminRoster();
+        showAdminToast('↺ Attendance roll call reset to scheduled roster state.');
+      });
+    }
+
+    const exportCsvBtn = document.getElementById('admin-export-csv-btn');
+    if (exportCsvBtn) {
+      exportCsvBtn.addEventListener('click', () => {
+        let csv = 'Roll No,Student Name,Status,Semester Average,Class,Department,Date\n';
+        const dStr = new Date().toLocaleDateString('en-US');
+        studentsData.forEach(s => {
+          csv += `${s.id},"${s.name}",${s.status.toUpperCase()},${s.avg},CSE-3A,Computer Science,${dStr}\n`;
+        });
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Attendance_Report_CSE3A_${new Date().toISOString().slice(0, 10)}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showAdminToast('📥 Attendance CSV report downloaded successfully!');
+      });
+    }
+
+    const broadcastBtn = document.getElementById('admin-broadcast-btn');
+    if (broadcastBtn) {
+      broadcastBtn.addEventListener('click', () => {
+        showAdminToast('☁ Syncing live attendance with Narasaraopeta Engineering College Portal... Done!');
+      });
+    }
+
+    /* 9c. Admin Portal Access Helper */
+    const navAdminFlowerBtn = document.getElementById('nav-admin-flower-btn');
+    const togglePasskeyVis = document.getElementById('toggle-passkey-vis');
+
+    function checkAdminAccess(onSuccess) {
+      if (sessionStorage.getItem('amrutha_admin_session')) {
+        onSuccess();
+      } else {
+        openPasskeyModal();
+      }
+    }
+
+    if (navAdminFlowerBtn) {
+      navAdminFlowerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+    }
+
+    if (togglePasskeyVis && passkeyInput) {
+      togglePasskeyVis.addEventListener('click', () => {
+        const isPass = passkeyInput.type === 'password';
+        passkeyInput.type = isPass ? 'text' : 'password';
+        togglePasskeyVis.textContent = isPass ? '🔒' : '👁';
+      });
+    }
+
+    function launchAdminDashboard() {
+      recalculateAdminStats();
+      renderAdminRoster();
+      openModal(adminDashboardModal);
+    }
+
+    if (openAdminDashboardBtn) {
+      openAdminDashboardBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+    }
+    if (navAdminDashboardBtn) {
+      navAdminDashboardBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+    }
+    if (attendanceMockupWindow) {
+      attendanceMockupWindow.addEventListener('click', (e) => {
+        e.stopPropagation();
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+      attendanceMockupWindow.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          checkAdminAccess(() => launchAdminDashboard());
+        }
+      });
+    }
+    if (devModalAdminBtn) {
+      devModalAdminBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(devIdModal);
+        checkAdminAccess(() => launchAdminDashboard());
+      });
+    }
+    if (closeAdminModal) {
+      closeAdminModal.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(adminDashboardModal);
+      });
+    }
+
+    // Dismiss modals when clicking dark backdrop
+    [devIdModal, resumeModal, passkeyModal, adminDashboardModal].forEach(modal => {
+      if (!modal) return;
+      modal.addEventListener('click', e => {
+        if (e.target === modal) {
+          closeModal(modal);
+        }
+      });
+    });
+
+    // Escape key closes modals
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeModal(devIdModal);
+        closeModal(resumeModal);
+        closeModal(passkeyModal);
+        closeModal(adminDashboardModal);
+      }
+    });
+
+    /* 10. Modals Logic (Resume & General) */
+    const resumeBtn = document.getElementById('resume-btn');
+    const contactResumeBtn = document.getElementById('contact-resume-btn');
+    const devModalResumeBtn = document.getElementById('dev-modal-resume-btn');
+    const closeResumeModal = document.getElementById('close-resume-modal');
+
+    if (resumeBtn) {
+      resumeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal(resumeModal);
+      });
+    }
+    if (contactResumeBtn) {
+      contactResumeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal(resumeModal);
+      });
+    }
+    if (devModalResumeBtn) {
+      devModalResumeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(devIdModal);
+        openModal(resumeModal);
+      });
+    }
+    if (closeResumeModal) {
+      closeResumeModal.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(resumeModal);
+      });
+    }
+
+    // Dismiss modals when clicking dark backdrop
+    [devIdModal, resumeModal, passkeyModal, adminDashboardModal].forEach(modal => {
+      if (!modal) return;
+      modal.addEventListener('click', e => {
+        if (e.target === modal) {
+          closeModal(modal);
+        }
+      });
+    });
+
+    // Escape key closes open modals
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeModal(devIdModal);
+        closeModal(resumeModal);
+        closeModal(passkeyModal);
+      }
+    });
+
+    /* 11. Project Filters & External Links */
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card, .featured-project-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        projectCards.forEach(card => {
+          const category = card.dataset.category;
+          if (filter === 'all' || category === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Copy GitHub Link with Toast Feedback
+    const copyBtn = document.getElementById('copy-github-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        const gitHubUrl = 'https://github.com/amruthadivvela-droid';
+        try {
+          await navigator.clipboard.writeText(gitHubUrl);
+          copyBtn.textContent = 'Link copied! ♡';
+          copyBtn.style.borderColor = 'var(--accent)';
+          copyBtn.style.color = 'var(--accent)';
+          setTimeout(() => {
+            copyBtn.textContent = 'Copy GitHub link';
+            copyBtn.style.borderColor = '';
+            copyBtn.style.color = '';
+          }, 2200);
+        } catch (err) {
+          window.open(gitHubUrl, '_blank');
+        }
+      });
+    }
+
+    /* ==========================================================================
+       12. BUTTERFLY TRANSFORMED FAQ INTERACTION
+       ========================================================================== */
+    const faqData = [
+      {
+        category: "Leadership & CodeXa",
+        question: "What is your role as Chief Technology Officer (CTO) at CodeXa Agency?",
+        answer: "As CTO at CodeXa Agency, I spearhead technical strategy, frontend architectural direction, and software quality across all client projects. I establish modern development standards, guide component architectures, and bridge the gap between creative visual design and scalable production engineering."
+      },
+      {
+        category: "Technical Stack",
+        question: "What technologies and frontend frameworks do you specialize in?",
+        answer: "I specialize in modern web standards: semantic HTML5, modern CSS3 (custom properties, fluid layouts, keyframe mechanics), JavaScript (ES6+), React, and Vite. I emphasize lightweight bundles, zero unnecessary dependencies, fluid 60fps animations, and cloud integrations with Supabase and Resend."
+      },
+      {
+        category: "Opportunities",
+        question: "Are you open to frontend engineering roles or freelance collaborations?",
+        answer: "Yes! I am actively open to frontend engineering roles, creative web projects, and technical leadership contracts. Whether you are building a product from scratch or elevating an existing experience, feel free to submit an enquiry via the royal envelope below."
+      },
+      {
+        category: "Motion & UI/UX",
+        question: "How do you achieve fluid motion without sacrificing web performance?",
+        answer: "I prioritize GPU-composited CSS transforms and opacity, utilize requestAnimationFrame for particle loops, optimize canvas redraw intervals, debounce pointer interactions, and strictly honor accessibility through prefers-reduced-motion media queries."
+      },
+      {
+        category: "Academic Background",
+        question: "What is your current academic background and learning trajectory?",
+        answer: "I am pursuing my B.Tech degree at Narasaraopeta Engineering College, building upon academic excellence (96.3% in Intermediate, 95% in Class X at Sri Chaitanya). I constantly blend foundational computer science theory with creative, real-world development."
+      },
+      {
+        category: "Communication",
+        question: "How can clients or teams connect with you most effectively?",
+        answer: "You can submit a message through the royal washi envelope form on this page to instantly generate your personal visiting card and message me on WhatsApp (+91 90323 16792), or send an email directly to amruthadivvela@gmail.com."
+      }
+    ];
+
+    const faqCards = document.querySelectorAll('.faq-card');
+    const faqModal = document.getElementById('faq-butterfly-modal');
+    const faqFlyingButterfly = document.getElementById('faq-flying-butterfly');
+    const butterflyWingsPanel = document.getElementById('butterfly-wings-panel');
+    const faqActiveCategory = document.getElementById('faq-active-category');
+    const faqActiveTitle = document.getElementById('faq-active-title');
+    const faqActiveBody = document.getElementById('faq-active-body');
+    const faqWingsCloseBtn = document.getElementById('faq-wings-close-btn');
+    const orbitingButterflyClose = document.getElementById('orbiting-butterfly-close');
+    const faqModalBackdrop = document.getElementById('faq-modal-backdrop');
+
+    function openFaqButterfly(index, triggerElement) {
+      const data = faqData[index];
+      if (!data || !faqModal) return;
+
+      if (faqActiveCategory) faqActiveCategory.textContent = data.category;
+      if (faqActiveTitle) faqActiveTitle.textContent = data.question;
+      if (faqActiveBody) faqActiveBody.textContent = data.answer;
+
+      // Position flying butterfly at trigger and animate to center
+      if (triggerElement && faqFlyingButterfly && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const rect = triggerElement.getBoundingClientRect();
+        faqFlyingButterfly.style.display = 'block';
+        faqFlyingButterfly.style.left = `${rect.left + rect.width / 2 - 30}px`;
+        faqFlyingButterfly.style.top = `${rect.top + rect.height / 2 - 25}px`;
+        faqFlyingButterfly.style.transform = 'scale(0.8) rotate(0deg)';
+        faqFlyingButterfly.style.opacity = '1';
+
+        setTimeout(() => {
+          faqFlyingButterfly.style.left = `${window.innerWidth / 2 - 30}px`;
+          faqFlyingButterfly.style.top = `${window.innerHeight / 2 - 25}px`;
+          faqFlyingButterfly.style.transform = 'scale(2.2) rotate(15deg)';
+        }, 20);
+
+        setTimeout(() => {
+          faqFlyingButterfly.style.opacity = '0';
+          setTimeout(() => { faqFlyingButterfly.style.display = 'none'; }, 300);
+          openModal(faqModal);
+        }, 420);
+      } else {
+        openModal(faqModal);
+      }
+    }
+
+    function closeFaqButterfly() {
+      if (faqModal) closeModal(faqModal);
+    }
+
+    faqCards.forEach((card, idx) => {
+      card.addEventListener('click', (e) => {
+        const trigger = card.querySelector('.faq-butterfly-trigger') || card;
+        openFaqButterfly(idx, trigger);
+      });
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const trigger = card.querySelector('.faq-butterfly-trigger') || card;
+          openFaqButterfly(idx, trigger);
+        }
+      });
+    });
+
+    if (faqWingsCloseBtn) faqWingsCloseBtn.addEventListener('click', closeFaqButterfly);
+    if (orbitingButterflyClose) {
+      orbitingButterflyClose.addEventListener('click', closeFaqButterfly);
+      orbitingButterflyClose.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          closeFaqButterfly();
+        }
+      });
+    }
+    if (faqModalBackdrop) faqModalBackdrop.addEventListener('click', closeFaqButterfly);
+    if (faqModal) {
+      faqModal.addEventListener('click', (e) => {
+        if (e.target === faqModal || e.target === faqModalBackdrop) {
+          closeFaqButterfly();
+        }
+      });
+    }
+
+    // Keyboard Escape handler for all modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (faqModal && !faqModal.hidden) closeFaqButterfly();
+        const visitingCardModal = document.getElementById('visiting-card-modal');
+        if (visitingCardModal && !visitingCardModal.hidden) closeModal(visitingCardModal);
+        const devModal = document.getElementById('dev-id-modal');
+        if (devModal && !devModal.hidden) closeModal(devModal);
+        const resumeM = document.getElementById('resume-modal');
+        if (resumeM && !resumeM.hidden) closeModal(resumeM);
+      }
+    });
+
+    /* ==========================================================================
+       13. SOCIAL CONTACT COMPOSITION & QUICK COPY BUTTONS
+       ========================================================================== */
+    const copyEmailBtn = document.getElementById('copy-email-btn');
+    const copyPhoneBtn = document.getElementById('copy-phone-btn');
+
+    if (copyEmailBtn) {
+      copyEmailBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('amruthadivvela@gmail.com');
+          copyEmailBtn.innerHTML = '<span>Copied! ♡</span> ✓';
+          setTimeout(() => {
+            copyEmailBtn.innerHTML = '<span>Copy Email</span> 📋';
+          }, 2000);
+        } catch (e) {
+          window.location.href = 'mailto:amruthadivvela@gmail.com';
+        }
+      });
+    }
+
+    if (copyPhoneBtn) {
+      copyPhoneBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('+91 90323 16792');
+          copyPhoneBtn.innerHTML = '<span>Copied! ♡</span> ✓';
+          setTimeout(() => {
+            copyPhoneBtn.innerHTML = '<span>Copy WhatsApp</span> 💬';
+          }, 2000);
+        } catch (e) {
+          window.open('https://wa.me/919032316792', '_blank');
+        }
+      });
+    }
+
+    /* ==========================================================================
+       14. ENVELOPE ENQUIRY FORM & AUTOMATED DISPATCH (EMAIL & WHATSAPP)
+       ========================================================================== */
+    const contactForm = document.getElementById('contact-form');
+    const reqNameInput = document.getElementById('contact-name');
+    const reqEmailInput = document.getElementById('contact-email');
+    const reqMsgInput = document.getElementById('contact-msg');
+    const submitEnquiryBtn = document.getElementById('submit-enquiry-btn');
+    const submitBtnLbl = document.getElementById('submit-btn-lbl');
+    const formFeedback = document.getElementById('form-feedback');
+    const visitingCardModal = document.getElementById('visiting-card-modal');
+    const closeVisitingCardModal = document.getElementById('close-visiting-card-modal');
+    const visitingCardCanvas = document.getElementById('visiting-card-canvas');
+    const downloadCardBtn = document.getElementById('download-card-btn');
+    const shareCardBtn = document.getElementById('share-card-btn');
+
+    let currentSubmissionId = null;
+
+    if (closeVisitingCardModal) {
+      closeVisitingCardModal.addEventListener('click', () => {
+        closeModal(visitingCardModal);
+      });
+    }
+
+    // High-Resolution 1080 x 1350 Official CodeXa Visiting Card Generator
+    function renderVisitingCard() {
+      if (!visitingCardCanvas) return;
+      const ctx = visitingCardCanvas.getContext('2d');
+      const w = 1080;
+      const h = 1350;
+
+      // Card Background: Warm cream & soft Sakura pink gradient
+      const bgGrad = ctx.createLinearGradient(0, 0, w, h);
+      bgGrad.addColorStop(0, '#fffbf7');
+      bgGrad.addColorStop(0.5, '#fff2f6');
+      bgGrad.addColorStop(1, '#ffeaf1');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Subtle Decorative Grid
+      ctx.strokeStyle = 'rgba(213, 101, 134, 0.08)';
+      ctx.lineWidth = 1;
+      for (let x = 60; x < w; x += 60) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let y = 60; y < h; y += 60) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+
+      // Outer & Inner Borders
+      ctx.strokeStyle = '#d56586';
+      ctx.lineWidth = 6;
+      ctx.strokeRect(50, 50, w - 100, h - 100);
+
+      ctx.strokeStyle = 'rgba(230, 188, 88, 0.7)';
+      ctx.lineWidth = 2.5;
+      ctx.strokeRect(62, 62, w - 124, h - 124);
+
+      // Corner Floral Accents
+      function drawCornerBlossom(cx, cy) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        for (let a = 0; a < 5; a++) {
+          ctx.rotate((Math.PI * 2) / 5);
+          ctx.beginPath();
+          ctx.ellipse(0, -18, 11, 18, 0, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(245, 164, 189, 0.85)';
+          ctx.fill();
+        }
+        ctx.beginPath();
+        ctx.arc(0, 0, 7, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffd57a';
+        ctx.fill();
+        ctx.restore();
+      }
+
+      drawCornerBlossom(90, 90);
+      drawCornerBlossom(w - 90, 90);
+      drawCornerBlossom(90, h - 90);
+      drawCornerBlossom(w - 90, h - 90);
+
+      // Header: Brand & Identity
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#d56586';
+      ctx.font = 'bold 54px Outfit, sans-serif';
+      ctx.fillText('Amrutha ✿', w / 2, 175);
+
+      ctx.fillStyle = '#6b4b58';
+      ctx.font = '700 28px Outfit, sans-serif';
+      ctx.fillText('Chief Technology Officer at CodeXa Agency', w / 2, 222);
+
+      ctx.fillStyle = '#8f6e7c';
+      ctx.font = '500 22px Outfit, sans-serif';
+      ctx.fillText('Frontend Engineer • Creative Web Architect', w / 2, 258);
+
+      // Decorative Badge
+      ctx.fillStyle = 'rgba(213, 101, 134, 0.12)';
+      ctx.beginPath();
+      ctx.roundRect(w / 2 - 270, 290, 540, 46, 23);
+      ctx.fill();
+
+      ctx.fillStyle = '#ba5372';
+      ctx.font = 'bold 20px Outfit, sans-serif';
+      ctx.fillText('OFFICIAL DIGITAL VISITING CARD & ENQUIRY', w / 2, 320);
+
+      // Content Box (Cream Card Background)
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.beginPath();
+      ctx.roundRect(100, 370, w - 200, 710, 28);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(213, 101, 134, 0.22)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Visitor Info
+      const visitorName = (reqNameInput && reqNameInput.value.trim()) || 'Kind Visitor';
+      const visitorEmail = (reqEmailInput && reqEmailInput.value.trim()) || 'amruthadivvela@gmail.com';
+      const requirements = (reqMsgInput && reqMsgInput.value.trim()) || 'Exploring opportunities for creative web engineering, frontend architecture, and technical collaborations. 🌸';
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#ba5372';
+      ctx.font = 'bold 24px Outfit, sans-serif';
+      ctx.fillText('COLLABORATION ENQUIRY FROM:', 150, 440);
+
+      ctx.fillStyle = '#2b1c24';
+      ctx.font = 'bold 36px Outfit, sans-serif';
+      ctx.fillText(visitorName, 150, 490);
+
+      ctx.fillStyle = '#8f6e7c';
+      ctx.font = '500 24px Outfit, sans-serif';
+      ctx.fillText(`Contact: ${visitorEmail}`, 150, 532);
+
+      // Divider line
+      ctx.strokeStyle = 'rgba(213, 101, 134, 0.18)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(150, 570);
+      ctx.lineTo(w - 150, 570);
+      ctx.stroke();
+
+      // Requirements Heading & Wrapped Text
+      ctx.fillStyle = '#ba5372';
+      ctx.font = 'bold 24px Outfit, sans-serif';
+      ctx.fillText('PROJECT PROPOSAL & MESSAGE:', 150, 625);
+
+      ctx.fillStyle = '#3a2530';
+      ctx.font = '400 27px Outfit, sans-serif';
+      
+      const maxLineWidth = w - 300;
+      const lineHeight = 42;
+      const words = requirements.split(/\s+/);
+      let line = '';
+      let curY = 675;
+      const maxY = 1010;
+
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxLineWidth && n > 0) {
+          ctx.fillText(line.trim(), 150, curY);
+          line = words[n] + ' ';
+          curY += lineHeight;
+          if (curY > maxY) {
+            ctx.fillText('...', 150, curY);
+            break;
+          }
+        } else {
+          line = testLine;
+        }
+      }
+      if (curY <= maxY && line.trim()) {
+        ctx.fillText(line.trim(), 150, curY);
+      }
+
+      // Footer
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#d56586';
+      ctx.font = 'bold 32px Caveat, cursive, sans-serif';
+      ctx.fillText('Thank you for connecting! ♡', w / 2, 1150);
+
+      ctx.fillStyle = '#7a5a68';
+      ctx.font = '600 22px Outfit, sans-serif';
+      ctx.fillText("Divvela Amrutha • WhatsApp: +91 90323 16792 • CodeXa Agency", w / 2, 1205);
+    }
+
+    function downloadVisitingCardPng() {
+      if (!visitingCardCanvas) return;
+      visitingCardCanvas.toBlob(blob => {
+        if (!blob) return;
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `Amrutha_Sakura_Visiting_Card.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(a.href);
+      }, 'image/png');
+    }
+
+    if (downloadCardBtn) {
+      downloadCardBtn.addEventListener('click', downloadVisitingCardPng);
+    }
+
+    if (shareCardBtn) {
+      shareCardBtn.addEventListener('click', async () => {
+        if (!visitingCardCanvas) return;
+        visitingCardCanvas.toBlob(async blob => {
+          if (!blob) return;
+          const cardFile = new File([blob], 'Amrutha_Visiting_Card.png', { type: 'image/png' });
+          const shareText = `Official CodeXa Visiting Card for ${(reqNameInput && reqNameInput.value) || 'a visitor'} - Amrutha Portfolio`;
+
+          if (navigator.canShare && navigator.canShare({ files: [cardFile] })) {
+            try {
+              await navigator.share({
+                title: 'Amrutha Visiting Card',
+                text: shareText,
+                files: [cardFile]
+              });
+            } catch (err) {}
+          } else {
+            downloadVisitingCardPng();
+          }
+        }, 'image/png');
+      });
+    }
+
+    // AUTOMATED CONTACT FORM SUBMISSION
+    let isSubmitting = false;
+    async function submitContactForm(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      if (isSubmitting) return;
+
+      const name = (reqNameInput && reqNameInput.value.trim()) || '';
+      const email = (reqEmailInput && reqEmailInput.value.trim()) || '';
+      const message = (reqMsgInput && reqMsgInput.value.trim()) || '';
+
+      // Field Validation
+      if (!name) {
+        if (formFeedback) {
+          formFeedback.style.display = 'block';
+          formFeedback.style.color = '#e0526e';
+          formFeedback.textContent = 'Please enter your name to connect! ♡';
+        }
+        if (reqNameInput) reqNameInput.focus();
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        if (formFeedback) {
+          formFeedback.style.display = 'block';
+          formFeedback.style.color = '#e0526e';
+          formFeedback.textContent = 'Please provide a valid email address so I can reply! ♡';
+        }
+        if (reqEmailInput) reqEmailInput.focus();
+        return;
+      }
+
+      if (!message) {
+        if (formFeedback) {
+          formFeedback.style.display = 'block';
+          formFeedback.style.color = '#e0526e';
+          formFeedback.textContent = 'Please describe your requirements or ideas! ♡';
+        }
+        if (reqMsgInput) reqMsgInput.focus();
+        return;
+      }
+
+      if (formFeedback) {
+        formFeedback.style.display = 'none';
+      }
+
+      isSubmitting = true;
+
+      // Generate stable idempotency key for this submission attempt
+      if (!currentSubmissionId) {
+        currentSubmissionId = 'sub_' + Date.now() + '_' + Math.random().toString(36).slice(2, 9);
+      }
+
+      // Disable button & indicate loading state
+      if (submitEnquiryBtn) {
+        submitEnquiryBtn.disabled = true;
+        submitEnquiryBtn.style.opacity = '0.75';
+      }
+      if (submitBtnLbl) {
+        submitBtnLbl.innerHTML = 'Sending enquiry... <span style="display:inline-block; animation:spin 1s linear infinite;">🌸</span>';
+      }
+
+      // Render visiting card in background
+      renderVisitingCard();
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Idempotency-Key': currentSubmissionId
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            message
+          })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.readyForWhatsApp) {
+          throw new Error(result.message || 'Unable to prepare your enquiry. Please check your connection and retry.');
+        }
+
+        // Reset idempotency ID on success
+        currentSubmissionId = null;
+
+        if (submitBtnLbl) {
+          submitBtnLbl.textContent = 'Redirecting to WhatsApp... 🌸';
+        }
+
+        // Directly navigate to WhatsApp
+        if (typeof window.__onWhatsAppRedirect === 'function') {
+          window.__onWhatsAppRedirect(result.whatsappUrl);
+        } else {
+          window.location.assign(result.whatsappUrl);
+        }
+
+        // Fallback link in case automatic browser navigation is delayed or blocked
+        setTimeout(() => {
+          if (formFeedback) {
+            formFeedback.innerHTML = `<a href="${result.whatsappUrl}" target="_blank" rel="noopener noreferrer" style="color:var(--accent); font-weight:700; text-decoration:underline;">Click here to open WhatsApp with your message ready ↗</a>`;
+            formFeedback.style.display = 'block';
+          }
+          if (submitEnquiryBtn) {
+            submitEnquiryBtn.disabled = false;
+            submitEnquiryBtn.style.opacity = '1';
+          }
+          if (submitBtnLbl) {
+            submitBtnLbl.textContent = 'Contact Me ♡';
+          }
+          isSubmitting = false;
+        }, 2500);
+
+      } catch (error) {
+        console.error('[Contact Submission Error]', error);
+        isSubmitting = false;
+        if (formFeedback) {
+          formFeedback.style.display = 'block';
+          formFeedback.style.color = '#e0526e';
+          formFeedback.textContent = error.message || 'Unable to submit enquiry. Please try again.';
+        }
+        if (submitEnquiryBtn) {
+          submitEnquiryBtn.disabled = false;
+          submitEnquiryBtn.style.opacity = '1';
+        }
+        if (submitBtnLbl) {
+          submitBtnLbl.textContent = 'Contact Me ♡';
+        }
+      }
+    }
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', submitContactForm);
+    }
+    if (submitEnquiryBtn) {
+      submitEnquiryBtn.addEventListener('click', (e) => {
+        submitContactForm(e);
+      });
+    }
+    window.__submitContactForm = submitContactForm;
+
+    /* ==========================================================================
+       15. GRAND CINEMATIC FINALE SECTION (CONTINUOUS AUTOMATIC OUTRO LOOP)
+       ========================================================================== */
+    const finaleCanvas = document.getElementById('finale-canvas');
+    const finaleStrikethrough = document.getElementById('strikethrough-path');
+    const finalePortfolio = document.getElementById('finale-portfolio') || document.getElementById('word-portfolio');
+    const finaleWorld = document.getElementById('finale-world') || document.getElementById('word-world');
+    const finaleMessageContainer = document.getElementById('finale-message-container') || document.getElementById('finale-quote-container');
+
+    let isFinaleLoopActive = true;
+    let finaleAnimFrame = null;
+    let finaleCycleTimeout = null;
+
+    function initCinematicFinale() {
+      if (!finaleCanvas) return;
+      const ctx = finaleCanvas.getContext('2d');
+      let w = (finaleCanvas.width = finaleCanvas.offsetWidth || window.innerWidth);
+      let h = (finaleCanvas.height = finaleCanvas.offsetHeight || 520);
+
+      window.addEventListener('resize', () => {
+        if (!finaleCanvas) return;
+        w = finaleCanvas.width = finaleCanvas.offsetWidth || window.innerWidth;
+        h = finaleCanvas.height = finaleCanvas.offsetHeight || 520;
+      });
+
+      // Particle system for butterflies and cherry blossom petals
+      const particleCount = 150;
+      const particles = [];
+      const colors = ['#f5a4bd', '#ffd5e2', '#d56586', '#ffffff', '#ff9ebb', '#ffd57a'];
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 1.8,
+          vy: Math.random() * 1.5 + 0.6,
+          size: Math.random() * 8 + 6,
+          rot: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 0.04,
+          isButterfly: i % 4 === 0,
+          wingPhase: Math.random() * Math.PI * 2,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: Math.random() * 0.7 + 0.3
+        });
+      }
+
+      function drawFinaleParticles() {
+        if (!isFinaleLoopActive) return;
+        ctx.clearRect(0, 0, w, h);
+
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.rotSpeed;
+          p.wingPhase += 0.15;
+
+          if (p.x < -40) p.x = w + 40;
+          if (p.x > w + 40) p.x = -40;
+          if (p.y > h + 40) {
+            p.y = -40;
+            p.x = Math.random() * w;
+          }
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.globalAlpha = p.alpha;
+
+          if (p.isButterfly) {
+            // Draw miniature fluttering butterfly
+            const wingScale = Math.sin(p.wingPhase);
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.ellipse(-p.size * 0.5 * wingScale, -p.size * 0.3, p.size * 0.5, p.size * 0.3, 0, 0, Math.PI * 2);
+            ctx.ellipse(p.size * 0.5 * wingScale, -p.size * 0.3, p.size * 0.5, p.size * 0.3, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#5d384e';
+            ctx.fillRect(-1, -p.size * 0.4, 2, p.size * 0.8);
+          } else {
+            // Draw cherry blossom petal
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.ellipse(0, 0, p.size * 0.5, p.size, p.rot, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          ctx.restore();
+        });
+
+        finaleAnimFrame = requestAnimationFrame(drawFinaleParticles);
+      }
+
+      let finaleCycleId = 0;
+
+      function runCinematicCycle(fastForward) {
+        finaleCycleId++;
+        const currentCycle = finaleCycleId;
+        if (finaleCycleTimeout) clearTimeout(finaleCycleTimeout);
+
+        if (fastForward || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          if (finaleMessageContainer) finaleMessageContainer.style.opacity = '1';
+          if (finaleStrikethrough) finaleStrikethrough.classList.add('active');
+          if (finalePortfolio) finalePortfolio.classList.add('struck');
+          if (finaleWorld) finaleWorld.classList.add('active');
+          return;
+        }
+
+        // State A: Initial formation: "Thanks for visiting my portfolio"
+        if (finaleMessageContainer) finaleMessageContainer.style.opacity = '1';
+        if (finaleStrikethrough) finaleStrikethrough.classList.remove('active');
+        if (finaleWorld) finaleWorld.classList.remove('active');
+        if (finalePortfolio) {
+          finalePortfolio.classList.remove('struck');
+          finalePortfolio.style.opacity = '0.9';
+        }
+
+        // State B: After 2.5s, handwritten strike-through draws across "portfolio"
+        finaleCycleTimeout = setTimeout(() => {
+          if (currentCycle !== finaleCycleId) return;
+          if (finaleStrikethrough) finaleStrikethrough.classList.add('active');
+
+          // State C & D: After 0.6s, "world ♡" blooms & floral celebration
+          finaleCycleTimeout = setTimeout(() => {
+            if (currentCycle !== finaleCycleId) return;
+            if (finalePortfolio) finalePortfolio.classList.add('struck');
+            if (finaleWorld) finaleWorld.classList.add('active');
+
+            // State E: Hold for 6.5s so visitors can fully read "Thanks for visiting my world! ♡"
+            finaleCycleTimeout = setTimeout(() => {
+              if (currentCycle !== finaleCycleId) return;
+              // State F: Dissolve message into butterflies & petals
+              if (finaleMessageContainer) finaleMessageContainer.style.opacity = '0';
+
+              // State G: Reform after 1.5s and loop seamlessly
+              finaleCycleTimeout = setTimeout(() => {
+                if (currentCycle !== finaleCycleId) return;
+                runCinematicCycle();
+              }, 1500);
+            }, 6500);
+          }, 600);
+        }, 2500);
+      }
+
+      drawFinaleParticles();
+      runCinematicCycle();
+
+      // Pause heavy particle canvas when offscreen, resume when visible
+      const finaleSection = document.getElementById('finale');
+      if (finaleSection && 'IntersectionObserver' in window) {
+        const finaleObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              if (!isFinaleLoopActive) {
+                isFinaleLoopActive = true;
+                drawFinaleParticles();
+              }
+            } else {
+              isFinaleLoopActive = false;
+              if (finaleAnimFrame) cancelAnimationFrame(finaleAnimFrame);
+            }
+          });
+        }, { threshold: 0.05 });
+        finaleObserver.observe(finaleSection);
+      }
+
+      window.__triggerFinaleCycle = runCinematicCycle;
+    }
+
+    initCinematicFinale();
+
+    /* 13. Scroll Reveals & Navigation Active Spy */
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px 150px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      // Fallback ensure all reveals appear gracefully for full-page screenshots or rapid scrolling
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      }, 1000);
+
+      const sections = document.querySelectorAll('section[id]');
+      const navItems = document.querySelectorAll('.nav-links a');
+
+      const navObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navItems.forEach(item => {
+              item.classList.toggle('active', item.getAttribute('href') === `#${id}`);
+            });
+          }
+        });
+      }, { threshold: 0.35 });
+
+      sections.forEach(s => navObserver.observe(s));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+  })();
+  </script>
+</body>
+</html>
